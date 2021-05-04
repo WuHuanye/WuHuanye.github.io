@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>情灭缘散</title>
+    <url>/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/</url>
+    <content><![CDATA[<blockquote>
+<p>纪念那些神奇、摸不着头脑的岁月。</p>
+<a id="more"></a>
+</blockquote>
+<p>时光漫步，足迹轻点</p>
+<p>折翼天使，舞降尘世</p>
+<p>世间纠缠，悲观离合</p>
+<p>姻缘情愫，绕困于心</p>
+<p>百年人生，梦过一场</p>
+<p>只为一瞬</p>
+<p>轮回百世，本以</p>
+<p>看破红尘</p>
+<p>却</p>
+<p>复灭于情</p>
+<p>夕阳西坠，昏黄天地</p>
+<p>轻风吹拂，落花缤纷</p>
+<p>笛声悠扬</p>
+<p>只为 祭奠</p>
+<p>那些曾经的</p>
+<p>岁月</p>
+<p>​                                ——2013.12.5 午</p>
+<img src="/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3.png" class="" title="This is an example image">]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>诗</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java构建树</title>
     <url>/java%E6%9E%84%E5%BB%BA%E6%A0%91/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
@@ -32,6 +64,25 @@
       </categories>
       <tags>
         <tag>utils</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查找算法</title>
+    <url>/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="二分查找法（折半查找法）"><a href="#二分查找法（折半查找法）" class="headerlink" title="二分查找法（折半查找法）"></a>二分查找法（折半查找法）</h2><blockquote>
+<p>数据是有序的。</p>
+<a id="more"></a>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 二分查找算法，查到返回数据下标，查不到返回-1。 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> target</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">           <span class="keyword">int</span> mid = (low + high)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span> (target &lt; arr[mid]) &#123;</span><br><span class="line">               high = mid - <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &gt; arr[mid]) &#123;</span><br><span class="line">               low = mid + <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">return</span> mid;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -150,38 +201,6 @@
       </tags>
   </entry>
   <entry>
-    <title>情灭缘散</title>
-    <url>/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/</url>
-    <content><![CDATA[<blockquote>
-<p>纪念那些神奇、摸不着头脑的岁月。</p>
-<a id="more"></a>
-</blockquote>
-<p>时光漫步，足迹轻点</p>
-<p>折翼天使，舞降尘世</p>
-<p>世间纠缠，悲观离合</p>
-<p>姻缘情愫，绕困于心</p>
-<p>百年人生，梦过一场</p>
-<p>只为一瞬</p>
-<p>轮回百世，本以</p>
-<p>看破红尘</p>
-<p>却</p>
-<p>复灭于情</p>
-<p>夕阳西坠，昏黄天地</p>
-<p>轻风吹拂，落花缤纷</p>
-<p>笛声悠扬</p>
-<p>只为 祭奠</p>
-<p>那些曾经的</p>
-<p>岁月</p>
-<p>​                                ——2013.12.5 午</p>
-<img src="/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3.png" class="" title="This is an example image">]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>诗</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>浅谈ElasticSearch</title>
     <url>/%E6%B5%85%E8%B0%88ElasticSearch/</url>
     <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
@@ -293,6 +312,21 @@
 <h2 id="Restful风格操作"><a href="#Restful风格操作" class="headerlink" title="Restful风格操作"></a>Restful风格操作</h2><img src="/%E6%B5%85%E8%B0%88ElasticSearch/rest%E9%A3%8E%E6%A0%BC.png" class="" title="This is an example image">
 
 <p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\rest风格.png" alt="image-20210502235417964"></p>
+<h2 id="SpingBoot整合ES-实战"><a href="#SpingBoot整合ES-实战" class="headerlink" title="SpingBoot整合ES(实战)"></a>SpingBoot整合ES(实战)</h2><blockquote>
+<p>官方文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
+</blockquote>
+<h3 id="获得原生依赖"><a href="#获得原生依赖" class="headerlink" title="获得原生依赖"></a>获得原生依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.elasticsearch.client<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%88%9D%E5%A7%8B%E5%8C%96.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\初始化.png" alt="image-20210503114252881"></p>
+<h3 id="熟悉一些API"><a href="#熟悉一些API" class="headerlink" title="熟悉一些API"></a>熟悉一些API</h3><p>restful风格</p>
+<p>创建 put</p>
+<p>编辑 post</p>
+<p>查询 get    查询体query</p>
+<p>分页 form size</p>
+<p>…</p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>结合着<strong>jsoup</strong>爬虫去使用</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -361,13 +395,32 @@
       </tags>
   </entry>
   <entry>
-    <title>查找算法</title>
-    <url>/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="二分查找法（折半查找法）"><a href="#二分查找法（折半查找法）" class="headerlink" title="二分查找法（折半查找法）"></a>二分查找法（折半查找法）</h2><blockquote>
-<p>数据是有序的。</p>
-<a id="more"></a>
+    <title>设计模式（一）</title>
+    <url>/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<blockquote>
+<p>思想很重要！</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 二分查找算法，查到返回数据下标，查不到返回-1。 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> target</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">           <span class="keyword">int</span> mid = (low + high)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span> (target &lt; arr[mid]) &#123;</span><br><span class="line">               high = mid - <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &gt; arr[mid]) &#123;</span><br><span class="line">               low = mid + <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">return</span> mid;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>浅谈单例模式与代理模式。</p>
+<a id="more"></a>
+
+<h2 id="1-单例模式"><a href="#1-单例模式" class="headerlink" title="1. 单例模式"></a>1. 单例模式</h2><blockquote>
+<p>保证被创建一次，节省系统的开销。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 省略 get set</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalDataMgr</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> GlobalDataMgr MGR = <span class="keyword">new</span> GlobalDataMgr();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String userName;</span><br><span class="line">	<span class="keyword">private</span> String passWord;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GlobalDataMgr <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> MGR;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-代理模式"><a href="#2-代理模式" class="headerlink" title="2. 代理模式"></a>2. 代理模式</h2><blockquote>
+<p>就是相当于第三方，中介，比如在结婚中，我们关注的事只是结婚这一件事，但是结婚还有宴请宾客、组织会场、司仪主持等其他繁琐的事，这些事就可以交给婚介所处理，然后结婚的这个节点实际上婚介所是用我们的真实身份，也就是我们自己去完成的。所以这里的婚介所就相当于代理。（简而言之，使用代理就是为了帮我们做一些额外的事，我们只需要关注自己的事即可）</p>
+<p><strong>注：代理 代理的是接口。</strong></p>
+</blockquote>
+<h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 原始接口（真实角色，即我们）</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DemoInterface</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">edit</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是一个默认方法，实现接口时可重写，也可不重写&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 真实角色的实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoInterfaceImpl</span> <span class="keyword">implements</span> <span class="title">DemoInterface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;增加。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">del</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;删除。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">edit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;更新。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;查询。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 代理角色，在这里的作用相当于是加了一些 日志或者说是方法执行前的说明</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoInterfaceProxy</span> <span class="keyword">implements</span> <span class="title">DemoInterface</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> DemoInterfaceImpl demoInterface;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDemoInterface</span><span class="params">(DemoInterfaceImpl demoInterface)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == demoInterface)&#123;</span><br><span class="line">            demoInterface = <span class="keyword">new</span> DemoInterfaceImpl();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.demoInterface = demoInterface;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        log();</span><br><span class="line">        demoInterface.add();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">del</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        demoInterface.del();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">edit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        demoInterface.edit();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        log();</span><br><span class="line">        demoInterface.query();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;增加日志功能&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//主类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DemoInterfaceImpl demoInterface = <span class="keyword">new</span> DemoInterfaceImpl();</span><br><span class="line">        DemoInterfaceProxy proxy =  <span class="keyword">new</span> DemoInterfaceProxy();</span><br><span class="line">        proxy.setDemoInterface(demoInterface);</span><br><span class="line">        proxy.add();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyInvocationHandle</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    <span class="comment">//被代理的接口</span></span><br><span class="line">    <span class="keyword">private</span> DemoInterface demoInterface;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDemoInterface</span><span class="params">(DemoInterface demoInterface)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.demoInterface = demoInterface;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成得到代理类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getProxy</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> Proxy.newProxyInstance(<span class="keyword">this</span>.getClass().getClassLoader(),demoInterface.getClass().getInterfaces(),<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理代理实例，并返回成功</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> proxy</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> method</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">// 动态代理的本质，使用反射机制实现</span></span><br><span class="line">        before();</span><br><span class="line">        Object invoke = method.invoke(demoInterface, args);</span><br><span class="line">        after();</span><br><span class="line">        <span class="keyword">return</span> invoke;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行前。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行后。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 真实角色</span></span><br><span class="line">        DemoInterface demoInterface = <span class="keyword">new</span> DemoInterfaceImpl();</span><br><span class="line">        <span class="comment">// 代理角色：无</span></span><br><span class="line">        ProxyInvocationHandle proxy = <span class="keyword">new</span> ProxyInvocationHandle();</span><br><span class="line">        <span class="comment">// 把真实角色赋给代理</span></span><br><span class="line">        proxy.setDemoInterface(demoInterface);</span><br><span class="line">        <span class="comment">// 获得代理角色</span></span><br><span class="line">        DemoInterface demoInterfaceProxy = (DemoInterface)proxy.getProxy();</span><br><span class="line">        <span class="comment">// 通过代理角色调用方法</span></span><br><span class="line">        demoInterfaceProxy.query();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -376,7 +429,7 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>算法</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>

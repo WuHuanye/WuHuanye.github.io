@@ -47,8 +47,10 @@
 <meta property="og:image" content="d:/hexo/blog/source_posts/浅谈ElasticSearch/ik_max_word分词效果.png">
 <meta property="og:image" content="https://wuhuanye.github.io/%E6%B5%85%E8%B0%88ElasticSearch/rest%E9%A3%8E%E6%A0%BC.png">
 <meta property="og:image" content="d:/hexo/blog/source_posts/浅谈ElasticSearch/rest风格.png">
+<meta property="og:image" content="https://wuhuanye.github.io/%E6%B5%85%E8%B0%88ElasticSearch/%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta property="og:image" content="d:/hexo/blog/source_posts/浅谈ElasticSearch/初始化.png">
 <meta property="article:published_time" content="2021-05-02T02:49:57.000Z">
-<meta property="article:modified_time" content="2021-05-02T17:16:31.835Z">
+<meta property="article:modified_time" content="2021-05-04T13:31:33.867Z">
 <meta property="article:author" content="Ronetver">
 <meta property="article:tag" content="技术栈">
 <meta property="article:tag" content="es">
@@ -246,7 +248,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-03 01:16:31" itemprop="dateModified" datetime="2021-05-03T01:16:31+08:00">2021-05-03</time>
+                <time title="修改时间：2021-05-04 21:31:33" itemprop="dateModified" datetime="2021-05-04T21:31:33+08:00">2021-05-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -278,14 +280,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
+              <span>2.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -406,6 +408,21 @@
 <h2 id="Restful风格操作"><a href="#Restful风格操作" class="headerlink" title="Restful风格操作"></a>Restful风格操作</h2><img src="/%E6%B5%85%E8%B0%88ElasticSearch/rest%E9%A3%8E%E6%A0%BC.png" class="" title="This is an example image">
 
 <p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\rest风格.png" alt="image-20210502235417964"></p>
+<h2 id="SpingBoot整合ES-实战"><a href="#SpingBoot整合ES-实战" class="headerlink" title="SpingBoot整合ES(实战)"></a>SpingBoot整合ES(实战)</h2><blockquote>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
+</blockquote>
+<h3 id="获得原生依赖"><a href="#获得原生依赖" class="headerlink" title="获得原生依赖"></a>获得原生依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.elasticsearch.client<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%88%9D%E5%A7%8B%E5%8C%96.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\初始化.png" alt="image-20210503114252881"></p>
+<h3 id="熟悉一些API"><a href="#熟悉一些API" class="headerlink" title="熟悉一些API"></a>熟悉一些API</h3><p>restful风格</p>
+<p>创建 put</p>
+<p>编辑 post</p>
+<p>查询 get    查询体query</p>
+<p>分页 form size</p>
+<p>…</p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>结合着<strong>jsoup</strong>爬虫去使用</p>
 
     </div>
 
@@ -428,7 +445,10 @@
     <a href="/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/" rel="prev" title="查找算法">
       <i class="fa fa-chevron-left"></i> 查找算法
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89/" rel="next" title="设计模式（一）">
+      设计模式（一） <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -488,7 +508,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%A7%A3%E5%8E%8B%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.</span> <span class="nav-text">1.解压启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2-es-head%E6%8F%92%E4%BB%B6%EF%BC%88%E8%A6%81%E5%85%88%E8%A3%85node-js%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.安装可视化界面 es head插件（要先装node.js）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Kinbanna"><span class="nav-number">2.3.</span> <span class="nav-text">3.Kinbanna</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E4%BA%86%E8%A7%A3ELK"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1 了解ELK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E4%BA%86%E8%A7%A3Kibanna"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2 了解Kibanna</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.3.</span> <span class="nav-text">3.3 安装启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E6%B1%89%E5%8C%96"><span class="nav-number">2.3.4.</span> <span class="nav-text">3.4 汉化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%B0%E5%BB%BA%E7%B4%A2%E5%BC%95%E6%A6%82%E8%A7%88"><span class="nav-number">3.1.</span> <span class="nav-text">1.新建索引概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.2.</span> <span class="nav-text">2.与数据库的映射关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.3.</span> <span class="nav-text">3. 设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95"><span class="nav-number">3.4.</span> <span class="nav-text">4. 倒排索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%AE%89%E8%A3%85ik%E5%88%86%E8%AF%8D%E6%8F%92%E4%BB%B6"><span class="nav-number">3.5.</span> <span class="nav-text">5.安装ik分词插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8kibana%E6%B5%8B%E8%AF%95%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C"><span class="nav-number">3.6.</span> <span class="nav-text">6. 使用kibana测试分词效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1%E6%95%88%E6%9E%9C"><span class="nav-number">3.6.1.</span> <span class="nav-text">6.1效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2%E9%97%AE%E9%A2%98"><span class="nav-number">3.6.2.</span> <span class="nav-text">6.2问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88"><span class="nav-number">3.6.2.1.</span> <span class="nav-text">方案</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Restful%E9%A3%8E%E6%A0%BC%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">Restful风格操作</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%A7%A3%E5%8E%8B%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.</span> <span class="nav-text">1.解压启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2-es-head%E6%8F%92%E4%BB%B6%EF%BC%88%E8%A6%81%E5%85%88%E8%A3%85node-js%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.安装可视化界面 es head插件（要先装node.js）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Kinbanna"><span class="nav-number">2.3.</span> <span class="nav-text">3.Kinbanna</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E4%BA%86%E8%A7%A3ELK"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1 了解ELK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E4%BA%86%E8%A7%A3Kibanna"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2 了解Kibanna</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.3.</span> <span class="nav-text">3.3 安装启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E6%B1%89%E5%8C%96"><span class="nav-number">2.3.4.</span> <span class="nav-text">3.4 汉化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%B0%E5%BB%BA%E7%B4%A2%E5%BC%95%E6%A6%82%E8%A7%88"><span class="nav-number">3.1.</span> <span class="nav-text">1.新建索引概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.2.</span> <span class="nav-text">2.与数据库的映射关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.3.</span> <span class="nav-text">3. 设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95"><span class="nav-number">3.4.</span> <span class="nav-text">4. 倒排索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%AE%89%E8%A3%85ik%E5%88%86%E8%AF%8D%E6%8F%92%E4%BB%B6"><span class="nav-number">3.5.</span> <span class="nav-text">5.安装ik分词插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8kibana%E6%B5%8B%E8%AF%95%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C"><span class="nav-number">3.6.</span> <span class="nav-text">6. 使用kibana测试分词效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1%E6%95%88%E6%9E%9C"><span class="nav-number">3.6.1.</span> <span class="nav-text">6.1效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2%E9%97%AE%E9%A2%98"><span class="nav-number">3.6.2.</span> <span class="nav-text">6.2问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88"><span class="nav-number">3.6.2.1.</span> <span class="nav-text">方案</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Restful%E9%A3%8E%E6%A0%BC%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">Restful风格操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpingBoot%E6%95%B4%E5%90%88ES-%E5%AE%9E%E6%88%98"><span class="nav-number">5.</span> <span class="nav-text">SpingBoot整合ES(实战)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%BE%97%E5%8E%9F%E7%94%9F%E4%BE%9D%E8%B5%96"><span class="nav-number">5.1.</span> <span class="nav-text">获得原生依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">5.2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%86%9F%E6%82%89%E4%B8%80%E4%BA%9BAPI"><span class="nav-number">5.3.</span> <span class="nav-text">熟悉一些API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%88%98"><span class="nav-number">5.4.</span> <span class="nav-text">实战</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -504,7 +524,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -517,7 +537,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -558,12 +578,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">26k</span>
+    <span title="站点总字数">29k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">23 分钟</span>
+    <span title="站点阅读时长">27 分钟</span>
 </div>
 
         
