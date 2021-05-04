@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>情灭缘散</title>
-    <url>/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/</url>
-    <content><![CDATA[<blockquote>
-<p>纪念那些神奇、摸不着头脑的岁月。</p>
-<a id="more"></a>
-</blockquote>
-<p>时光漫步，足迹轻点</p>
-<p>折翼天使，舞降尘世</p>
-<p>世间纠缠，悲观离合</p>
-<p>姻缘情愫，绕困于心</p>
-<p>百年人生，梦过一场</p>
-<p>只为一瞬</p>
-<p>轮回百世，本以</p>
-<p>看破红尘</p>
-<p>却</p>
-<p>复灭于情</p>
-<p>夕阳西坠，昏黄天地</p>
-<p>轻风吹拂，落花缤纷</p>
-<p>笛声悠扬</p>
-<p>只为 祭奠</p>
-<p>那些曾经的</p>
-<p>岁月</p>
-<p>​                                ——2013.12.5 午</p>
-<img src="/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3.png" class="" title="This is an example image">]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>诗</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java构建树</title>
     <url>/java%E6%9E%84%E5%BB%BA%E6%A0%91/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
@@ -67,22 +35,35 @@
       </tags>
   </entry>
   <entry>
-    <title>查找算法</title>
-    <url>/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="二分查找法（折半查找法）"><a href="#二分查找法（折半查找法）" class="headerlink" title="二分查找法（折半查找法）"></a>二分查找法（折半查找法）</h2><blockquote>
-<p>数据是有序的。</p>
+    <title>情灭缘散</title>
+    <url>/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/</url>
+    <content><![CDATA[<blockquote>
+<p>纪念那些神奇、摸不着头脑的岁月。</p>
 <a id="more"></a>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 二分查找算法，查到返回数据下标，查不到返回-1。 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> target</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">           <span class="keyword">int</span> mid = (low + high)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span> (target &lt; arr[mid]) &#123;</span><br><span class="line">               high = mid - <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &gt; arr[mid]) &#123;</span><br><span class="line">               low = mid + <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">return</span> mid;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
+<p>时光漫步，足迹轻点</p>
+<p>折翼天使，舞降尘世</p>
+<p>世间纠缠，悲观离合</p>
+<p>姻缘情愫，绕困于心</p>
+<p>百年人生，梦过一场</p>
+<p>只为一瞬</p>
+<p>轮回百世，本以</p>
+<p>看破红尘</p>
+<p>却</p>
+<p>复灭于情</p>
+<p>夕阳西坠，昏黄天地</p>
+<p>轻风吹拂，落花缤纷</p>
+<p>笛声悠扬</p>
+<p>只为 祭奠</p>
+<p>那些曾经的</p>
+<p>岁月</p>
+<p>​                                ——2013.12.5 午</p>
+<img src="/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3.png" class="" title="This is an example image">]]></content>
       <categories>
-        <category>java</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>算法</tag>
+        <tag>诗</tag>
       </tags>
   </entry>
   <entry>
@@ -334,6 +315,25 @@
       <tags>
         <tag>技术栈</tag>
         <tag>es</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查找算法</title>
+    <url>/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="二分查找法（折半查找法）"><a href="#二分查找法（折半查找法）" class="headerlink" title="二分查找法（折半查找法）"></a>二分查找法（折半查找法）</h2><blockquote>
+<p>数据是有序的。</p>
+<a id="more"></a>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 二分查找算法，查到返回数据下标，查不到返回-1。 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> target</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">           <span class="keyword">int</span> mid = (low + high)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span> (target &lt; arr[mid]) &#123;</span><br><span class="line">               high = mid - <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &gt; arr[mid]) &#123;</span><br><span class="line">               low = mid + <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">return</span> mid;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
