@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-09 00:46:45" itemprop="dateModified" datetime="2021-05-09T00:46:45+08:00">2021-05-09</time>
+                <time title="修改时间：2021-05-09 01:04:05" itemprop="dateModified" datetime="2021-05-09T01:04:05+08:00">2021-05-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,52 +279,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>记录面试过程中碰到的不会或者模糊的问题。</p>
-</blockquote>
-<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="synchronized和volatile的区别"><a href="#synchronized和volatile的区别" class="headerlink" title="synchronized和volatile的区别"></a>synchronized和volatile的区别</h2><ul>
-<li>volatile修饰变量；synchronized修饰方法、代码段、类</li>
-<li>volatile仅能实现变量的修改可见性，不能保证原子性；synchronized都可以；</li>
-<li>volatile 不会造成线程的阻塞；synchronized有可能造成阻塞。</li>
-</ul>
-<h2 id="synchronized-和-Lock-有什么区别？"><a href="#synchronized-和-Lock-有什么区别？" class="headerlink" title="synchronized 和 Lock 有什么区别？"></a>synchronized 和 Lock 有什么区别？</h2><ul>
-<li>synchronized 可以给类、方法、代码块加锁；而 lock 只能给代码块加锁。</li>
-<li>synchronized 不需要手动获取锁和释放锁，使用简单，发生异常会自动释放锁，不会造成死锁；而 lock需要自己加锁和释放锁，如果使用不当没有 unLock()去释放锁就会造成死锁。</li>
-<li>通过 Lock 可以知道有没有成功获取锁，而 synchronized 却无法办到。</li>
-</ul>
-<h2 id="synchronized-和-ReentrantLock-区别是什么？"><a href="#synchronized-和-ReentrantLock-区别是什么？" class="headerlink" title="synchronized 和 ReentrantLock 区别是什么？"></a>synchronized 和 ReentrantLock 区别是什么？</h2><blockquote>
-<p>synchronized 早期的实现比较低效，对比 ReentrantLock，大多数场景性能都相差较大，但是在 Java 6中对 synchronized 进行了非常多的改进。</p>
-</blockquote>
-<p>主要区别如下：</p>
-<ul>
-<li>ReentrantLock 使用起来比较灵活，但是必须有释放锁的配合动作；</li>
-<li>ReentrantLock 必须手动获取与释放锁，而 synchronized 不需要手动释放和开启锁；</li>
-<li>ReentrantLock 只适用于代码块锁，而 synchronized 可用于修饰方法、代码块等。</li>
-<li>volatile 标记的变量不会被编译器优化；synchronized 标记的变量可以被编译器优化。</li>
-</ul>
-<h2 id="锁升级原理"><a href="#锁升级原理" class="headerlink" title="锁升级原理"></a>锁升级原理</h2><p>在锁对象的对象头里面有一个 threadid 字段，在<strong>第一次访问的时候threadid 为空</strong>，jvm 让其持有<strong>偏向锁</strong>，并将 threadid 设置为其线程 id，再次进入的时候会先判断threadid 是否与其线程 id 一致，<strong>如果一致则可以直接使用此对象</strong>，<strong>如果不一致，则升级偏向锁为轻量级锁</strong>，通过<strong>自旋循环</strong>一定次数来获取锁，执行一定次数之后，如果<strong>还没有正常获取到要使用的对象</strong>，此时就会把锁<strong>从轻量级升级为重量级锁，此过程就构成了 synchronized 锁的升级</strong>。</p>
-<p>锁的升级的目的：<strong>锁升级是为了减低了锁带来的性能消耗</strong>。在 Java 6 之后优化 synchronized 的实现方式，使用了偏向锁升级为轻量级锁再升级到重量级锁的方式，从而减低了锁带来的性能消耗。</p>
-<h2 id="说一下-synchronized-底层实现原理？"><a href="#说一下-synchronized-底层实现原理？" class="headerlink" title="说一下 synchronized 底层实现原理？"></a>说一下 synchronized 底层实现原理？</h2><p>synchronized 是由一对 monitorenter/monitorexit 指令实现的，monitor 对象是同步的基本实现单<br>元。在 Java 6 之前，monitor 的实现完全是依靠操作系统内部的互斥锁，因为需要进行用户态到内核态的切换，所以同步操作是一个无差别的重量级操作，性能也很低。但在 Java 6 的时候，Java 虚拟机 对此进行了大刀阔斧地改进，提供了三种不同的 monitor 实现，也就是常说的三种不同的锁：偏向锁<br>（Biased Locking）、轻量级锁和重量级锁，大大改进了其性能。</p>
-<h2 id="怎么防止死锁？"><a href="#怎么防止死锁？" class="headerlink" title="怎么防止死锁？"></a>怎么防止死锁？</h2><ul>
-<li>尽量使用 tryLock(long timeout, TimeUnit unit)的方法(ReentrantLockReentrantReadWriteLock)，<br>设置超时时间，超时可以退出防止死锁。</li>
-<li>尽量使用 Java. util. concurrent 并发类代替自己手写锁。</li>
-<li>尽量降低锁的使用粒度，尽量不要几个功能用同一把锁。</li>
-<li>尽量减少同步的代码块。</li>
-</ul>
-<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><h3 id="创建方式（4种）"><a href="#创建方式（4种）" class="headerlink" title="创建方式（4种）"></a>创建方式（4种）</h3><p>single、cache、fix、schedule</p>
-<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><ul>
-<li>NEW 尚未启动</li>
-<li>RUNNABLE 正在执行中</li>
-<li>BLOCKED 阻塞的（被同步锁或者 IO 锁阻塞）</li>
-<li>WAITING 永久等待状态</li>
-<li>TIMED_WAITING 等待指定的时间重新被唤醒的状态</li>
-<li>TERMINATED 执行完成</li>
-</ul>
-<h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><blockquote>
-<p>唯一索引、主键索引、全文索引、普通索引</p>
-<p>注：<strong>B-树就是B树，没有所谓的B减树</strong></p>
-</blockquote>
-<h3 id="数据结构（B-树）"><a href="#数据结构（B-树）" class="headerlink" title="数据结构（B+树）"></a>数据结构（B+树）</h3>
+          别在该奋斗的年纪选择了安逸！
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%A4%8D%E7%9B%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -366,10 +329,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-05-05 10:38:12 / 修改时间：11:12:11" itemprop="dateCreated datePublished" datetime="2021-05-05T10:38:12+08:00">2021-05-05</time>
+              <time title="创建时间：2021-05-05 10:38:12" itemprop="dateCreated datePublished" datetime="2021-05-05T10:38:12+08:00">2021-05-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-09 01:03:59" itemprop="dateModified" datetime="2021-05-09T01:03:59+08:00">2021-05-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
