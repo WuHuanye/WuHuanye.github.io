@@ -126,6 +126,62 @@
       </tags>
   </entry>
   <entry>
+    <title>复盘</title>
+    <url>/%E5%A4%8D%E7%9B%98/</url>
+    <content><![CDATA[<blockquote>
+<p>记录面试过程中碰到的不会或者模糊的问题。</p>
+</blockquote>
+<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="synchronized和volatile的区别"><a href="#synchronized和volatile的区别" class="headerlink" title="synchronized和volatile的区别"></a>synchronized和volatile的区别</h2><ul>
+<li>volatile修饰变量；synchronized修饰方法、代码段、类</li>
+<li>volatile仅能实现变量的修改可见性，不能保证原子性；synchronized都可以；</li>
+<li>volatile 不会造成线程的阻塞；synchronized有可能造成阻塞。</li>
+</ul>
+<h2 id="synchronized-和-Lock-有什么区别？"><a href="#synchronized-和-Lock-有什么区别？" class="headerlink" title="synchronized 和 Lock 有什么区别？"></a>synchronized 和 Lock 有什么区别？</h2><ul>
+<li>synchronized 可以给类、方法、代码块加锁；而 lock 只能给代码块加锁。</li>
+<li>synchronized 不需要手动获取锁和释放锁，使用简单，发生异常会自动释放锁，不会造成死锁；而 lock需要自己加锁和释放锁，如果使用不当没有 unLock()去释放锁就会造成死锁。</li>
+<li>通过 Lock 可以知道有没有成功获取锁，而 synchronized 却无法办到。</li>
+</ul>
+<h2 id="synchronized-和-ReentrantLock-区别是什么？"><a href="#synchronized-和-ReentrantLock-区别是什么？" class="headerlink" title="synchronized 和 ReentrantLock 区别是什么？"></a>synchronized 和 ReentrantLock 区别是什么？</h2><blockquote>
+<p>synchronized 早期的实现比较低效，对比 ReentrantLock，大多数场景性能都相差较大，但是在 Java 6中对 synchronized 进行了非常多的改进。</p>
+</blockquote>
+<p>主要区别如下：</p>
+<ul>
+<li>ReentrantLock 使用起来比较灵活，但是必须有释放锁的配合动作；</li>
+<li>ReentrantLock 必须手动获取与释放锁，而 synchronized 不需要手动释放和开启锁；</li>
+<li>ReentrantLock 只适用于代码块锁，而 synchronized 可用于修饰方法、代码块等。</li>
+<li>volatile 标记的变量不会被编译器优化；synchronized 标记的变量可以被编译器优化。</li>
+</ul>
+<h2 id="锁升级原理"><a href="#锁升级原理" class="headerlink" title="锁升级原理"></a>锁升级原理</h2><p>在锁对象的对象头里面有一个 threadid 字段，在<strong>第一次访问的时候threadid 为空</strong>，jvm 让其持有<strong>偏向锁</strong>，并将 threadid 设置为其线程 id，再次进入的时候会先判断threadid 是否与其线程 id 一致，<strong>如果一致则可以直接使用此对象</strong>，<strong>如果不一致，则升级偏向锁为轻量级锁</strong>，通过<strong>自旋循环</strong>一定次数来获取锁，执行一定次数之后，如果<strong>还没有正常获取到要使用的对象</strong>，此时就会把锁<strong>从轻量级升级为重量级锁，此过程就构成了 synchronized 锁的升级</strong>。</p>
+<p>锁的升级的目的：<strong>锁升级是为了减低了锁带来的性能消耗</strong>。在 Java 6 之后优化 synchronized 的实现方式，使用了偏向锁升级为轻量级锁再升级到重量级锁的方式，从而减低了锁带来的性能消耗。</p>
+<h2 id="说一下-synchronized-底层实现原理？"><a href="#说一下-synchronized-底层实现原理？" class="headerlink" title="说一下 synchronized 底层实现原理？"></a>说一下 synchronized 底层实现原理？</h2><p>synchronized 是由一对 monitorenter/monitorexit 指令实现的，monitor 对象是同步的基本实现单<br>元。在 Java 6 之前，monitor 的实现完全是依靠操作系统内部的互斥锁，因为需要进行用户态到内核态的切换，所以同步操作是一个无差别的重量级操作，性能也很低。但在 Java 6 的时候，Java 虚拟机 对此进行了大刀阔斧地改进，提供了三种不同的 monitor 实现，也就是常说的三种不同的锁：偏向锁<br>（Biased Locking）、轻量级锁和重量级锁，大大改进了其性能。</p>
+<h2 id="怎么防止死锁？"><a href="#怎么防止死锁？" class="headerlink" title="怎么防止死锁？"></a>怎么防止死锁？</h2><ul>
+<li>尽量使用 tryLock(long timeout, TimeUnit unit)的方法(ReentrantLockReentrantReadWriteLock)，<br>设置超时时间，超时可以退出防止死锁。</li>
+<li>尽量使用 Java. util. concurrent 并发类代替自己手写锁。</li>
+<li>尽量降低锁的使用粒度，尽量不要几个功能用同一把锁。</li>
+<li>尽量减少同步的代码块。</li>
+</ul>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><h3 id="创建方式（4种）"><a href="#创建方式（4种）" class="headerlink" title="创建方式（4种）"></a>创建方式（4种）</h3><p>single、cache、fix、schedule</p>
+<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><ul>
+<li>NEW 尚未启动</li>
+<li>RUNNABLE 正在执行中</li>
+<li>BLOCKED 阻塞的（被同步锁或者 IO 锁阻塞）</li>
+<li>WAITING 永久等待状态</li>
+<li>TIMED_WAITING 等待指定的时间重新被唤醒的状态</li>
+<li>TERMINATED 执行完成</li>
+</ul>
+<h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><blockquote>
+<p>唯一索引、主键索引、全文索引、普通索引</p>
+<p>注：<strong>B-树就是B树，没有所谓的B减树</strong></p>
+</blockquote>
+<h3 id="数据结构（B-树）"><a href="#数据结构（B-树）" class="headerlink" title="数据结构（B+树）"></a>数据结构（B+树）</h3>]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>复盘</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>带标题及单元格合并的easyExcel导出表格</title>
     <url>/%E5%B8%A6%E6%A0%87%E9%A2%98%E5%8F%8A%E5%8D%95%E5%85%83%E6%A0%BC%E5%90%88%E5%B9%B6%E7%9A%84easyExcel%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC/</url>
     <content><![CDATA[<h1 id="easyExcel导出表格（有标题、单元格合并）"><a href="#easyExcel导出表格（有标题、单元格合并）" class="headerlink" title="easyExcel导出表格（有标题、单元格合并）"></a>easyExcel导出表格（有标题、单元格合并）</h1><blockquote>
@@ -147,6 +203,25 @@
       </categories>
       <tags>
         <tag>easyExcel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查找算法</title>
+    <url>/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="二分查找法（折半查找法）"><a href="#二分查找法（折半查找法）" class="headerlink" title="二分查找法（折半查找法）"></a>二分查找法（折半查找法）</h2><blockquote>
+<p>数据是有序的。</p>
+<a id="more"></a>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 二分查找算法，查到返回数据下标，查不到返回-1。 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> target</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">           <span class="keyword">int</span> mid = (low + high)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span> (target &lt; arr[mid]) &#123;</span><br><span class="line">               high = mid - <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &gt; arr[mid]) &#123;</span><br><span class="line">               low = mid + <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">return</span> mid;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -179,25 +254,6 @@
       </categories>
       <tags>
         <tag>诗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>查找算法</title>
-    <url>/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="二分查找法（折半查找法）"><a href="#二分查找法（折半查找法）" class="headerlink" title="二分查找法（折半查找法）"></a>二分查找法（折半查找法）</h2><blockquote>
-<p>数据是有序的。</p>
-<a id="more"></a>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 二分查找算法，查到返回数据下标，查不到返回-1。 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> target</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">           <span class="keyword">int</span> mid = (low + high)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span> (target &lt; arr[mid]) &#123;</span><br><span class="line">               high = mid - <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &gt; arr[mid]) &#123;</span><br><span class="line">               low = mid + <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">return</span> mid;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -360,23 +416,6 @@
       </tags>
   </entry>
   <entry>
-    <title>经典排序算法</title>
-    <url>/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<blockquote>
-<p>编程不只是一门技术，更是一门艺术。        ——雷军</p>
-<a id="more"></a>
-</blockquote>
-<h2 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 1.冒泡排序</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(arr==<span class="keyword">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ;j&lt;arr.length-i-<span class="number">1</span>;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">                   <span class="keyword">int</span> temp=arr[j];</span><br><span class="line">                   arr[j]=arr[j+<span class="number">1</span>];</span><br><span class="line">                   arr[j+<span class="number">1</span>]=temp;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>满纸荒唐言</title>
     <url>/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/</url>
     <content><![CDATA[<blockquote>
@@ -418,20 +457,37 @@
       </tags>
   </entry>
   <entry>
+    <title>经典排序算法</title>
+    <url>/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<blockquote>
+<p>编程不只是一门技术，更是一门艺术。        ——雷军</p>
+<a id="more"></a>
+</blockquote>
+<h2 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 1.冒泡排序</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(arr==<span class="keyword">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ;j&lt;arr.length-i-<span class="number">1</span>;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">                   <span class="keyword">int</span> temp=arr[j];</span><br><span class="line">                   arr[j]=arr[j+<span class="number">1</span>];</span><br><span class="line">                   arr[j+<span class="number">1</span>]=temp;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>设计模式（一）</title>
     <url>/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<blockquote>
 <p>思想很重要！</p>
 </blockquote>
-<p>浅谈单例模式与代理模式。</p>
+<p>浅谈<strong>单例模式</strong>、<strong>代理模式</strong>、<strong>工厂模式</strong>。</p>
 <a id="more"></a>
 
-<h2 id="1-单例模式"><a href="#1-单例模式" class="headerlink" title="1. 单例模式"></a>1. 单例模式</h2><blockquote>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><blockquote>
 <p>保证被创建一次，节省系统的开销。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 省略 get set</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalDataMgr</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> GlobalDataMgr MGR = <span class="keyword">new</span> GlobalDataMgr();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String userName;</span><br><span class="line">	<span class="keyword">private</span> String passWord;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GlobalDataMgr <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> MGR;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-代理模式"><a href="#2-代理模式" class="headerlink" title="2. 代理模式"></a>2. 代理模式</h2><blockquote>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><blockquote>
 <p>就是相当于第三方，中介，比如在结婚中，我们关注的事只是结婚这一件事，但是结婚还有宴请宾客、组织会场、司仪主持等其他繁琐的事，这些事就可以交给婚介所处理，然后结婚的这个节点实际上婚介所是用我们的真实身份，也就是我们自己去完成的。所以这里的婚介所就相当于代理。（简而言之，使用代理就是为了帮我们做一些额外的事，我们只需要关注自己的事即可）</p>
 <p><strong>注：代理 代理的是接口。</strong></p>
 </blockquote>
@@ -444,6 +500,23 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//主类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DemoInterfaceImpl demoInterface = <span class="keyword">new</span> DemoInterfaceImpl();</span><br><span class="line">        DemoInterfaceProxy proxy =  <span class="keyword">new</span> DemoInterfaceProxy();</span><br><span class="line">        proxy.setDemoInterface(demoInterface);</span><br><span class="line">        proxy.add();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyInvocationHandle</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    <span class="comment">//被代理的接口</span></span><br><span class="line">    <span class="keyword">private</span> DemoInterface demoInterface;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDemoInterface</span><span class="params">(DemoInterface demoInterface)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.demoInterface = demoInterface;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成得到代理类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getProxy</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> Proxy.newProxyInstance(<span class="keyword">this</span>.getClass().getClassLoader(),demoInterface.getClass().getInterfaces(),<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理代理实例，并返回成功</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> proxy</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> method</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">// 动态代理的本质，使用反射机制实现</span></span><br><span class="line">        before();</span><br><span class="line">        Object invoke = method.invoke(demoInterface, args);</span><br><span class="line">        after();</span><br><span class="line">        <span class="keyword">return</span> invoke;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行前。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行后。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 真实角色</span></span><br><span class="line">        DemoInterface demoInterface = <span class="keyword">new</span> DemoInterfaceImpl();</span><br><span class="line">        <span class="comment">// 代理角色：无</span></span><br><span class="line">        ProxyInvocationHandle proxy = <span class="keyword">new</span> ProxyInvocationHandle();</span><br><span class="line">        <span class="comment">// 把真实角色赋给代理</span></span><br><span class="line">        proxy.setDemoInterface(demoInterface);</span><br><span class="line">        <span class="comment">// 获得代理角色</span></span><br><span class="line">        DemoInterface demoInterfaceProxy = (DemoInterface)proxy.getProxy();</span><br><span class="line">        <span class="comment">// 通过代理角色调用方法</span></span><br><span class="line">        demoInterfaceProxy.query();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><blockquote>
+<p>工厂模式是我们最常用的实例化对象模式了，是用工厂方法代替new操作的一种模式。   ——百度百科</p>
+<p>好处：<strong>解耦代码</strong>；给代码带来更好的一个<strong>可扩展性</strong>。</p>
+</blockquote>
+<h3 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 标准规范类(AbstractProduct),用抽象类也行</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shoe</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">make</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两个实现</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SportsShoeImpl</span> <span class="keyword">implements</span> <span class="title">Shoe</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">make</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;生产运动鞋...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeisureShoeImpl</span> <span class="keyword">implements</span> <span class="title">Shoe</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">make</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;生成休闲鞋。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>构造工厂</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShoeFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Shoe <span class="title">makeShoe</span><span class="params">(String type)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;sports&quot;</span>.equalsIgnoreCase(type))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> SportsShoeImpl();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;leisure&quot;</span>.equalsIgnoreCase(type))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> LeisureShoe();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ShoeFactory shoeFactory = <span class="keyword">new</span> ShoeFactory();</span><br><span class="line">        <span class="comment">// 休闲鞋</span></span><br><span class="line">        LeisureShoe leisureShoe = (LeisureShoe) shoeFactory.makeShoe(<span class="string">&quot;leisure&quot;</span>);</span><br><span class="line">        <span class="comment">//运动鞋</span></span><br><span class="line">        Shoe sportsShoe = shoeFactory.makeShoe(<span class="string">&quot;sports&quot;</span>);</span><br><span class="line"></span><br><span class="line">        leisureShoe.make();</span><br><span class="line">        sportsShoe.make();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 

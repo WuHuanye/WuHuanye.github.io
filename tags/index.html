@@ -214,10 +214,10 @@
       <div class="post-body">
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-              目前共计 13 个标签
+              目前共计 14 个标签
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/blog/" style="font-size: 12px; color: #ccc">blog</a> <a href="/tags/easyExcel/" style="font-size: 12px; color: #ccc">easyExcel</a> <a href="/tags/es/" style="font-size: 12px; color: #ccc">es</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/utils/" style="font-size: 12px; color: #ccc">utils</a> <a href="/tags/%E5%8C%97%E6%BC%82/" style="font-size: 12px; color: #ccc">北漂</a> <a href="/tags/%E5%AD%97/" style="font-size: 12px; color: #ccc">字</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/" style="font-size: 12px; color: #ccc">技术栈</a> <a href="/tags/%E7%90%86%E8%B4%A2/" style="font-size: 12px; color: #ccc">理财</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 30px; color: #111">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 12px; color: #ccc">设计模式</a> <a href="/tags/%E8%AF%97/" style="font-size: 12px; color: #ccc">诗</a> <a href="/tags/%E8%BE%9E%E8%81%8C/" style="font-size: 12px; color: #ccc">辞职</a>
+              <a href="/tags/blog/" style="font-size: 12px; color: #ccc">blog</a> <a href="/tags/easyExcel/" style="font-size: 12px; color: #ccc">easyExcel</a> <a href="/tags/es/" style="font-size: 12px; color: #ccc">es</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/utils/" style="font-size: 12px; color: #ccc">utils</a> <a href="/tags/%E5%8C%97%E6%BC%82/" style="font-size: 12px; color: #ccc">北漂</a> <a href="/tags/%E5%A4%8D%E7%9B%98/" style="font-size: 12px; color: #ccc">复盘</a> <a href="/tags/%E5%AD%97/" style="font-size: 12px; color: #ccc">字</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/" style="font-size: 12px; color: #ccc">技术栈</a> <a href="/tags/%E7%90%86%E8%B4%A2/" style="font-size: 12px; color: #ccc">理财</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 30px; color: #111">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 12px; color: #ccc">设计模式</a> <a href="/tags/%E8%AF%97/" style="font-size: 12px; color: #ccc">诗</a> <a href="/tags/%E8%BE%9E%E8%81%8C/" style="font-size: 12px; color: #ccc">辞职</a>
             </div>
           </div>
         
@@ -297,7 +297,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -310,7 +310,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -351,12 +351,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">33k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">28 分钟</span>
+    <span title="站点阅读时长">30 分钟</span>
 </div>
 
         
@@ -389,9 +389,14 @@
                 console.error('Failed to save visitor count', error);
               });
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
-            
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
           }
         })
         .catch(error => {
@@ -418,7 +423,7 @@
         });
     }
 
-    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wrXD3vNopdfrXxfKPnw4dIzN-gzGzoHsz","app_key":"8sco9lmytjT3ef69dTIk9C1r","server_url":null,"security":true};
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wrXD3vNopdfrXxfKPnw4dIzN-gzGzoHsz","app_key":"8sco9lmytjT3ef69dTIk9C1r","server_url":null,"security":false};
     function fetchData(api_server) {
       var Counter = (method, url, data) => {
         return fetch(`${api_server}/1.1${url}`, {
