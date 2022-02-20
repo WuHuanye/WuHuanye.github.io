@@ -285,6 +285,24 @@
       </tags>
   </entry>
   <entry>
+    <title>工具类</title>
+    <url>/%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
+    <content><![CDATA[<blockquote>
+<p>积累一下有意思的工具</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="名字随机生成器"><a href="#名字随机生成器" class="headerlink" title="## 名字随机生成器"></a>## 名字随机生成器</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        String[] Surname = &#123;<span class="string">&quot;赵&quot;</span>,<span class="string">&quot;钱&quot;</span>,<span class="string">&quot;孙&quot;</span>,<span class="string">&quot;李&quot;</span>,<span class="string">&quot;周&quot;</span>,<span class="string">&quot;吴&quot;</span>,<span class="string">&quot;郑&quot;</span>,<span class="string">&quot;王&quot;</span>,<span class="string">&quot;冯&quot;</span>,<span class="string">&quot;陈&quot;</span>,<span class="string">&quot;褚&quot;</span>,<span class="string">&quot;卫&quot;</span>,<span class="string">&quot;蒋&quot;</span>,<span class="string">&quot;沈&quot;</span>,<span class="string">&quot;韩&quot;</span>,<span class="string">&quot;杨&quot;</span>,<span class="string">&quot;朱&quot;</span>,<span class="string">&quot;秦&quot;</span>,<span class="string">&quot;尤&quot;</span>,<span class="string">&quot;许&quot;</span>,             <span class="string">&quot;何&quot;</span>,<span class="string">&quot;吕&quot;</span>,<span class="string">&quot;施&quot;</span>,<span class="string">&quot;张&quot;</span>,<span class="string">&quot;孔&quot;</span>,<span class="string">&quot;曹&quot;</span>,<span class="string">&quot;严&quot;</span>,<span class="string">&quot;华&quot;</span>,<span class="string">&quot;金&quot;</span>,<span class="string">&quot;魏&quot;</span>,<span class="string">&quot;陶&quot;</span>,<span class="string">&quot;姜&quot;</span>,<span class="string">&quot;戚&quot;</span>,<span class="string">&quot;谢&quot;</span>,<span class="string">&quot;邹&quot;</span>,<span class="string">&quot;喻&quot;</span>,<span class="string">&quot;柏&quot;</span>,<span class="string">&quot;水&quot;</span>,<span class="string">&quot;窦&quot;</span>,<span class="string">&quot;章&quot;</span>,<span class="string">&quot;云&quot;</span>,<span class="string">&quot;苏&quot;</span>,<span class="string">&quot;潘&quot;</span>,<span class="string">&quot;葛&quot;</span>,<span class="string">&quot;奚&quot;</span>,<span class="string">&quot;范&quot;</span>,<span class="string">&quot;彭&quot;</span>,<span class="string">&quot;郎&quot;</span>,     <span class="string">&quot;鲁&quot;</span>,<span class="string">&quot;韦&quot;</span>,<span class="string">&quot;昌&quot;</span>,<span class="string">&quot;马&quot;</span>,<span class="string">&quot;苗&quot;</span>,<span class="string">&quot;凤&quot;</span>,<span class="string">&quot;花&quot;</span>,<span class="string">&quot;方&quot;</span>,<span class="string">&quot;俞&quot;</span>,<span class="string">&quot;任&quot;</span>,<span class="string">&quot;袁&quot;</span>,<span class="string">&quot;柳&quot;</span>,<span class="string">&quot;酆&quot;</span>,<span class="string">&quot;鲍&quot;</span>,<span class="string">&quot;史&quot;</span>,<span class="string">&quot;唐&quot;</span>,<span class="string">&quot;费&quot;</span>,<span class="string">&quot;廉&quot;</span>,<span class="string">&quot;岑&quot;</span>,<span class="string">&quot;薛&quot;</span>,<span class="string">&quot;雷&quot;</span>,<span class="string">&quot;贺&quot;</span>,<span class="string">&quot;倪&quot;</span>,<span class="string">&quot;汤&quot;</span>,<span class="string">&quot;滕&quot;</span>,<span class="string">&quot;殷&quot;</span>,             <span class="string">&quot;罗&quot;</span>,<span class="string">&quot;毕&quot;</span>,<span class="string">&quot;郝&quot;</span>,<span class="string">&quot;邬&quot;</span>,<span class="string">&quot;安&quot;</span>,<span class="string">&quot;常&quot;</span>,<span class="string">&quot;乐&quot;</span>,<span class="string">&quot;于&quot;</span>,<span class="string">&quot;时&quot;</span>,<span class="string">&quot;傅&quot;</span>,<span class="string">&quot;皮&quot;</span>,<span class="string">&quot;卞&quot;</span>,<span class="string">&quot;齐&quot;</span>,<span class="string">&quot;康&quot;</span>,<span class="string">&quot;伍&quot;</span>,<span class="string">&quot;余&quot;</span>,<span class="string">&quot;元&quot;</span>,<span class="string">&quot;卜&quot;</span>,<span class="string">&quot;顾&quot;</span>,<span class="string">&quot;孟&quot;</span>,<span class="string">&quot;平&quot;</span>,<span class="string">&quot;黄&quot;</span>,<span class="string">&quot;和&quot;</span>,    <span class="string">&quot;穆&quot;</span>,<span class="string">&quot;萧&quot;</span>,<span class="string">&quot;尹&quot;</span>,<span class="string">&quot;姚&quot;</span>,<span class="string">&quot;邵&quot;</span>,<span class="string">&quot;湛&quot;</span>,<span class="string">&quot;汪&quot;</span>,<span class="string">&quot;祁&quot;</span>,<span class="string">&quot;毛&quot;</span>,<span class="string">&quot;禹&quot;</span>,<span class="string">&quot;狄&quot;</span>,<span class="string">&quot;米&quot;</span>,<span class="string">&quot;贝&quot;</span>,<span class="string">&quot;明&quot;</span>,<span class="string">&quot;臧&quot;</span>,<span class="string">&quot;计&quot;</span>,<span class="string">&quot;伏&quot;</span>,<span class="string">&quot;成&quot;</span>,<span class="string">&quot;戴&quot;</span>,<span class="string">&quot;谈&quot;</span>,<span class="string">&quot;宋&quot;</span>,<span class="string">&quot;茅&quot;</span>,<span class="string">&quot;庞&quot;</span>,<span class="string">&quot;熊&quot;</span>,<span class="string">&quot;纪&quot;</span>,<span class="string">&quot;舒&quot;</span>, <span class="string">&quot;屈&quot;</span>,<span class="string">&quot;项&quot;</span>,<span class="string">&quot;祝&quot;</span>,<span class="string">&quot;董&quot;</span>,<span class="string">&quot;梁&quot;</span>,<span class="string">&quot;杜&quot;</span>,<span class="string">&quot;阮&quot;</span>,<span class="string">&quot;蓝&quot;</span>,<span class="string">&quot;闵&quot;</span>,<span class="string">&quot;席&quot;</span>,<span class="string">&quot;季&quot;</span>&#125;;</span><br><span class="line">        String girl = <span class="string">&quot;秀娟英华慧巧美娜静淑惠珠翠雅芝玉萍红娥玲芬芳燕彩春菊兰凤洁梅琳素云莲真环雪荣爱妹霞香月莺媛艳瑞凡佳嘉琼勤珍贞莉桂娣叶璧璐娅琦晶妍茜秋珊莎锦黛青倩婷姣婉娴瑾颖露瑶怡婵雁蓓纨仪荷丹蓉眉君琴蕊薇菁梦岚苑婕馨瑗琰韵融园艺咏卿聪澜纯毓悦昭冰爽琬茗羽希宁欣飘育滢馥筠柔竹霭凝晓欢霄枫芸菲寒伊亚宜可姬舒影荔枝思丽&quot;</span> ;</span><br><span class="line">        String boy = <span class="string">&quot;伟刚勇毅俊峰强军平保东文辉力明永健世广志义兴良海山仁波宁贵福生龙元全国胜学祥才发武新利清飞彬富顺信子杰涛昌成康星光天达安岩中茂进林有坚和彪博诚先敬震振壮会思群豪心邦承乐绍功松善厚庆磊民友裕河哲江超浩亮政谦亨奇固之轮翰朗伯宏言若鸣朋斌梁栋维启克伦翔旭鹏泽晨辰士以建家致树炎德行时泰盛雄琛钧冠策腾楠榕风航弘&quot;</span>;</span><br><span class="line">        <span class="keyword">int</span> index = random.nextInt(Surname.length - <span class="number">1</span>);</span><br><span class="line">        String name = Surname[index]; <span class="comment">//获得一个随机的姓氏</span></span><br><span class="line">        <span class="keyword">int</span> i = random.nextInt(<span class="number">3</span>);<span class="comment">//可以根据这个数设置产生的男女比例</span></span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> j = random.nextInt(girl.length() - <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (j % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//   name = 女- + name + girl.substring(j, j + 2);</span></span><br><span class="line">                name = name + girl.substring(j, j + <span class="number">2</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                name = name + girl.substring(j, j + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> j = random.nextInt(girl.length() - <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (j % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                name = name + boy.substring(j, j + <span class="number">2</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                name = name + boy.substring(j, j + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>带标题及单元格合并的easyExcel导出表格</title>
     <url>/%E5%B8%A6%E6%A0%87%E9%A2%98%E5%8F%8A%E5%8D%95%E5%85%83%E6%A0%BC%E5%90%88%E5%B9%B6%E7%9A%84easyExcel%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC/</url>
     <content><![CDATA[<h1 id="easyExcel导出表格（有标题、单元格合并）"><a href="#easyExcel导出表格（有标题、单元格合并）" class="headerlink" title="easyExcel导出表格（有标题、单元格合并）"></a>easyExcel导出表格（有标题、单元格合并）</h1><blockquote>
@@ -307,29 +325,6 @@
       </categories>
       <tags>
         <tag>easyExcel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>无论接下来如何，不要后悔今天的决定</title>
-    <url>/%E6%97%A0%E8%AE%BA%E5%A6%82%E4%BD%95%EF%BC%8C%E4%B8%8D%E8%A6%81%E5%90%8E%E6%82%94%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%86%B3%E5%AE%9A/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="652eec907d9121ec839723df4967bd614f984b65c30998b092e3fee85139ae2b">a756220a6413262c08d2e52bbc7378bf461d63a46ff4bc53720da8c2e41e55a9385c804cb2f3447cecf5b20b530fb73959be8b84a6e543422202c6dbc7509954ba2da1085e491fd2bb7fa5105db063f576f4d728154d02d1807354f5c091fe97bbf935dab67f4c75634c589c37c0dd5298f1d306739640e9e19addde182b873e5e9a621cff777f30eed37063ea82b39812cfcf38c5cc523bdc34467e1255be68767b8621b3fd2093d13a21e30e50a4372197d1d529eecd850ed4d65bb31183b97fb7df61bb2f2fa16a52a681faea72b465fbdf3076c1d261ca92d6ee0676c74de362b746d72b1fcb0b60d61532cbae4190d75f71f73a21deafec60b9d63fe31912b5d4a3088a6fe1211a67dc9b7a5e5f4153b91a833371dbed46066c35d12449f38ea1ca8552ab3741f8ca97d74732dc4546d4423bd3b4401e10d878f09f176daa0bef6fbbeee265fad7247021fa3dd319186da825103085fe9c3bed1e32018273235f5292eeddf6aaa5a149a84daeacaeb42e97b45f48b08d05998944cca03a788443f6ca47504c7c3161ede54fdaf1bc277dfc53f36911758d6d1ada3846038ca848aff2169591d26c52a8b49c1c9fcc28d2449220bcf1eb6696136406e33538c8da8737d8ac35365c86fbaeebe01b90fab53ceccda4da5b910514fbd70ee1bcaf38f9a37637b5fe25819c7d9656debad80ef24649175726f524e0f8e1b019c2ba4abc3810a897f42fea9a09156563e5f7868d96a43e27fd111767f14ec6cc886602a256edb31a4f6ceb9e0230c732e3bc34fa8da964201249e0450a0b12554a12829d797fa10e218bd8b37b385184aa43b767070ada29d0aa325a6fb8ec9c856155555104ce1fc5a85bce645b9309065f5e067c70c2ab1f72db076a407196876b48c517d828226363a4d53ab77d00f8509fc9fe11505f176ff6091e11bb4c4bdfe0710a2f2c021d5c17fe415dcdb67780851e314876b3e4419f0dc3216f9daeaf7741bfe2095f879729b449dd89f36db80d29f8cfe900b61ff959a3fa103ec983cdb74640525c4a5f7d58f696a412c6ca0ea6c804834f599b0bebbb398d7f4e96dcd8beee2d0add8dd20a278a3fd887af34a22d9f5189a7acccae682603a4f012bbe746ebfd80a0e8f47bc9b55b5ca68dd06338f18fb47a86f224e26a95ff3ae653f37811e5a0ea4f260b49e8885f4d7bc709b3e8d3aca109fcdf368b3a9d981221679f271fc06486c2be3b36ad100c22bf23e673aa50173750c9246d091dfea899235dfb1be759f90cd23c8e373bf1f0fa911f28acc0128dcac60f256d1d9f46752e91a4e7d88f4c162f57bfbec2f70f54b4385f16ef4de1abb8956a60210ac49bd0e1888fb9cda6bbb4929014a36cede83f00187590c9b8b1749aff49c3d41ff4c1a67d3c3cfa838d0eb439ae6eff50a84b662bc8a5dafa5955fabfbcf9acadb5ef1066cccffe55876ced8a8b9cb5546ba3091031733a870d0a9b42f62a8d3db7f72c964d5ac0a00c8c49e6cafc8f26779cc7d23986ddf4c70f3c17b00447c65fc6b75e5a9b7a8d17bba9220de06f63b8643303c84d7aff76bf6377707b4fa8a5264e59872774c0cc1e777a5e76bd5ec7741fdbbbc79a183befc6e4e4bdf80af08ab784870f1b28a76f090024b6246056fe8cefcea71fee5e7e5d39adb5192578623c773f38ac2f8f7c50b78f1c6efd6212d623090c49eaebb20502bff5c768707e4b857ba27490822941deb07a4dd0f731d7aaf08a5c696eb31a7784c6453108348e50048a707867e71f059364c4fb9afcecc80611524f265cc9a1e3f6bfc6fdf4a2c484589ad34809b0fc268a2a1ac9d5695ce1a10ac545a8f31595f3e4a6560445aa14575d5db950455d9e9702360e81cafcf6cd3fecb7b010e6d8deb876071479ea0ef8be64f5f618a5474165dc04a087289a0fe1ab80636c7f82b1b9f6585c06c0272a32c0543ad21f2ea9585ff6762fdf1521ad143b73f70f2a20dc8288ad4a81ef3b1b5160a0ce2a2c2415e9b3b55e5c820dda751f420f27351ee6bea7cae4446848115209256f15cde6b3ae5cbcd4083af674adb2ade54eca2cf5e67af6b2cc7b027875d64e9f4c395c68b70ac5fa18b219e85da92935fcc2ad88e554ca47a9335cfe01d519f0d91728ca7b5c7fdfec46f6e1faeab39821f0f02251fa56542c6d1b4e50e9b4900e8c3a5c600a8baf43bf5b3052b7fcad093d39ef6116cacbf8c8b7800c0b5e496fad6face1e747bf9c2f80aab9e57435714b8a591b196853cf5c4f275f50f08c6a33d773733504ea6ccd2a8649b7ded85b823e045ffbaade55b9b0c80ebc0806742a6377d73c789fbc823e17571da0a0fab84d3fbd9ed0a0c5589811902d3beb946fc00cf550c0635b86850319bd203dc7177e8eafaaef7670c46f9c5120afd7062be1fbfdcad35e465f6375b44928887392df1da73ac2489921f48c811c945bb954dd9b8dd5dac44598c780782f23d7b62b0a0917d769bf775f92cf2b485434dd4bc5b0a99d4a90663b7e9a432c29aa463bcc82304b47bb056bc0312d4a6f169d0b0daa30ed12e62ade87577bcd85efade93483ab0ccb3e3c73efa27fb48e84228ee13b08e47eab14d733a468068b82d371dde814239f6cb36ca3406cbd8ce0801f4df701311322ee08852c4619bec3b72cfd9b73f5098d7127b0af6975cd7296e236745fceaa63e88188a7a7109c172408046f0d8c13c34eb9b3e161ae1b08651977d7f93b633af0bc63e465755362060f8511f9f6dfaa8cb213fed8cf1cbf2fa1b9c252419130f94e9dbde8ebef39207c4a3dd2ec4ac984340450e2bba3888151826855e0679b6902303a2b65aa6fc4d71bad1d8426e57e5e05a3574be1a919ed76a28719864522f8160f53c9d13a752c54fec38524eac9386f84c278ae35a85e5ef53b78074b6672df5ec49b4adfce7809fdf18288c18c705a865a7adb3b3ed67662c2ab9739b34ae5d122ab42992f12e8975b23c9f70c1485f424c9d0d0d76e561ca40957666f8c7384727804d5122393b2d84cf415bf717f01909a5b7e28ec5281d2c9e91010a5758e4c6b43c2ce0c848281c718c1c8a738156f1ad12ab532336fa4f21767687e59a46861e94e465ed2d619e56d237d18d4b24b8a807cd975cca86e8606b910c868d7f7b47c9f53f8621e3cc132033b1ca45cf93edec043c11681778d227b46c6c45e0f70e69814f97ce5c23cbcf46c581a5c6916023d784ee4a7eeb4c95fbf58ccda6fca4c12349097c582bf6e12847ae90dda378f48c583e55292a2402f2860aca61d36f7f2846760f863f1a2742198cfc4a954cae85ccc368e088a1fd6b650c1558b190afd48b7162b8df22c928966001d12361d12e4e411297798108be86a15c2cf74c73225aede13f5428ddbb14cc2a662aa031efca24c1342f361667d1f7fd2bb5daaf1a325561f4ef207741a63c72eaef6d442a847a86f919a87cf0a618729aaa9921a82445df7b9282ee15c22f8edb91de105d6a7d5cba98e90d16c2b511563feec2218c7ed6758b5440ab55247fc783fd54bb531274c2ff9fa90dc7fbad0f78c1119d73ddb4ab8acfd16a8e446464464bf4c548b5dbe7d9af160567bfb8a7596bc880e0c9b6c9bfdb25fc108e56dcc5a32b3886223b47380eeaece3c2df9b68ad7258a99609ab9544241699d01826c97f4a3c49e1191352f78ad98390d8977f246ad4088848e0124517399158568cd24c0bc15627bdf4d74ad846bd8c0a5916aa90463b93561290ddfff14bc12d82ed35f1217e2712fa92b188a2f5018c889cb1aaf656fd2118fd2cad0f2369e78bbc1ed01efd88c87a7163bcbfa0d4046e5dc3c27d89f10271aaf074d656f64e1bbf74713758cbcd81ffb58e2cf20afa2efdb45d5b1d3f00a8934e7cdcb6e5227e128ddbc75d2e9f75bb23efe39d31300caabd3188bb8783f23742e12b30a70b11611c8a385b8d4463cce9471191338296e04de10f3a87bd2aa01a15687806918187110493cf179f09e35173d4711b44b476fdf642ebce69d56ef1b89c6e28f3bb7ea0e954a7b59653fb50969613e80c878ce6dc340a539b87244d139316036cac82b65b820b83a2b18fee0cfc569b88a4d72b691cac7ab6d220ecbda63e3443fa805b4cf554da8bca7d241a5f4857395bc36a890dc993ab7941cedb5534905a26fb84a30ff9a2c58ceabb6980fa6588b454a6b827f501604b395c6e4e582571ae66225fd594cc7cf25a4c85350a37787af370a18edd7097b669816395870f317d665fad2bfdc7436170a52c72b3431ae8caf93a52dfe4f50643954d25c1ba3820dea2d37193bbf9b346dc4c190ce5b3e3501ab1550288fef24cf38bd03d1f3d738e04cd2d06582414beda39bf8137287d476a0cde5b997e2b46118eeac0b062b11ba3f11a8c9f6f625f79ad65d4ae0b9203090f30db9cdd143f5c3eedb0506da084008919b686fcd9620cb3b7c025d7b73e1aa45a9b7444ceefa998a92676eb60b3fc6ea5103bc6e45a6446c87ff75aef32bd938ecef0461e6c247c16e4a8f261f527a2997591fa28490fbf5f14a7ee3d7c794981c03ea8e9a3c00d4f1d6f3f5150b5aab1c26b13b7abd329a7762dba18aaf09b3651e7a0984c754f7b640cf5c0cadb751de40425c92e6e029e8c71c6ba516a3dad9a3e00df11912aab6160f04be93c593410b1b6ae268138b1f00d22eb946fcf9b15eb422cbf0b8646685a417d63d5fce27ba18</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入阅读密码~</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>北漂</tag>
-        <tag>辞职</tag>
       </tags>
   </entry>
   <entry>
@@ -366,24 +361,6 @@
       </tags>
   </entry>
   <entry>
-    <title>工具类</title>
-    <url>/%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
-    <content><![CDATA[<blockquote>
-<p>积累一下有意思的工具</p>
-</blockquote>
-<a id="more"></a>
-
-<h3 id="名字随机生成器"><a href="#名字随机生成器" class="headerlink" title="## 名字随机生成器"></a>## 名字随机生成器</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        String[] Surname = &#123;<span class="string">&quot;赵&quot;</span>,<span class="string">&quot;钱&quot;</span>,<span class="string">&quot;孙&quot;</span>,<span class="string">&quot;李&quot;</span>,<span class="string">&quot;周&quot;</span>,<span class="string">&quot;吴&quot;</span>,<span class="string">&quot;郑&quot;</span>,<span class="string">&quot;王&quot;</span>,<span class="string">&quot;冯&quot;</span>,<span class="string">&quot;陈&quot;</span>,<span class="string">&quot;褚&quot;</span>,<span class="string">&quot;卫&quot;</span>,<span class="string">&quot;蒋&quot;</span>,<span class="string">&quot;沈&quot;</span>,<span class="string">&quot;韩&quot;</span>,<span class="string">&quot;杨&quot;</span>,<span class="string">&quot;朱&quot;</span>,<span class="string">&quot;秦&quot;</span>,<span class="string">&quot;尤&quot;</span>,<span class="string">&quot;许&quot;</span>,             <span class="string">&quot;何&quot;</span>,<span class="string">&quot;吕&quot;</span>,<span class="string">&quot;施&quot;</span>,<span class="string">&quot;张&quot;</span>,<span class="string">&quot;孔&quot;</span>,<span class="string">&quot;曹&quot;</span>,<span class="string">&quot;严&quot;</span>,<span class="string">&quot;华&quot;</span>,<span class="string">&quot;金&quot;</span>,<span class="string">&quot;魏&quot;</span>,<span class="string">&quot;陶&quot;</span>,<span class="string">&quot;姜&quot;</span>,<span class="string">&quot;戚&quot;</span>,<span class="string">&quot;谢&quot;</span>,<span class="string">&quot;邹&quot;</span>,<span class="string">&quot;喻&quot;</span>,<span class="string">&quot;柏&quot;</span>,<span class="string">&quot;水&quot;</span>,<span class="string">&quot;窦&quot;</span>,<span class="string">&quot;章&quot;</span>,<span class="string">&quot;云&quot;</span>,<span class="string">&quot;苏&quot;</span>,<span class="string">&quot;潘&quot;</span>,<span class="string">&quot;葛&quot;</span>,<span class="string">&quot;奚&quot;</span>,<span class="string">&quot;范&quot;</span>,<span class="string">&quot;彭&quot;</span>,<span class="string">&quot;郎&quot;</span>,     <span class="string">&quot;鲁&quot;</span>,<span class="string">&quot;韦&quot;</span>,<span class="string">&quot;昌&quot;</span>,<span class="string">&quot;马&quot;</span>,<span class="string">&quot;苗&quot;</span>,<span class="string">&quot;凤&quot;</span>,<span class="string">&quot;花&quot;</span>,<span class="string">&quot;方&quot;</span>,<span class="string">&quot;俞&quot;</span>,<span class="string">&quot;任&quot;</span>,<span class="string">&quot;袁&quot;</span>,<span class="string">&quot;柳&quot;</span>,<span class="string">&quot;酆&quot;</span>,<span class="string">&quot;鲍&quot;</span>,<span class="string">&quot;史&quot;</span>,<span class="string">&quot;唐&quot;</span>,<span class="string">&quot;费&quot;</span>,<span class="string">&quot;廉&quot;</span>,<span class="string">&quot;岑&quot;</span>,<span class="string">&quot;薛&quot;</span>,<span class="string">&quot;雷&quot;</span>,<span class="string">&quot;贺&quot;</span>,<span class="string">&quot;倪&quot;</span>,<span class="string">&quot;汤&quot;</span>,<span class="string">&quot;滕&quot;</span>,<span class="string">&quot;殷&quot;</span>,             <span class="string">&quot;罗&quot;</span>,<span class="string">&quot;毕&quot;</span>,<span class="string">&quot;郝&quot;</span>,<span class="string">&quot;邬&quot;</span>,<span class="string">&quot;安&quot;</span>,<span class="string">&quot;常&quot;</span>,<span class="string">&quot;乐&quot;</span>,<span class="string">&quot;于&quot;</span>,<span class="string">&quot;时&quot;</span>,<span class="string">&quot;傅&quot;</span>,<span class="string">&quot;皮&quot;</span>,<span class="string">&quot;卞&quot;</span>,<span class="string">&quot;齐&quot;</span>,<span class="string">&quot;康&quot;</span>,<span class="string">&quot;伍&quot;</span>,<span class="string">&quot;余&quot;</span>,<span class="string">&quot;元&quot;</span>,<span class="string">&quot;卜&quot;</span>,<span class="string">&quot;顾&quot;</span>,<span class="string">&quot;孟&quot;</span>,<span class="string">&quot;平&quot;</span>,<span class="string">&quot;黄&quot;</span>,<span class="string">&quot;和&quot;</span>,    <span class="string">&quot;穆&quot;</span>,<span class="string">&quot;萧&quot;</span>,<span class="string">&quot;尹&quot;</span>,<span class="string">&quot;姚&quot;</span>,<span class="string">&quot;邵&quot;</span>,<span class="string">&quot;湛&quot;</span>,<span class="string">&quot;汪&quot;</span>,<span class="string">&quot;祁&quot;</span>,<span class="string">&quot;毛&quot;</span>,<span class="string">&quot;禹&quot;</span>,<span class="string">&quot;狄&quot;</span>,<span class="string">&quot;米&quot;</span>,<span class="string">&quot;贝&quot;</span>,<span class="string">&quot;明&quot;</span>,<span class="string">&quot;臧&quot;</span>,<span class="string">&quot;计&quot;</span>,<span class="string">&quot;伏&quot;</span>,<span class="string">&quot;成&quot;</span>,<span class="string">&quot;戴&quot;</span>,<span class="string">&quot;谈&quot;</span>,<span class="string">&quot;宋&quot;</span>,<span class="string">&quot;茅&quot;</span>,<span class="string">&quot;庞&quot;</span>,<span class="string">&quot;熊&quot;</span>,<span class="string">&quot;纪&quot;</span>,<span class="string">&quot;舒&quot;</span>, <span class="string">&quot;屈&quot;</span>,<span class="string">&quot;项&quot;</span>,<span class="string">&quot;祝&quot;</span>,<span class="string">&quot;董&quot;</span>,<span class="string">&quot;梁&quot;</span>,<span class="string">&quot;杜&quot;</span>,<span class="string">&quot;阮&quot;</span>,<span class="string">&quot;蓝&quot;</span>,<span class="string">&quot;闵&quot;</span>,<span class="string">&quot;席&quot;</span>,<span class="string">&quot;季&quot;</span>&#125;;</span><br><span class="line">        String girl = <span class="string">&quot;秀娟英华慧巧美娜静淑惠珠翠雅芝玉萍红娥玲芬芳燕彩春菊兰凤洁梅琳素云莲真环雪荣爱妹霞香月莺媛艳瑞凡佳嘉琼勤珍贞莉桂娣叶璧璐娅琦晶妍茜秋珊莎锦黛青倩婷姣婉娴瑾颖露瑶怡婵雁蓓纨仪荷丹蓉眉君琴蕊薇菁梦岚苑婕馨瑗琰韵融园艺咏卿聪澜纯毓悦昭冰爽琬茗羽希宁欣飘育滢馥筠柔竹霭凝晓欢霄枫芸菲寒伊亚宜可姬舒影荔枝思丽&quot;</span> ;</span><br><span class="line">        String boy = <span class="string">&quot;伟刚勇毅俊峰强军平保东文辉力明永健世广志义兴良海山仁波宁贵福生龙元全国胜学祥才发武新利清飞彬富顺信子杰涛昌成康星光天达安岩中茂进林有坚和彪博诚先敬震振壮会思群豪心邦承乐绍功松善厚庆磊民友裕河哲江超浩亮政谦亨奇固之轮翰朗伯宏言若鸣朋斌梁栋维启克伦翔旭鹏泽晨辰士以建家致树炎德行时泰盛雄琛钧冠策腾楠榕风航弘&quot;</span>;</span><br><span class="line">        <span class="keyword">int</span> index = random.nextInt(Surname.length - <span class="number">1</span>);</span><br><span class="line">        String name = Surname[index]; <span class="comment">//获得一个随机的姓氏</span></span><br><span class="line">        <span class="keyword">int</span> i = random.nextInt(<span class="number">3</span>);<span class="comment">//可以根据这个数设置产生的男女比例</span></span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> j = random.nextInt(girl.length() - <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (j % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//   name = 女- + name + girl.substring(j, j + 2);</span></span><br><span class="line">                name = name + girl.substring(j, j + <span class="number">2</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                name = name + girl.substring(j, j + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> j = random.nextInt(girl.length() - <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (j % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                name = name + boy.substring(j, j + <span class="number">2</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                name = name + boy.substring(j, j + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据加密</title>
     <url>/%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86/</url>
     <content><![CDATA[<blockquote>
@@ -400,23 +377,26 @@
       </tags>
   </entry>
   <entry>
-    <title>查找算法</title>
-    <url>/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="二分查找法（折半查找法）"><a href="#二分查找法（折半查找法）" class="headerlink" title="二分查找法（折半查找法）"></a>二分查找法（折半查找法）</h2><blockquote>
-<p>数据是有序的。</p>
-</blockquote>
-<a id="more"></a>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 二分查找算法，查到返回数据下标，查不到返回-1。 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> target</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">           <span class="keyword">int</span> mid = (low + high)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span> (target &lt; arr[mid]) &#123;</span><br><span class="line">               high = mid - <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &gt; arr[mid]) &#123;</span><br><span class="line">               low = mid + <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">return</span> mid;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
+    <title>无论接下来如何，不要后悔今天的决定</title>
+    <url>/%E6%97%A0%E8%AE%BA%E5%A6%82%E4%BD%95%EF%BC%8C%E4%B8%8D%E8%A6%81%E5%90%8E%E6%82%94%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%86%B3%E5%AE%9A/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="652eec907d9121ec839723df4967bd614f984b65c30998b092e3fee85139ae2b">a756220a6413262c08d2e52bbc7378bf461d63a46ff4bc53720da8c2e41e55a9385c804cb2f3447cecf5b20b530fb73959be8b84a6e543422202c6dbc7509954ba2da1085e491fd2bb7fa5105db063f576f4d728154d02d1807354f5c091fe97bbf935dab67f4c75634c589c37c0dd5298f1d306739640e9e19addde182b873e5e9a621cff777f30eed37063ea82b39812cfcf38c5cc523bdc34467e1255be68767b8621b3fd2093d13a21e30e50a4372197d1d529eecd850ed4d65bb31183b97fb7df61bb2f2fa16a52a681faea72b465fbdf3076c1d261ca92d6ee0676c74de362b746d72b1fcb0b60d61532cbae4190d75f71f73a21deafec60b9d63fe31912b5d4a3088a6fe1211a67dc9b7a5e5f4153b91a833371dbed46066c35d12449f38ea1ca8552ab3741f8ca97d74732dc4546d4423bd3b4401e10d878f09f176daa0bef6fbbeee265fad7247021fa3dd319186da825103085fe9c3bed1e32018273235f5292eeddf6aaa5a149a84daeacaeb42e97b45f48b08d05998944cca03a788443f6ca47504c7c3161ede54fdaf1bc277dfc53f36911758d6d1ada3846038ca848aff2169591d26c52a8b49c1c9fcc28d2449220bcf1eb6696136406e33538c8da8737d8ac35365c86fbaeebe01b90fab53ceccda4da5b910514fbd70ee1bcaf38f9a37637b5fe25819c7d9656debad80ef24649175726f524e0f8e1b019c2ba4abc3810a897f42fea9a09156563e5f7868d96a43e27fd111767f14ec6cc886602a256edb31a4f6ceb9e0230c732e3bc34fa8da964201249e0450a0b12554a12829d797fa10e218bd8b37b385184aa43b767070ada29d0aa325a6fb8ec9c856155555104ce1fc5a85bce645b9309065f5e067c70c2ab1f72db076a407196876b48c517d828226363a4d53ab77d00f8509fc9fe11505f176ff6091e11bb4c4bdfe0710a2f2c021d5c17fe415dcdb67780851e314876b3e4419f0dc3216f9daeaf7741bfe2095f879729b449dd89f36db80d29f8cfe900b61ff959a3fa103ec983cdb74640525c4a5f7d58f696a412c6ca0ea6c804834f599b0bebbb398d7f4e96dcd8beee2d0add8dd20a278a3fd887af34a22d9f5189a7acccae682603a4f012bbe746ebfd80a0e8f47bc9b55b5ca68dd06338f18fb47a86f224e26a95ff3ae653f37811e5a0ea4f260b49e8885f4d7bc709b3e8d3aca109fcdf368b3a9d981221679f271fc06486c2be3b36ad100c22bf23e673aa50173750c9246d091dfea899235dfb1be759f90cd23c8e373bf1f0fa911f28acc0128dcac60f256d1d9f46752e91a4e7d88f4c162f57bfbec2f70f54b4385f16ef4de1abb8956a60210ac49bd0e1888fb9cda6bbb4929014a36cede83f00187590c9b8b1749aff49c3d41ff4c1a67d3c3cfa838d0eb439ae6eff50a84b662bc8a5dafa5955fabfbcf9acadb5ef1066cccffe55876ced8a8b9cb5546ba3091031733a870d0a9b42f62a8d3db7f72c964d5ac0a00c8c49e6cafc8f26779cc7d23986ddf4c70f3c17b00447c65fc6b75e5a9b7a8d17bba9220de06f63b8643303c84d7aff76bf6377707b4fa8a5264e59872774c0cc1e777a5e76bd5ec7741fdbbbc79a183befc6e4e4bdf80af08ab784870f1b28a76f090024b6246056fe8cefcea71fee5e7e5d39adb5192578623c773f38ac2f8f7c50b78f1c6efd6212d623090c49eaebb20502bff5c768707e4b857ba27490822941deb07a4dd0f731d7aaf08a5c696eb31a7784c6453108348e50048a707867e71f059364c4fb9afcecc80611524f265cc9a1e3f6bfc6fdf4a2c484589ad34809b0fc268a2a1ac9d5695ce1a10ac545a8f31595f3e4a6560445aa14575d5db950455d9e9702360e81cafcf6cd3fecb7b010e6d8deb876071479ea0ef8be64f5f618a5474165dc04a087289a0fe1ab80636c7f82b1b9f6585c06c0272a32c0543ad21f2ea9585ff6762fdf1521ad143b73f70f2a20dc8288ad4a81ef3b1b5160a0ce2a2c2415e9b3b55e5c820dda751f420f27351ee6bea7cae4446848115209256f15cde6b3ae5cbcd4083af674adb2ade54eca2cf5e67af6b2cc7b027875d64e9f4c395c68b70ac5fa18b219e85da92935fcc2ad88e554ca47a9335cfe01d519f0d91728ca7b5c7fdfec46f6e1faeab39821f0f02251fa56542c6d1b4e50e9b4900e8c3a5c600a8baf43bf5b3052b7fcad093d39ef6116cacbf8c8b7800c0b5e496fad6face1e747bf9c2f80aab9e57435714b8a591b196853cf5c4f275f50f08c6a33d773733504ea6ccd2a8649b7ded85b823e045ffbaade55b9b0c80ebc0806742a6377d73c789fbc823e17571da0a0fab84d3fbd9ed0a0c5589811902d3beb946fc00cf550c0635b86850319bd203dc7177e8eafaaef7670c46f9c5120afd7062be1fbfdcad35e465f6375b44928887392df1da73ac2489921f48c811c945bb954dd9b8dd5dac44598c780782f23d7b62b0a0917d769bf775f92cf2b485434dd4bc5b0a99d4a90663b7e9a432c29aa463bcc82304b47bb056bc0312d4a6f169d0b0daa30ed12e62ade87577bcd85efade93483ab0ccb3e3c73efa27fb48e84228ee13b08e47eab14d733a468068b82d371dde814239f6cb36ca3406cbd8ce0801f4df701311322ee08852c4619bec3b72cfd9b73f5098d7127b0af6975cd7296e236745fceaa63e88188a7a7109c172408046f0d8c13c34eb9b3e161ae1b08651977d7f93b633af0bc63e465755362060f8511f9f6dfaa8cb213fed8cf1cbf2fa1b9c252419130f94e9dbde8ebef39207c4a3dd2ec4ac984340450e2bba3888151826855e0679b6902303a2b65aa6fc4d71bad1d8426e57e5e05a3574be1a919ed76a28719864522f8160f53c9d13a752c54fec38524eac9386f84c278ae35a85e5ef53b78074b6672df5ec49b4adfce7809fdf18288c18c705a865a7adb3b3ed67662c2ab9739b34ae5d122ab42992f12e8975b23c9f70c1485f424c9d0d0d76e561ca40957666f8c7384727804d5122393b2d84cf415bf717f01909a5b7e28ec5281d2c9e91010a5758e4c6b43c2ce0c848281c718c1c8a738156f1ad12ab532336fa4f21767687e59a46861e94e465ed2d619e56d237d18d4b24b8a807cd975cca86e8606b910c868d7f7b47c9f53f8621e3cc132033b1ca45cf93edec043c11681778d227b46c6c45e0f70e69814f97ce5c23cbcf46c581a5c6916023d784ee4a7eeb4c95fbf58ccda6fca4c12349097c582bf6e12847ae90dda378f48c583e55292a2402f2860aca61d36f7f2846760f863f1a2742198cfc4a954cae85ccc368e088a1fd6b650c1558b190afd48b7162b8df22c928966001d12361d12e4e411297798108be86a15c2cf74c73225aede13f5428ddbb14cc2a662aa031efca24c1342f361667d1f7fd2bb5daaf1a325561f4ef207741a63c72eaef6d442a847a86f919a87cf0a618729aaa9921a82445df7b9282ee15c22f8edb91de105d6a7d5cba98e90d16c2b511563feec2218c7ed6758b5440ab55247fc783fd54bb531274c2ff9fa90dc7fbad0f78c1119d73ddb4ab8acfd16a8e446464464bf4c548b5dbe7d9af160567bfb8a7596bc880e0c9b6c9bfdb25fc108e56dcc5a32b3886223b47380eeaece3c2df9b68ad7258a99609ab9544241699d01826c97f4a3c49e1191352f78ad98390d8977f246ad4088848e0124517399158568cd24c0bc15627bdf4d74ad846bd8c0a5916aa90463b93561290ddfff14bc12d82ed35f1217e2712fa92b188a2f5018c889cb1aaf656fd2118fd2cad0f2369e78bbc1ed01efd88c87a7163bcbfa0d4046e5dc3c27d89f10271aaf074d656f64e1bbf74713758cbcd81ffb58e2cf20afa2efdb45d5b1d3f00a8934e7cdcb6e5227e128ddbc75d2e9f75bb23efe39d31300caabd3188bb8783f23742e12b30a70b11611c8a385b8d4463cce9471191338296e04de10f3a87bd2aa01a15687806918187110493cf179f09e35173d4711b44b476fdf642ebce69d56ef1b89c6e28f3bb7ea0e954a7b59653fb50969613e80c878ce6dc340a539b87244d139316036cac82b65b820b83a2b18fee0cfc569b88a4d72b691cac7ab6d220ecbda63e3443fa805b4cf554da8bca7d241a5f4857395bc36a890dc993ab7941cedb5534905a26fb84a30ff9a2c58ceabb6980fa6588b454a6b827f501604b395c6e4e582571ae66225fd594cc7cf25a4c85350a37787af370a18edd7097b669816395870f317d665fad2bfdc7436170a52c72b3431ae8caf93a52dfe4f50643954d25c1ba3820dea2d37193bbf9b346dc4c190ce5b3e3501ab1550288fef24cf38bd03d1f3d738e04cd2d06582414beda39bf8137287d476a0cde5b997e2b46118eeac0b062b11ba3f11a8c9f6f625f79ad65d4ae0b9203090f30db9cdd143f5c3eedb0506da084008919b686fcd9620cb3b7c025d7b73e1aa45a9b7444ceefa998a92676eb60b3fc6ea5103bc6e45a6446c87ff75aef32bd938ecef0461e6c247c16e4a8f261f527a2997591fa28490fbf5f14a7ee3d7c794981c03ea8e9a3c00d4f1d6f3f5150b5aab1c26b13b7abd329a7762dba18aaf09b3651e7a0984c754f7b640cf5c0cadb751de40425c92e6e029e8c71c6ba516a3dad9a3e00df11912aab6160f04be93c593410b1b6ae268138b1f00d22eb946fcf9b15eb422cbf0b8646685a417d63d5fce27ba18</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入阅读密码~</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>java</category>
+        <category>工作</category>
       </categories>
       <tags>
-        <tag>算法</tag>
+        <tag>北漂</tag>
+        <tag>辞职</tag>
       </tags>
   </entry>
   <entry>
@@ -446,6 +426,26 @@
       </categories>
       <tags>
         <tag>北漂</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查找算法</title>
+    <url>/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="二分查找法（折半查找法）"><a href="#二分查找法（折半查找法）" class="headerlink" title="二分查找法（折半查找法）"></a>二分查找法（折半查找法）</h2><blockquote>
+<p>数据是有序的。</p>
+</blockquote>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 二分查找算法，查到返回数据下标，查不到返回-1。 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> target</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">           <span class="keyword">int</span> mid = (low + high)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span> (target &lt; arr[mid]) &#123;</span><br><span class="line">               high = mid - <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &gt; arr[mid]) &#123;</span><br><span class="line">               low = mid + <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">return</span> mid;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -582,74 +582,6 @@
       <tags>
         <tag>技术栈</tag>
         <tag>es</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>海口夜景</title>
-    <url>/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>家人拍的一些夜景，看着挺好看的</p>
-</blockquote>
-<a id="more"></a>
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(1).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(2).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(3).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(4).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(5).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(6).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(7).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(8).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(9).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(10).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(11).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(12).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(13).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(14).jpg" class="" title="This is an example image">]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -819,31 +751,71 @@
       </tags>
   </entry>
   <entry>
-    <title>漂一年</title>
-    <url>/%E6%BC%82%E4%B8%80%E5%B9%B4/</url>
+    <title>海口夜景</title>
+    <url>/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/</url>
     <content><![CDATA[<blockquote>
-<p>做个正能量的人，不要给他人带来负能。</p>
+<p>家人拍的一些夜景，看着挺好看的</p>
 </blockquote>
 <a id="more"></a>
 
-<p>2021年7月10日 00点43分。</p>
-<p>还记得是去年的七月四号进的京，那时正值北京疫情爆发，原计划是六月三十号入京，结果迫于疫情，拿了毕业证书后，在秦皇岛旅馆里待了四天，最后因为工作，没办法还是在人人惶恐的情况下坐上了开往北京的列车。清楚的记得，那天的列车上，整趟车估摸着不到二十人，就我坐的那节车厢加上我才仅有两人。</p>
-<p>时间一晃，这都一年过去了，当时租的房子在8号那天也到期了，趁着明天周末，得搬家咯。</p>
-<p>这个房子地处西三旗桥东上奥小区，小区环境还是很好的，只是房子很小，是合租房，一个屋里住了五户，我这间属于最小的一间，窗户朝向东南，按理说是可以看到广阔的天空和明媚的阳光的，无奈是窗户的对面又是一栋高楼，虽说并不是挨着的，但还是霸占了不小的视野和光照。没办法，这个地段，这个价钱，不能奢求太多，好的是距离我第一份工作距离很近且开往的车辆不少，每天的交通也很是方便。（房价1400，加上其他杂七杂八的费用，一个月下来差不多1600吧）。</p>
-<p>身边的同事朋友都习惯把现在住的这个房子称之为“家”，比如“我要回家了”、“我在家”，他们都是这么说的，我一般都是以“宿舍”或者“屋”为称，其实并不是习惯成自然吧，而是刻意的去把它当成一个“宿舍”来看待，我不愿称之为“家”，原因有两方面，一是我不是很满意这个房子，另一个的话还是对于“家”这个概念的谨慎性与保守性或者说是较真性。</p>
-<blockquote>
-<p>我住在这里，但这并不是我的家，这里没有我的家人，它仅仅只是我一个容身的场所，当然，它也不会认为我是它的主人。</p>
-</blockquote>
-<p>明天搬家，搬到通州那边去。在自如租的房，两居室，和一朋友住，租金两千出头，没有去看房，直接通过视频看完就预订了，工作的强度已经让我没有力气去看那么多了，看到价钱合适，位置合适就直接预订了，通过视频，感觉挺不错，70平，两个熟识的人，下次回宿舍或者周末我可以放纵的接着奏乐接着舞，可以搞把吉他撸一撸，不用再顾忌那么多，哇想想还是爽歪歪的，但是一想到房租，哎，还是贵了些。</p>
-<p>明天起床收拾行李，告别“小破屋（~~）”，不想叫搬家公司，太费钱了，距离远，太费钱了，今天首期交了一万多的房租，卡里又将归零了，难受。</p>
-<p>睡觉，明天踏上新世界。</p>
-]]></content>
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(1).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(2).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(3).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(4).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(5).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(6).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(7).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(8).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(9).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(10).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(11).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(12).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(13).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(14).jpg" class="" title="This is an example image">]]></content>
       <categories>
         <category>生活</category>
       </categories>
       <tags>
-        <tag>北漂</tag>
-        <tag>瞎扯</tag>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -959,6 +931,34 @@
       </tags>
   </entry>
   <entry>
+    <title>漂一年</title>
+    <url>/%E6%BC%82%E4%B8%80%E5%B9%B4/</url>
+    <content><![CDATA[<blockquote>
+<p>做个正能量的人，不要给他人带来负能。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>2021年7月10日 00点43分。</p>
+<p>还记得是去年的七月四号进的京，那时正值北京疫情爆发，原计划是六月三十号入京，结果迫于疫情，拿了毕业证书后，在秦皇岛旅馆里待了四天，最后因为工作，没办法还是在人人惶恐的情况下坐上了开往北京的列车。清楚的记得，那天的列车上，整趟车估摸着不到二十人，就我坐的那节车厢加上我才仅有两人。</p>
+<p>时间一晃，这都一年过去了，当时租的房子在8号那天也到期了，趁着明天周末，得搬家咯。</p>
+<p>这个房子地处西三旗桥东上奥小区，小区环境还是很好的，只是房子很小，是合租房，一个屋里住了五户，我这间属于最小的一间，窗户朝向东南，按理说是可以看到广阔的天空和明媚的阳光的，无奈是窗户的对面又是一栋高楼，虽说并不是挨着的，但还是霸占了不小的视野和光照。没办法，这个地段，这个价钱，不能奢求太多，好的是距离我第一份工作距离很近且开往的车辆不少，每天的交通也很是方便。（房价1400，加上其他杂七杂八的费用，一个月下来差不多1600吧）。</p>
+<p>身边的同事朋友都习惯把现在住的这个房子称之为“家”，比如“我要回家了”、“我在家”，他们都是这么说的，我一般都是以“宿舍”或者“屋”为称，其实并不是习惯成自然吧，而是刻意的去把它当成一个“宿舍”来看待，我不愿称之为“家”，原因有两方面，一是我不是很满意这个房子，另一个的话还是对于“家”这个概念的谨慎性与保守性或者说是较真性。</p>
+<blockquote>
+<p>我住在这里，但这并不是我的家，这里没有我的家人，它仅仅只是我一个容身的场所，当然，它也不会认为我是它的主人。</p>
+</blockquote>
+<p>明天搬家，搬到通州那边去。在自如租的房，两居室，和一朋友住，租金两千出头，没有去看房，直接通过视频看完就预订了，工作的强度已经让我没有力气去看那么多了，看到价钱合适，位置合适就直接预订了，通过视频，感觉挺不错，70平，两个熟识的人，下次回宿舍或者周末我可以放纵的接着奏乐接着舞，可以搞把吉他撸一撸，不用再顾忌那么多，哇想想还是爽歪歪的，但是一想到房租，哎，还是贵了些。</p>
+<p>明天起床收拾行李，告别“小破屋（~~）”，不想叫搬家公司，太费钱了，距离远，太费钱了，今天首期交了一万多的房租，卡里又将归零了，难受。</p>
+<p>睡觉，明天踏上新世界。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>北漂</tag>
+        <tag>瞎扯</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法题</title>
     <url>/%E7%AE%97%E6%B3%95%E9%A2%98/</url>
     <content><![CDATA[<blockquote>
@@ -975,79 +975,6 @@
       </categories>
       <tags>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>诗选</title>
-    <url>/%E8%AF%97%E9%80%89/</url>
-    <content><![CDATA[<blockquote>
-<p>闲暇之时读诗两首。</p>
-</blockquote>
-<a id="more"></a>
-
-<h2 id="如果有来生"><a href="#如果有来生" class="headerlink" title="如果有来生"></a>如果有来生</h2><p>​                            <strong>——三毛</strong></p>
-<p>如果有来生，要做一棵树，</p>
-<p>站成永恒。</p>
-<p>没有悲欢的姿势，</p>
-<p>一半在尘土里安详，</p>
-<p>一半在风里飞扬；</p>
-<p>一半洒落荫凉，</p>
-<p>一半沐浴阳光。</p>
-<p>非常沉默、非常骄傲。</p>
-<p>从不依靠、从不寻找。</p>
-<p>如果有来生，要化成一阵风，</p>
-<p>一瞬间也能成为永恒。</p>
-<p>没有善感的情怀，</p>
-<p>没有多情的眼睛。</p>
-<p>一半在雨里洒脱，</p>
-<p>一半在春光里旅行；</p>
-<p>寂寞了，孤自去远行，</p>
-<p>把淡淡的思念统带走，</p>
-<p>从不思念、从不爱恋；</p>
-<p>如果有来生，要做一只鸟，</p>
-<p>飞越永恒，没有迷途的苦恼。</p>
-<p>东方有火红的希望，南方有温暖的巢床，</p>
-<p>向西逐退残阳，向北唤醒芬芳。</p>
-<p>如果有来生，</p>
-<p>希望每次相遇，</p>
-<p>都能化为永恒。</p>
-<h2 id="从前慢"><a href="#从前慢" class="headerlink" title="从前慢"></a>从前慢</h2><p>​                    <strong>——冰心</strong></p>
-<p>记得早先少年时</p>
-<p>大家诚诚恳恳</p>
-<p>说一句 是一句　　</p>
-<p>清早上火车站</p>
-<p>长街黑暗无行人</p>
-<p>卖豆浆的小店冒着热气</p>
-<p>从前的日色变得慢</p>
-<p>车，马，邮件都慢</p>
-<p>一生只够爱一个人</p>
-<p>从前的锁也好看</p>
-<p>钥匙精美有样子</p>
-<p>你锁了 人家就懂了</p>
-<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>​                        <strong>——汪国真</strong></p>
-<p>让我怎样感谢你</p>
-<p>当我走向你的时候</p>
-<p>我原想收获一缕春风</p>
-<p>你却给了我整个春天</p>
-<p>让我怎样感谢你</p>
-<p>当我走向你的时候</p>
-<p>我原想捧起一簇浪花</p>
-<p>你却给了我整个海洋</p>
-<p>让我怎样感谢你</p>
-<p>当我走向你的时候</p>
-<p>我原想撷取一枚红叶</p>
-<p>你却给了我整个枫林</p>
-<p>让我怎样感谢你</p>
-<p>当我走向你的时候</p>
-<p>我原想亲吻一朵雪花</p>
-<p>你却给了我银色的世界</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>诗</tag>
-        <tag>摘抄</tag>
       </tags>
   </entry>
   <entry>
@@ -1121,6 +1048,79 @@
       </categories>
       <tags>
         <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>诗选</title>
+    <url>/%E8%AF%97%E9%80%89/</url>
+    <content><![CDATA[<blockquote>
+<p>闲暇之时读诗两首。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="如果有来生"><a href="#如果有来生" class="headerlink" title="如果有来生"></a>如果有来生</h2><p>​                            <strong>——三毛</strong></p>
+<p>如果有来生，要做一棵树，</p>
+<p>站成永恒。</p>
+<p>没有悲欢的姿势，</p>
+<p>一半在尘土里安详，</p>
+<p>一半在风里飞扬；</p>
+<p>一半洒落荫凉，</p>
+<p>一半沐浴阳光。</p>
+<p>非常沉默、非常骄傲。</p>
+<p>从不依靠、从不寻找。</p>
+<p>如果有来生，要化成一阵风，</p>
+<p>一瞬间也能成为永恒。</p>
+<p>没有善感的情怀，</p>
+<p>没有多情的眼睛。</p>
+<p>一半在雨里洒脱，</p>
+<p>一半在春光里旅行；</p>
+<p>寂寞了，孤自去远行，</p>
+<p>把淡淡的思念统带走，</p>
+<p>从不思念、从不爱恋；</p>
+<p>如果有来生，要做一只鸟，</p>
+<p>飞越永恒，没有迷途的苦恼。</p>
+<p>东方有火红的希望，南方有温暖的巢床，</p>
+<p>向西逐退残阳，向北唤醒芬芳。</p>
+<p>如果有来生，</p>
+<p>希望每次相遇，</p>
+<p>都能化为永恒。</p>
+<h2 id="从前慢"><a href="#从前慢" class="headerlink" title="从前慢"></a>从前慢</h2><p>​                    <strong>——冰心</strong></p>
+<p>记得早先少年时</p>
+<p>大家诚诚恳恳</p>
+<p>说一句 是一句　　</p>
+<p>清早上火车站</p>
+<p>长街黑暗无行人</p>
+<p>卖豆浆的小店冒着热气</p>
+<p>从前的日色变得慢</p>
+<p>车，马，邮件都慢</p>
+<p>一生只够爱一个人</p>
+<p>从前的锁也好看</p>
+<p>钥匙精美有样子</p>
+<p>你锁了 人家就懂了</p>
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>​                        <strong>——汪国真</strong></p>
+<p>让我怎样感谢你</p>
+<p>当我走向你的时候</p>
+<p>我原想收获一缕春风</p>
+<p>你却给了我整个春天</p>
+<p>让我怎样感谢你</p>
+<p>当我走向你的时候</p>
+<p>我原想捧起一簇浪花</p>
+<p>你却给了我整个海洋</p>
+<p>让我怎样感谢你</p>
+<p>当我走向你的时候</p>
+<p>我原想撷取一枚红叶</p>
+<p>你却给了我整个枫林</p>
+<p>让我怎样感谢你</p>
+<p>当我走向你的时候</p>
+<p>我原想亲吻一朵雪花</p>
+<p>你却给了我银色的世界</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>诗</tag>
+        <tag>摘抄</tag>
       </tags>
   </entry>
   <entry>
