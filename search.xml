@@ -211,31 +211,6 @@
       </tags>
   </entry>
   <entry>
-    <title>带标题及单元格合并的easyExcel导出表格</title>
-    <url>/%E5%B8%A6%E6%A0%87%E9%A2%98%E5%8F%8A%E5%8D%95%E5%85%83%E6%A0%BC%E5%90%88%E5%B9%B6%E7%9A%84easyExcel%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC/</url>
-    <content><![CDATA[<h1 id="easyExcel导出表格（有标题、单元格合并）"><a href="#easyExcel导出表格（有标题、单元格合并）" class="headerlink" title="easyExcel导出表格（有标题、单元格合并）"></a>easyExcel导出表格（有标题、单元格合并）</h1><blockquote>
-<p>如何过一天，就如何过一生。</p>
-</blockquote>
-<a id="more"></a>
-
-<h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>最近工作上遇到了xlsx格式报表的导出，导出的数据存在父子关系，即相当于树形数据，有单元格合并和标题形式的要求，查阅了一些资料，总算是弄出来了，这里另写一个小样简单分享一下关于easyExcel导出具有合并单元格和标题的小结 代码，也算记录一下自己的工作学习。</p>
-<h3 id="2、代码"><a href="#2、代码" class="headerlink" title="2、代码"></a>2、代码</h3><p><img src="https://img-blog.csdnimg.cn/20201123150059385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMTAzNzA2,size_16,color_FFFFFF,t_70#pic_center" alt="demo目录格式"><br>（目录及代码仅为实现，勿纠结格式和规范问题/捂脸）</p>
-<h4 id="easyExcel依赖"><a href="#easyExcel依赖" class="headerlink" title="easyExcel依赖"></a>easyExcel依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>easyexcel<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="controller层"><a href="#controller层" class="headerlink" title="controller层"></a>controller层</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.EasyExcel;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.support.ExcelTypeEnum;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.BizMergeStrategy;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.RowRangeDto;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.TitleSheetWriteHandler;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.URLEncoder;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 该类的描述</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/23 11:31</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EasyExcelController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/excel&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excel</span><span class="params">(HttpServletResponse response)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap = BizMergeStrategy.addAnnualMerStrategy(data());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            response.setContentType(<span class="string">&quot;application/vnd.ms-excel&quot;</span>);</span><br><span class="line">            response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            <span class="comment">// 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系</span></span><br><span class="line">            String filename = URLEncoder.encode(<span class="string">&quot;用户表测试&quot;</span>, <span class="string">&quot;UTF-8&quot;</span>).replaceAll(<span class="string">&quot;\\+&quot;</span>, <span class="string">&quot;%20&quot;</span>);</span><br><span class="line">            response.setHeader(<span class="string">&quot;Content-disposition&quot;</span>, <span class="string">&quot;attachment;filename=&quot;</span> + filename + <span class="string">&quot;.xlsx&quot;</span>);</span><br><span class="line"></span><br><span class="line">            EasyExcel.write(response.getOutputStream(), User.class)</span><br><span class="line">                    .excelType(ExcelTypeEnum.XLSX).head(User.class)</span><br><span class="line">                    .registerWriteHandler(<span class="keyword">new</span> TitleSheetWriteHandler(<span class="string">&quot;我是一个小标题&quot;</span>,<span class="number">2</span>)) <span class="comment">// 标题及样式，lastCol为标题第0列到底lastCol列的宽度</span></span><br><span class="line">                    <span class="comment">//设置默认样式及写入头信息开始的行数</span></span><br><span class="line">                    .relativeHeadRowIndex(<span class="number">1</span>)</span><br><span class="line">                    .registerWriteHandler(<span class="keyword">new</span> BizMergeStrategy(strategyMap))    <span class="comment">// 注册合并策略</span></span><br><span class="line">                    .registerWriteHandler(BizMergeStrategy.CellStyleStrategy()) <span class="comment">// 设置样式</span></span><br><span class="line">                    .sheet(<span class="string">&quot;测试&quot;</span>)</span><br><span class="line">                    .doWrite(data());</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            response.reset();</span><br><span class="line">            response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            response.setContentType(<span class="string">&quot;application/json&quot;</span>);</span><br><span class="line">            response.getWriter().println(<span class="string">&quot;打印失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">private</span> List&lt;User&gt; <span class="title">data</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        User user = <span class="keyword">new</span> User(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;张三&quot;</span>,<span class="string">&quot;总裁&quot;</span>);</span><br><span class="line">        User user1 = <span class="keyword">new</span> User(<span class="string">&quot;2&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;总经理&quot;</span>);</span><br><span class="line">        User user2 = <span class="keyword">new</span> User(<span class="string">&quot;3&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;技术员&quot;</span>);</span><br><span class="line">        User user3 = <span class="keyword">new</span> User(<span class="string">&quot;4&quot;</span>,<span class="string">&quot;王五&quot;</span>,<span class="string">&quot;技术员&quot;</span>);</span><br><span class="line"></span><br><span class="line">        list.add(user);</span><br><span class="line">        list.add(user1);</span><br><span class="line">        list.add(user2);</span><br><span class="line">        list.add(user3);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.annotation.ExcelProperty;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.annotation.write.style.ColumnWidth;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 该类的描述</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/23 11:28</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ColumnWidth(10)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;id&quot;&#125;, index = 0)</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnWidth(20)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;名字&quot;&#125;, index = 1)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnWidth(20)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;职位&quot;&#125;, index = 2)</span></span><br><span class="line">    <span class="keyword">private</span> String postion; <span class="comment">//职位</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String id,String name,String postion)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.postion = postion;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPostion</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> postion;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPostion</span><span class="params">(String postion)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.postion = postion;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="策略及其他"><a href="#策略及其他" class="headerlink" title="策略及其他"></a>策略及其他</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.metadata.Head;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.merge.AbstractMergeStrategy;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.style.WriteCellStyle;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.style.WriteFont;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.style.HorizontalCellStyleStrategy;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.usermodel.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.util.CellRangeAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: 合并策略和样式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/20 17:24</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BizMergeStrategy</span> <span class="keyword">extends</span> <span class="title">AbstractMergeStrategy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap;</span><br><span class="line">    <span class="keyword">private</span> Sheet sheet;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BizMergeStrategy</span><span class="params">(Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.strategyMap = strategyMap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(Sheet sheet, Cell cell, Head head, Integer integer)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sheet = sheet;</span><br><span class="line">        <span class="comment">//如果没有标题，只有表头的话，这里的 cell.getRowIndex() == 1</span></span><br><span class="line">        <span class="keyword">if</span> (cell.getRowIndex() == <span class="number">2</span> &amp;&amp; cell.getColumnIndex() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 保证每个cell被合并一次，如果不加上面的判断，因为是一个cell一个cell操作的，</span></span><br><span class="line"><span class="comment">             * 例如合并A2:A3,当cell为A2时，合并A2,A3，但是当cell为A3时，又是合并A2,A3，</span></span><br><span class="line"><span class="comment">             * 但此时A2,A3已经是合并的单元格了</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">for</span> (Map.Entry&lt;String, List&lt;RowRangeDto&gt;&gt; entry : strategyMap.entrySet()) &#123;</span><br><span class="line">                Integer columnIndex = Integer.valueOf(entry.getKey());</span><br><span class="line">                entry.getValue().forEach(rowRange -&gt; &#123;</span><br><span class="line">                    <span class="comment">//添加一个合并请求</span></span><br><span class="line">                    sheet.addMergedRegionUnsafe(<span class="keyword">new</span> CellRangeAddress(rowRange.getStart(),</span><br><span class="line">                            rowRange.getEnd(), columnIndex, columnIndex));</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, List&lt;RowRangeDto&gt;&gt; addAnnualMerStrategy(List&lt;User&gt; projectDtoList) &#123;</span><br><span class="line">        Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        User preUser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; projectDtoList.size(); i++) &#123;</span><br><span class="line">            User curUser = projectDtoList.get(i);</span><br><span class="line">            <span class="comment">//如果名字一样，将名字合并（真正开发中一般不会通过名字这样字段，而是通过一些关联的唯一值，比如父id）</span></span><br><span class="line">            <span class="keyword">if</span> (preUser != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (curUser.getName() == preUser.getName())&#123;    <span class="comment">// 名字相同则合并第一列</span></span><br><span class="line"><span class="comment">//                    BizMergeStrategy.fillStrategyMap(strategyMap, &quot;0&quot;, i+1);</span></span><br><span class="line">                    <span class="comment">//如果没有标题，只有表头的话，这里为 BizMergeStrategy.fillStrategyMap(strategyMap, &quot;1&quot;, i);</span></span><br><span class="line">                    BizMergeStrategy.fillStrategyMap(strategyMap, <span class="string">&quot;1&quot;</span>, i+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            preUser = curUser;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> strategyMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@description</span>: 新增或修改合并策略map</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> strategyMap</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 2020/11/17 17:32</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fillStrategyMap</span><span class="params">(Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap, String key, <span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        List&lt;RowRangeDto&gt; rowRangeDtoList = strategyMap.get(key) == <span class="keyword">null</span> ? <span class="keyword">new</span> ArrayList&lt;&gt;() : strategyMap.get(key);</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (RowRangeDto dto : rowRangeDtoList) &#123;</span><br><span class="line">            <span class="comment">//分段list中是否有end索引是上一行索引的，如果有，则索引+1</span></span><br><span class="line">            <span class="keyword">if</span> (dto.getEnd() == index) &#123;</span><br><span class="line">                dto.setEnd(index + <span class="number">1</span>);</span><br><span class="line">                flag = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果没有，则新增分段</span></span><br><span class="line">        <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">            rowRangeDtoList.add(<span class="keyword">new</span> RowRangeDto(index, index + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        strategyMap.put(key, rowRangeDtoList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@description</span>: 表格样式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 2020/11/20 9:40</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HorizontalCellStyleStrategy <span class="title">CellStyleStrategy</span><span class="params">()</span></span>&#123;</span><br><span class="line">        WriteCellStyle headWriteCellStyle = <span class="keyword">new</span> WriteCellStyle();</span><br><span class="line">        <span class="comment">//设置背景颜色</span></span><br><span class="line">        headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());</span><br><span class="line">        <span class="comment">//设置头字体</span></span><br><span class="line">        WriteFont headWriteFont = <span class="keyword">new</span> WriteFont();</span><br><span class="line">        headWriteFont.setFontHeightInPoints((<span class="keyword">short</span>)<span class="number">13</span>);</span><br><span class="line">        headWriteFont.setBold(<span class="keyword">true</span>);</span><br><span class="line">        headWriteCellStyle.setWriteFont(headWriteFont);</span><br><span class="line">        <span class="comment">//设置头居中</span></span><br><span class="line">        headWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        <span class="comment">//内容策略</span></span><br><span class="line">        WriteCellStyle contentWriteCellStyle = <span class="keyword">new</span> WriteCellStyle();</span><br><span class="line">        <span class="comment">//设置 水平居中</span></span><br><span class="line">        contentWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        contentWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">        HorizontalCellStyleStrategy horizontalCellStyleStrategy = <span class="keyword">new</span> HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);</span><br><span class="line">        <span class="keyword">return</span> horizontalCellStyleStrategy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RowRangeDto</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> start;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> end;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RowRangeDto</span><span class="params">(<span class="keyword">int</span> start,<span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStart</span><span class="params">(<span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEnd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEnd</span><span class="params">(<span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.handler.SheetWriteHandler;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.holder.WriteSheetHolder;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.holder.WriteWorkbookHolder;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.usermodel.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.util.CellRangeAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TitleSheetWriteHandler</span> <span class="keyword">implements</span> <span class="title">SheetWriteHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lastCol;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TitleSheetWriteHandler</span><span class="params">(String title,<span class="keyword">int</span> lastCol)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.title = title;</span><br><span class="line">        <span class="keyword">this</span>.lastCol = lastCol;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> </span>&#123;</span><br><span class="line">        Workbook workbook = writeWorkbookHolder.getWorkbook();</span><br><span class="line">        Sheet sheet = workbook.getSheetAt(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//设置标题</span></span><br><span class="line">        Row row = sheet.createRow(<span class="number">0</span>);</span><br><span class="line">        row.setHeight((<span class="keyword">short</span>) <span class="number">800</span>);</span><br><span class="line">        Cell cell = row.createCell(<span class="number">0</span>);</span><br><span class="line">        cell.setCellValue(title);</span><br><span class="line">        CellStyle cellStyle = workbook.createCellStyle();</span><br><span class="line">        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">        cellStyle.setAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        Font font = workbook.createFont();</span><br><span class="line">        font.setBold(<span class="keyword">true</span>);</span><br><span class="line">        font.setFontHeight((<span class="keyword">short</span>) <span class="number">400</span>);</span><br><span class="line">        cellStyle.setFont(font);</span><br><span class="line">        cell.setCellStyle(cellStyle);</span><br><span class="line">        sheet.addMergedRegionUnsafe(<span class="keyword">new</span> CellRangeAddress(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, lastCol));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里为该demo的全部代码，使用时新建一个项目，直接复制粘贴过去，运行即可。<br>借鉴了不少网上的资料，有部分内容本人还尚未搞明白，有不明白可以留言互相探讨。<br>借鉴连接：<br><a href="https://blog.csdn.net/qq_41514643/article/details/106993760">1、这老哥的文档帮了极大忙，感谢！/抱拳</a><br><a href="2%E3%80%81https://blog.csdn.net/Aeve_imp/article/details/104910080/">2、这老哥的文档也很详细</a><br><a href="https://www.yuque.com/easyexcel">3、语雀官网</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>easyExcel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据加密</title>
     <url>/%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86/</url>
     <content><![CDATA[<blockquote>
@@ -285,32 +260,28 @@
       </tags>
   </entry>
   <entry>
-    <title>无题</title>
-    <url>/%E6%97%A0%E9%A2%98/</url>
-    <content><![CDATA[<blockquote>
-<p>因为挑战，才有进步。加油，自己！</p>
+    <title>带标题及单元格合并的easyExcel导出表格</title>
+    <url>/%E5%B8%A6%E6%A0%87%E9%A2%98%E5%8F%8A%E5%8D%95%E5%85%83%E6%A0%BC%E5%90%88%E5%B9%B6%E7%9A%84easyExcel%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC/</url>
+    <content><![CDATA[<h1 id="easyExcel导出表格（有标题、单元格合并）"><a href="#easyExcel导出表格（有标题、单元格合并）" class="headerlink" title="easyExcel导出表格（有标题、单元格合并）"></a>easyExcel导出表格（有标题、单元格合并）</h1><blockquote>
+<p>如何过一天，就如何过一生。</p>
 </blockquote>
 <a id="more"></a>
 
-<p>看了两个多小时的技术课程，然而觉得专注的程度总是不够，也许是夏季的到来让我的心绪不免躁动，又或者是想到了今天下午咬着雪糕时经过了两个被父母抱在怀里的孩子的干巴巴目光，又或者是疑惑刚刚回来路上那坐在马路沿子的阿叔在想些什么，总之，脑子里飘忽更多的游离于技术之外的，于是，还是选择了顺从灵魂，由工作转向了更加纯粹的生活。</p>
-<p>此刻，窗外继续下着雨，已经下了两个多小时了，但貌似没有为空气带来丝毫的一丝清凉，不过这淅沥沥的雨声为这夜色带来了更空灵的宁静，但此刻我更愿意戴上耳机，随机放一些自己喜欢的类型的音乐，说来也奇怪，身在北京，给我推荐的第一首竟是《兰州》，难道是在诱惑我去兰州看一看吗~</p>
-<p>其实，在外面的时候时就多次有写东西的冲动，也在记事本上做过一些记录，但奈何一回到宿舍，当时的那种冲动或者说是心境便不复存在了，即便是看着之前的记录，提笔仍旧无从着落，这也是近几年来让我略微难受的一件事，总感觉自己失去了文字叙述的能力，想想自己曾经也是获得过省作文赛一等奖的人呀。不过，细究其中原因，还是有迹可循的，大学以前经常写作文，自己也偶尔有手写记录生活的习惯，然而，大学后，各种原因，动笔变得少了，然后，就出现了现在这样的局面，心中有话，却无从下笔表达。</p>
-<p>近期个人的大事便是上周一入职了第二家公司，一切如同全新开始且具有挑战。</p>
-<p>公司位于国贸附近，早上十点上班，自己基本七点半起床，八点出门，九点二十左右到公司。来北京快一年了，第一份工作的公司离住宿很近，不堵车的情况下半个钟之内就能到达，路上偶尔也挤，但也还能接受，虽也见识过西二旗早高峰的场景，但终究未曾亲历，因而对北漂的挤尚未有过深刻的印象，直到第一天来现在的公司上班的路上，才发现平日同事或者网友的描述并没有夸张一分一毫。自己坐的315路公交转10号线地铁，地铁倒也还可以接受，但是公交的挤那真是让人有点无奈。上公交之后几乎是只能一动不动，生怕碰着踩着了他人，也几次见识了车上乘客间因为拥挤而产生的口水摩擦，不过好的是，因为这一路走的是专有路线，即便早高峰，也并不是特别堵。</p>
-<p>路上的奔波倒无关紧要，不足挂齿，项目上的事才是让自己觉得颇具挑战。入职第一天，公司给配了苹果系统的笔记本，下周也会配上额外的大屏显示器。上家公司的时候是用的个人的笔记本，然后公司每月补贴100元，我也曾幻想过拥有一个大屏的显示器来分屏办公，如今这一愿望将要实现，而且还是配的多数人所向往的苹果，想想心中还是有些许激动，这才是我事业路上最基本的标配吧。</p>
-<p>公司对于项目的管理还有分工上更加的规范，管理的工具上也用了许多我未曾接触过的，目前而言，自己还是有点压力，不过幸好有个同事热情指点帮助。说来也惭愧，同事和我是同一年毕业的，目前也才工作一年，来公司也比我早了一个多月而已，但却发现和他还是有些差距，无论是对项目的理解上，亦或是在团队中的沟通交流上。</p>
-<p>总而言之，需要学习的东西很多，在接下来的日子中，不惧挑战，每天进步，争取早点跟上组织的步伐与节奏，加油，小伙子！！</p>
-<p>（行文至此，本以为能滔滔不绝，行云流水，但仍旧磕磕绊绊且抓不住自己要表达的重点，流水账的叙述也不尽人意，至此停笔，望这个能力今后也应当加强）</p>
-<hr>
-<p>附：</p>
-<p>​    深切悼念二位国之栋梁，</p>
-<p>​    袁老、吴院士，二位走好！</p>
+<h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>最近工作上遇到了xlsx格式报表的导出，导出的数据存在父子关系，即相当于树形数据，有单元格合并和标题形式的要求，查阅了一些资料，总算是弄出来了，这里另写一个小样简单分享一下关于easyExcel导出具有合并单元格和标题的小结 代码，也算记录一下自己的工作学习。</p>
+<h3 id="2、代码"><a href="#2、代码" class="headerlink" title="2、代码"></a>2、代码</h3><p><img src="https://img-blog.csdnimg.cn/20201123150059385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMTAzNzA2,size_16,color_FFFFFF,t_70#pic_center" alt="demo目录格式"><br>（目录及代码仅为实现，勿纠结格式和规范问题/捂脸）</p>
+<h4 id="easyExcel依赖"><a href="#easyExcel依赖" class="headerlink" title="easyExcel依赖"></a>easyExcel依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>easyexcel<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="controller层"><a href="#controller层" class="headerlink" title="controller层"></a>controller层</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.EasyExcel;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.support.ExcelTypeEnum;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.BizMergeStrategy;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.RowRangeDto;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.TitleSheetWriteHandler;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.URLEncoder;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 该类的描述</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/23 11:31</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EasyExcelController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/excel&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excel</span><span class="params">(HttpServletResponse response)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap = BizMergeStrategy.addAnnualMerStrategy(data());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            response.setContentType(<span class="string">&quot;application/vnd.ms-excel&quot;</span>);</span><br><span class="line">            response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            <span class="comment">// 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系</span></span><br><span class="line">            String filename = URLEncoder.encode(<span class="string">&quot;用户表测试&quot;</span>, <span class="string">&quot;UTF-8&quot;</span>).replaceAll(<span class="string">&quot;\\+&quot;</span>, <span class="string">&quot;%20&quot;</span>);</span><br><span class="line">            response.setHeader(<span class="string">&quot;Content-disposition&quot;</span>, <span class="string">&quot;attachment;filename=&quot;</span> + filename + <span class="string">&quot;.xlsx&quot;</span>);</span><br><span class="line"></span><br><span class="line">            EasyExcel.write(response.getOutputStream(), User.class)</span><br><span class="line">                    .excelType(ExcelTypeEnum.XLSX).head(User.class)</span><br><span class="line">                    .registerWriteHandler(<span class="keyword">new</span> TitleSheetWriteHandler(<span class="string">&quot;我是一个小标题&quot;</span>,<span class="number">2</span>)) <span class="comment">// 标题及样式，lastCol为标题第0列到底lastCol列的宽度</span></span><br><span class="line">                    <span class="comment">//设置默认样式及写入头信息开始的行数</span></span><br><span class="line">                    .relativeHeadRowIndex(<span class="number">1</span>)</span><br><span class="line">                    .registerWriteHandler(<span class="keyword">new</span> BizMergeStrategy(strategyMap))    <span class="comment">// 注册合并策略</span></span><br><span class="line">                    .registerWriteHandler(BizMergeStrategy.CellStyleStrategy()) <span class="comment">// 设置样式</span></span><br><span class="line">                    .sheet(<span class="string">&quot;测试&quot;</span>)</span><br><span class="line">                    .doWrite(data());</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            response.reset();</span><br><span class="line">            response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            response.setContentType(<span class="string">&quot;application/json&quot;</span>);</span><br><span class="line">            response.getWriter().println(<span class="string">&quot;打印失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">private</span> List&lt;User&gt; <span class="title">data</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        User user = <span class="keyword">new</span> User(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;张三&quot;</span>,<span class="string">&quot;总裁&quot;</span>);</span><br><span class="line">        User user1 = <span class="keyword">new</span> User(<span class="string">&quot;2&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;总经理&quot;</span>);</span><br><span class="line">        User user2 = <span class="keyword">new</span> User(<span class="string">&quot;3&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;技术员&quot;</span>);</span><br><span class="line">        User user3 = <span class="keyword">new</span> User(<span class="string">&quot;4&quot;</span>,<span class="string">&quot;王五&quot;</span>,<span class="string">&quot;技术员&quot;</span>);</span><br><span class="line"></span><br><span class="line">        list.add(user);</span><br><span class="line">        list.add(user1);</span><br><span class="line">        list.add(user2);</span><br><span class="line">        list.add(user3);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.annotation.ExcelProperty;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.annotation.write.style.ColumnWidth;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 该类的描述</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/23 11:28</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ColumnWidth(10)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;id&quot;&#125;, index = 0)</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnWidth(20)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;名字&quot;&#125;, index = 1)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnWidth(20)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;职位&quot;&#125;, index = 2)</span></span><br><span class="line">    <span class="keyword">private</span> String postion; <span class="comment">//职位</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String id,String name,String postion)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.postion = postion;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPostion</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> postion;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPostion</span><span class="params">(String postion)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.postion = postion;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="策略及其他"><a href="#策略及其他" class="headerlink" title="策略及其他"></a>策略及其他</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.metadata.Head;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.merge.AbstractMergeStrategy;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.style.WriteCellStyle;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.style.WriteFont;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.style.HorizontalCellStyleStrategy;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.usermodel.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.util.CellRangeAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: 合并策略和样式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/20 17:24</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BizMergeStrategy</span> <span class="keyword">extends</span> <span class="title">AbstractMergeStrategy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap;</span><br><span class="line">    <span class="keyword">private</span> Sheet sheet;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BizMergeStrategy</span><span class="params">(Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.strategyMap = strategyMap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(Sheet sheet, Cell cell, Head head, Integer integer)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sheet = sheet;</span><br><span class="line">        <span class="comment">//如果没有标题，只有表头的话，这里的 cell.getRowIndex() == 1</span></span><br><span class="line">        <span class="keyword">if</span> (cell.getRowIndex() == <span class="number">2</span> &amp;&amp; cell.getColumnIndex() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 保证每个cell被合并一次，如果不加上面的判断，因为是一个cell一个cell操作的，</span></span><br><span class="line"><span class="comment">             * 例如合并A2:A3,当cell为A2时，合并A2,A3，但是当cell为A3时，又是合并A2,A3，</span></span><br><span class="line"><span class="comment">             * 但此时A2,A3已经是合并的单元格了</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">for</span> (Map.Entry&lt;String, List&lt;RowRangeDto&gt;&gt; entry : strategyMap.entrySet()) &#123;</span><br><span class="line">                Integer columnIndex = Integer.valueOf(entry.getKey());</span><br><span class="line">                entry.getValue().forEach(rowRange -&gt; &#123;</span><br><span class="line">                    <span class="comment">//添加一个合并请求</span></span><br><span class="line">                    sheet.addMergedRegionUnsafe(<span class="keyword">new</span> CellRangeAddress(rowRange.getStart(),</span><br><span class="line">                            rowRange.getEnd(), columnIndex, columnIndex));</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, List&lt;RowRangeDto&gt;&gt; addAnnualMerStrategy(List&lt;User&gt; projectDtoList) &#123;</span><br><span class="line">        Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        User preUser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; projectDtoList.size(); i++) &#123;</span><br><span class="line">            User curUser = projectDtoList.get(i);</span><br><span class="line">            <span class="comment">//如果名字一样，将名字合并（真正开发中一般不会通过名字这样字段，而是通过一些关联的唯一值，比如父id）</span></span><br><span class="line">            <span class="keyword">if</span> (preUser != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (curUser.getName() == preUser.getName())&#123;    <span class="comment">// 名字相同则合并第一列</span></span><br><span class="line"><span class="comment">//                    BizMergeStrategy.fillStrategyMap(strategyMap, &quot;0&quot;, i+1);</span></span><br><span class="line">                    <span class="comment">//如果没有标题，只有表头的话，这里为 BizMergeStrategy.fillStrategyMap(strategyMap, &quot;1&quot;, i);</span></span><br><span class="line">                    BizMergeStrategy.fillStrategyMap(strategyMap, <span class="string">&quot;1&quot;</span>, i+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            preUser = curUser;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> strategyMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@description</span>: 新增或修改合并策略map</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> strategyMap</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 2020/11/17 17:32</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fillStrategyMap</span><span class="params">(Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap, String key, <span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        List&lt;RowRangeDto&gt; rowRangeDtoList = strategyMap.get(key) == <span class="keyword">null</span> ? <span class="keyword">new</span> ArrayList&lt;&gt;() : strategyMap.get(key);</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (RowRangeDto dto : rowRangeDtoList) &#123;</span><br><span class="line">            <span class="comment">//分段list中是否有end索引是上一行索引的，如果有，则索引+1</span></span><br><span class="line">            <span class="keyword">if</span> (dto.getEnd() == index) &#123;</span><br><span class="line">                dto.setEnd(index + <span class="number">1</span>);</span><br><span class="line">                flag = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果没有，则新增分段</span></span><br><span class="line">        <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">            rowRangeDtoList.add(<span class="keyword">new</span> RowRangeDto(index, index + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        strategyMap.put(key, rowRangeDtoList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@description</span>: 表格样式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 2020/11/20 9:40</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HorizontalCellStyleStrategy <span class="title">CellStyleStrategy</span><span class="params">()</span></span>&#123;</span><br><span class="line">        WriteCellStyle headWriteCellStyle = <span class="keyword">new</span> WriteCellStyle();</span><br><span class="line">        <span class="comment">//设置背景颜色</span></span><br><span class="line">        headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());</span><br><span class="line">        <span class="comment">//设置头字体</span></span><br><span class="line">        WriteFont headWriteFont = <span class="keyword">new</span> WriteFont();</span><br><span class="line">        headWriteFont.setFontHeightInPoints((<span class="keyword">short</span>)<span class="number">13</span>);</span><br><span class="line">        headWriteFont.setBold(<span class="keyword">true</span>);</span><br><span class="line">        headWriteCellStyle.setWriteFont(headWriteFont);</span><br><span class="line">        <span class="comment">//设置头居中</span></span><br><span class="line">        headWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        <span class="comment">//内容策略</span></span><br><span class="line">        WriteCellStyle contentWriteCellStyle = <span class="keyword">new</span> WriteCellStyle();</span><br><span class="line">        <span class="comment">//设置 水平居中</span></span><br><span class="line">        contentWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        contentWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">        HorizontalCellStyleStrategy horizontalCellStyleStrategy = <span class="keyword">new</span> HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);</span><br><span class="line">        <span class="keyword">return</span> horizontalCellStyleStrategy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RowRangeDto</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> start;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> end;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RowRangeDto</span><span class="params">(<span class="keyword">int</span> start,<span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStart</span><span class="params">(<span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEnd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEnd</span><span class="params">(<span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.handler.SheetWriteHandler;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.holder.WriteSheetHolder;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.holder.WriteWorkbookHolder;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.usermodel.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.util.CellRangeAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TitleSheetWriteHandler</span> <span class="keyword">implements</span> <span class="title">SheetWriteHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lastCol;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TitleSheetWriteHandler</span><span class="params">(String title,<span class="keyword">int</span> lastCol)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.title = title;</span><br><span class="line">        <span class="keyword">this</span>.lastCol = lastCol;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> </span>&#123;</span><br><span class="line">        Workbook workbook = writeWorkbookHolder.getWorkbook();</span><br><span class="line">        Sheet sheet = workbook.getSheetAt(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//设置标题</span></span><br><span class="line">        Row row = sheet.createRow(<span class="number">0</span>);</span><br><span class="line">        row.setHeight((<span class="keyword">short</span>) <span class="number">800</span>);</span><br><span class="line">        Cell cell = row.createCell(<span class="number">0</span>);</span><br><span class="line">        cell.setCellValue(title);</span><br><span class="line">        CellStyle cellStyle = workbook.createCellStyle();</span><br><span class="line">        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">        cellStyle.setAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        Font font = workbook.createFont();</span><br><span class="line">        font.setBold(<span class="keyword">true</span>);</span><br><span class="line">        font.setFontHeight((<span class="keyword">short</span>) <span class="number">400</span>);</span><br><span class="line">        cellStyle.setFont(font);</span><br><span class="line">        cell.setCellStyle(cellStyle);</span><br><span class="line">        sheet.addMergedRegionUnsafe(<span class="keyword">new</span> CellRangeAddress(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, lastCol));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里为该demo的全部代码，使用时新建一个项目，直接复制粘贴过去，运行即可。<br>借鉴了不少网上的资料，有部分内容本人还尚未搞明白，有不明白可以留言互相探讨。<br>借鉴连接：<br><a href="https://blog.csdn.net/qq_41514643/article/details/106993760">1、这老哥的文档帮了极大忙，感谢！/抱拳</a><br><a href="2%E3%80%81https://blog.csdn.net/Aeve_imp/article/details/104910080/">2、这老哥的文档也很详细</a><br><a href="https://www.yuque.com/easyexcel">3、语雀官网</a></p>
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>北漂</tag>
+        <tag>easyExcel</tag>
       </tags>
   </entry>
   <entry>
@@ -357,139 +328,32 @@
       </tags>
   </entry>
   <entry>
-    <title>浅谈ElasticSearch</title>
-    <url>/%E6%B5%85%E8%B0%88ElasticSearch/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p>Elaticsearch，简称为es， es是一个开源的<strong>高扩展</strong>的<strong>分布式全文检索引擎</strong>，它可以近乎<strong>实时的存储、检索数据</strong>；<strong>本身扩展性很好</strong>，可以扩展到上百台服务器，处理PB级别（大数据时代）的数据。es也使用Java开发并使用Lucene作为其核心来实现所有索引和搜索的功能，但是它的目的是<strong>通过简单的RESTfulAPI来隐藏Lucene的复杂性，从而让全文搜索变得简单</strong>。</p>
+    <title>无题</title>
+    <url>/%E6%97%A0%E9%A2%98/</url>
+    <content><![CDATA[<blockquote>
+<p>因为挑战，才有进步。加油，自己！</p>
 </blockquote>
 <a id="more"></a>
 
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
-<p>官网：<a href="https://www.elastic.co/">https://www.elastic.co/</a></p>
-<p>下载地址：<a href="https://www.elastic.co/cn/downloads/elasticsearch">https://www.elastic.co/cn/downloads/elasticsearch</a></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 目录结构</span></span><br><span class="line">bin 启动文件</span><br><span class="line">config 配置文件</span><br><span class="line">	log4j2 日志配置文件</span><br><span class="line">	jvm.options java 虚拟机相关的配置</span><br><span class="line">	elasticsearch.yml  elasticsearch 的配置文件！ 默认 9200 端口！ 跨域！</span><br><span class="line">lib   相关jar包</span><br><span class="line">logs   日志！</span><br><span class="line">modules 功能模块</span><br><span class="line">plugins 插件！</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-解压启动"><a href="#1-解压启动" class="headerlink" title="1.解压启动"></a>1.解压启动</h3><blockquote>
-<p>windows 下进入bin目录，运行elasticsearch.bat,，访问127.0.0.1:9200</p>
-</blockquote>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/9200.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\9200.png" alt="image-20210502183733343"></p>
-<h3 id="2-安装可视化界面-es-head插件（要先装node-js）"><a href="#2-安装可视化界面-es-head插件（要先装node-js）" class="headerlink" title="2.安装可视化界面 es head插件（要先装node.js）"></a>2.安装可视化界面 es head插件（要先装node.js）</h3><ul>
-<li><p>下载地址：<a href="https://github.com/mobz/elasticsearch-head/">https://github.com/mobz/elasticsearch-head/</a></p>
-</li>
-<li><p>启动</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install <span class="comment">#安装依赖</span></span><br><span class="line">npm run start <span class="comment">#正式启动</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>连接测试发现，存在跨域问题，配置es</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http.cors.enabled: <span class="literal">true</span></span><br><span class="line">http.cors.allow-origin: <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>重启es服务器，然后再次连接</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/9100.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\9100.png" alt="image-20210502200832019"></p>
-<p><strong>注意</strong>：存在<strong>跨域问题</strong>，解决方案：在elasticsearch.yml配置文件上添加</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解决跨域问题</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-Kinbanna"><a href="#3-Kinbanna" class="headerlink" title="3.Kinbanna"></a>3.Kinbanna</h3><blockquote>
-<p>官网：<a href="https://www.elastic.co/cn/kibana">https://www.elastic.co/cn/kibana</a><br>Kibana 版本要和 Es 一致！</p>
-</blockquote>
-<h4 id="3-1-了解ELK"><a href="#3-1-了解ELK" class="headerlink" title="3.1 了解ELK"></a>3.1 了解ELK</h4><p>ELK是Elasticsearch、Logstash、Kibana三大开源框架首字母大写简称。市面上也被成为ElasticStack。其中Elasticsearch是一个基于Lucene、分布式、通过Restful方式进行交互的近实时搜索平台框架。像类似百度、谷歌这种大数据全文搜索引擎的场景都可以使用Elasticsearch作为底层支持框架，可见Elasticsearch提供的搜索能力确实强大,市面上很多时候我们简称Elasticsearch为es。Logstash是ELK的中央数据流引擎，用于从不同目标（文件/数据存储/MQ）收集的不同格式数据，经过过滤后支持输出到不同目的地（文件/MQ/redis/elasticsearch/kafka等）。<strong>Kibana可以将elasticsearch的数据通过友好的页面展示出来，提供实时分析的功能</strong>。<br>市面上很多开发只要提到ELK能够一致说出它是一个<strong>日志分析架构技术栈</strong>总称，但实际上ELK不仅仅适用于日志分析，它还可以支持其它任何数据分析和收集的场景，日志分析和收集只是更具有代表性。并非唯一性。</p>
-<h4 id="3-2-了解Kibanna"><a href="#3-2-了解Kibanna" class="headerlink" title="3.2 了解Kibanna"></a>3.2 了解Kibanna</h4><p>Kibana是一个针对Elasticsearch的开源分析及可视化平台，用来搜索、查看交互存储在Elasticsearch索<br>引中的数据。使用Kibana，可以通过各种图表进行高级数据分析及展示。Kibana让海量数据更容易理<br>解。它操作简单，基于浏览器的用户界面可以快速创建仪表板（dashboard）实时显示Elasticsearch查<br>询动态。设置Kibana非常简单。无需编码或者额外的基础架构，几分钟内就可以完成Kibana安装并启动<br>Elasticsearch索引监测。</p>
-<h4 id="3-3-安装启动"><a href="#3-3-安装启动" class="headerlink" title="3.3 安装启动"></a>3.3 安装启动</h4><p>官网下载，直接启动，访问localhost:5601即可</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/kibanna.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\kibanna.png" alt="image-20210502205110512"></p>
-<p>使用kibanna的开发工具</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/kiabana%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\kiabana开发工具.png" alt="image-20210502211723241"></p>
-<h4 id="3-4-汉化"><a href="#3-4-汉化" class="headerlink" title="3.4 汉化"></a>3.4 汉化</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在config.yml添加</span></span><br><span class="line"><span class="attr">i18n.locale:</span> <span class="string">&quot;zh-CN&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
-<p>暂时将索引当做数据库来看待。索引 对应数据库，文档对应 库中的数据。<strong>面向文档，一切皆JSON</strong></p>
-</blockquote>
-<h3 id="1-新建索引概览"><a href="#1-新建索引概览" class="headerlink" title="1.新建索引概览"></a>1.新建索引概览</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E7%B4%A2%E5%BC%95%E6%A6%82%E8%A7%88.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\索引概览.png" alt="image-20210502202031314"></p>
-<h3 id="2-与数据库的映射关系"><a href="#2-与数据库的映射关系" class="headerlink" title="2.与数据库的映射关系"></a>2.与数据库的映射关系</h3><blockquote>
-<p>elasticsearch(集群)中可以包含多个索引(数据库)，每个索引中可以包含多个类型(表)，每个类型下又包含多 个文档(行)，每个文档中又包含多个字段(列)。</p>
-</blockquote>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%AF%94%E8%BE%83.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\和数据库的比较.png" alt="image-20210502213357552"></p>
-<h3 id="3-设计"><a href="#3-设计" class="headerlink" title="3. 设计"></a>3. 设计</h3><ul>
-<li><p>物理设计</p>
-<p>elasticsearch 在后台把每个索引划分成多个分片，每分分片可以在集群中的不同服务器间迁移一个人就是一个集群！默认的集群名称就是elaticsearh。</p>
-</li>
-<li><p>逻辑设计</p>
-<p>一个索引类型中，包含多个文档，比如说文档1，文档2。 当我们索引一篇文档时，可以通过这样的一各顺序找到 它: 索引 ▷ 类型 ▷ 文档ID ，通过这个组合我们就能索引到某个具体的文档。 注意:ID不必是整数，实际上它是个字 符串。</p>
-</li>
-</ul>
-<h3 id="4-倒排索引"><a href="#4-倒排索引" class="headerlink" title="4. 倒排索引"></a>4. 倒排索引</h3><p>elasticsearch使用的是一种称为<strong>倒排索引</strong>的结构，采用Lucene倒排索作为底层。这种结构<strong>适用于快速的全文搜索</strong>， 一个<strong>索引由文档中所有不重复的列表构成</strong>，对于每一个词，都有一个包含它的文档列表。</p>
-<ul>
-<li><p>例子</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\倒排索引.png" alt="image-20210502214814967"></p>
-</li>
-</ul>
-<h3 id="5-安装ik分词插件"><a href="#5-安装ik分词插件" class="headerlink" title="5.安装ik分词插件"></a>5.安装ik分词插件</h3><blockquote>
-<p>1、<a href="https://github.com/medcl/elasticsearch-analysis-ik">https://github.com/medcl/elasticsearch-analysis-ik</a><br>2、下载完毕之后，放入到我们的elasticsearch 插件目录plugins下即可！(注：版本要和elasticsearch一致)</p>
-</blockquote>
-<p>ik提供了两个分词算法：</p>
-<ul>
-<li>ik_smart:最少切分</li>
-<li>ik_max_word:最细粒度切分（穷尽词库的去划分）  字典</li>
-</ul>
-<h3 id="6-使用kibana测试分词效果"><a href="#6-使用kibana测试分词效果" class="headerlink" title="6. 使用kibana测试分词效果"></a>6. 使用kibana测试分词效果</h3><h4 id="6-1效果"><a href="#6-1效果" class="headerlink" title="6.1效果"></a>6.1效果</h4><ul>
-<li><p><strong>ik_smart</strong>分词效果</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/ik_smart%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\ik_smart分词效果.png" alt="image-20210502233716287"></p>
-</li>
-<li><p><strong>ik_max_word</strong> 分词效果</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/ik_max_word%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\ik_max_word分词效果.png" alt="image-20210502233830186"></p>
-</li>
-</ul>
-<h4 id="6-2问题"><a href="#6-2问题" class="headerlink" title="6.2问题"></a>6.2问题</h4><p>有些字的组成不能被称之为词，比如人名（张三、千仞雪）等，但是我们希望它能当做词来处理，这个时候我们就需要将它放入我们的字典中。</p>
-<h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><ul>
-<li>新建自己的字典文件，my.dic</li>
-<li>在my.dic 文件添加自己的分词，比如千仞雪</li>
-<li>在IKAnalyzer.cfg.xml中添加自己的字典文件 my.dic到扩展字典中</li>
-</ul>
-<h2 id="Restful风格操作"><a href="#Restful风格操作" class="headerlink" title="Restful风格操作"></a>Restful风格操作</h2><img src="/%E6%B5%85%E8%B0%88ElasticSearch/rest%E9%A3%8E%E6%A0%BC.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\rest风格.png" alt="image-20210502235417964"></p>
-<h2 id="SpingBoot整合ES-实战"><a href="#SpingBoot整合ES-实战" class="headerlink" title="SpingBoot整合ES(实战)"></a>SpingBoot整合ES(实战)</h2><blockquote>
-<p>官方文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
-</blockquote>
-<h3 id="获得原生依赖"><a href="#获得原生依赖" class="headerlink" title="获得原生依赖"></a>获得原生依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.elasticsearch.client<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%88%9D%E5%A7%8B%E5%8C%96.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\初始化.png" alt="image-20210503114252881"></p>
-<h3 id="熟悉一些API"><a href="#熟悉一些API" class="headerlink" title="熟悉一些API"></a>熟悉一些API</h3><p>restful风格</p>
-<p>创建 put</p>
-<p>编辑 post</p>
-<p>查询 get    查询体query</p>
-<p>分页 form size</p>
-<p>…</p>
-<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>结合着<strong>jsoup</strong>爬虫去使用</p>
+<p>看了两个多小时的技术课程，然而觉得专注的程度总是不够，也许是夏季的到来让我的心绪不免躁动，又或者是想到了今天下午咬着雪糕时经过了两个被父母抱在怀里的孩子的干巴巴目光，又或者是疑惑刚刚回来路上那坐在马路沿子的阿叔在想些什么，总之，脑子里飘忽更多的游离于技术之外的，于是，还是选择了顺从灵魂，由工作转向了更加纯粹的生活。</p>
+<p>此刻，窗外继续下着雨，已经下了两个多小时了，但貌似没有为空气带来丝毫的一丝清凉，不过这淅沥沥的雨声为这夜色带来了更空灵的宁静，但此刻我更愿意戴上耳机，随机放一些自己喜欢的类型的音乐，说来也奇怪，身在北京，给我推荐的第一首竟是《兰州》，难道是在诱惑我去兰州看一看吗~</p>
+<p>其实，在外面的时候时就多次有写东西的冲动，也在记事本上做过一些记录，但奈何一回到宿舍，当时的那种冲动或者说是心境便不复存在了，即便是看着之前的记录，提笔仍旧无从着落，这也是近几年来让我略微难受的一件事，总感觉自己失去了文字叙述的能力，想想自己曾经也是获得过省作文赛一等奖的人呀。不过，细究其中原因，还是有迹可循的，大学以前经常写作文，自己也偶尔有手写记录生活的习惯，然而，大学后，各种原因，动笔变得少了，然后，就出现了现在这样的局面，心中有话，却无从下笔表达。</p>
+<p>近期个人的大事便是上周一入职了第二家公司，一切如同全新开始且具有挑战。</p>
+<p>公司位于国贸附近，早上十点上班，自己基本七点半起床，八点出门，九点二十左右到公司。来北京快一年了，第一份工作的公司离住宿很近，不堵车的情况下半个钟之内就能到达，路上偶尔也挤，但也还能接受，虽也见识过西二旗早高峰的场景，但终究未曾亲历，因而对北漂的挤尚未有过深刻的印象，直到第一天来现在的公司上班的路上，才发现平日同事或者网友的描述并没有夸张一分一毫。自己坐的315路公交转10号线地铁，地铁倒也还可以接受，但是公交的挤那真是让人有点无奈。上公交之后几乎是只能一动不动，生怕碰着踩着了他人，也几次见识了车上乘客间因为拥挤而产生的口水摩擦，不过好的是，因为这一路走的是专有路线，即便早高峰，也并不是特别堵。</p>
+<p>路上的奔波倒无关紧要，不足挂齿，项目上的事才是让自己觉得颇具挑战。入职第一天，公司给配了苹果系统的笔记本，下周也会配上额外的大屏显示器。上家公司的时候是用的个人的笔记本，然后公司每月补贴100元，我也曾幻想过拥有一个大屏的显示器来分屏办公，如今这一愿望将要实现，而且还是配的多数人所向往的苹果，想想心中还是有些许激动，这才是我事业路上最基本的标配吧。</p>
+<p>公司对于项目的管理还有分工上更加的规范，管理的工具上也用了许多我未曾接触过的，目前而言，自己还是有点压力，不过幸好有个同事热情指点帮助。说来也惭愧，同事和我是同一年毕业的，目前也才工作一年，来公司也比我早了一个多月而已，但却发现和他还是有些差距，无论是对项目的理解上，亦或是在团队中的沟通交流上。</p>
+<p>总而言之，需要学习的东西很多，在接下来的日子中，不惧挑战，每天进步，争取早点跟上组织的步伐与节奏，加油，小伙子！！</p>
+<p>（行文至此，本以为能滔滔不绝，行云流水，但仍旧磕磕绊绊且抓不住自己要表达的重点，流水账的叙述也不尽人意，至此停笔，望这个能力今后也应当加强）</p>
+<hr>
+<p>附：</p>
+<p>​    深切悼念二位国之栋梁，</p>
+<p>​    袁老、吴院士，二位走好！</p>
 ]]></content>
       <categories>
-        <category>java</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>技术栈</tag>
-        <tag>es</tag>
+        <tag>北漂</tag>
       </tags>
   </entry>
   <entry>
@@ -659,71 +523,167 @@
       </tags>
   </entry>
   <entry>
-    <title>海口夜景</title>
-    <url>/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>家人拍的一些夜景，看着挺好看的</p>
+    <title>浅谈ElasticSearch</title>
+    <url>/%E6%B5%85%E8%B0%88ElasticSearch/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>Elaticsearch，简称为es， es是一个开源的<strong>高扩展</strong>的<strong>分布式全文检索引擎</strong>，它可以近乎<strong>实时的存储、检索数据</strong>；<strong>本身扩展性很好</strong>，可以扩展到上百台服务器，处理PB级别（大数据时代）的数据。es也使用Java开发并使用Lucene作为其核心来实现所有索引和搜索的功能，但是它的目的是<strong>通过简单的RESTfulAPI来隐藏Lucene的复杂性，从而让全文搜索变得简单</strong>。</p>
 </blockquote>
 <a id="more"></a>
 
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(1).jpg" class="" title="This is an example image">
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<p>官网：<a href="https://www.elastic.co/">https://www.elastic.co/</a></p>
+<p>下载地址：<a href="https://www.elastic.co/cn/downloads/elasticsearch">https://www.elastic.co/cn/downloads/elasticsearch</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 目录结构</span></span><br><span class="line">bin 启动文件</span><br><span class="line">config 配置文件</span><br><span class="line">	log4j2 日志配置文件</span><br><span class="line">	jvm.options java 虚拟机相关的配置</span><br><span class="line">	elasticsearch.yml  elasticsearch 的配置文件！ 默认 9200 端口！ 跨域！</span><br><span class="line">lib   相关jar包</span><br><span class="line">logs   日志！</span><br><span class="line">modules 功能模块</span><br><span class="line">plugins 插件！</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-解压启动"><a href="#1-解压启动" class="headerlink" title="1.解压启动"></a>1.解压启动</h3><blockquote>
+<p>windows 下进入bin目录，运行elasticsearch.bat,，访问127.0.0.1:9200</p>
+</blockquote>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/9200.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\9200.png" alt="image-20210502183733343"></p>
+<h3 id="2-安装可视化界面-es-head插件（要先装node-js）"><a href="#2-安装可视化界面-es-head插件（要先装node-js）" class="headerlink" title="2.安装可视化界面 es head插件（要先装node.js）"></a>2.安装可视化界面 es head插件（要先装node.js）</h3><ul>
+<li><p>下载地址：<a href="https://github.com/mobz/elasticsearch-head/">https://github.com/mobz/elasticsearch-head/</a></p>
+</li>
+<li><p>启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install <span class="comment">#安装依赖</span></span><br><span class="line">npm run start <span class="comment">#正式启动</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>连接测试发现，存在跨域问题，配置es</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http.cors.enabled: <span class="literal">true</span></span><br><span class="line">http.cors.allow-origin: <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>重启es服务器，然后再次连接</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/9100.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\9100.png" alt="image-20210502200832019"></p>
+<p><strong>注意</strong>：存在<strong>跨域问题</strong>，解决方案：在elasticsearch.yml配置文件上添加</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解决跨域问题</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Kinbanna"><a href="#3-Kinbanna" class="headerlink" title="3.Kinbanna"></a>3.Kinbanna</h3><blockquote>
+<p>官网：<a href="https://www.elastic.co/cn/kibana">https://www.elastic.co/cn/kibana</a><br>Kibana 版本要和 Es 一致！</p>
+</blockquote>
+<h4 id="3-1-了解ELK"><a href="#3-1-了解ELK" class="headerlink" title="3.1 了解ELK"></a>3.1 了解ELK</h4><p>ELK是Elasticsearch、Logstash、Kibana三大开源框架首字母大写简称。市面上也被成为ElasticStack。其中Elasticsearch是一个基于Lucene、分布式、通过Restful方式进行交互的近实时搜索平台框架。像类似百度、谷歌这种大数据全文搜索引擎的场景都可以使用Elasticsearch作为底层支持框架，可见Elasticsearch提供的搜索能力确实强大,市面上很多时候我们简称Elasticsearch为es。Logstash是ELK的中央数据流引擎，用于从不同目标（文件/数据存储/MQ）收集的不同格式数据，经过过滤后支持输出到不同目的地（文件/MQ/redis/elasticsearch/kafka等）。<strong>Kibana可以将elasticsearch的数据通过友好的页面展示出来，提供实时分析的功能</strong>。<br>市面上很多开发只要提到ELK能够一致说出它是一个<strong>日志分析架构技术栈</strong>总称，但实际上ELK不仅仅适用于日志分析，它还可以支持其它任何数据分析和收集的场景，日志分析和收集只是更具有代表性。并非唯一性。</p>
+<h4 id="3-2-了解Kibanna"><a href="#3-2-了解Kibanna" class="headerlink" title="3.2 了解Kibanna"></a>3.2 了解Kibanna</h4><p>Kibana是一个针对Elasticsearch的开源分析及可视化平台，用来搜索、查看交互存储在Elasticsearch索<br>引中的数据。使用Kibana，可以通过各种图表进行高级数据分析及展示。Kibana让海量数据更容易理<br>解。它操作简单，基于浏览器的用户界面可以快速创建仪表板（dashboard）实时显示Elasticsearch查<br>询动态。设置Kibana非常简单。无需编码或者额外的基础架构，几分钟内就可以完成Kibana安装并启动<br>Elasticsearch索引监测。</p>
+<h4 id="3-3-安装启动"><a href="#3-3-安装启动" class="headerlink" title="3.3 安装启动"></a>3.3 安装启动</h4><p>官网下载，直接启动，访问localhost:5601即可</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/kibanna.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\kibanna.png" alt="image-20210502205110512"></p>
+<p>使用kibanna的开发工具</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/kiabana%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\kiabana开发工具.png" alt="image-20210502211723241"></p>
+<h4 id="3-4-汉化"><a href="#3-4-汉化" class="headerlink" title="3.4 汉化"></a>3.4 汉化</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在config.yml添加</span></span><br><span class="line"><span class="attr">i18n.locale:</span> <span class="string">&quot;zh-CN&quot;</span></span><br></pre></td></tr></table></figure>
 
 
 
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(2).jpg" class="" title="This is an example image">
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
+<p>暂时将索引当做数据库来看待。索引 对应数据库，文档对应 库中的数据。<strong>面向文档，一切皆JSON</strong></p>
+</blockquote>
+<h3 id="1-新建索引概览"><a href="#1-新建索引概览" class="headerlink" title="1.新建索引概览"></a>1.新建索引概览</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E7%B4%A2%E5%BC%95%E6%A6%82%E8%A7%88.png" class="" title="This is an example image">
 
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\索引概览.png" alt="image-20210502202031314"></p>
+<h3 id="2-与数据库的映射关系"><a href="#2-与数据库的映射关系" class="headerlink" title="2.与数据库的映射关系"></a>2.与数据库的映射关系</h3><blockquote>
+<p>elasticsearch(集群)中可以包含多个索引(数据库)，每个索引中可以包含多个类型(表)，每个类型下又包含多 个文档(行)，每个文档中又包含多个字段(列)。</p>
+</blockquote>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%AF%94%E8%BE%83.png" class="" title="This is an example image">
 
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\和数据库的比较.png" alt="image-20210502213357552"></p>
+<h3 id="3-设计"><a href="#3-设计" class="headerlink" title="3. 设计"></a>3. 设计</h3><ul>
+<li><p>物理设计</p>
+<p>elasticsearch 在后台把每个索引划分成多个分片，每分分片可以在集群中的不同服务器间迁移一个人就是一个集群！默认的集群名称就是elaticsearh。</p>
+</li>
+<li><p>逻辑设计</p>
+<p>一个索引类型中，包含多个文档，比如说文档1，文档2。 当我们索引一篇文档时，可以通过这样的一各顺序找到 它: 索引 ▷ 类型 ▷ 文档ID ，通过这个组合我们就能索引到某个具体的文档。 注意:ID不必是整数，实际上它是个字 符串。</p>
+</li>
+</ul>
+<h3 id="4-倒排索引"><a href="#4-倒排索引" class="headerlink" title="4. 倒排索引"></a>4. 倒排索引</h3><p>elasticsearch使用的是一种称为<strong>倒排索引</strong>的结构，采用Lucene倒排索作为底层。这种结构<strong>适用于快速的全文搜索</strong>， 一个<strong>索引由文档中所有不重复的列表构成</strong>，对于每一个词，都有一个包含它的文档列表。</p>
+<ul>
+<li><p>例子</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95.png" class="" title="This is an example image">
 
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(3).jpg" class="" title="This is an example image">
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\倒排索引.png" alt="image-20210502214814967"></p>
+</li>
+</ul>
+<h3 id="5-安装ik分词插件"><a href="#5-安装ik分词插件" class="headerlink" title="5.安装ik分词插件"></a>5.安装ik分词插件</h3><blockquote>
+<p>1、<a href="https://github.com/medcl/elasticsearch-analysis-ik">https://github.com/medcl/elasticsearch-analysis-ik</a><br>2、下载完毕之后，放入到我们的elasticsearch 插件目录plugins下即可！(注：版本要和elasticsearch一致)</p>
+</blockquote>
+<p>ik提供了两个分词算法：</p>
+<ul>
+<li>ik_smart:最少切分</li>
+<li>ik_max_word:最细粒度切分（穷尽词库的去划分）  字典</li>
+</ul>
+<h3 id="6-使用kibana测试分词效果"><a href="#6-使用kibana测试分词效果" class="headerlink" title="6. 使用kibana测试分词效果"></a>6. 使用kibana测试分词效果</h3><h4 id="6-1效果"><a href="#6-1效果" class="headerlink" title="6.1效果"></a>6.1效果</h4><ul>
+<li><p><strong>ik_smart</strong>分词效果</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/ik_smart%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C.png" class="" title="This is an example image">
 
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\ik_smart分词效果.png" alt="image-20210502233716287"></p>
+</li>
+<li><p><strong>ik_max_word</strong> 分词效果</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/ik_max_word%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C.png" class="" title="This is an example image">
 
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\ik_max_word分词效果.png" alt="image-20210502233830186"></p>
+</li>
+</ul>
+<h4 id="6-2问题"><a href="#6-2问题" class="headerlink" title="6.2问题"></a>6.2问题</h4><p>有些字的组成不能被称之为词，比如人名（张三、千仞雪）等，但是我们希望它能当做词来处理，这个时候我们就需要将它放入我们的字典中。</p>
+<h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><ul>
+<li>新建自己的字典文件，my.dic</li>
+<li>在my.dic 文件添加自己的分词，比如千仞雪</li>
+<li>在IKAnalyzer.cfg.xml中添加自己的字典文件 my.dic到扩展字典中</li>
+</ul>
+<h2 id="Restful风格操作"><a href="#Restful风格操作" class="headerlink" title="Restful风格操作"></a>Restful风格操作</h2><img src="/%E6%B5%85%E8%B0%88ElasticSearch/rest%E9%A3%8E%E6%A0%BC.png" class="" title="This is an example image">
 
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(4).jpg" class="" title="This is an example image">
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\rest风格.png" alt="image-20210502235417964"></p>
+<h2 id="SpingBoot整合ES-实战"><a href="#SpingBoot整合ES-实战" class="headerlink" title="SpingBoot整合ES(实战)"></a>SpingBoot整合ES(实战)</h2><blockquote>
+<p>官方文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
+</blockquote>
+<h3 id="获得原生依赖"><a href="#获得原生依赖" class="headerlink" title="获得原生依赖"></a>获得原生依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.elasticsearch.client<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%88%9D%E5%A7%8B%E5%8C%96.png" class="" title="This is an example image">
 
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\初始化.png" alt="image-20210503114252881"></p>
+<h3 id="熟悉一些API"><a href="#熟悉一些API" class="headerlink" title="熟悉一些API"></a>熟悉一些API</h3><p>restful风格</p>
+<p>创建 put</p>
+<p>编辑 post</p>
+<p>查询 get    查询体query</p>
+<p>分页 form size</p>
+<p>…</p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>结合着<strong>jsoup</strong>爬虫去使用</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>技术栈</tag>
+        <tag>es</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>漂一年</title>
+    <url>/%E6%BC%82%E4%B8%80%E5%B9%B4/</url>
+    <content><![CDATA[<blockquote>
+<p>做个正能量的人，不要给他人带来负能。</p>
+</blockquote>
+<a id="more"></a>
 
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(5).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(6).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(7).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(8).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(9).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(10).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(11).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(12).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(13).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(14).jpg" class="" title="This is an example image">]]></content>
+<p>2021年7月10日 00点43分。</p>
+<p>还记得是去年的七月四号进的京，那时正值北京疫情爆发，原计划是六月三十号入京，结果迫于疫情，拿了毕业证书后，在秦皇岛旅馆里待了四天，最后因为工作，没办法还是在人人惶恐的情况下坐上了开往北京的列车。清楚的记得，那天的列车上，整趟车估摸着不到二十人，就我坐的那节车厢加上我才仅有两人。</p>
+<p>时间一晃，这都一年过去了，当时租的房子在8号那天也到期了，趁着明天周末，得搬家咯。</p>
+<p>这个房子地处西三旗桥东上奥小区，小区环境还是很好的，只是房子很小，是合租房，一个屋里住了五户，我这间属于最小的一间，窗户朝向东南，按理说是可以看到广阔的天空和明媚的阳光的，无奈是窗户的对面又是一栋高楼，虽说并不是挨着的，但还是霸占了不小的视野和光照。没办法，这个地段，这个价钱，不能奢求太多，好的是距离我第一份工作距离很近且开往的车辆不少，每天的交通也很是方便。（房价1400，加上其他杂七杂八的费用，一个月下来差不多1600吧）。</p>
+<p>身边的同事朋友都习惯把现在住的这个房子称之为“家”，比如“我要回家了”、“我在家”，他们都是这么说的，我一般都是以“宿舍”或者“屋”为称，其实并不是习惯成自然吧，而是刻意的去把它当成一个“宿舍”来看待，我不愿称之为“家”，原因有两方面，一是我不是很满意这个房子，另一个的话还是对于“家”这个概念的谨慎性与保守性或者说是较真性。</p>
+<blockquote>
+<p>我住在这里，但这并不是我的家，这里没有我的家人，它仅仅只是我一个容身的场所，当然，它也不会认为我是它的主人。</p>
+</blockquote>
+<p>明天搬家，搬到通州那边去。在自如租的房，两居室，和一朋友住，租金两千出头，没有去看房，直接通过视频看完就预订了，工作的强度已经让我没有力气去看那么多了，看到价钱合适，位置合适就直接预订了，通过视频，感觉挺不错，70平，两个熟识的人，下次回宿舍或者周末我可以放纵的接着奏乐接着舞，可以搞把吉他撸一撸，不用再顾忌那么多，哇想想还是爽歪歪的，但是一想到房租，哎，还是贵了些。</p>
+<p>明天起床收拾行李，告别“小破屋（~~）”，不想叫搬家公司，太费钱了，距离远，太费钱了，今天首期交了一万多的房租，卡里又将归零了，难受。</p>
+<p>睡觉，明天踏上新世界。</p>
+]]></content>
       <categories>
         <category>生活</category>
       </categories>
       <tags>
-        <tag>生活</tag>
+        <tag>北漂</tag>
+        <tag>瞎扯</tag>
       </tags>
   </entry>
   <entry>
@@ -766,34 +726,6 @@
       </categories>
       <tags>
         <tag>字</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>漂一年</title>
-    <url>/%E6%BC%82%E4%B8%80%E5%B9%B4/</url>
-    <content><![CDATA[<blockquote>
-<p>做个正能量的人，不要给他人带来负能。</p>
-</blockquote>
-<a id="more"></a>
-
-<p>2021年7月10日 00点43分。</p>
-<p>还记得是去年的七月四号进的京，那时正值北京疫情爆发，原计划是六月三十号入京，结果迫于疫情，拿了毕业证书后，在秦皇岛旅馆里待了四天，最后因为工作，没办法还是在人人惶恐的情况下坐上了开往北京的列车。清楚的记得，那天的列车上，整趟车估摸着不到二十人，就我坐的那节车厢加上我才仅有两人。</p>
-<p>时间一晃，这都一年过去了，当时租的房子在8号那天也到期了，趁着明天周末，得搬家咯。</p>
-<p>这个房子地处西三旗桥东上奥小区，小区环境还是很好的，只是房子很小，是合租房，一个屋里住了五户，我这间属于最小的一间，窗户朝向东南，按理说是可以看到广阔的天空和明媚的阳光的，无奈是窗户的对面又是一栋高楼，虽说并不是挨着的，但还是霸占了不小的视野和光照。没办法，这个地段，这个价钱，不能奢求太多，好的是距离我第一份工作距离很近且开往的车辆不少，每天的交通也很是方便。（房价1400，加上其他杂七杂八的费用，一个月下来差不多1600吧）。</p>
-<p>身边的同事朋友都习惯把现在住的这个房子称之为“家”，比如“我要回家了”、“我在家”，他们都是这么说的，我一般都是以“宿舍”或者“屋”为称，其实并不是习惯成自然吧，而是刻意的去把它当成一个“宿舍”来看待，我不愿称之为“家”，原因有两方面，一是我不是很满意这个房子，另一个的话还是对于“家”这个概念的谨慎性与保守性或者说是较真性。</p>
-<blockquote>
-<p>我住在这里，但这并不是我的家，这里没有我的家人，它仅仅只是我一个容身的场所，当然，它也不会认为我是它的主人。</p>
-</blockquote>
-<p>明天搬家，搬到通州那边去。在自如租的房，两居室，和一朋友住，租金两千出头，没有去看房，直接通过视频看完就预订了，工作的强度已经让我没有力气去看那么多了，看到价钱合适，位置合适就直接预订了，通过视频，感觉挺不错，70平，两个熟识的人，下次回宿舍或者周末我可以放纵的接着奏乐接着舞，可以搞把吉他撸一撸，不用再顾忌那么多，哇想想还是爽歪歪的，但是一想到房租，哎，还是贵了些。</p>
-<p>明天起床收拾行李，告别“小破屋（~~）”，不想叫搬家公司，太费钱了，距离远，太费钱了，今天首期交了一万多的房租，卡里又将归零了，难受。</p>
-<p>睡觉，明天踏上新世界。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>北漂</tag>
-        <tag>瞎扯</tag>
       </tags>
   </entry>
   <entry>
@@ -867,6 +799,74 @@
       </tags>
   </entry>
   <entry>
+    <title>海口夜景</title>
+    <url>/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>家人拍的一些夜景，看着挺好看的</p>
+</blockquote>
+<a id="more"></a>
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(1).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(2).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(3).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(4).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(5).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(6).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(7).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(8).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(9).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(10).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(11).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(12).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(13).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(14).jpg" class="" title="This is an example image">]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法题</title>
     <url>/%E7%AE%97%E6%B3%95%E9%A2%98/</url>
     <content><![CDATA[<blockquote>
@@ -876,24 +876,6 @@
 
 <h3 id="题1"><a href="#题1" class="headerlink" title="题1"></a>题1</h3><p>小明去买评估，商店做活动，提供捆绑打包销售，例如每袋3个和每袋5个的形式出售。现小明只想购买n个苹果，同时想购买尽量少的袋数⽅便携带。如果不能购买恰好n个苹果，就不会购买（可返回-1），求解输出最少的袋数。（例如：18）</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 先通过列举法找到其中的规律</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZHYTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">1</span>;n &lt; <span class="number">100</span> ;n++)&#123;</span><br><span class="line">            System.out.println(n + <span class="string">&quot;==》&quot;</span> + bagCount(n));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">bagCount</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">3</span> || n == <span class="number">4</span> || n == <span class="number">7</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">5</span> == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> n / <span class="number">5</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 通过规律，我们得知从8及8以后的数字一定能够被3和5整分掉</span></span><br><span class="line">        <span class="keyword">int</span> a = n / <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">int</span> remain3 = n % <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">while</span> (remain3 % <span class="number">3</span> != <span class="number">0</span>)&#123;</span><br><span class="line">            a--;</span><br><span class="line">            remain3 += <span class="number">5</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a + remain3 / <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>经典排序算法</title>
-    <url>/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<blockquote>
-<p>编程不只是一门技术，更是一门艺术。        ——雷军</p>
-</blockquote>
-<a id="more"></a>
-
-<h2 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 1.冒泡排序</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(arr==<span class="keyword">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ;j&lt;arr.length-i-<span class="number">1</span>;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">                   <span class="keyword">int</span> temp=arr[j];</span><br><span class="line">                   arr[j]=arr[j+<span class="number">1</span>];</span><br><span class="line">                   arr[j+<span class="number">1</span>]=temp;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -956,6 +938,24 @@
       </categories>
       <tags>
         <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>经典排序算法</title>
+    <url>/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<blockquote>
+<p>编程不只是一门技术，更是一门艺术。        ——雷军</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 1.冒泡排序</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(arr==<span class="keyword">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ;j&lt;arr.length-i-<span class="number">1</span>;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">                   <span class="keyword">int</span> temp=arr[j];</span><br><span class="line">                   arr[j]=arr[j+<span class="number">1</span>];</span><br><span class="line">                   arr[j+<span class="number">1</span>]=temp;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
