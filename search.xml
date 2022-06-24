@@ -25,41 +25,6 @@
       </tags>
   </entry>
   <entry>
-    <title>java构建树</title>
-    <url>/java%E6%9E%84%E5%BB%BA%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
-<p>在项目中，我们经常涉及单张表数据进行树形目录结构展示（即具有层级关系的数据结构），比如菜单层级展示、商品分类展示等。</p>
-</blockquote>
-<a id="more"></a>
-
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><blockquote>
-<p>单张表之间要具备层级关系，必然会有能体现父子之间的字段，比如常见的<strong>id</strong>和<strong>parentId</strong><br>比如这样一张表<br><img src="https://img-blog.csdnimg.cn/20210417122242878.png" alt="表结构"><br>pid为0时即为最高层级，pid为 1366的是id为1366的孩子，在上面的体现是<strong>裤子和上衣都在衣服这一个分类下面</strong><br>要实现这张表树形结构的展示，我们一方面得在该表对应的实体类里添加一个自身的集合childList作为其孩子的集合。</p>
-</blockquote>
-<h1 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h1><blockquote>
-<p>这里我是将它封装成一个工具类使用。<br>注意：这里默认表里的父级字段为 <strong>parentId</strong></p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 构建树的时候需要实体继承此类</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/10/15 17:42</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>&lt;<span class="title">C</span> <span class="keyword">extends</span> <span class="title">TreeNode</span>&lt;?&gt;&gt;</span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 父id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String parentId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  子节点j集合</span></span><br><span class="line"><span class="comment">     * 	非数据库字段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField(exist = false)</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;TreeNode&gt; children;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>工具类实现树形结构的展示（递归思想找子节点）</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 生成树工具(根节点可有多个)</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> treeNodes 所有节点（所有数据）</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> parentId  指定根节点的唯一标识</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@since</span> 2020/10/15 18:01</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span>  <span class="keyword">static</span> &lt;T extends TreeNode&gt;<span class="function">List&lt;T&gt; <span class="title">build</span><span class="params">(List&lt;T&gt; treeNodes, String parentId)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (parentId == <span class="keyword">null</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       List&lt;T&gt; rootNodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (T t : treeNodes)&#123;</span><br><span class="line">           <span class="keyword">if</span> (parentId.equals(t.getParentId()))&#123;</span><br><span class="line">               <span class="comment">//得到根节点</span></span><br><span class="line">               rootNodes.add(t);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (T t : rootNodes)&#123;</span><br><span class="line">           t.setChildren(getChildNodes(t,treeNodes));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> rootNodes;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 获得子节点</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> treeNodes</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@since</span> 2020/10/6 18:27</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> &lt;T extends TreeNode&gt;<span class="function">List&lt;TreeNode&gt; <span class="title">getChildNodes</span><span class="params">(TreeNode t,List&lt;T&gt; treeNodes)</span></span>&#123;</span><br><span class="line">       List&lt;TreeNode&gt; childNodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (TreeNode t1 : treeNodes)&#123;</span><br><span class="line">           <span class="keyword">if</span> (t1.getParentId().equals(t.getId()))&#123;</span><br><span class="line">               childNodes.add(t1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (childNodes.size() == <span class="number">0</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (TreeNode t1 : childNodes)&#123;</span><br><span class="line">           t1.setChildren(getChildNodes(t1,treeNodes));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> childNodes;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
-<p>要实现树形结构的步骤：</p>
-<ul>
-<li>表设计要有父子级关系（一般用 id 和 parentId）</li>
-<li>实体要新增 子节点 的集合变量，一般用List接收</li>
-<li>查找获得所有符合要求的数据，通过遍历得到 <strong>父节点集合</strong>，遍历<strong>父节点集合</strong>，遍历<strong>子节点结合</strong>，父节点的id和子节点的父id相等时，说明该节点数属于当前父节点的孩子，将其放入父节点的孩子集合中，遍历结束后，将子节点集合赋值给 <strong>集合变量</strong>。（这里用递归思想实现）</li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>utils</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringBoot面向切面AOP</title>
     <url>/SpringBoot%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2AOP/</url>
     <content><![CDATA[<blockquote>
@@ -100,6 +65,41 @@
       </categories>
       <tags>
         <tag>aop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java构建树</title>
+    <url>/java%E6%9E%84%E5%BB%BA%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
+<p>在项目中，我们经常涉及单张表数据进行树形目录结构展示（即具有层级关系的数据结构），比如菜单层级展示、商品分类展示等。</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><blockquote>
+<p>单张表之间要具备层级关系，必然会有能体现父子之间的字段，比如常见的<strong>id</strong>和<strong>parentId</strong><br>比如这样一张表<br><img src="https://img-blog.csdnimg.cn/20210417122242878.png" alt="表结构"><br>pid为0时即为最高层级，pid为 1366的是id为1366的孩子，在上面的体现是<strong>裤子和上衣都在衣服这一个分类下面</strong><br>要实现这张表树形结构的展示，我们一方面得在该表对应的实体类里添加一个自身的集合childList作为其孩子的集合。</p>
+</blockquote>
+<h1 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h1><blockquote>
+<p>这里我是将它封装成一个工具类使用。<br>注意：这里默认表里的父级字段为 <strong>parentId</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 构建树的时候需要实体继承此类</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/10/15 17:42</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>&lt;<span class="title">C</span> <span class="keyword">extends</span> <span class="title">TreeNode</span>&lt;?&gt;&gt;</span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 父id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String parentId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  子节点j集合</span></span><br><span class="line"><span class="comment">     * 	非数据库字段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField(exist = false)</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;TreeNode&gt; children;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>工具类实现树形结构的展示（递归思想找子节点）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 生成树工具(根节点可有多个)</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> treeNodes 所有节点（所有数据）</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> parentId  指定根节点的唯一标识</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@since</span> 2020/10/15 18:01</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span>  <span class="keyword">static</span> &lt;T extends TreeNode&gt;<span class="function">List&lt;T&gt; <span class="title">build</span><span class="params">(List&lt;T&gt; treeNodes, String parentId)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (parentId == <span class="keyword">null</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       List&lt;T&gt; rootNodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (T t : treeNodes)&#123;</span><br><span class="line">           <span class="keyword">if</span> (parentId.equals(t.getParentId()))&#123;</span><br><span class="line">               <span class="comment">//得到根节点</span></span><br><span class="line">               rootNodes.add(t);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (T t : rootNodes)&#123;</span><br><span class="line">           t.setChildren(getChildNodes(t,treeNodes));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> rootNodes;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 获得子节点</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> 吴焕业</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> treeNodes</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@since</span> 2020/10/6 18:27</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> &lt;T extends TreeNode&gt;<span class="function">List&lt;TreeNode&gt; <span class="title">getChildNodes</span><span class="params">(TreeNode t,List&lt;T&gt; treeNodes)</span></span>&#123;</span><br><span class="line">       List&lt;TreeNode&gt; childNodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (TreeNode t1 : treeNodes)&#123;</span><br><span class="line">           <span class="keyword">if</span> (t1.getParentId().equals(t.getId()))&#123;</span><br><span class="line">               childNodes.add(t1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (childNodes.size() == <span class="number">0</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (TreeNode t1 : childNodes)&#123;</span><br><span class="line">           t1.setChildren(getChildNodes(t1,treeNodes));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> childNodes;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+<p>要实现树形结构的步骤：</p>
+<ul>
+<li>表设计要有父子级关系（一般用 id 和 parentId）</li>
+<li>实体要新增 子节点 的集合变量，一般用List接收</li>
+<li>查找获得所有符合要求的数据，通过遍历得到 <strong>父节点集合</strong>，遍历<strong>父节点集合</strong>，遍历<strong>子节点结合</strong>，父节点的id和子节点的父id相等时，说明该节点数属于当前父节点的孩子，将其放入父节点的孩子集合中，遍历结束后，将子节点集合赋值给 <strong>集合变量</strong>。（这里用递归思想实现）</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>utils</tag>
       </tags>
   </entry>
   <entry>
@@ -152,25 +152,6 @@
       </tags>
   </entry>
   <entry>
-    <title>复盘二</title>
-    <url>/%E5%A4%8D%E7%9B%98%E4%BA%8C/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="2df53a5ef74624e7dafe2d7b66bec2e92d85454f341f2e82c05a03f2926220c9">a756220a6413262c08d2e52bbc7378bf39c283629de3c1b66fe2f20410e040757a00ee73fd9a7b693c210b90ede669001d3fb2b695bf8a4fd18d4c6647ff7a3549de404988776b52af83e5c779e44bbb1f2ef87a9c541e0c41b4674f669ad90edbab6461ac99bbcd84de21bc8cd343c1f2e1c512eeae80b5760bd264bfe9a484ebc23a3bd514b1fa8f8bfbfb9dde14cdb5af9a9bc2d24354ba3de79a940566ed161ad21b443591471c0e48b42b39fca52365f33753e42e30264f77ea99dc35bd109fa3bdd4b9fcb0ab5f446cfbaf060424286f904fcae468e706ded1db9d5728a4007cb5b1754db64a59c5d5fcb112f5e2e7f0139e16fdb34c0323de7d176e9bf08c8dd987b6ec8c53fbf06acefa95973ce88dcbb1a66990840d0da6f6d21febba1c785444b5635f63783febd2e767edb2a2c8e7a3e66a089d09bb9957fcf4d6eb5dedf29f6e2a1c5cbf3b775778ac27d91d859024662823a982d774b7f6f22a31ece10be1a47fa8d45e35e21398673ed0dcfcd3f4a2dd810ae0e72140f77ea9c6310cd853848669ee874ecff59d3590cf1840f53944307a768f464b070949d020def952721c11e2da9d48792f20a7ad618f1e5a0f6244baec124fdeb303e5846e7103f9423258d2ec1855a09483b0174fea3a53c0b6bf9e8eab7738c91fa35a5e2aa15b953537622199bb08eb0965c37a38f2dc258a5092e344e1e2b9585f88432f1c0fae19a31ce56671baf417513ef4f980531001e41892fbf85b7d9b2fd41908dbfe2e33e38f5659546e584798195b5a81f730ac4a01c4897cdf2f56342a3d2159b439c7d7ab07baa7d868e1fa393b4e74d4bee593e6753129669015f3e875e8f0b3974363715e6f7600042b91311760372f6d526242e399afd3bd9d7859de62d2dd64aab1fe2295055d1ed557377fa362b376dd961354e699db1714ad0743271c2a9eb652e9bef5b7612ebba09cc6d88f0ed5e95840ec4799cb96c13b332a0d60daa942f0a27029949d3e536bd3c73cae5d387ff8a6075fd36ac2fd0a67480bd8ea2ca4182a4f07b9665f6082b436c988eae205098e5b764c131061802cc430c554c73429e086d259611c23d502abd157848188f40d7c9acd8c45b46089819235db4da3c0652fea06fb30a329725889446f42b134325b3c4e7554affb8d21aac36ba416c007553d5ea24f51c7b1dfeacb14cc521471a259f8cb07e8d7943f658eaa2ded383d5d2d62f506b74c68b5db3ef33a7278150e30cbb30196515e28e01e216ab3813577b8099997789cb618c729b89d53482c4cf256d9392e0fbea35bd34493e6db6c3640629b5109e9a7f22ccfee2093bf04ed99a0093a58071aaf13c7057f2b1d73bdfebf24d778412b63c2dc8431435b93fe2ccc2318db392c57aa4211d3a54777abf4d9a3c6689efe7f5265c7a19e9f116244854e51bb392612447fef5794dffdaf3a4edaadeb6b52cfbaccf79a1bba63515185d9b27974f2ba9d696cc7c3635923a61fc2735cc13a66765095ebf91bc3341f63f7470934db88b26b85aa62c78f75e6ba1763c7bf137b7bb47104f23c0657bd28fe5b48f9e5b77849226fff9fcbbf11920ba0404772db822f6cf306281ff9561451940f80a0c647992fdf685518fc9ce8c493d52725ac62832e9fcb16ab4a072d4c0bb063ed96ed1f78f56f1d6de9cb3aeea46160fbb72309e8cd79e61fae66a4a3cc89c4319d35a08308fc5425c0b6ef82cd220343dc44d39b0e9d8660cf2fbc9c283e31a5b0f67dfbccb06543d7073b36d00d49094dd04da214d5e9aa1d8ba0635a411222826c0b503aef9ac32dea89f4a43948d4b29a823c15387f34a3ff8de63caa5f83585de62ec0b2c0d6e5fd5ba5b65c2241bfe99d70d7193d4a4a443059bd835fc70e00ca33c0d62390402797bc146e0d77470209a71426f81d24f8d27eefefa3f18a73b85a9f47c691bbfc58e36daf35c57031f5f147cea4e070111cac1b4036b4cff1439b55431fff252dce1859b88e6e9d56e299e73af25f10511dd574418fc8512ee070ae803bb64a20c3457593e836502bf8efa398dcde94333220a5180c02f8b2aec0b93ea03bf87e8e42c4510b468b1f92a305962ea85685e174aa8733f382f3138f71cd245aedbe0669493f416044376e0c30bacdaee937afbe1c6f05c328757882b67afe6733b982aa96177db55c9cf8d2ec84810a9f3fc789715a1883f5e58897cbb0df12ff38f6adfc9883e46e148d0cf4ef07d04f69ffbee5b16147e4f37ed7376d842811df0af4c802154ed67e59323c6aa831287da8e3e576f37c685164d072851fa419db3aef7556c7b496d95ffeb5f29867e57df482d16a3e023942dffc2b3765d6676a9c3f9d54cb1c3ba8d52e98d9abb60366baa42510fc20efc26fe54dd5b4fefa077f87774c6c1e70bec1836c1204cd8751d63c271d5e7efbc4480a16e9ae402a02e5eeb0f0ff0ab5816cf9b0e9fd289c6dcf0a0a89d62808a38b7ba1cc88d358d1623e22c56bd5e5906652add30dbdbd9a13f979b2784543d7962037987b612a76a65c8fe2c963118f6dac2bbde1f76bcad7f71b700fd764fa58207efce7982b0f14038bd7109e20e08d6a8b80d3d4db6194574e395f3e14fce69dddc7a60d674e578a8e0acb56c12da1e7c3ca56a6dc1d5c2e6ff4405d20c1a6419fce2da16ad09d9263a06a55276e3cbaed59e2d5467e3123c83ee19a17b621bc643493be3867f3d975a5cb6e5b524ab56466815bc01a6d907584fed432f6e0013207e7377ef2c77a5d7c396ac1d9038f3bea8aa98120931b1368d63fd23b0a9c3aba5658fb04e04a4d5377dd9d0afcedcf456295dc4edb4456a4e2110437e84a6f0bb4d5090c44f8885e6179dbc5100f5540dc56af89e06f486946406e5b84fdfece58f7982f7dcd05f32875566882f090e8fec1d9dc0132748e6a922bae62d7be6f5046007bd86dfc91b18f9a479e92294605c42250258428aeac25dceeb056416dfbc3ed6cb23037def277afa33028cfe07f91a34e9de6fcac239442b1e59cbdd5951a7a162e234520d57068f8bab97d6925e5b5cab253780046ba67f389e2b2bb553160119f9ec8920059eb2843185a3f7adbe0bd560fa5b55dc76f9ef83d819fd0c87e82e963d28f75da8793b2b5ba7865cc38e88817ab724c37fe43a8a31ab7d3ee819cdd4964ec9bdc7fc6a64f115462547921187258cdc4141d8d550dd7611e2c7390b04b817c9aae0c6c651ae762aa110c2e80259bba8270c43835efa540e5159afe36e63284c4a5d6080b962a317a5d6b103af97e0af56fff0716ec8bdb384051cb087eb8e92f180badf6d69ba2959634da73a4556d7fea49e7086cdfeea47e513d51b71fe37c2c1f4e5d7afd9b82d84c06d2b1835378f869c1508279418ad0a1dd0d1de060e0cb560d7311d6480b7564c9a6abcb954160e47d2bae979c6810f9bc87345bcc6356dc7d194905b2392889950007283d9ce11d9b5ebd9de16a0276eeeda4c3660884e4c4253b63e98e542183352416f87d2dc81370ac50691bd55405a5ba0f1a279e7c215342aaf34b3b3af980874d86ee75461a509ef8d5d7946876dd1617f6cbaa1e7e66818691272735c77e106074d9df65b6d3416834246100847b26a0c06121967ace275f0d8c42c6c87b6e6b81b973ddc1605fd00f7e27d1349770f67c1fb3c2297e494ad35e9ec921cf6cc05e297e577830ffb21cf3684aff46d4a92389a6317071e92ed4eedbf903f757d078aabc2f15964a1ec3524aeb9515ee332bf9d86b7e9138475ebffea82897625e34473bd990f8312de8870d09a261e17f0b1b1c077aab8f8261b9951b3bf34f441c8b76bf3d16d09c021776c1b18b61ea982a3a195b934d0424103874836d78267b2f6f2cadc3019b43c434a69b5f80b1ae773e05427003150c32731c73b0f62a68b2cf547ddfb95cd5745a7885e50a0baceffed1a10a8185deda33d930be6412f3f37c91dad989afedf208c5b350be55155a94d34b76bbbd3f3c479c3c1ab39238f01c65820a62badd12d77d46229047bff06db5b5bf49b1225b40832ce3ad4058207f51092eeab12933cabf9dca7f25c97f94fc3f3e689e2c8c7a55e46c47f8c4daba989d59834bef2b94c8d3b20f716a32a6bb16a616fa0a8bb6bbdfecdb30223b70d60220ecf6f76ae14806f9a9d5e3d5b510e9d11b6f1400b235f40b39e77835b7636715b91a4631583fe7668ff40db59d11fd5c6105a7336d52b54f23ec784ddbb156eca0f16d7c38d4460807d7bc5dc69ff6bff2a6a3e424eebd0ff6ec204037c596137fa982b9ae4898278d454554b5e6115db379530744df8610cfb20425abcfd233edaed05d4d6d0dc2a1e1caccd21c65ee985bba7a766962daf6800005c6dd91cb13c820498db2f6b726a01c8c4f2a59b8620f4db8aa7cdc72388a774092428d80463ac327b1e3d7daa2bd0fc48a2cf7f62f7e4364aad63d6d9fad3d1b74fc80334ba978e963574cc6469ea10c1884d64181c590c24e8acc51514c3a4643c2a4dd4ee6041e1ceae56212150a559bd94bb5ed88e66344a07af19d819e8e48f7fb0f1fa91ca759c032937f9852b54536a32739d4110135766901c468313c192c2bee1b125730864d0986758db9fa7dc5fe58a20fd3b7ba02c9a6a19c9e9df388f89d76f755acbfd24dad04f7d4c06f0bc81bccd732c262ad0c13a36ad6337711b1d881ac152733250ebd24dd36245a0969fe60e840904dc9f6bf782c990d28ba501e3e397046265cd33a7b4d6f38217d770aea45baaad6b94f9e74a6a01cdbe375c30754002240c0c8fdfa3a91703b38e6f01ddff2bf88d35afb4c530c1c7c6763ddd7d2366977c58a29140d71b94cff8c35549ce10632bc3f097e4d7bcf30570df41acbca0f7280635ba593970c0ac774beb809ac0939ef921c72e3e0344f99ec2fe9e25c25c165676ab176de4b938fe87fc772dc5d00f925eea8f32b67924f364301b0d67225b7a367d9c468dd66edffd4d3076cedd2952c13820e002b7de2662ac6c55d09437e4ee2fc2fd91b048851fb480d43b34c23cfc98e1950d2771119ff924ec24ad1878a73703d5978d12a59e8f92d259e9b7489d9db9c454c60dfe39d628f1cbc35325ebb11cef7d686d2a0f3ba3678e6dbda3bcbe99b578d3f01bb57e19ca1abe886400d857199bcbee6e7bde5f5471080eb3ccef0b04b699247be97528e5263cc44f43024d0e0f844181b6a25009140d5e7a1e40d6cedbe917d6a081f32719c3f4000bfaa3e1d0ede582212a99ed3855a8f8a0f8fa40e44a86e21b6dccf28cc7e023968592e4662f39877c9af73d009f0f1629942d01868b861c572fcd7fbb9e212d1f8ed84a74308d29a04ded2ae55b924b8a4a021f53b0e237a61d9b8ca86d1cd827e7120a33672b1e70f672faf55d70a9eb1e8ad9e851eb7e1ebba8a21bd240f5d9dda68298baccc0c90b436681e611fc156c6545f8083693d97ee9f9e76dbd1f5baecb3e5d3388074ecbcc53419ec62087da962bce3f97a53b0e6b939460c043f9e8ce56bb484ee3f52c4b0ef9b047256e926054016bcdbd99aead3f21686e3208e18bf74a3d7b5842b17d73669f0a50854dc5b87bb95baec81e36ca48015a9387688261dcfcbee4545045fa17fc9a85853df688da136e14da27a83ea2b60cc7107651307ed41d97a48553659e235ecf6d645c727daf40061129f455064a9488dd03a60e1159b7157449d73ed06dbd8d98b87713e55aab608878cdb71f726151755fd40e0401ab1ddb900485ac86e5404311c297f1a1123b158bc7605e7501bc52792ca9bfcaa8de54297d6f929818a47cb5e0e5c85278ed1a4f5b38528d87b781571954882084c05655039af8a6e92b9099e5c88c274045b8e2f73a0328e3c26467b91023b0a7267e4dd8a3d95f4522ce88501e3fa4d2e16ec004f74540ff87f48ab187917f33965749ea69e16a83b942a370e6c64b4f94ec02866f6ab16cddb5233d6dea403dc2f23cc4b48ed86fac0f1d5208923a92ddaa1aa5526ed95523355a497f6c674bc1fdd3a5105e9a866dd549df137646547053a5079bb29d5d367be38b08a52cff1726a0667f35238640dcfd6ea2a6b3c415941bbd8d01a392f1b6fa98653d59047c57f2496491b5adf9deee3af485a569bf5500c82ef99ebe665bd10bc6b27d6dd5b64a693380de9b51804aab0615d44d48595bf47e38ea4e7091b33b8417f8ca9d98744743fdfb2b7818bcffa27198a6e09715e2e5109a07ddb3362dfdd615dead769a5b4bb36ac5f3520c2da7abb3b24dfc387cfdca99bcef47fc7352207f32536d457c0634ca2d760ed2c8d4439f43c9522953235c6a7fdbe19a1f40cefc2fa563c551a3b43e9fcbd8466cee0439c321a903392137650e09b0d754c0a552ac0ebf4d6218237b785538e91cd7dc413a91ad98454c5572d71674bcc92f44de0a18ca4d1fce8e09d2147115fe3b2ca9b7cae91722d7bc78c8b255aca5530594486de03eb983e228f092349bb0c0688e5d24f2bab651f109d734cd4cef30aa10ff92ff321d2b1e2944eb8e53a5371cc0a5bfa62eb74be22929cf4028576aa231fac5cd0e3b5f515a62559102f1b2d27df63b8e4a7c74f0a177c9615f5712cdea932f8574b912527c4e68fbd852d12826db0d2c40b1b902021c85b9365b8bd5f9ad00280973243b7a50728ccacfbc48c633e335dc9c0ee1c6530d95aa5bd477e53da21ff49bded8d6138232c2a2a7916748a3e29ac813864253a93b1becc7727e8e1f9fc12e7041185791d993f7bb17c9dc6fe6e2164fae88a93c5a8687c84c3a7224ca10fc0783e6ec68c33b48fa17a96a8fe1cfb246c1fc9b7fb61c870c257228845219f44f81215f8e4add8b9b0a8f428783862bc420589be875c4eaac8091bada8d880cdd7eec34218e4f366a8e2e777d458038cb9b853225983b14551cc595558e282550205e2f353edee14ce575ec6886006f53bc23440a777e0c5378c8f1e74a56310132ced40beddec9eb948055e35e92c171fe3d56859cb3cae26fa4bf948845bdc7062f83e6ea39efa52b92f8a36d87635122ddcaaf17d36106e40bdbb5e03172f0f91e785456ebea150a8212e2797256acef0aff43503002ff9ec5d467eca4728cd7ba293e9e0b6a4567ad05161d2a99aeebcd366bcc69dd7c3944bc2d9a3be222bc91378e98fba127759d157fd900ec0e993b5384ce4f25998873d23e48f320f235e43696cdb24014c51fce92e06504da58bcb9f2e8bdf104a16aeb1ec986dde9d052764d59583b93b5bc52c2c66acf1236be991d925108034c45849a1251c2fe2720c85aadc997def307f77069fd7a9651b9565b7ae3bae79d9951b93bd035d878761e913500d09fc5c5b4e6726c2361c1f91197d5750b6bb11353cee3b5c7c054c5aca7749a312485b09dc0edc5732bcdf832750375de371a90615dba52fd8d411bf9e6ddc4ad628ab94c09b115ddfe087e4f73a41f780aea8d55a9c69e66fbe7c011d58fd5e89be08e12fb59440cecb056b78184f7e1af0c587dbdede9342e6989e259962b0cf23d637c35c4b987b899f4d2a9b3db3de06cab86fe11c0a6f37b55705ec34ae387ff1e0d0a698b073da17acec1a7677f10b7ba0fc52ebd935b43532f7dc9ebf60c6ec07bd784952946b5f11985e29d73b4b695b63a52ad85fb6dcfd9a8b30ad690604671b720562f030ad968ad4f76917ef4522cd58591b12d09fdce863086235535a62a2ea3cbff3b5bf9079ec211d6c74c188be44d35e3957e68abf12499f999bfd9b4204a2067a2e0a97d890a4258f4e07a1821ab181cb9fcab9df2032aeb378895b0c86c9ee759cd40c0f65ed35d910bef6aefdb74cea05687407fb616b05cdb9d88f7efe709f6782b4e1f1388dcc6f5f8302eaea9e28b84318f96722c57e6a1e39a24be064184dfbc674e92db259a5ebf07f7718961403b4b44e91ce9409eed197198611869e2c502768a8aa46ae1c0a855cc0066af551250323b06536f91807584a1b49e1889d79142a3f6f335f0a99a46f0f17fd337ed89a81392785ff5ec375e2c13379b8358032a9c9ac5f2253dcbc5d547c05f00843fd31605d80d9632ff6548a7ba0633afc257732b94e9784cc092d6214ffb12b2d0935d6035bb99e636982f7f6afc0bb6ea1a3011a8e3325c45074b1e24da3202e64d20759e59f296c7590ab075c4998677e38ab70f33b1f229b24ad7b4cfaeb1854041eae9b3870afe7dff7d93ed815a67737d8f03c503542d78b512df94e463bbd8434ec402af6edc89252803090697ab543aab2fe7e17fff62708119e1f31af7cc80802fbf6bb6cc7225895f8a2e6433fd65213022d965309ef7c8887d1ec573c96f38d28fb633213e74beb15bbc77dda313d24acb24eaf0115772bf80e4c0d054584747456ff9fd40989c1a30ac0f2f8114ef51ed2d9144fb59d7abd02fba4b8216c2b64c6b6e7bd2db76a13c3c8165e6a8ef88153c15f94e6912076cb0dd386c80f1913b9751f6eef51965b1830f9da7685426b5e960b3907cc22defdf21253f33651e6dee0c0d418d31adef200b0e271e72a4c854b0ae32557427bc2f172ffe24164a86617f99706ef1939b9ef29c9accff4b388f67fec87db934eb665e112febcb73711e309f1f918e0a316f9389eaea352b183651ab67fd37ec282b7ca3dc1a7067da48342836f66a6e39dd9f7605f63ba4cb86a48e15526a245823454409a1016bb58429f4c49ee7b2f6325f5a9479e96789e639e434f7a4ccfcebd39358ae17d05dbf9d91f46d69ee437550d934aa5ef48e9339412dd4aa81bd59ede73697ed61c12997697bec48163a3d957df9963ce53691df61cb52936ee0469696ec035d602eb8e3f848160ce7d88be6729b65dd8f99cf2e37fd187595d55d140f5a652164c21ac7b09c50dcc7a8e27e6c622aa424a42c513abc0c6824b1fac071c6adb00f7a338beff9189911a5bfe2f4eaa6e3f3a8df8337dd4f3712c930fd8560fde937433cb502884a3886a666bf495ca072981e42d8ed03eeb70113d450bb42bbf6ef97347ae64b092a878b112b5a606f7eea094004f8bdb0222f91d277aebbd5d8afc5eb8f2e815225eb7e27ff9cdafba9f3fd4375becea07cd556efbcda448e50146bddde5a8e05e326ab296e131308daffde952802012af0e27ccea5c4e770a1170dd508fc2a616282ab606775192b9259edb395c7fbd727db0afedf2c0c09965f60a0914e237e5aaec344a6c2551951a44a979f1f7a1cbed163598d2b7cc42ec5340800c464116f23d9d8c64edce899b6673f2ddcefda424cb59f95b68204720e2e2a645115e1a82997934a40a235cc180454efc84ef9db091e810e4f2f90f724b718f810008d3fcf437309b7c52061d3a295808143d07d3a7ca9435f9d23bf9c9601c5a08141a9f096a6e5ce7caaaa04abba43aa106f54e5f166ececeb8b9628cf625effafd59fc35e524c21d171800692fb5d62f9c9aef0c3e8bd2bc8c6f835ca2dc27c9b8a65068e6c4da131efff2ee28e4a3b2f1772eab950c30a0e8b320a1253cf503d26f5329fe267812a283ff80d439f48d3286aaa3b32968c44a9c73f75a656c5e384642e28374d0d1a880db372e02fb766164b009546f0d514167819560d9ff4c7b360013b73f0a8737bb9437e6badfb81ea8b1e037159b3620245b3c223f16fde91d98f9cce54240fc76e70f7caa5d596260d5d60a9dea2dc250edaaa88c456e0783ad98c9b17345e89e30e2246652395e32e1b34ca6ffc286740b427f599c9a5b2432b6478e0aa73bf761c31ac976b7f0a3a0d1854b5118f272982c7e4f5541bcdc1a22ce3729ab3b867e205f8f0c09c15ae71d614957e0c92ea7f5fdc14bafe6d6393ea0289233e1616199b3f02d47c507af2b6021f5764745bf55ecba049f21b5766b57f71279890826c25ac36e0b7ee819c074c72db1beb739abaf25b549fd31b10453f400cf619b3b9eeb25f3092ae8755867aad30d523cb6e21269fc308456520b1d48fc3c7fe480a01f84b8d98fa79a7555f5e5cd3756ac210f4ea1270035c2aff604dcd096b110e0c839debb2e154859b2b6bd7c2754b8d738e0efd1e460f51c51a97c1cddb4b75fb1acf1ee9995abf3c2310e5f966389601f9ef42dd34a6f8995dff9abe02f8856e6d9f2fd6793bebd18a67acec5381342d7169f56a480ff400e7df00da7c032fa4767499c71cc5059b32327139cb700a08df166d64bb6752185fed63f032cb2af020e68ba252e7174ebf8270bb341f520f29ddf765b3b77db52bb533cf60ace354a9be5f3268e984c2362f14ea9b0b8e439feec47b4e8417aa193dbf444079ef1dd6f085f1a368b03509dcccb2fa47891a5f6b6978a8a557fddc29f7427ebd0df37215a738f6eb43564ac25befea4b890aecea62cadb8bcae4c0b791d2a94b8f97151d8c2bb6172a5b74e8af317cebf3db6d9bb62b856805113413e9b4135005c29419e4fa4aae2541d8fc377642dfbc743cbc8226d0b566ff6cbdaad0f9f070955afc3da8c509ccea8b9abb981c8724b5872121255756873d5e8ff609758dede6f3b8f967c4f21b14ef8a9239cd68a97b73102b3fcb79b8505b4ea4c22d3cb5045debffeed3a430122009f1496945f13cba11ef23dc05809ee9b819f05e47664d0230a29a258697a10a2073ce8e6c4e0939d36eb2431c17b4b2ff67dc6a66f897f4dbbe3c88e24edaaf2704afdcf0f7d543074fcdfb7f3cd66630164f4646faebc2898c027b55595c8b8c5db0611eaed3015a337321ae16ba6cfd7d40b77448b9b7f52a0dd83b8a61814f40983c27a874b7ff6f6f90c8da69f9796bb235ab8259be0db7e0993e3385600c8137e39bbee20a35338fcbbd33c4bb842446fa2ed72d413213ff34d5e1dc690054d18bd4d63024e02f30cae7aae3da3682fd0524dd5ed466569a84eef3547f0634f4d01eacc213ee742fb0676a4f7e0de19d4f749cba81f582b236c5699c5af298db896f4edec0db927121cab7cd9ae239859fb10a417f73a30ea9e0b6b5552742d015cf72b6316f466fbb1ebd1c76069efbdb30fb440a0b3c428e54499a082ba48f9c4bdd83434408391c9b354e2319409f96fd494d027306db407462e0671ae04795e2ee551fb4d57e49f3fff0efcdc91128ac7d28a704368706782ed54b50aef99e3c59efb70b5ee0784fe712f580c23f17db37260cf444701138a5976a4dd665b248d6c3be535f0870a1c6b4cfdf9b972b58fc75d3efe0d2a5b8ba90921ecae8f0827047a012d44c1a54c344d370ab016eefea06b223987e1919d2f33d4223afc07ae635c4b06bcdbd34be32cdbaea52f68c64d803747de258cccbe851483310404a055dd5185bdf51b2c702a0cbaacb323b3d2b7e84f5a93c85587802a13c9cf2526e61b76b37234a52843d7ea47c99b44b203fec76a364b38a274e5d96bcc438b985078907679dd9ee6241a6fcd4a647c26f5c05f088d7329afdbce9f0ab79620166ac0c6d1d2a6f55faec41701f31528deefc794e7409fa7b134beeefc829656c7e2c25c1bf5a847042c9a908b63f155804b8f31f4364f5e3ead3702ff25b25fadd23634c135344e075ad53f2507acba1cc3b5ad2ce707c43f0fac4866e88421c9c736797f08b00be2cfb333d8fe94ce28eee4760648e4ed3fae06be33745adc84681d1c6f6de07dc6d2b910ff609574fb87ce8a45796d6f884e75f869e9e01f4f9e810af5d831f665a50f964bdcb487aa35062b07d4a8eb890a5b547d591da54276f90496ce724da71222bb6b486d0b96cedffa22272b1f8d41dc58f495057f043afe10c8e40a1a5dc169c54323fd9efc9e5f7b9104a79edeb8f5d9e5fc5f05fa628b3f07514dc502a86c76c63c0b351994c33e90ec04a962584310f62048000fd7be9cbd6feebebafbff66a65ce0fee29a335a5fef834b4a61e8de2b29796346ff7c986294f6155e15545412cbf90c698d5ab176affaeb6446c08583addcb17ed9b6189cc88006489b63f3c960712ed735ddda3a38885a79c163d87ef2466d5ea4087442991f46f37aca80066d450e5e5bbc405c166bda860739caa48d8ff725612cffab9a550061b5e978f27d7c0cc567c5fe6a12a25caba1c6c76975d4328cd97070440358069e42a89d5dbb36da47c5b2172ff69abe766abade669c5aea2708017522fd0d8908cbcaeb69d9fe16e07bf1591f271046cba8270e9520881f0e405bbb04dff013ff7cf82600253b6332a48beb91f19f9212624881ce832e656205cdb3f91c60ad7c1795b1726a481ec85ed6461a22fc7ec6e28b1465c290968041b8ee76fa50e1bb49dc9e46ea1f602bbe4acbbe3d09a9021978fce3b6122c36ed16aec87c6cf53d095711772247c98441067349cdae2a3cda49d640eb21d1f58f15343330479b96c86c0979d074d0e7cd71b928168d05b71cb5c1169937ee3577900a79c204a82f10ed27363b81b23c3c8ee4b479bc32c2f6f5ecd71e123dbb04bc4dd59825764e4acf671b11efc05d8ae61440cf3dac9e78da0dc8c9e8606c198f1780e9c96b09fac4936b9d6ccd3914dfdddf777f2f775ac39429731fbf970288e96be33eaf0337bdf328522d86b3c0530156c727d3799b68480190a124923cc8839d0676646ce0fa9d75bcb5c8c412977322c3debdc9fa19409740057629848e663487605b0d328564035c2e7f11482b37523a1da11d30398f5c83895da02f1ce25803d3d4c130ed8939c14aa4c2f5be3178d4e5401479925c85fafb99da1803eb93148683f1e9122f4ca8870bc14162001234980278d96bef93f7a60a79eedfb3fc280a7cc9568c5a2b326d3f4a08a562dcbd0872d231ab7c46faa3fb6f05f00535d65049912245b8f739e33a749264f90a19245d735ab6ab5136fd52bb59c468ae78b22d8b03621ebb413cff19df4db78f57281e54afe12192add1f9b38fe13819e0cc5d26557bc9a6833cee40b020816113d906a29037f58fb95cd9f09c3f78827733adc3fbd6be2c5e88fa5776e589bc4d2adedd934fd43125baadcbd58dd121376fac53b8a9e703434b40ef1032d62f4f39a9106eb314c5c57156d60786c39e6f410c32dbac9be6ce4ca39da748acf7cd94ac91c1e1667cf05b6cdf0a93b245fdc65e40fe90e19fef8c4cd1080c9de8e9af31a1c6d169b79e363ec09a167c220c145e93cc7254eff97029084471490311c76731489d487af74bf21835606a39c67ad8d3ea3b09492a710484a21986b5c80915ff27e9a2d55888e973a1ec3f0257ff3a2cedaf0d84da84f82d9f90103d3200c3bad8c7e919e0e2d3ff93d217a57ed3a3e2eb7689e7fa9a894c6db74fde5f0b276b7ee387fa17db60afd9ed6b20a3585cb472d5118f31b60b8e3ca301a1928d1dffc04970b3ce638b070b48fe12792a062125f3931f02a8cf0338c0b416c6f4a6a45bed748b907eec8531b1095e7ebf992b065f0afbd705804882acde31b90eb605656de024c41316a02aab4d824a334a0d66414a302c0cda1fe3c12357e5fb8185060ded6b0f687e1dd274107e3f3527b66e984a6fb293beea9f43721111679880fc4bba92f3967d4aed1e7ffbf6646cf7e0487e54cae016de554248f7da8c3691b288921b998dc2503bb26634507660ff3e4ff2d1ec24392d7236e82c7bb68251d78891039dcdf459ee6e3cd2d8b18cd965744298fcad4c962a79b69ddb373bfdb8208797914c08e40bc9e72b65939b71dfdc3564e235e7c479cb9abb9a60fd21ccb62948e1b7a7b7da09aa1addeeea2d29b3c518fb64069812a2282609b9ff99edc60920cffbf6ef606b50d90b9df2604e6b16b3b272e37e90b1b72875526b18cce505591f11074d092e052a461ba1a315d66ac73fddbf8b7510159f53b542e59bd6f80e8d0a7724b0bf391f52968238a4af06e29b85f517aec7951e06fb492361ca122b65ef44575cec9973ec0ee699e3eac1c380075966e9ce785c66fa32ff2e2dd5f2e5d90a193edcd55cccb9878f2015a8b36dad38718941675757e906139fcc97d72bdcbfd510e81c025f9bf4c23c8a63ff559d3a6d41ef602cbb7517bbae94166e4d8148fa98316c7a75ed8cb997ad30fe7ab76291b4ad4d6583803eb469f0b4d1a6a0465e1a80f99510d2ac77a2401c622f558a61296431d0f8327466616bb42d37b8b5dad27591964fb67ebf6b98d1ad845004e46cc0f55d55df35440cdf3a5cc1dff70a5224a8858f1d288b22dfe8fc44f1cd3a6f1d0d5d642924094bddd22730ae4714dd91c9b27b984dbec61a94248dd13cc8f17743bbaca388b41938a15625fe662a15d40b026364506cccabd0957ea88242e5d63ea0925894fa64381450b658ad69c6571efcd704a81734d7c06c59a3559c900dbf7a619ab081a9dce098faf8f850072834f7dc9cf46314376ba9fd3fdbe9d2462be4b28a236d14d6ddc020569514318b95a4f88075396eff3b9133b47017afb6d4c95cdcf221dc8822ddfcf5be516651219b2c2f645a1bda357301ce28ef2835ce6deefe50d28cb559669b109c80bbaac9e5149e907b184f821b7af983a20eb2d9bc94ae7e82090166bf2a7fff9df39b639c1699245eaeba678d679666879a751101a18cb86e12be9fec36488f1a9a27d1d519bc411701ea3e165e5d49a251deb873dfa76c489bbddce749f51b030a73af448b7b67e113953d4424c77949227eafed23c4de426d43e9bbd9ab14b57c9d45fe2d6920752cbc195cd0d8321226ea871f29603755ce9955c1703d350ddf61955aa354875f56a8b7b5b988fd0ab14f1daa92aac9b7561d1bc337b69cc1ad73815394e32f0c7986f14b998355782171e8ccfb8fbc08a1a11f4c7fb9b0dbbb3758f098aeb2a2d5d875866647e450108458f7f83ee5773433e3befb6457d1be376865fff2aa73a003304fd91d4550ec2a5eaee90475f3c28b6c3a8d8c11feaab5efe633eef30526ea89269883b34b32c62f4ddc12bed1654cea5742d1cb54214a234a68ccca2579de0e97dfa8daa2d96da556bdccd1d858bd1034c4a897b8105e2610aca0cc0393644f9323de6a10cc2317b78c80ce69640dab430dc7550624388a18ae2ea4ad8099069dd62bc7d4612006be47a5f0ef755726b2c4598a03995884a05d93252173b8584e67eed7b4fdae782dc83260934e004c1f3a5314b0dd506bbcba2f02b1ee007ee40ed875bab6ab713ae5672f39b62bf17c5196c8a8508004471795dc3ec7b811c143a6dc85c5d2c709d54492742acb68fff3c410e503ddc6a9d706e0de3005c8eb21493fad0f339e87151ad71c7367fc802bc8d457dd6164fe25c4d4021cf9938698883165826673fa471d287d096ac4de39134ae1b48a833ff507697f2d78621b618d704413343b204a77cfb80aa7f0a743ed069b82fb22ec4af05711ea7819c565a688fc7b2c881492498a264c293192d0237d2cbee66206b645fef9df77867406558fe333f039407e1ad16d720f3522e3893e3143c396e7e8fdd87af8e7a577cc504536142eb33e4e4746ccefecbdbfe658cb9c801d805d1619010b799aac4022374d5e1dc95cdffb149b75436331cff6c4ce49e1594686d8fee137ce4f78fbbcf4538b349c9057d2609cb43f4f911bea4581c9b2879fcbaab3b1ae36b83bce833a466df8896ef306227e02b5d459494bc38a66f94bcbafe0abe7a69a62c6d3796954eeaf8f9223f3f466b9b9170944f6d0ace522f69e76515bee609066d9513c7f04a45029cad978b6e491342226d5bfbc7536b15a66b1393365cff907ca93f5f5b5871424b8a09e84458fa31ff370e6ddcac1c503e21beeeb5e0563899e80875b9799c041db3f0c288d0b4c16358a67a75a68f806a6d914cd71e26826cc339048de43e0241e5217b8b98e3f4ecb9cf53a3acec9565d83bf809b20eb8353da8e872939068522e4face8300928c30891e0fc7ddab1d26a86c3ad79a6e74abb0eeaca5df2c893703166f753f7fb80bcd30cf15885f1c2dd3d3cf4277f11564193f140ccc054dd1399741ec8234990d1c86c2b7165341dece436445b534d82650ead9abeb7e479889e2608e0b5c78c694b5a1e7c306285c2d783e76d0f2f24251325445e736aee0df01b5557641c8fed6a1c111f968ffcf02e4</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入阅读密码~</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>复盘</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>奮鬥，給自己一個答案</title>
     <url>/%E5%A5%AE%E9%AC%A5%EF%BC%8C%E7%B5%A6%E8%87%AA%E5%B7%B1%E4%B8%80%E5%80%8B%E7%AD%94%E6%A1%88/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -193,6 +174,25 @@
       </tags>
   </entry>
   <entry>
+    <title>复盘二</title>
+    <url>/%E5%A4%8D%E7%9B%98%E4%BA%8C/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="2df53a5ef74624e7dafe2d7b66bec2e92d85454f341f2e82c05a03f2926220c9">a756220a6413262c08d2e52bbc7378bf39c283629de3c1b66fe2f20410e040757a00ee73fd9a7b693c210b90ede669001d3fb2b695bf8a4fd18d4c6647ff7a3549de404988776b52af83e5c779e44bbb1f2ef87a9c541e0c41b4674f669ad90edbab6461ac99bbcd84de21bc8cd343c1f2e1c512eeae80b5760bd264bfe9a484ebc23a3bd514b1fa8f8bfbfb9dde14cdb5af9a9bc2d24354ba3de79a940566ed161ad21b443591471c0e48b42b39fca52365f33753e42e30264f77ea99dc35bd109fa3bdd4b9fcb0ab5f446cfbaf060424286f904fcae468e706ded1db9d5728a4007cb5b1754db64a59c5d5fcb112f5e2e7f0139e16fdb34c0323de7d176e9bf08c8dd987b6ec8c53fbf06acefa95973ce88dcbb1a66990840d0da6f6d21febba1c785444b5635f63783febd2e767edb2a2c8e7a3e66a089d09bb9957fcf4d6eb5dedf29f6e2a1c5cbf3b775778ac27d91d859024662823a982d774b7f6f22a31ece10be1a47fa8d45e35e21398673ed0dcfcd3f4a2dd810ae0e72140f77ea9c6310cd853848669ee874ecff59d3590cf1840f53944307a768f464b070949d020def952721c11e2da9d48792f20a7ad618f1e5a0f6244baec124fdeb303e5846e7103f9423258d2ec1855a09483b0174fea3a53c0b6bf9e8eab7738c91fa35a5e2aa15b953537622199bb08eb0965c37a38f2dc258a5092e344e1e2b9585f88432f1c0fae19a31ce56671baf417513ef4f980531001e41892fbf85b7d9b2fd41908dbfe2e33e38f5659546e584798195b5a81f730ac4a01c4897cdf2f56342a3d2159b439c7d7ab07baa7d868e1fa393b4e74d4bee593e6753129669015f3e875e8f0b3974363715e6f7600042b91311760372f6d526242e399afd3bd9d7859de62d2dd64aab1fe2295055d1ed557377fa362b376dd961354e699db1714ad0743271c2a9eb652e9bef5b7612ebba09cc6d88f0ed5e95840ec4799cb96c13b332a0d60daa942f0a27029949d3e536bd3c73cae5d387ff8a6075fd36ac2fd0a67480bd8ea2ca4182a4f07b9665f6082b436c988eae205098e5b764c131061802cc430c554c73429e086d259611c23d502abd157848188f40d7c9acd8c45b46089819235db4da3c0652fea06fb30a329725889446f42b134325b3c4e7554affb8d21aac36ba416c007553d5ea24f51c7b1dfeacb14cc521471a259f8cb07e8d7943f658eaa2ded383d5d2d62f506b74c68b5db3ef33a7278150e30cbb30196515e28e01e216ab3813577b8099997789cb618c729b89d53482c4cf256d9392e0fbea35bd34493e6db6c3640629b5109e9a7f22ccfee2093bf04ed99a0093a58071aaf13c7057f2b1d73bdfebf24d778412b63c2dc8431435b93fe2ccc2318db392c57aa4211d3a54777abf4d9a3c6689efe7f5265c7a19e9f116244854e51bb392612447fef5794dffdaf3a4edaadeb6b52cfbaccf79a1bba63515185d9b27974f2ba9d696cc7c3635923a61fc2735cc13a66765095ebf91bc3341f63f7470934db88b26b85aa62c78f75e6ba1763c7bf137b7bb47104f23c0657bd28fe5b48f9e5b77849226fff9fcbbf11920ba0404772db822f6cf306281ff9561451940f80a0c647992fdf685518fc9ce8c493d52725ac62832e9fcb16ab4a072d4c0bb063ed96ed1f78f56f1d6de9cb3aeea46160fbb72309e8cd79e61fae66a4a3cc89c4319d35a08308fc5425c0b6ef82cd220343dc44d39b0e9d8660cf2fbc9c283e31a5b0f67dfbccb06543d7073b36d00d49094dd04da214d5e9aa1d8ba0635a411222826c0b503aef9ac32dea89f4a43948d4b29a823c15387f34a3ff8de63caa5f83585de62ec0b2c0d6e5fd5ba5b65c2241bfe99d70d7193d4a4a443059bd835fc70e00ca33c0d62390402797bc146e0d77470209a71426f81d24f8d27eefefa3f18a73b85a9f47c691bbfc58e36daf35c57031f5f147cea4e070111cac1b4036b4cff1439b55431fff252dce1859b88e6e9d56e299e73af25f10511dd574418fc8512ee070ae803bb64a20c3457593e836502bf8efa398dcde94333220a5180c02f8b2aec0b93ea03bf87e8e42c4510b468b1f92a305962ea85685e174aa8733f382f3138f71cd245aedbe0669493f416044376e0c30bacdaee937afbe1c6f05c328757882b67afe6733b982aa96177db55c9cf8d2ec84810a9f3fc789715a1883f5e58897cbb0df12ff38f6adfc9883e46e148d0cf4ef07d04f69ffbee5b16147e4f37ed7376d842811df0af4c802154ed67e59323c6aa831287da8e3e576f37c685164d072851fa419db3aef7556c7b496d95ffeb5f29867e57df482d16a3e023942dffc2b3765d6676a9c3f9d54cb1c3ba8d52e98d9abb60366baa42510fc20efc26fe54dd5b4fefa077f87774c6c1e70bec1836c1204cd8751d63c271d5e7efbc4480a16e9ae402a02e5eeb0f0ff0ab5816cf9b0e9fd289c6dcf0a0a89d62808a38b7ba1cc88d358d1623e22c56bd5e5906652add30dbdbd9a13f979b2784543d7962037987b612a76a65c8fe2c963118f6dac2bbde1f76bcad7f71b700fd764fa58207efce7982b0f14038bd7109e20e08d6a8b80d3d4db6194574e395f3e14fce69dddc7a60d674e578a8e0acb56c12da1e7c3ca56a6dc1d5c2e6ff4405d20c1a6419fce2da16ad09d9263a06a55276e3cbaed59e2d5467e3123c83ee19a17b621bc643493be3867f3d975a5cb6e5b524ab56466815bc01a6d907584fed432f6e0013207e7377ef2c77a5d7c396ac1d9038f3bea8aa98120931b1368d63fd23b0a9c3aba5658fb04e04a4d5377dd9d0afcedcf456295dc4edb4456a4e2110437e84a6f0bb4d5090c44f8885e6179dbc5100f5540dc56af89e06f486946406e5b84fdfece58f7982f7dcd05f32875566882f090e8fec1d9dc0132748e6a922bae62d7be6f5046007bd86dfc91b18f9a479e92294605c42250258428aeac25dceeb056416dfbc3ed6cb23037def277afa33028cfe07f91a34e9de6fcac239442b1e59cbdd5951a7a162e234520d57068f8bab97d6925e5b5cab253780046ba67f389e2b2bb553160119f9ec8920059eb2843185a3f7adbe0bd560fa5b55dc76f9ef83d819fd0c87e82e963d28f75da8793b2b5ba7865cc38e88817ab724c37fe43a8a31ab7d3ee819cdd4964ec9bdc7fc6a64f115462547921187258cdc4141d8d550dd7611e2c7390b04b817c9aae0c6c651ae762aa110c2e80259bba8270c43835efa540e5159afe36e63284c4a5d6080b962a317a5d6b103af97e0af56fff0716ec8bdb384051cb087eb8e92f180badf6d69ba2959634da73a4556d7fea49e7086cdfeea47e513d51b71fe37c2c1f4e5d7afd9b82d84c06d2b1835378f869c1508279418ad0a1dd0d1de060e0cb560d7311d6480b7564c9a6abcb954160e47d2bae979c6810f9bc87345bcc6356dc7d194905b2392889950007283d9ce11d9b5ebd9de16a0276eeeda4c3660884e4c4253b63e98e542183352416f87d2dc81370ac50691bd55405a5ba0f1a279e7c215342aaf34b3b3af980874d86ee75461a509ef8d5d7946876dd1617f6cbaa1e7e66818691272735c77e106074d9df65b6d3416834246100847b26a0c06121967ace275f0d8c42c6c87b6e6b81b973ddc1605fd00f7e27d1349770f67c1fb3c2297e494ad35e9ec921cf6cc05e297e577830ffb21cf3684aff46d4a92389a6317071e92ed4eedbf903f757d078aabc2f15964a1ec3524aeb9515ee332bf9d86b7e9138475ebffea82897625e34473bd990f8312de8870d09a261e17f0b1b1c077aab8f8261b9951b3bf34f441c8b76bf3d16d09c021776c1b18b61ea982a3a195b934d0424103874836d78267b2f6f2cadc3019b43c434a69b5f80b1ae773e05427003150c32731c73b0f62a68b2cf547ddfb95cd5745a7885e50a0baceffed1a10a8185deda33d930be6412f3f37c91dad989afedf208c5b350be55155a94d34b76bbbd3f3c479c3c1ab39238f01c65820a62badd12d77d46229047bff06db5b5bf49b1225b40832ce3ad4058207f51092eeab12933cabf9dca7f25c97f94fc3f3e689e2c8c7a55e46c47f8c4daba989d59834bef2b94c8d3b20f716a32a6bb16a616fa0a8bb6bbdfecdb30223b70d60220ecf6f76ae14806f9a9d5e3d5b510e9d11b6f1400b235f40b39e77835b7636715b91a4631583fe7668ff40db59d11fd5c6105a7336d52b54f23ec784ddbb156eca0f16d7c38d4460807d7bc5dc69ff6bff2a6a3e424eebd0ff6ec204037c596137fa982b9ae4898278d454554b5e6115db379530744df8610cfb20425abcfd233edaed05d4d6d0dc2a1e1caccd21c65ee985bba7a766962daf6800005c6dd91cb13c820498db2f6b726a01c8c4f2a59b8620f4db8aa7cdc72388a774092428d80463ac327b1e3d7daa2bd0fc48a2cf7f62f7e4364aad63d6d9fad3d1b74fc80334ba978e963574cc6469ea10c1884d64181c590c24e8acc51514c3a4643c2a4dd4ee6041e1ceae56212150a559bd94bb5ed88e66344a07af19d819e8e48f7fb0f1fa91ca759c032937f9852b54536a32739d4110135766901c468313c192c2bee1b125730864d0986758db9fa7dc5fe58a20fd3b7ba02c9a6a19c9e9df388f89d76f755acbfd24dad04f7d4c06f0bc81bccd732c262ad0c13a36ad6337711b1d881ac152733250ebd24dd36245a0969fe60e840904dc9f6bf782c990d28ba501e3e397046265cd33a7b4d6f38217d770aea45baaad6b94f9e74a6a01cdbe375c30754002240c0c8fdfa3a91703b38e6f01ddff2bf88d35afb4c530c1c7c6763ddd7d2366977c58a29140d71b94cff8c35549ce10632bc3f097e4d7bcf30570df41acbca0f7280635ba593970c0ac774beb809ac0939ef921c72e3e0344f99ec2fe9e25c25c165676ab176de4b938fe87fc772dc5d00f925eea8f32b67924f364301b0d67225b7a367d9c468dd66edffd4d3076cedd2952c13820e002b7de2662ac6c55d09437e4ee2fc2fd91b048851fb480d43b34c23cfc98e1950d2771119ff924ec24ad1878a73703d5978d12a59e8f92d259e9b7489d9db9c454c60dfe39d628f1cbc35325ebb11cef7d686d2a0f3ba3678e6dbda3bcbe99b578d3f01bb57e19ca1abe886400d857199bcbee6e7bde5f5471080eb3ccef0b04b699247be97528e5263cc44f43024d0e0f844181b6a25009140d5e7a1e40d6cedbe917d6a081f32719c3f4000bfaa3e1d0ede582212a99ed3855a8f8a0f8fa40e44a86e21b6dccf28cc7e023968592e4662f39877c9af73d009f0f1629942d01868b861c572fcd7fbb9e212d1f8ed84a74308d29a04ded2ae55b924b8a4a021f53b0e237a61d9b8ca86d1cd827e7120a33672b1e70f672faf55d70a9eb1e8ad9e851eb7e1ebba8a21bd240f5d9dda68298baccc0c90b436681e611fc156c6545f8083693d97ee9f9e76dbd1f5baecb3e5d3388074ecbcc53419ec62087da962bce3f97a53b0e6b939460c043f9e8ce56bb484ee3f52c4b0ef9b047256e926054016bcdbd99aead3f21686e3208e18bf74a3d7b5842b17d73669f0a50854dc5b87bb95baec81e36ca48015a9387688261dcfcbee4545045fa17fc9a85853df688da136e14da27a83ea2b60cc7107651307ed41d97a48553659e235ecf6d645c727daf40061129f455064a9488dd03a60e1159b7157449d73ed06dbd8d98b87713e55aab608878cdb71f726151755fd40e0401ab1ddb900485ac86e5404311c297f1a1123b158bc7605e7501bc52792ca9bfcaa8de54297d6f929818a47cb5e0e5c85278ed1a4f5b38528d87b781571954882084c05655039af8a6e92b9099e5c88c274045b8e2f73a0328e3c26467b91023b0a7267e4dd8a3d95f4522ce88501e3fa4d2e16ec004f74540ff87f48ab187917f33965749ea69e16a83b942a370e6c64b4f94ec02866f6ab16cddb5233d6dea403dc2f23cc4b48ed86fac0f1d5208923a92ddaa1aa5526ed95523355a497f6c674bc1fdd3a5105e9a866dd549df137646547053a5079bb29d5d367be38b08a52cff1726a0667f35238640dcfd6ea2a6b3c415941bbd8d01a392f1b6fa98653d59047c57f2496491b5adf9deee3af485a569bf5500c82ef99ebe665bd10bc6b27d6dd5b64a693380de9b51804aab0615d44d48595bf47e38ea4e7091b33b8417f8ca9d98744743fdfb2b7818bcffa27198a6e09715e2e5109a07ddb3362dfdd615dead769a5b4bb36ac5f3520c2da7abb3b24dfc387cfdca99bcef47fc7352207f32536d457c0634ca2d760ed2c8d4439f43c9522953235c6a7fdbe19a1f40cefc2fa563c551a3b43e9fcbd8466cee0439c321a903392137650e09b0d754c0a552ac0ebf4d6218237b785538e91cd7dc413a91ad98454c5572d71674bcc92f44de0a18ca4d1fce8e09d2147115fe3b2ca9b7cae91722d7bc78c8b255aca5530594486de03eb983e228f092349bb0c0688e5d24f2bab651f109d734cd4cef30aa10ff92ff321d2b1e2944eb8e53a5371cc0a5bfa62eb74be22929cf4028576aa231fac5cd0e3b5f515a62559102f1b2d27df63b8e4a7c74f0a177c9615f5712cdea932f8574b912527c4e68fbd852d12826db0d2c40b1b902021c85b9365b8bd5f9ad00280973243b7a50728ccacfbc48c633e335dc9c0ee1c6530d95aa5bd477e53da21ff49bded8d6138232c2a2a7916748a3e29ac813864253a93b1becc7727e8e1f9fc12e7041185791d993f7bb17c9dc6fe6e2164fae88a93c5a8687c84c3a7224ca10fc0783e6ec68c33b48fa17a96a8fe1cfb246c1fc9b7fb61c870c257228845219f44f81215f8e4add8b9b0a8f428783862bc420589be875c4eaac8091bada8d880cdd7eec34218e4f366a8e2e777d458038cb9b853225983b14551cc595558e282550205e2f353edee14ce575ec6886006f53bc23440a777e0c5378c8f1e74a56310132ced40beddec9eb948055e35e92c171fe3d56859cb3cae26fa4bf948845bdc7062f83e6ea39efa52b92f8a36d87635122ddcaaf17d36106e40bdbb5e03172f0f91e785456ebea150a8212e2797256acef0aff43503002ff9ec5d467eca4728cd7ba293e9e0b6a4567ad05161d2a99aeebcd366bcc69dd7c3944bc2d9a3be222bc91378e98fba127759d157fd900ec0e993b5384ce4f25998873d23e48f320f235e43696cdb24014c51fce92e06504da58bcb9f2e8bdf104a16aeb1ec986dde9d052764d59583b93b5bc52c2c66acf1236be991d925108034c45849a1251c2fe2720c85aadc997def307f77069fd7a9651b9565b7ae3bae79d9951b93bd035d878761e913500d09fc5c5b4e6726c2361c1f91197d5750b6bb11353cee3b5c7c054c5aca7749a312485b09dc0edc5732bcdf832750375de371a90615dba52fd8d411bf9e6ddc4ad628ab94c09b115ddfe087e4f73a41f780aea8d55a9c69e66fbe7c011d58fd5e89be08e12fb59440cecb056b78184f7e1af0c587dbdede9342e6989e259962b0cf23d637c35c4b987b899f4d2a9b3db3de06cab86fe11c0a6f37b55705ec34ae387ff1e0d0a698b073da17acec1a7677f10b7ba0fc52ebd935b43532f7dc9ebf60c6ec07bd784952946b5f11985e29d73b4b695b63a52ad85fb6dcfd9a8b30ad690604671b720562f030ad968ad4f76917ef4522cd58591b12d09fdce863086235535a62a2ea3cbff3b5bf9079ec211d6c74c188be44d35e3957e68abf12499f999bfd9b4204a2067a2e0a97d890a4258f4e07a1821ab181cb9fcab9df2032aeb378895b0c86c9ee759cd40c0f65ed35d910bef6aefdb74cea05687407fb616b05cdb9d88f7efe709f6782b4e1f1388dcc6f5f8302eaea9e28b84318f96722c57e6a1e39a24be064184dfbc674e92db259a5ebf07f7718961403b4b44e91ce9409eed197198611869e2c502768a8aa46ae1c0a855cc0066af551250323b06536f91807584a1b49e1889d79142a3f6f335f0a99a46f0f17fd337ed89a81392785ff5ec375e2c13379b8358032a9c9ac5f2253dcbc5d547c05f00843fd31605d80d9632ff6548a7ba0633afc257732b94e9784cc092d6214ffb12b2d0935d6035bb99e636982f7f6afc0bb6ea1a3011a8e3325c45074b1e24da3202e64d20759e59f296c7590ab075c4998677e38ab70f33b1f229b24ad7b4cfaeb1854041eae9b3870afe7dff7d93ed815a67737d8f03c503542d78b512df94e463bbd8434ec402af6edc89252803090697ab543aab2fe7e17fff62708119e1f31af7cc80802fbf6bb6cc7225895f8a2e6433fd65213022d965309ef7c8887d1ec573c96f38d28fb633213e74beb15bbc77dda313d24acb24eaf0115772bf80e4c0d054584747456ff9fd40989c1a30ac0f2f8114ef51ed2d9144fb59d7abd02fba4b8216c2b64c6b6e7bd2db76a13c3c8165e6a8ef88153c15f94e6912076cb0dd386c80f1913b9751f6eef51965b1830f9da7685426b5e960b3907cc22defdf21253f33651e6dee0c0d418d31adef200b0e271e72a4c854b0ae32557427bc2f172ffe24164a86617f99706ef1939b9ef29c9accff4b388f67fec87db934eb665e112febcb73711e309f1f918e0a316f9389eaea352b183651ab67fd37ec282b7ca3dc1a7067da48342836f66a6e39dd9f7605f63ba4cb86a48e15526a245823454409a1016bb58429f4c49ee7b2f6325f5a9479e96789e639e434f7a4ccfcebd39358ae17d05dbf9d91f46d69ee437550d934aa5ef48e9339412dd4aa81bd59ede73697ed61c12997697bec48163a3d957df9963ce53691df61cb52936ee0469696ec035d602eb8e3f848160ce7d88be6729b65dd8f99cf2e37fd187595d55d140f5a652164c21ac7b09c50dcc7a8e27e6c622aa424a42c513abc0c6824b1fac071c6adb00f7a338beff9189911a5bfe2f4eaa6e3f3a8df8337dd4f3712c930fd8560fde937433cb502884a3886a666bf495ca072981e42d8ed03eeb70113d450bb42bbf6ef97347ae64b092a878b112b5a606f7eea094004f8bdb0222f91d277aebbd5d8afc5eb8f2e815225eb7e27ff9cdafba9f3fd4375becea07cd556efbcda448e50146bddde5a8e05e326ab296e131308daffde952802012af0e27ccea5c4e770a1170dd508fc2a616282ab606775192b9259edb395c7fbd727db0afedf2c0c09965f60a0914e237e5aaec344a6c2551951a44a979f1f7a1cbed163598d2b7cc42ec5340800c464116f23d9d8c64edce899b6673f2ddcefda424cb59f95b68204720e2e2a645115e1a82997934a40a235cc180454efc84ef9db091e810e4f2f90f724b718f810008d3fcf437309b7c52061d3a295808143d07d3a7ca9435f9d23bf9c9601c5a08141a9f096a6e5ce7caaaa04abba43aa106f54e5f166ececeb8b9628cf625effafd59fc35e524c21d171800692fb5d62f9c9aef0c3e8bd2bc8c6f835ca2dc27c9b8a65068e6c4da131efff2ee28e4a3b2f1772eab950c30a0e8b320a1253cf503d26f5329fe267812a283ff80d439f48d3286aaa3b32968c44a9c73f75a656c5e384642e28374d0d1a880db372e02fb766164b009546f0d514167819560d9ff4c7b360013b73f0a8737bb9437e6badfb81ea8b1e037159b3620245b3c223f16fde91d98f9cce54240fc76e70f7caa5d596260d5d60a9dea2dc250edaaa88c456e0783ad98c9b17345e89e30e2246652395e32e1b34ca6ffc286740b427f599c9a5b2432b6478e0aa73bf761c31ac976b7f0a3a0d1854b5118f272982c7e4f5541bcdc1a22ce3729ab3b867e205f8f0c09c15ae71d614957e0c92ea7f5fdc14bafe6d6393ea0289233e1616199b3f02d47c507af2b6021f5764745bf55ecba049f21b5766b57f71279890826c25ac36e0b7ee819c074c72db1beb739abaf25b549fd31b10453f400cf619b3b9eeb25f3092ae8755867aad30d523cb6e21269fc308456520b1d48fc3c7fe480a01f84b8d98fa79a7555f5e5cd3756ac210f4ea1270035c2aff604dcd096b110e0c839debb2e154859b2b6bd7c2754b8d738e0efd1e460f51c51a97c1cddb4b75fb1acf1ee9995abf3c2310e5f966389601f9ef42dd34a6f8995dff9abe02f8856e6d9f2fd6793bebd18a67acec5381342d7169f56a480ff400e7df00da7c032fa4767499c71cc5059b32327139cb700a08df166d64bb6752185fed63f032cb2af020e68ba252e7174ebf8270bb341f520f29ddf765b3b77db52bb533cf60ace354a9be5f3268e984c2362f14ea9b0b8e439feec47b4e8417aa193dbf444079ef1dd6f085f1a368b03509dcccb2fa47891a5f6b6978a8a557fddc29f7427ebd0df37215a738f6eb43564ac25befea4b890aecea62cadb8bcae4c0b791d2a94b8f97151d8c2bb6172a5b74e8af317cebf3db6d9bb62b856805113413e9b4135005c29419e4fa4aae2541d8fc377642dfbc743cbc8226d0b566ff6cbdaad0f9f070955afc3da8c509ccea8b9abb981c8724b5872121255756873d5e8ff609758dede6f3b8f967c4f21b14ef8a9239cd68a97b73102b3fcb79b8505b4ea4c22d3cb5045debffeed3a430122009f1496945f13cba11ef23dc05809ee9b819f05e47664d0230a29a258697a10a2073ce8e6c4e0939d36eb2431c17b4b2ff67dc6a66f897f4dbbe3c88e24edaaf2704afdcf0f7d543074fcdfb7f3cd66630164f4646faebc2898c027b55595c8b8c5db0611eaed3015a337321ae16ba6cfd7d40b77448b9b7f52a0dd83b8a61814f40983c27a874b7ff6f6f90c8da69f9796bb235ab8259be0db7e0993e3385600c8137e39bbee20a35338fcbbd33c4bb842446fa2ed72d413213ff34d5e1dc690054d18bd4d63024e02f30cae7aae3da3682fd0524dd5ed466569a84eef3547f0634f4d01eacc213ee742fb0676a4f7e0de19d4f749cba81f582b236c5699c5af298db896f4edec0db927121cab7cd9ae239859fb10a417f73a30ea9e0b6b5552742d015cf72b6316f466fbb1ebd1c76069efbdb30fb440a0b3c428e54499a082ba48f9c4bdd83434408391c9b354e2319409f96fd494d027306db407462e0671ae04795e2ee551fb4d57e49f3fff0efcdc91128ac7d28a704368706782ed54b50aef99e3c59efb70b5ee0784fe712f580c23f17db37260cf444701138a5976a4dd665b248d6c3be535f0870a1c6b4cfdf9b972b58fc75d3efe0d2a5b8ba90921ecae8f0827047a012d44c1a54c344d370ab016eefea06b223987e1919d2f33d4223afc07ae635c4b06bcdbd34be32cdbaea52f68c64d803747de258cccbe851483310404a055dd5185bdf51b2c702a0cbaacb323b3d2b7e84f5a93c85587802a13c9cf2526e61b76b37234a52843d7ea47c99b44b203fec76a364b38a274e5d96bcc438b985078907679dd9ee6241a6fcd4a647c26f5c05f088d7329afdbce9f0ab79620166ac0c6d1d2a6f55faec41701f31528deefc794e7409fa7b134beeefc829656c7e2c25c1bf5a847042c9a908b63f155804b8f31f4364f5e3ead3702ff25b25fadd23634c135344e075ad53f2507acba1cc3b5ad2ce707c43f0fac4866e88421c9c736797f08b00be2cfb333d8fe94ce28eee4760648e4ed3fae06be33745adc84681d1c6f6de07dc6d2b910ff609574fb87ce8a45796d6f884e75f869e9e01f4f9e810af5d831f665a50f964bdcb487aa35062b07d4a8eb890a5b547d591da54276f90496ce724da71222bb6b486d0b96cedffa22272b1f8d41dc58f495057f043afe10c8e40a1a5dc169c54323fd9efc9e5f7b9104a79edeb8f5d9e5fc5f05fa628b3f07514dc502a86c76c63c0b351994c33e90ec04a962584310f62048000fd7be9cbd6feebebafbff66a65ce0fee29a335a5fef834b4a61e8de2b29796346ff7c986294f6155e15545412cbf90c698d5ab176affaeb6446c08583addcb17ed9b6189cc88006489b63f3c960712ed735ddda3a38885a79c163d87ef2466d5ea4087442991f46f37aca80066d450e5e5bbc405c166bda860739caa48d8ff725612cffab9a550061b5e978f27d7c0cc567c5fe6a12a25caba1c6c76975d4328cd97070440358069e42a89d5dbb36da47c5b2172ff69abe766abade669c5aea2708017522fd0d8908cbcaeb69d9fe16e07bf1591f271046cba8270e9520881f0e405bbb04dff013ff7cf82600253b6332a48beb91f19f9212624881ce832e656205cdb3f91c60ad7c1795b1726a481ec85ed6461a22fc7ec6e28b1465c290968041b8ee76fa50e1bb49dc9e46ea1f602bbe4acbbe3d09a9021978fce3b6122c36ed16aec87c6cf53d095711772247c98441067349cdae2a3cda49d640eb21d1f58f15343330479b96c86c0979d074d0e7cd71b928168d05b71cb5c1169937ee3577900a79c204a82f10ed27363b81b23c3c8ee4b479bc32c2f6f5ecd71e123dbb04bc4dd59825764e4acf671b11efc05d8ae61440cf3dac9e78da0dc8c9e8606c198f1780e9c96b09fac4936b9d6ccd3914dfdddf777f2f775ac39429731fbf970288e96be33eaf0337bdf328522d86b3c0530156c727d3799b68480190a124923cc8839d0676646ce0fa9d75bcb5c8c412977322c3debdc9fa19409740057629848e663487605b0d328564035c2e7f11482b37523a1da11d30398f5c83895da02f1ce25803d3d4c130ed8939c14aa4c2f5be3178d4e5401479925c85fafb99da1803eb93148683f1e9122f4ca8870bc14162001234980278d96bef93f7a60a79eedfb3fc280a7cc9568c5a2b326d3f4a08a562dcbd0872d231ab7c46faa3fb6f05f00535d65049912245b8f739e33a749264f90a19245d735ab6ab5136fd52bb59c468ae78b22d8b03621ebb413cff19df4db78f57281e54afe12192add1f9b38fe13819e0cc5d26557bc9a6833cee40b020816113d906a29037f58fb95cd9f09c3f78827733adc3fbd6be2c5e88fa5776e589bc4d2adedd934fd43125baadcbd58dd121376fac53b8a9e703434b40ef1032d62f4f39a9106eb314c5c57156d60786c39e6f410c32dbac9be6ce4ca39da748acf7cd94ac91c1e1667cf05b6cdf0a93b245fdc65e40fe90e19fef8c4cd1080c9de8e9af31a1c6d169b79e363ec09a167c220c145e93cc7254eff97029084471490311c76731489d487af74bf21835606a39c67ad8d3ea3b09492a710484a21986b5c80915ff27e9a2d55888e973a1ec3f0257ff3a2cedaf0d84da84f82d9f90103d3200c3bad8c7e919e0e2d3ff93d217a57ed3a3e2eb7689e7fa9a894c6db74fde5f0b276b7ee387fa17db60afd9ed6b20a3585cb472d5118f31b60b8e3ca301a1928d1dffc04970b3ce638b070b48fe12792a062125f3931f02a8cf0338c0b416c6f4a6a45bed748b907eec8531b1095e7ebf992b065f0afbd705804882acde31b90eb605656de024c41316a02aab4d824a334a0d66414a302c0cda1fe3c12357e5fb8185060ded6b0f687e1dd274107e3f3527b66e984a6fb293beea9f43721111679880fc4bba92f3967d4aed1e7ffbf6646cf7e0487e54cae016de554248f7da8c3691b288921b998dc2503bb26634507660ff3e4ff2d1ec24392d7236e82c7bb68251d78891039dcdf459ee6e3cd2d8b18cd965744298fcad4c962a79b69ddb373bfdb8208797914c08e40bc9e72b65939b71dfdc3564e235e7c479cb9abb9a60fd21ccb62948e1b7a7b7da09aa1addeeea2d29b3c518fb64069812a2282609b9ff99edc60920cffbf6ef606b50d90b9df2604e6b16b3b272e37e90b1b72875526b18cce505591f11074d092e052a461ba1a315d66ac73fddbf8b7510159f53b542e59bd6f80e8d0a7724b0bf391f52968238a4af06e29b85f517aec7951e06fb492361ca122b65ef44575cec9973ec0ee699e3eac1c380075966e9ce785c66fa32ff2e2dd5f2e5d90a193edcd55cccb9878f2015a8b36dad38718941675757e906139fcc97d72bdcbfd510e81c025f9bf4c23c8a63ff559d3a6d41ef602cbb7517bbae94166e4d8148fa98316c7a75ed8cb997ad30fe7ab76291b4ad4d6583803eb469f0b4d1a6a0465e1a80f99510d2ac77a2401c622f558a61296431d0f8327466616bb42d37b8b5dad27591964fb67ebf6b98d1ad845004e46cc0f55d55df35440cdf3a5cc1dff70a5224a8858f1d288b22dfe8fc44f1cd3a6f1d0d5d642924094bddd22730ae4714dd91c9b27b984dbec61a94248dd13cc8f17743bbaca388b41938a15625fe662a15d40b026364506cccabd0957ea88242e5d63ea0925894fa64381450b658ad69c6571efcd704a81734d7c06c59a3559c900dbf7a619ab081a9dce098faf8f850072834f7dc9cf46314376ba9fd3fdbe9d2462be4b28a236d14d6ddc020569514318b95a4f88075396eff3b9133b47017afb6d4c95cdcf221dc8822ddfcf5be516651219b2c2f645a1bda357301ce28ef2835ce6deefe50d28cb559669b109c80bbaac9e5149e907b184f821b7af983a20eb2d9bc94ae7e82090166bf2a7fff9df39b639c1699245eaeba678d679666879a751101a18cb86e12be9fec36488f1a9a27d1d519bc411701ea3e165e5d49a251deb873dfa76c489bbddce749f51b030a73af448b7b67e113953d4424c77949227eafed23c4de426d43e9bbd9ab14b57c9d45fe2d6920752cbc195cd0d8321226ea871f29603755ce9955c1703d350ddf61955aa354875f56a8b7b5b988fd0ab14f1daa92aac9b7561d1bc337b69cc1ad73815394e32f0c7986f14b998355782171e8ccfb8fbc08a1a11f4c7fb9b0dbbb3758f098aeb2a2d5d875866647e450108458f7f83ee5773433e3befb6457d1be376865fff2aa73a003304fd91d4550ec2a5eaee90475f3c28b6c3a8d8c11feaab5efe633eef30526ea89269883b34b32c62f4ddc12bed1654cea5742d1cb54214a234a68ccca2579de0e97dfa8daa2d96da556bdccd1d858bd1034c4a897b8105e2610aca0cc0393644f9323de6a10cc2317b78c80ce69640dab430dc7550624388a18ae2ea4ad8099069dd62bc7d4612006be47a5f0ef755726b2c4598a03995884a05d93252173b8584e67eed7b4fdae782dc83260934e004c1f3a5314b0dd506bbcba2f02b1ee007ee40ed875bab6ab713ae5672f39b62bf17c5196c8a8508004471795dc3ec7b811c143a6dc85c5d2c709d54492742acb68fff3c410e503ddc6a9d706e0de3005c8eb21493fad0f339e87151ad71c7367fc802bc8d457dd6164fe25c4d4021cf9938698883165826673fa471d287d096ac4de39134ae1b48a833ff507697f2d78621b618d704413343b204a77cfb80aa7f0a743ed069b82fb22ec4af05711ea7819c565a688fc7b2c881492498a264c293192d0237d2cbee66206b645fef9df77867406558fe333f039407e1ad16d720f3522e3893e3143c396e7e8fdd87af8e7a577cc504536142eb33e4e4746ccefecbdbfe658cb9c801d805d1619010b799aac4022374d5e1dc95cdffb149b75436331cff6c4ce49e1594686d8fee137ce4f78fbbcf4538b349c9057d2609cb43f4f911bea4581c9b2879fcbaab3b1ae36b83bce833a466df8896ef306227e02b5d459494bc38a66f94bcbafe0abe7a69a62c6d3796954eeaf8f9223f3f466b9b9170944f6d0ace522f69e76515bee609066d9513c7f04a45029cad978b6e491342226d5bfbc7536b15a66b1393365cff907ca93f5f5b5871424b8a09e84458fa31ff370e6ddcac1c503e21beeeb5e0563899e80875b9799c041db3f0c288d0b4c16358a67a75a68f806a6d914cd71e26826cc339048de43e0241e5217b8b98e3f4ecb9cf53a3acec9565d83bf809b20eb8353da8e872939068522e4face8300928c30891e0fc7ddab1d26a86c3ad79a6e74abb0eeaca5df2c893703166f753f7fb80bcd30cf15885f1c2dd3d3cf4277f11564193f140ccc054dd1399741ec8234990d1c86c2b7165341dece436445b534d82650ead9abeb7e479889e2608e0b5c78c694b5a1e7c306285c2d783e76d0f2f24251325445e736aee0df01b5557641c8fed6a1c111f968ffcf02e4</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入阅读密码~</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>复盘</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>工具类</title>
     <url>/%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
     <content><![CDATA[<blockquote>
@@ -208,6 +208,31 @@
       </categories>
       <tags>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>带标题及单元格合并的easyExcel导出表格</title>
+    <url>/%E5%B8%A6%E6%A0%87%E9%A2%98%E5%8F%8A%E5%8D%95%E5%85%83%E6%A0%BC%E5%90%88%E5%B9%B6%E7%9A%84easyExcel%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC/</url>
+    <content><![CDATA[<h1 id="easyExcel导出表格（有标题、单元格合并）"><a href="#easyExcel导出表格（有标题、单元格合并）" class="headerlink" title="easyExcel导出表格（有标题、单元格合并）"></a>easyExcel导出表格（有标题、单元格合并）</h1><blockquote>
+<p>如何过一天，就如何过一生。</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>最近工作上遇到了xlsx格式报表的导出，导出的数据存在父子关系，即相当于树形数据，有单元格合并和标题形式的要求，查阅了一些资料，总算是弄出来了，这里另写一个小样简单分享一下关于easyExcel导出具有合并单元格和标题的小结 代码，也算记录一下自己的工作学习。</p>
+<h3 id="2、代码"><a href="#2、代码" class="headerlink" title="2、代码"></a>2、代码</h3><p><img src="https://img-blog.csdnimg.cn/20201123150059385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMTAzNzA2,size_16,color_FFFFFF,t_70#pic_center" alt="demo目录格式"><br>（目录及代码仅为实现，勿纠结格式和规范问题/捂脸）</p>
+<h4 id="easyExcel依赖"><a href="#easyExcel依赖" class="headerlink" title="easyExcel依赖"></a>easyExcel依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>easyexcel<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="controller层"><a href="#controller层" class="headerlink" title="controller层"></a>controller层</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.EasyExcel;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.support.ExcelTypeEnum;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.BizMergeStrategy;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.RowRangeDto;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.TitleSheetWriteHandler;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.URLEncoder;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 该类的描述</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/23 11:31</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EasyExcelController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/excel&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excel</span><span class="params">(HttpServletResponse response)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap = BizMergeStrategy.addAnnualMerStrategy(data());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            response.setContentType(<span class="string">&quot;application/vnd.ms-excel&quot;</span>);</span><br><span class="line">            response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            <span class="comment">// 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系</span></span><br><span class="line">            String filename = URLEncoder.encode(<span class="string">&quot;用户表测试&quot;</span>, <span class="string">&quot;UTF-8&quot;</span>).replaceAll(<span class="string">&quot;\\+&quot;</span>, <span class="string">&quot;%20&quot;</span>);</span><br><span class="line">            response.setHeader(<span class="string">&quot;Content-disposition&quot;</span>, <span class="string">&quot;attachment;filename=&quot;</span> + filename + <span class="string">&quot;.xlsx&quot;</span>);</span><br><span class="line"></span><br><span class="line">            EasyExcel.write(response.getOutputStream(), User.class)</span><br><span class="line">                    .excelType(ExcelTypeEnum.XLSX).head(User.class)</span><br><span class="line">                    .registerWriteHandler(<span class="keyword">new</span> TitleSheetWriteHandler(<span class="string">&quot;我是一个小标题&quot;</span>,<span class="number">2</span>)) <span class="comment">// 标题及样式，lastCol为标题第0列到底lastCol列的宽度</span></span><br><span class="line">                    <span class="comment">//设置默认样式及写入头信息开始的行数</span></span><br><span class="line">                    .relativeHeadRowIndex(<span class="number">1</span>)</span><br><span class="line">                    .registerWriteHandler(<span class="keyword">new</span> BizMergeStrategy(strategyMap))    <span class="comment">// 注册合并策略</span></span><br><span class="line">                    .registerWriteHandler(BizMergeStrategy.CellStyleStrategy()) <span class="comment">// 设置样式</span></span><br><span class="line">                    .sheet(<span class="string">&quot;测试&quot;</span>)</span><br><span class="line">                    .doWrite(data());</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            response.reset();</span><br><span class="line">            response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            response.setContentType(<span class="string">&quot;application/json&quot;</span>);</span><br><span class="line">            response.getWriter().println(<span class="string">&quot;打印失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">private</span> List&lt;User&gt; <span class="title">data</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        User user = <span class="keyword">new</span> User(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;张三&quot;</span>,<span class="string">&quot;总裁&quot;</span>);</span><br><span class="line">        User user1 = <span class="keyword">new</span> User(<span class="string">&quot;2&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;总经理&quot;</span>);</span><br><span class="line">        User user2 = <span class="keyword">new</span> User(<span class="string">&quot;3&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;技术员&quot;</span>);</span><br><span class="line">        User user3 = <span class="keyword">new</span> User(<span class="string">&quot;4&quot;</span>,<span class="string">&quot;王五&quot;</span>,<span class="string">&quot;技术员&quot;</span>);</span><br><span class="line"></span><br><span class="line">        list.add(user);</span><br><span class="line">        list.add(user1);</span><br><span class="line">        list.add(user2);</span><br><span class="line">        list.add(user3);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.annotation.ExcelProperty;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.annotation.write.style.ColumnWidth;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 该类的描述</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/23 11:28</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ColumnWidth(10)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;id&quot;&#125;, index = 0)</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnWidth(20)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;名字&quot;&#125;, index = 1)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnWidth(20)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;职位&quot;&#125;, index = 2)</span></span><br><span class="line">    <span class="keyword">private</span> String postion; <span class="comment">//职位</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String id,String name,String postion)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.postion = postion;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPostion</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> postion;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPostion</span><span class="params">(String postion)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.postion = postion;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="策略及其他"><a href="#策略及其他" class="headerlink" title="策略及其他"></a>策略及其他</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.metadata.Head;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.merge.AbstractMergeStrategy;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.style.WriteCellStyle;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.style.WriteFont;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.style.HorizontalCellStyleStrategy;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.usermodel.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.util.CellRangeAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: 合并策略和样式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/20 17:24</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BizMergeStrategy</span> <span class="keyword">extends</span> <span class="title">AbstractMergeStrategy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap;</span><br><span class="line">    <span class="keyword">private</span> Sheet sheet;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BizMergeStrategy</span><span class="params">(Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.strategyMap = strategyMap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(Sheet sheet, Cell cell, Head head, Integer integer)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sheet = sheet;</span><br><span class="line">        <span class="comment">//如果没有标题，只有表头的话，这里的 cell.getRowIndex() == 1</span></span><br><span class="line">        <span class="keyword">if</span> (cell.getRowIndex() == <span class="number">2</span> &amp;&amp; cell.getColumnIndex() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 保证每个cell被合并一次，如果不加上面的判断，因为是一个cell一个cell操作的，</span></span><br><span class="line"><span class="comment">             * 例如合并A2:A3,当cell为A2时，合并A2,A3，但是当cell为A3时，又是合并A2,A3，</span></span><br><span class="line"><span class="comment">             * 但此时A2,A3已经是合并的单元格了</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">for</span> (Map.Entry&lt;String, List&lt;RowRangeDto&gt;&gt; entry : strategyMap.entrySet()) &#123;</span><br><span class="line">                Integer columnIndex = Integer.valueOf(entry.getKey());</span><br><span class="line">                entry.getValue().forEach(rowRange -&gt; &#123;</span><br><span class="line">                    <span class="comment">//添加一个合并请求</span></span><br><span class="line">                    sheet.addMergedRegionUnsafe(<span class="keyword">new</span> CellRangeAddress(rowRange.getStart(),</span><br><span class="line">                            rowRange.getEnd(), columnIndex, columnIndex));</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, List&lt;RowRangeDto&gt;&gt; addAnnualMerStrategy(List&lt;User&gt; projectDtoList) &#123;</span><br><span class="line">        Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        User preUser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; projectDtoList.size(); i++) &#123;</span><br><span class="line">            User curUser = projectDtoList.get(i);</span><br><span class="line">            <span class="comment">//如果名字一样，将名字合并（真正开发中一般不会通过名字这样字段，而是通过一些关联的唯一值，比如父id）</span></span><br><span class="line">            <span class="keyword">if</span> (preUser != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (curUser.getName() == preUser.getName())&#123;    <span class="comment">// 名字相同则合并第一列</span></span><br><span class="line"><span class="comment">//                    BizMergeStrategy.fillStrategyMap(strategyMap, &quot;0&quot;, i+1);</span></span><br><span class="line">                    <span class="comment">//如果没有标题，只有表头的话，这里为 BizMergeStrategy.fillStrategyMap(strategyMap, &quot;1&quot;, i);</span></span><br><span class="line">                    BizMergeStrategy.fillStrategyMap(strategyMap, <span class="string">&quot;1&quot;</span>, i+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            preUser = curUser;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> strategyMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@description</span>: 新增或修改合并策略map</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> strategyMap</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 2020/11/17 17:32</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fillStrategyMap</span><span class="params">(Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap, String key, <span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        List&lt;RowRangeDto&gt; rowRangeDtoList = strategyMap.get(key) == <span class="keyword">null</span> ? <span class="keyword">new</span> ArrayList&lt;&gt;() : strategyMap.get(key);</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (RowRangeDto dto : rowRangeDtoList) &#123;</span><br><span class="line">            <span class="comment">//分段list中是否有end索引是上一行索引的，如果有，则索引+1</span></span><br><span class="line">            <span class="keyword">if</span> (dto.getEnd() == index) &#123;</span><br><span class="line">                dto.setEnd(index + <span class="number">1</span>);</span><br><span class="line">                flag = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果没有，则新增分段</span></span><br><span class="line">        <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">            rowRangeDtoList.add(<span class="keyword">new</span> RowRangeDto(index, index + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        strategyMap.put(key, rowRangeDtoList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@description</span>: 表格样式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 2020/11/20 9:40</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HorizontalCellStyleStrategy <span class="title">CellStyleStrategy</span><span class="params">()</span></span>&#123;</span><br><span class="line">        WriteCellStyle headWriteCellStyle = <span class="keyword">new</span> WriteCellStyle();</span><br><span class="line">        <span class="comment">//设置背景颜色</span></span><br><span class="line">        headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());</span><br><span class="line">        <span class="comment">//设置头字体</span></span><br><span class="line">        WriteFont headWriteFont = <span class="keyword">new</span> WriteFont();</span><br><span class="line">        headWriteFont.setFontHeightInPoints((<span class="keyword">short</span>)<span class="number">13</span>);</span><br><span class="line">        headWriteFont.setBold(<span class="keyword">true</span>);</span><br><span class="line">        headWriteCellStyle.setWriteFont(headWriteFont);</span><br><span class="line">        <span class="comment">//设置头居中</span></span><br><span class="line">        headWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        <span class="comment">//内容策略</span></span><br><span class="line">        WriteCellStyle contentWriteCellStyle = <span class="keyword">new</span> WriteCellStyle();</span><br><span class="line">        <span class="comment">//设置 水平居中</span></span><br><span class="line">        contentWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        contentWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">        HorizontalCellStyleStrategy horizontalCellStyleStrategy = <span class="keyword">new</span> HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);</span><br><span class="line">        <span class="keyword">return</span> horizontalCellStyleStrategy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RowRangeDto</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> start;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> end;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RowRangeDto</span><span class="params">(<span class="keyword">int</span> start,<span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStart</span><span class="params">(<span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEnd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEnd</span><span class="params">(<span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.handler.SheetWriteHandler;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.holder.WriteSheetHolder;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.holder.WriteWorkbookHolder;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.usermodel.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.util.CellRangeAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TitleSheetWriteHandler</span> <span class="keyword">implements</span> <span class="title">SheetWriteHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lastCol;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TitleSheetWriteHandler</span><span class="params">(String title,<span class="keyword">int</span> lastCol)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.title = title;</span><br><span class="line">        <span class="keyword">this</span>.lastCol = lastCol;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> </span>&#123;</span><br><span class="line">        Workbook workbook = writeWorkbookHolder.getWorkbook();</span><br><span class="line">        Sheet sheet = workbook.getSheetAt(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//设置标题</span></span><br><span class="line">        Row row = sheet.createRow(<span class="number">0</span>);</span><br><span class="line">        row.setHeight((<span class="keyword">short</span>) <span class="number">800</span>);</span><br><span class="line">        Cell cell = row.createCell(<span class="number">0</span>);</span><br><span class="line">        cell.setCellValue(title);</span><br><span class="line">        CellStyle cellStyle = workbook.createCellStyle();</span><br><span class="line">        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">        cellStyle.setAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        Font font = workbook.createFont();</span><br><span class="line">        font.setBold(<span class="keyword">true</span>);</span><br><span class="line">        font.setFontHeight((<span class="keyword">short</span>) <span class="number">400</span>);</span><br><span class="line">        cellStyle.setFont(font);</span><br><span class="line">        cell.setCellStyle(cellStyle);</span><br><span class="line">        sheet.addMergedRegionUnsafe(<span class="keyword">new</span> CellRangeAddress(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, lastCol));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里为该demo的全部代码，使用时新建一个项目，直接复制粘贴过去，运行即可。<br>借鉴了不少网上的资料，有部分内容本人还尚未搞明白，有不明白可以留言互相探讨。<br>借鉴连接：<br><a href="https://blog.csdn.net/qq_41514643/article/details/106993760">1、这老哥的文档帮了极大忙，感谢！/抱拳</a><br><a href="2%E3%80%81https://blog.csdn.net/Aeve_imp/article/details/104910080/">2、这老哥的文档也很详细</a><br><a href="https://www.yuque.com/easyexcel">3、语雀官网</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>easyExcel</tag>
       </tags>
   </entry>
   <entry>
@@ -244,31 +269,6 @@
       </tags>
   </entry>
   <entry>
-    <title>带标题及单元格合并的easyExcel导出表格</title>
-    <url>/%E5%B8%A6%E6%A0%87%E9%A2%98%E5%8F%8A%E5%8D%95%E5%85%83%E6%A0%BC%E5%90%88%E5%B9%B6%E7%9A%84easyExcel%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC/</url>
-    <content><![CDATA[<h1 id="easyExcel导出表格（有标题、单元格合并）"><a href="#easyExcel导出表格（有标题、单元格合并）" class="headerlink" title="easyExcel导出表格（有标题、单元格合并）"></a>easyExcel导出表格（有标题、单元格合并）</h1><blockquote>
-<p>如何过一天，就如何过一生。</p>
-</blockquote>
-<a id="more"></a>
-
-<h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>最近工作上遇到了xlsx格式报表的导出，导出的数据存在父子关系，即相当于树形数据，有单元格合并和标题形式的要求，查阅了一些资料，总算是弄出来了，这里另写一个小样简单分享一下关于easyExcel导出具有合并单元格和标题的小结 代码，也算记录一下自己的工作学习。</p>
-<h3 id="2、代码"><a href="#2、代码" class="headerlink" title="2、代码"></a>2、代码</h3><p><img src="https://img-blog.csdnimg.cn/20201123150059385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMTAzNzA2,size_16,color_FFFFFF,t_70#pic_center" alt="demo目录格式"><br>（目录及代码仅为实现，勿纠结格式和规范问题/捂脸）</p>
-<h4 id="easyExcel依赖"><a href="#easyExcel依赖" class="headerlink" title="easyExcel依赖"></a>easyExcel依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>easyexcel<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="controller层"><a href="#controller层" class="headerlink" title="controller层"></a>controller层</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.EasyExcel;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.support.ExcelTypeEnum;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.BizMergeStrategy;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.RowRangeDto;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.dto.TitleSheetWriteHandler;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.URLEncoder;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 该类的描述</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/23 11:31</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EasyExcelController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/excel&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excel</span><span class="params">(HttpServletResponse response)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap = BizMergeStrategy.addAnnualMerStrategy(data());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            response.setContentType(<span class="string">&quot;application/vnd.ms-excel&quot;</span>);</span><br><span class="line">            response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            <span class="comment">// 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系</span></span><br><span class="line">            String filename = URLEncoder.encode(<span class="string">&quot;用户表测试&quot;</span>, <span class="string">&quot;UTF-8&quot;</span>).replaceAll(<span class="string">&quot;\\+&quot;</span>, <span class="string">&quot;%20&quot;</span>);</span><br><span class="line">            response.setHeader(<span class="string">&quot;Content-disposition&quot;</span>, <span class="string">&quot;attachment;filename=&quot;</span> + filename + <span class="string">&quot;.xlsx&quot;</span>);</span><br><span class="line"></span><br><span class="line">            EasyExcel.write(response.getOutputStream(), User.class)</span><br><span class="line">                    .excelType(ExcelTypeEnum.XLSX).head(User.class)</span><br><span class="line">                    .registerWriteHandler(<span class="keyword">new</span> TitleSheetWriteHandler(<span class="string">&quot;我是一个小标题&quot;</span>,<span class="number">2</span>)) <span class="comment">// 标题及样式，lastCol为标题第0列到底lastCol列的宽度</span></span><br><span class="line">                    <span class="comment">//设置默认样式及写入头信息开始的行数</span></span><br><span class="line">                    .relativeHeadRowIndex(<span class="number">1</span>)</span><br><span class="line">                    .registerWriteHandler(<span class="keyword">new</span> BizMergeStrategy(strategyMap))    <span class="comment">// 注册合并策略</span></span><br><span class="line">                    .registerWriteHandler(BizMergeStrategy.CellStyleStrategy()) <span class="comment">// 设置样式</span></span><br><span class="line">                    .sheet(<span class="string">&quot;测试&quot;</span>)</span><br><span class="line">                    .doWrite(data());</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            response.reset();</span><br><span class="line">            response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            response.setContentType(<span class="string">&quot;application/json&quot;</span>);</span><br><span class="line">            response.getWriter().println(<span class="string">&quot;打印失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">private</span> List&lt;User&gt; <span class="title">data</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        User user = <span class="keyword">new</span> User(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;张三&quot;</span>,<span class="string">&quot;总裁&quot;</span>);</span><br><span class="line">        User user1 = <span class="keyword">new</span> User(<span class="string">&quot;2&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;总经理&quot;</span>);</span><br><span class="line">        User user2 = <span class="keyword">new</span> User(<span class="string">&quot;3&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;技术员&quot;</span>);</span><br><span class="line">        User user3 = <span class="keyword">new</span> User(<span class="string">&quot;4&quot;</span>,<span class="string">&quot;王五&quot;</span>,<span class="string">&quot;技术员&quot;</span>);</span><br><span class="line"></span><br><span class="line">        list.add(user);</span><br><span class="line">        list.add(user1);</span><br><span class="line">        list.add(user2);</span><br><span class="line">        list.add(user3);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.annotation.ExcelProperty;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.annotation.write.style.ColumnWidth;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 该类的描述</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/23 11:28</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ColumnWidth(10)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;id&quot;&#125;, index = 0)</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnWidth(20)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;名字&quot;&#125;, index = 1)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnWidth(20)</span></span><br><span class="line">    <span class="meta">@ExcelProperty(value = &#123;&quot;职位&quot;&#125;, index = 2)</span></span><br><span class="line">    <span class="keyword">private</span> String postion; <span class="comment">//职位</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String id,String name,String postion)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.postion = postion;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPostion</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> postion;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPostion</span><span class="params">(String postion)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.postion = postion;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="策略及其他"><a href="#策略及其他" class="headerlink" title="策略及其他"></a>策略及其他</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.metadata.Head;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.merge.AbstractMergeStrategy;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.style.WriteCellStyle;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.style.WriteFont;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.style.HorizontalCellStyleStrategy;</span><br><span class="line"><span class="keyword">import</span> easyexceldemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.usermodel.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.util.CellRangeAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: 合并策略和样式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/20 17:24</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BizMergeStrategy</span> <span class="keyword">extends</span> <span class="title">AbstractMergeStrategy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap;</span><br><span class="line">    <span class="keyword">private</span> Sheet sheet;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BizMergeStrategy</span><span class="params">(Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.strategyMap = strategyMap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(Sheet sheet, Cell cell, Head head, Integer integer)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sheet = sheet;</span><br><span class="line">        <span class="comment">//如果没有标题，只有表头的话，这里的 cell.getRowIndex() == 1</span></span><br><span class="line">        <span class="keyword">if</span> (cell.getRowIndex() == <span class="number">2</span> &amp;&amp; cell.getColumnIndex() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 保证每个cell被合并一次，如果不加上面的判断，因为是一个cell一个cell操作的，</span></span><br><span class="line"><span class="comment">             * 例如合并A2:A3,当cell为A2时，合并A2,A3，但是当cell为A3时，又是合并A2,A3，</span></span><br><span class="line"><span class="comment">             * 但此时A2,A3已经是合并的单元格了</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">for</span> (Map.Entry&lt;String, List&lt;RowRangeDto&gt;&gt; entry : strategyMap.entrySet()) &#123;</span><br><span class="line">                Integer columnIndex = Integer.valueOf(entry.getKey());</span><br><span class="line">                entry.getValue().forEach(rowRange -&gt; &#123;</span><br><span class="line">                    <span class="comment">//添加一个合并请求</span></span><br><span class="line">                    sheet.addMergedRegionUnsafe(<span class="keyword">new</span> CellRangeAddress(rowRange.getStart(),</span><br><span class="line">                            rowRange.getEnd(), columnIndex, columnIndex));</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, List&lt;RowRangeDto&gt;&gt; addAnnualMerStrategy(List&lt;User&gt; projectDtoList) &#123;</span><br><span class="line">        Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        User preUser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; projectDtoList.size(); i++) &#123;</span><br><span class="line">            User curUser = projectDtoList.get(i);</span><br><span class="line">            <span class="comment">//如果名字一样，将名字合并（真正开发中一般不会通过名字这样字段，而是通过一些关联的唯一值，比如父id）</span></span><br><span class="line">            <span class="keyword">if</span> (preUser != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (curUser.getName() == preUser.getName())&#123;    <span class="comment">// 名字相同则合并第一列</span></span><br><span class="line"><span class="comment">//                    BizMergeStrategy.fillStrategyMap(strategyMap, &quot;0&quot;, i+1);</span></span><br><span class="line">                    <span class="comment">//如果没有标题，只有表头的话，这里为 BizMergeStrategy.fillStrategyMap(strategyMap, &quot;1&quot;, i);</span></span><br><span class="line">                    BizMergeStrategy.fillStrategyMap(strategyMap, <span class="string">&quot;1&quot;</span>, i+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            preUser = curUser;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> strategyMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@description</span>: 新增或修改合并策略map</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> strategyMap</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 2020/11/17 17:32</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fillStrategyMap</span><span class="params">(Map&lt;String, List&lt;RowRangeDto&gt;&gt; strategyMap, String key, <span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        List&lt;RowRangeDto&gt; rowRangeDtoList = strategyMap.get(key) == <span class="keyword">null</span> ? <span class="keyword">new</span> ArrayList&lt;&gt;() : strategyMap.get(key);</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (RowRangeDto dto : rowRangeDtoList) &#123;</span><br><span class="line">            <span class="comment">//分段list中是否有end索引是上一行索引的，如果有，则索引+1</span></span><br><span class="line">            <span class="keyword">if</span> (dto.getEnd() == index) &#123;</span><br><span class="line">                dto.setEnd(index + <span class="number">1</span>);</span><br><span class="line">                flag = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果没有，则新增分段</span></span><br><span class="line">        <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">            rowRangeDtoList.add(<span class="keyword">new</span> RowRangeDto(index, index + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        strategyMap.put(key, rowRangeDtoList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@description</span>: 表格样式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 2020/11/20 9:40</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HorizontalCellStyleStrategy <span class="title">CellStyleStrategy</span><span class="params">()</span></span>&#123;</span><br><span class="line">        WriteCellStyle headWriteCellStyle = <span class="keyword">new</span> WriteCellStyle();</span><br><span class="line">        <span class="comment">//设置背景颜色</span></span><br><span class="line">        headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());</span><br><span class="line">        <span class="comment">//设置头字体</span></span><br><span class="line">        WriteFont headWriteFont = <span class="keyword">new</span> WriteFont();</span><br><span class="line">        headWriteFont.setFontHeightInPoints((<span class="keyword">short</span>)<span class="number">13</span>);</span><br><span class="line">        headWriteFont.setBold(<span class="keyword">true</span>);</span><br><span class="line">        headWriteCellStyle.setWriteFont(headWriteFont);</span><br><span class="line">        <span class="comment">//设置头居中</span></span><br><span class="line">        headWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        <span class="comment">//内容策略</span></span><br><span class="line">        WriteCellStyle contentWriteCellStyle = <span class="keyword">new</span> WriteCellStyle();</span><br><span class="line">        <span class="comment">//设置 水平居中</span></span><br><span class="line">        contentWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        contentWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">        HorizontalCellStyleStrategy horizontalCellStyleStrategy = <span class="keyword">new</span> HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);</span><br><span class="line">        <span class="keyword">return</span> horizontalCellStyleStrategy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RowRangeDto</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> start;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> end;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RowRangeDto</span><span class="params">(<span class="keyword">int</span> start,<span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStart</span><span class="params">(<span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEnd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEnd</span><span class="params">(<span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> easyexceldemo.dto;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.handler.SheetWriteHandler;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.holder.WriteSheetHolder;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.holder.WriteWorkbookHolder;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.usermodel.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.util.CellRangeAddress;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TitleSheetWriteHandler</span> <span class="keyword">implements</span> <span class="title">SheetWriteHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lastCol;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TitleSheetWriteHandler</span><span class="params">(String title,<span class="keyword">int</span> lastCol)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.title = title;</span><br><span class="line">        <span class="keyword">this</span>.lastCol = lastCol;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> </span>&#123;</span><br><span class="line">        Workbook workbook = writeWorkbookHolder.getWorkbook();</span><br><span class="line">        Sheet sheet = workbook.getSheetAt(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//设置标题</span></span><br><span class="line">        Row row = sheet.createRow(<span class="number">0</span>);</span><br><span class="line">        row.setHeight((<span class="keyword">short</span>) <span class="number">800</span>);</span><br><span class="line">        Cell cell = row.createCell(<span class="number">0</span>);</span><br><span class="line">        cell.setCellValue(title);</span><br><span class="line">        CellStyle cellStyle = workbook.createCellStyle();</span><br><span class="line">        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">        cellStyle.setAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        Font font = workbook.createFont();</span><br><span class="line">        font.setBold(<span class="keyword">true</span>);</span><br><span class="line">        font.setFontHeight((<span class="keyword">short</span>) <span class="number">400</span>);</span><br><span class="line">        cellStyle.setFont(font);</span><br><span class="line">        cell.setCellStyle(cellStyle);</span><br><span class="line">        sheet.addMergedRegionUnsafe(<span class="keyword">new</span> CellRangeAddress(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, lastCol));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里为该demo的全部代码，使用时新建一个项目，直接复制粘贴过去，运行即可。<br>借鉴了不少网上的资料，有部分内容本人还尚未搞明白，有不明白可以留言互相探讨。<br>借鉴连接：<br><a href="https://blog.csdn.net/qq_41514643/article/details/106993760">1、这老哥的文档帮了极大忙，感谢！/抱拳</a><br><a href="2%E3%80%81https://blog.csdn.net/Aeve_imp/article/details/104910080/">2、这老哥的文档也很详细</a><br><a href="https://www.yuque.com/easyexcel">3、语雀官网</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>easyExcel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据加密</title>
     <url>/%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86/</url>
     <content><![CDATA[<blockquote>
@@ -282,35 +282,6 @@
       </categories>
       <tags>
         <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>无题</title>
-    <url>/%E6%97%A0%E9%A2%98/</url>
-    <content><![CDATA[<blockquote>
-<p>因为挑战，才有进步。加油，自己！</p>
-</blockquote>
-<a id="more"></a>
-
-<p>看了两个多小时的技术课程，然而觉得专注的程度总是不够，也许是夏季的到来让我的心绪不免躁动，又或者是想到了今天下午咬着雪糕时经过了两个被父母抱在怀里的孩子的干巴巴目光，又或者是疑惑刚刚回来路上那坐在马路沿子的阿叔在想些什么，总之，脑子里飘忽更多的游离于技术之外的，于是，还是选择了顺从灵魂，由工作转向了更加纯粹的生活。</p>
-<p>此刻，窗外继续下着雨，已经下了两个多小时了，但貌似没有为空气带来丝毫的一丝清凉，不过这淅沥沥的雨声为这夜色带来了更空灵的宁静，但此刻我更愿意戴上耳机，随机放一些自己喜欢的类型的音乐，说来也奇怪，身在北京，给我推荐的第一首竟是《兰州》，难道是在诱惑我去兰州看一看吗~</p>
-<p>其实，在外面的时候时就多次有写东西的冲动，也在记事本上做过一些记录，但奈何一回到宿舍，当时的那种冲动或者说是心境便不复存在了，即便是看着之前的记录，提笔仍旧无从着落，这也是近几年来让我略微难受的一件事，总感觉自己失去了文字叙述的能力，想想自己曾经也是获得过省作文赛一等奖的人呀。不过，细究其中原因，还是有迹可循的，大学以前经常写作文，自己也偶尔有手写记录生活的习惯，然而，大学后，各种原因，动笔变得少了，然后，就出现了现在这样的局面，心中有话，却无从下笔表达。</p>
-<p>近期个人的大事便是上周一入职了第二家公司，一切如同全新开始且具有挑战。</p>
-<p>公司位于国贸附近，早上十点上班，自己基本七点半起床，八点出门，九点二十左右到公司。来北京快一年了，第一份工作的公司离住宿很近，不堵车的情况下半个钟之内就能到达，路上偶尔也挤，但也还能接受，虽也见识过西二旗早高峰的场景，但终究未曾亲历，因而对北漂的挤尚未有过深刻的印象，直到第一天来现在的公司上班的路上，才发现平日同事或者网友的描述并没有夸张一分一毫。自己坐的315路公交转10号线地铁，地铁倒也还可以接受，但是公交的挤那真是让人有点无奈。上公交之后几乎是只能一动不动，生怕碰着踩着了他人，也几次见识了车上乘客间因为拥挤而产生的口水摩擦，不过好的是，因为这一路走的是专有路线，即便早高峰，也并不是特别堵。</p>
-<p>路上的奔波倒无关紧要，不足挂齿，项目上的事才是让自己觉得颇具挑战。入职第一天，公司给配了苹果系统的笔记本，下周也会配上额外的大屏显示器。上家公司的时候是用的个人的笔记本，然后公司每月补贴100元，我也曾幻想过拥有一个大屏的显示器来分屏办公，如今这一愿望将要实现，而且还是配的多数人所向往的苹果，想想心中还是有些许激动，这才是我事业路上最基本的标配吧。</p>
-<p>公司对于项目的管理还有分工上更加的规范，管理的工具上也用了许多我未曾接触过的，目前而言，自己还是有点压力，不过幸好有个同事热情指点帮助。说来也惭愧，同事和我是同一年毕业的，目前也才工作一年，来公司也比我早了一个多月而已，但却发现和他还是有些差距，无论是对项目的理解上，亦或是在团队中的沟通交流上。</p>
-<p>总而言之，需要学习的东西很多，在接下来的日子中，不惧挑战，每天进步，争取早点跟上组织的步伐与节奏，加油，小伙子！！</p>
-<p>（行文至此，本以为能滔滔不绝，行云流水，但仍旧磕磕绊绊且抓不住自己要表达的重点，流水账的叙述也不尽人意，至此停笔，望这个能力今后也应当加强）</p>
-<hr>
-<p>附：</p>
-<p>​    深切悼念二位国之栋梁，</p>
-<p>​    袁老、吴院士，二位走好！</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>北漂</tag>
       </tags>
   </entry>
   <entry>
@@ -357,139 +328,100 @@
       </tags>
   </entry>
   <entry>
-    <title>浅谈ElasticSearch</title>
-    <url>/%E6%B5%85%E8%B0%88ElasticSearch/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p>Elaticsearch，简称为es， es是一个开源的<strong>高扩展</strong>的<strong>分布式全文检索引擎</strong>，它可以近乎<strong>实时的存储、检索数据</strong>；<strong>本身扩展性很好</strong>，可以扩展到上百台服务器，处理PB级别（大数据时代）的数据。es也使用Java开发并使用Lucene作为其核心来实现所有索引和搜索的功能，但是它的目的是<strong>通过简单的RESTfulAPI来隐藏Lucene的复杂性，从而让全文搜索变得简单</strong>。</p>
+    <title>无题</title>
+    <url>/%E6%97%A0%E9%A2%98/</url>
+    <content><![CDATA[<blockquote>
+<p>因为挑战，才有进步。加油，自己！</p>
 </blockquote>
 <a id="more"></a>
 
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
-<p>官网：<a href="https://www.elastic.co/">https://www.elastic.co/</a></p>
-<p>下载地址：<a href="https://www.elastic.co/cn/downloads/elasticsearch">https://www.elastic.co/cn/downloads/elasticsearch</a></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 目录结构</span></span><br><span class="line">bin 启动文件</span><br><span class="line">config 配置文件</span><br><span class="line">	log4j2 日志配置文件</span><br><span class="line">	jvm.options java 虚拟机相关的配置</span><br><span class="line">	elasticsearch.yml  elasticsearch 的配置文件！ 默认 9200 端口！ 跨域！</span><br><span class="line">lib   相关jar包</span><br><span class="line">logs   日志！</span><br><span class="line">modules 功能模块</span><br><span class="line">plugins 插件！</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-解压启动"><a href="#1-解压启动" class="headerlink" title="1.解压启动"></a>1.解压启动</h3><blockquote>
-<p>windows 下进入bin目录，运行elasticsearch.bat,，访问127.0.0.1:9200</p>
-</blockquote>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/9200.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\9200.png" alt="image-20210502183733343"></p>
-<h3 id="2-安装可视化界面-es-head插件（要先装node-js）"><a href="#2-安装可视化界面-es-head插件（要先装node-js）" class="headerlink" title="2.安装可视化界面 es head插件（要先装node.js）"></a>2.安装可视化界面 es head插件（要先装node.js）</h3><ul>
-<li><p>下载地址：<a href="https://github.com/mobz/elasticsearch-head/">https://github.com/mobz/elasticsearch-head/</a></p>
-</li>
-<li><p>启动</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install <span class="comment">#安装依赖</span></span><br><span class="line">npm run start <span class="comment">#正式启动</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>连接测试发现，存在跨域问题，配置es</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http.cors.enabled: <span class="literal">true</span></span><br><span class="line">http.cors.allow-origin: <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>重启es服务器，然后再次连接</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/9100.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\9100.png" alt="image-20210502200832019"></p>
-<p><strong>注意</strong>：存在<strong>跨域问题</strong>，解决方案：在elasticsearch.yml配置文件上添加</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解决跨域问题</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-Kinbanna"><a href="#3-Kinbanna" class="headerlink" title="3.Kinbanna"></a>3.Kinbanna</h3><blockquote>
-<p>官网：<a href="https://www.elastic.co/cn/kibana">https://www.elastic.co/cn/kibana</a><br>Kibana 版本要和 Es 一致！</p>
-</blockquote>
-<h4 id="3-1-了解ELK"><a href="#3-1-了解ELK" class="headerlink" title="3.1 了解ELK"></a>3.1 了解ELK</h4><p>ELK是Elasticsearch、Logstash、Kibana三大开源框架首字母大写简称。市面上也被成为ElasticStack。其中Elasticsearch是一个基于Lucene、分布式、通过Restful方式进行交互的近实时搜索平台框架。像类似百度、谷歌这种大数据全文搜索引擎的场景都可以使用Elasticsearch作为底层支持框架，可见Elasticsearch提供的搜索能力确实强大,市面上很多时候我们简称Elasticsearch为es。Logstash是ELK的中央数据流引擎，用于从不同目标（文件/数据存储/MQ）收集的不同格式数据，经过过滤后支持输出到不同目的地（文件/MQ/redis/elasticsearch/kafka等）。<strong>Kibana可以将elasticsearch的数据通过友好的页面展示出来，提供实时分析的功能</strong>。<br>市面上很多开发只要提到ELK能够一致说出它是一个<strong>日志分析架构技术栈</strong>总称，但实际上ELK不仅仅适用于日志分析，它还可以支持其它任何数据分析和收集的场景，日志分析和收集只是更具有代表性。并非唯一性。</p>
-<h4 id="3-2-了解Kibanna"><a href="#3-2-了解Kibanna" class="headerlink" title="3.2 了解Kibanna"></a>3.2 了解Kibanna</h4><p>Kibana是一个针对Elasticsearch的开源分析及可视化平台，用来搜索、查看交互存储在Elasticsearch索<br>引中的数据。使用Kibana，可以通过各种图表进行高级数据分析及展示。Kibana让海量数据更容易理<br>解。它操作简单，基于浏览器的用户界面可以快速创建仪表板（dashboard）实时显示Elasticsearch查<br>询动态。设置Kibana非常简单。无需编码或者额外的基础架构，几分钟内就可以完成Kibana安装并启动<br>Elasticsearch索引监测。</p>
-<h4 id="3-3-安装启动"><a href="#3-3-安装启动" class="headerlink" title="3.3 安装启动"></a>3.3 安装启动</h4><p>官网下载，直接启动，访问localhost:5601即可</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/kibanna.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\kibanna.png" alt="image-20210502205110512"></p>
-<p>使用kibanna的开发工具</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/kiabana%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\kiabana开发工具.png" alt="image-20210502211723241"></p>
-<h4 id="3-4-汉化"><a href="#3-4-汉化" class="headerlink" title="3.4 汉化"></a>3.4 汉化</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在config.yml添加</span></span><br><span class="line"><span class="attr">i18n.locale:</span> <span class="string">&quot;zh-CN&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
-<p>暂时将索引当做数据库来看待。索引 对应数据库，文档对应 库中的数据。<strong>面向文档，一切皆JSON</strong></p>
-</blockquote>
-<h3 id="1-新建索引概览"><a href="#1-新建索引概览" class="headerlink" title="1.新建索引概览"></a>1.新建索引概览</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E7%B4%A2%E5%BC%95%E6%A6%82%E8%A7%88.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\索引概览.png" alt="image-20210502202031314"></p>
-<h3 id="2-与数据库的映射关系"><a href="#2-与数据库的映射关系" class="headerlink" title="2.与数据库的映射关系"></a>2.与数据库的映射关系</h3><blockquote>
-<p>elasticsearch(集群)中可以包含多个索引(数据库)，每个索引中可以包含多个类型(表)，每个类型下又包含多 个文档(行)，每个文档中又包含多个字段(列)。</p>
-</blockquote>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%AF%94%E8%BE%83.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\和数据库的比较.png" alt="image-20210502213357552"></p>
-<h3 id="3-设计"><a href="#3-设计" class="headerlink" title="3. 设计"></a>3. 设计</h3><ul>
-<li><p>物理设计</p>
-<p>elasticsearch 在后台把每个索引划分成多个分片，每分分片可以在集群中的不同服务器间迁移一个人就是一个集群！默认的集群名称就是elaticsearh。</p>
-</li>
-<li><p>逻辑设计</p>
-<p>一个索引类型中，包含多个文档，比如说文档1，文档2。 当我们索引一篇文档时，可以通过这样的一各顺序找到 它: 索引 ▷ 类型 ▷ 文档ID ，通过这个组合我们就能索引到某个具体的文档。 注意:ID不必是整数，实际上它是个字 符串。</p>
-</li>
-</ul>
-<h3 id="4-倒排索引"><a href="#4-倒排索引" class="headerlink" title="4. 倒排索引"></a>4. 倒排索引</h3><p>elasticsearch使用的是一种称为<strong>倒排索引</strong>的结构，采用Lucene倒排索作为底层。这种结构<strong>适用于快速的全文搜索</strong>， 一个<strong>索引由文档中所有不重复的列表构成</strong>，对于每一个词，都有一个包含它的文档列表。</p>
-<ul>
-<li><p>例子</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\倒排索引.png" alt="image-20210502214814967"></p>
-</li>
-</ul>
-<h3 id="5-安装ik分词插件"><a href="#5-安装ik分词插件" class="headerlink" title="5.安装ik分词插件"></a>5.安装ik分词插件</h3><blockquote>
-<p>1、<a href="https://github.com/medcl/elasticsearch-analysis-ik">https://github.com/medcl/elasticsearch-analysis-ik</a><br>2、下载完毕之后，放入到我们的elasticsearch 插件目录plugins下即可！(注：版本要和elasticsearch一致)</p>
-</blockquote>
-<p>ik提供了两个分词算法：</p>
-<ul>
-<li>ik_smart:最少切分</li>
-<li>ik_max_word:最细粒度切分（穷尽词库的去划分）  字典</li>
-</ul>
-<h3 id="6-使用kibana测试分词效果"><a href="#6-使用kibana测试分词效果" class="headerlink" title="6. 使用kibana测试分词效果"></a>6. 使用kibana测试分词效果</h3><h4 id="6-1效果"><a href="#6-1效果" class="headerlink" title="6.1效果"></a>6.1效果</h4><ul>
-<li><p><strong>ik_smart</strong>分词效果</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/ik_smart%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\ik_smart分词效果.png" alt="image-20210502233716287"></p>
-</li>
-<li><p><strong>ik_max_word</strong> 分词效果</p>
-<img src="/%E6%B5%85%E8%B0%88ElasticSearch/ik_max_word%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\ik_max_word分词效果.png" alt="image-20210502233830186"></p>
-</li>
-</ul>
-<h4 id="6-2问题"><a href="#6-2问题" class="headerlink" title="6.2问题"></a>6.2问题</h4><p>有些字的组成不能被称之为词，比如人名（张三、千仞雪）等，但是我们希望它能当做词来处理，这个时候我们就需要将它放入我们的字典中。</p>
-<h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><ul>
-<li>新建自己的字典文件，my.dic</li>
-<li>在my.dic 文件添加自己的分词，比如千仞雪</li>
-<li>在IKAnalyzer.cfg.xml中添加自己的字典文件 my.dic到扩展字典中</li>
-</ul>
-<h2 id="Restful风格操作"><a href="#Restful风格操作" class="headerlink" title="Restful风格操作"></a>Restful风格操作</h2><img src="/%E6%B5%85%E8%B0%88ElasticSearch/rest%E9%A3%8E%E6%A0%BC.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\rest风格.png" alt="image-20210502235417964"></p>
-<h2 id="SpingBoot整合ES-实战"><a href="#SpingBoot整合ES-实战" class="headerlink" title="SpingBoot整合ES(实战)"></a>SpingBoot整合ES(实战)</h2><blockquote>
-<p>官方文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
-</blockquote>
-<h3 id="获得原生依赖"><a href="#获得原生依赖" class="headerlink" title="获得原生依赖"></a>获得原生依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.elasticsearch.client<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%88%9D%E5%A7%8B%E5%8C%96.png" class="" title="This is an example image">
-
-<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\初始化.png" alt="image-20210503114252881"></p>
-<h3 id="熟悉一些API"><a href="#熟悉一些API" class="headerlink" title="熟悉一些API"></a>熟悉一些API</h3><p>restful风格</p>
-<p>创建 put</p>
-<p>编辑 post</p>
-<p>查询 get    查询体query</p>
-<p>分页 form size</p>
-<p>…</p>
-<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>结合着<strong>jsoup</strong>爬虫去使用</p>
+<p>看了两个多小时的技术课程，然而觉得专注的程度总是不够，也许是夏季的到来让我的心绪不免躁动，又或者是想到了今天下午咬着雪糕时经过了两个被父母抱在怀里的孩子的干巴巴目光，又或者是疑惑刚刚回来路上那坐在马路沿子的阿叔在想些什么，总之，脑子里飘忽更多的游离于技术之外的，于是，还是选择了顺从灵魂，由工作转向了更加纯粹的生活。</p>
+<p>此刻，窗外继续下着雨，已经下了两个多小时了，但貌似没有为空气带来丝毫的一丝清凉，不过这淅沥沥的雨声为这夜色带来了更空灵的宁静，但此刻我更愿意戴上耳机，随机放一些自己喜欢的类型的音乐，说来也奇怪，身在北京，给我推荐的第一首竟是《兰州》，难道是在诱惑我去兰州看一看吗~</p>
+<p>其实，在外面的时候时就多次有写东西的冲动，也在记事本上做过一些记录，但奈何一回到宿舍，当时的那种冲动或者说是心境便不复存在了，即便是看着之前的记录，提笔仍旧无从着落，这也是近几年来让我略微难受的一件事，总感觉自己失去了文字叙述的能力，想想自己曾经也是获得过省作文赛一等奖的人呀。不过，细究其中原因，还是有迹可循的，大学以前经常写作文，自己也偶尔有手写记录生活的习惯，然而，大学后，各种原因，动笔变得少了，然后，就出现了现在这样的局面，心中有话，却无从下笔表达。</p>
+<p>近期个人的大事便是上周一入职了第二家公司，一切如同全新开始且具有挑战。</p>
+<p>公司位于国贸附近，早上十点上班，自己基本七点半起床，八点出门，九点二十左右到公司。来北京快一年了，第一份工作的公司离住宿很近，不堵车的情况下半个钟之内就能到达，路上偶尔也挤，但也还能接受，虽也见识过西二旗早高峰的场景，但终究未曾亲历，因而对北漂的挤尚未有过深刻的印象，直到第一天来现在的公司上班的路上，才发现平日同事或者网友的描述并没有夸张一分一毫。自己坐的315路公交转10号线地铁，地铁倒也还可以接受，但是公交的挤那真是让人有点无奈。上公交之后几乎是只能一动不动，生怕碰着踩着了他人，也几次见识了车上乘客间因为拥挤而产生的口水摩擦，不过好的是，因为这一路走的是专有路线，即便早高峰，也并不是特别堵。</p>
+<p>路上的奔波倒无关紧要，不足挂齿，项目上的事才是让自己觉得颇具挑战。入职第一天，公司给配了苹果系统的笔记本，下周也会配上额外的大屏显示器。上家公司的时候是用的个人的笔记本，然后公司每月补贴100元，我也曾幻想过拥有一个大屏的显示器来分屏办公，如今这一愿望将要实现，而且还是配的多数人所向往的苹果，想想心中还是有些许激动，这才是我事业路上最基本的标配吧。</p>
+<p>公司对于项目的管理还有分工上更加的规范，管理的工具上也用了许多我未曾接触过的，目前而言，自己还是有点压力，不过幸好有个同事热情指点帮助。说来也惭愧，同事和我是同一年毕业的，目前也才工作一年，来公司也比我早了一个多月而已，但却发现和他还是有些差距，无论是对项目的理解上，亦或是在团队中的沟通交流上。</p>
+<p>总而言之，需要学习的东西很多，在接下来的日子中，不惧挑战，每天进步，争取早点跟上组织的步伐与节奏，加油，小伙子！！</p>
+<p>（行文至此，本以为能滔滔不绝，行云流水，但仍旧磕磕绊绊且抓不住自己要表达的重点，流水账的叙述也不尽人意，至此停笔，望这个能力今后也应当加强）</p>
+<hr>
+<p>附：</p>
+<p>​    深切悼念二位国之栋梁，</p>
+<p>​    袁老、吴院士，二位走好！</p>
 ]]></content>
       <categories>
-        <category>java</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>技术栈</tag>
-        <tag>es</tag>
+        <tag>北漂</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>海口夜景</title>
+    <url>/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>家人拍的一些夜景，看着挺好看的</p>
+</blockquote>
+<a id="more"></a>
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(1).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(2).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(3).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(4).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(5).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(6).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(7).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(8).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(9).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(10).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(11).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(12).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(13).jpg" class="" title="This is an example image">
+
+
+
+<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(14).jpg" class="" title="This is an example image">]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -659,71 +591,139 @@
       </tags>
   </entry>
   <entry>
-    <title>海口夜景</title>
-    <url>/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>家人拍的一些夜景，看着挺好看的</p>
+    <title>浅谈ElasticSearch</title>
+    <url>/%E6%B5%85%E8%B0%88ElasticSearch/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>Elaticsearch，简称为es， es是一个开源的<strong>高扩展</strong>的<strong>分布式全文检索引擎</strong>，它可以近乎<strong>实时的存储、检索数据</strong>；<strong>本身扩展性很好</strong>，可以扩展到上百台服务器，处理PB级别（大数据时代）的数据。es也使用Java开发并使用Lucene作为其核心来实现所有索引和搜索的功能，但是它的目的是<strong>通过简单的RESTfulAPI来隐藏Lucene的复杂性，从而让全文搜索变得简单</strong>。</p>
 </blockquote>
 <a id="more"></a>
 
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(1).jpg" class="" title="This is an example image">
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<p>官网：<a href="https://www.elastic.co/">https://www.elastic.co/</a></p>
+<p>下载地址：<a href="https://www.elastic.co/cn/downloads/elasticsearch">https://www.elastic.co/cn/downloads/elasticsearch</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 目录结构</span></span><br><span class="line">bin 启动文件</span><br><span class="line">config 配置文件</span><br><span class="line">	log4j2 日志配置文件</span><br><span class="line">	jvm.options java 虚拟机相关的配置</span><br><span class="line">	elasticsearch.yml  elasticsearch 的配置文件！ 默认 9200 端口！ 跨域！</span><br><span class="line">lib   相关jar包</span><br><span class="line">logs   日志！</span><br><span class="line">modules 功能模块</span><br><span class="line">plugins 插件！</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-解压启动"><a href="#1-解压启动" class="headerlink" title="1.解压启动"></a>1.解压启动</h3><blockquote>
+<p>windows 下进入bin目录，运行elasticsearch.bat,，访问127.0.0.1:9200</p>
+</blockquote>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/9200.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\9200.png" alt="image-20210502183733343"></p>
+<h3 id="2-安装可视化界面-es-head插件（要先装node-js）"><a href="#2-安装可视化界面-es-head插件（要先装node-js）" class="headerlink" title="2.安装可视化界面 es head插件（要先装node.js）"></a>2.安装可视化界面 es head插件（要先装node.js）</h3><ul>
+<li><p>下载地址：<a href="https://github.com/mobz/elasticsearch-head/">https://github.com/mobz/elasticsearch-head/</a></p>
+</li>
+<li><p>启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install <span class="comment">#安装依赖</span></span><br><span class="line">npm run start <span class="comment">#正式启动</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>连接测试发现，存在跨域问题，配置es</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http.cors.enabled: <span class="literal">true</span></span><br><span class="line">http.cors.allow-origin: <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>重启es服务器，然后再次连接</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/9100.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\9100.png" alt="image-20210502200832019"></p>
+<p><strong>注意</strong>：存在<strong>跨域问题</strong>，解决方案：在elasticsearch.yml配置文件上添加</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解决跨域问题</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Kinbanna"><a href="#3-Kinbanna" class="headerlink" title="3.Kinbanna"></a>3.Kinbanna</h3><blockquote>
+<p>官网：<a href="https://www.elastic.co/cn/kibana">https://www.elastic.co/cn/kibana</a><br>Kibana 版本要和 Es 一致！</p>
+</blockquote>
+<h4 id="3-1-了解ELK"><a href="#3-1-了解ELK" class="headerlink" title="3.1 了解ELK"></a>3.1 了解ELK</h4><p>ELK是Elasticsearch、Logstash、Kibana三大开源框架首字母大写简称。市面上也被成为ElasticStack。其中Elasticsearch是一个基于Lucene、分布式、通过Restful方式进行交互的近实时搜索平台框架。像类似百度、谷歌这种大数据全文搜索引擎的场景都可以使用Elasticsearch作为底层支持框架，可见Elasticsearch提供的搜索能力确实强大,市面上很多时候我们简称Elasticsearch为es。Logstash是ELK的中央数据流引擎，用于从不同目标（文件/数据存储/MQ）收集的不同格式数据，经过过滤后支持输出到不同目的地（文件/MQ/redis/elasticsearch/kafka等）。<strong>Kibana可以将elasticsearch的数据通过友好的页面展示出来，提供实时分析的功能</strong>。<br>市面上很多开发只要提到ELK能够一致说出它是一个<strong>日志分析架构技术栈</strong>总称，但实际上ELK不仅仅适用于日志分析，它还可以支持其它任何数据分析和收集的场景，日志分析和收集只是更具有代表性。并非唯一性。</p>
+<h4 id="3-2-了解Kibanna"><a href="#3-2-了解Kibanna" class="headerlink" title="3.2 了解Kibanna"></a>3.2 了解Kibanna</h4><p>Kibana是一个针对Elasticsearch的开源分析及可视化平台，用来搜索、查看交互存储在Elasticsearch索<br>引中的数据。使用Kibana，可以通过各种图表进行高级数据分析及展示。Kibana让海量数据更容易理<br>解。它操作简单，基于浏览器的用户界面可以快速创建仪表板（dashboard）实时显示Elasticsearch查<br>询动态。设置Kibana非常简单。无需编码或者额外的基础架构，几分钟内就可以完成Kibana安装并启动<br>Elasticsearch索引监测。</p>
+<h4 id="3-3-安装启动"><a href="#3-3-安装启动" class="headerlink" title="3.3 安装启动"></a>3.3 安装启动</h4><p>官网下载，直接启动，访问localhost:5601即可</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/kibanna.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\kibanna.png" alt="image-20210502205110512"></p>
+<p>使用kibanna的开发工具</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/kiabana%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.png" class="" title="This is an example image">
+
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\kiabana开发工具.png" alt="image-20210502211723241"></p>
+<h4 id="3-4-汉化"><a href="#3-4-汉化" class="headerlink" title="3.4 汉化"></a>3.4 汉化</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在config.yml添加</span></span><br><span class="line"><span class="attr">i18n.locale:</span> <span class="string">&quot;zh-CN&quot;</span></span><br></pre></td></tr></table></figure>
 
 
 
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(2).jpg" class="" title="This is an example image">
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
+<p>暂时将索引当做数据库来看待。索引 对应数据库，文档对应 库中的数据。<strong>面向文档，一切皆JSON</strong></p>
+</blockquote>
+<h3 id="1-新建索引概览"><a href="#1-新建索引概览" class="headerlink" title="1.新建索引概览"></a>1.新建索引概览</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E7%B4%A2%E5%BC%95%E6%A6%82%E8%A7%88.png" class="" title="This is an example image">
 
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\索引概览.png" alt="image-20210502202031314"></p>
+<h3 id="2-与数据库的映射关系"><a href="#2-与数据库的映射关系" class="headerlink" title="2.与数据库的映射关系"></a>2.与数据库的映射关系</h3><blockquote>
+<p>elasticsearch(集群)中可以包含多个索引(数据库)，每个索引中可以包含多个类型(表)，每个类型下又包含多 个文档(行)，每个文档中又包含多个字段(列)。</p>
+</blockquote>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%AF%94%E8%BE%83.png" class="" title="This is an example image">
 
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\和数据库的比较.png" alt="image-20210502213357552"></p>
+<h3 id="3-设计"><a href="#3-设计" class="headerlink" title="3. 设计"></a>3. 设计</h3><ul>
+<li><p>物理设计</p>
+<p>elasticsearch 在后台把每个索引划分成多个分片，每分分片可以在集群中的不同服务器间迁移一个人就是一个集群！默认的集群名称就是elaticsearh。</p>
+</li>
+<li><p>逻辑设计</p>
+<p>一个索引类型中，包含多个文档，比如说文档1，文档2。 当我们索引一篇文档时，可以通过这样的一各顺序找到 它: 索引 ▷ 类型 ▷ 文档ID ，通过这个组合我们就能索引到某个具体的文档。 注意:ID不必是整数，实际上它是个字 符串。</p>
+</li>
+</ul>
+<h3 id="4-倒排索引"><a href="#4-倒排索引" class="headerlink" title="4. 倒排索引"></a>4. 倒排索引</h3><p>elasticsearch使用的是一种称为<strong>倒排索引</strong>的结构，采用Lucene倒排索作为底层。这种结构<strong>适用于快速的全文搜索</strong>， 一个<strong>索引由文档中所有不重复的列表构成</strong>，对于每一个词，都有一个包含它的文档列表。</p>
+<ul>
+<li><p>例子</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95.png" class="" title="This is an example image">
 
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(3).jpg" class="" title="This is an example image">
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\倒排索引.png" alt="image-20210502214814967"></p>
+</li>
+</ul>
+<h3 id="5-安装ik分词插件"><a href="#5-安装ik分词插件" class="headerlink" title="5.安装ik分词插件"></a>5.安装ik分词插件</h3><blockquote>
+<p>1、<a href="https://github.com/medcl/elasticsearch-analysis-ik">https://github.com/medcl/elasticsearch-analysis-ik</a><br>2、下载完毕之后，放入到我们的elasticsearch 插件目录plugins下即可！(注：版本要和elasticsearch一致)</p>
+</blockquote>
+<p>ik提供了两个分词算法：</p>
+<ul>
+<li>ik_smart:最少切分</li>
+<li>ik_max_word:最细粒度切分（穷尽词库的去划分）  字典</li>
+</ul>
+<h3 id="6-使用kibana测试分词效果"><a href="#6-使用kibana测试分词效果" class="headerlink" title="6. 使用kibana测试分词效果"></a>6. 使用kibana测试分词效果</h3><h4 id="6-1效果"><a href="#6-1效果" class="headerlink" title="6.1效果"></a>6.1效果</h4><ul>
+<li><p><strong>ik_smart</strong>分词效果</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/ik_smart%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C.png" class="" title="This is an example image">
 
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\ik_smart分词效果.png" alt="image-20210502233716287"></p>
+</li>
+<li><p><strong>ik_max_word</strong> 分词效果</p>
+<img src="/%E6%B5%85%E8%B0%88ElasticSearch/ik_max_word%E5%88%86%E8%AF%8D%E6%95%88%E6%9E%9C.png" class="" title="This is an example image">
 
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\ik_max_word分词效果.png" alt="image-20210502233830186"></p>
+</li>
+</ul>
+<h4 id="6-2问题"><a href="#6-2问题" class="headerlink" title="6.2问题"></a>6.2问题</h4><p>有些字的组成不能被称之为词，比如人名（张三、千仞雪）等，但是我们希望它能当做词来处理，这个时候我们就需要将它放入我们的字典中。</p>
+<h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><ul>
+<li>新建自己的字典文件，my.dic</li>
+<li>在my.dic 文件添加自己的分词，比如千仞雪</li>
+<li>在IKAnalyzer.cfg.xml中添加自己的字典文件 my.dic到扩展字典中</li>
+</ul>
+<h2 id="Restful风格操作"><a href="#Restful风格操作" class="headerlink" title="Restful风格操作"></a>Restful风格操作</h2><img src="/%E6%B5%85%E8%B0%88ElasticSearch/rest%E9%A3%8E%E6%A0%BC.png" class="" title="This is an example image">
 
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(4).jpg" class="" title="This is an example image">
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\rest风格.png" alt="image-20210502235417964"></p>
+<h2 id="SpingBoot整合ES-实战"><a href="#SpingBoot整合ES-实战" class="headerlink" title="SpingBoot整合ES(实战)"></a>SpingBoot整合ES(实战)</h2><blockquote>
+<p>官方文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
+</blockquote>
+<h3 id="获得原生依赖"><a href="#获得原生依赖" class="headerlink" title="获得原生依赖"></a>获得原生依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.elasticsearch.client<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><img src="/%E6%B5%85%E8%B0%88ElasticSearch/%E5%88%9D%E5%A7%8B%E5%8C%96.png" class="" title="This is an example image">
 
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(5).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(6).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(7).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(8).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(9).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(10).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(11).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(12).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(13).jpg" class="" title="This is an example image">
-
-
-
-<img src="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/(14).jpg" class="" title="This is an example image">]]></content>
+<p><img src="D:\hexo\blog\source_posts\浅谈ElasticSearch\初始化.png" alt="image-20210503114252881"></p>
+<h3 id="熟悉一些API"><a href="#熟悉一些API" class="headerlink" title="熟悉一些API"></a>熟悉一些API</h3><p>restful风格</p>
+<p>创建 put</p>
+<p>编辑 post</p>
+<p>查询 get    查询体query</p>
+<p>分页 form size</p>
+<p>…</p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>结合着<strong>jsoup</strong>爬虫去使用</p>
+]]></content>
       <categories>
-        <category>生活</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>生活</tag>
+        <tag>技术栈</tag>
+        <tag>es</tag>
       </tags>
   </entry>
   <entry>
@@ -752,6 +752,48 @@
       <tags>
         <tag>北漂</tag>
         <tag>瞎扯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>满纸荒唐言</title>
+    <url>/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/</url>
+    <content><![CDATA[<blockquote>
+<p>写一亩三分地，</p>
+<p>写刹那所思，</p>
+<p>写井底天空，</p>
+<p>写胡言乱语，</p>
+<a id="more"></a>
+
+<p>写不知天高地厚，</p>
+<p>写年少时的兵荒马乱，</p>
+<p>亦写童言无忌海边漫步，</p>
+<p>写夜幕沉睡万籁俱寂。</p>
+</blockquote>
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E8%BF%BD%E6%A2%A6.png" class="" title="This is an example image">
+
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E9%81%AE%E5%A4%A9.png" class="" title="This is an example image">
+
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E6%B1%9F%E6%B9%96.png" class="" title="This is an example image">
+
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E6%97%A0%E4%BA%89.png" class="" title="This is an example image">
+
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E6%95%99%E7%88%B6.png" class="" title="This is an example image">
+
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E9%9D%99%E6%80%9D.png" class="" title="This is an example image">
+
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E9%BE%99%E8%A1%8C%E5%A4%A9%E4%B8%8B1.png" class="" title="This is an example image">
+
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E6%B8%85%E6%98%8E.png" class="" title="This is an example image">
+
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E8%87%AA%E5%8F%A4%E7%BE%8E%E4%BA%BA%E5%A6%82%E5%90%8D%E5%B0%86.png" class="" title="This is an example image">
+
+<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E4%BA%BA%E7%94%9F%E5%93%AA%E8%83%BD%E9%83%BD%E5%A6%82%E6%84%8F.png" class="" title="This is an example image">
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>字</tag>
       </tags>
   </entry>
   <entry>
@@ -825,48 +867,6 @@
       </tags>
   </entry>
   <entry>
-    <title>满纸荒唐言</title>
-    <url>/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/</url>
-    <content><![CDATA[<blockquote>
-<p>写一亩三分地，</p>
-<p>写刹那所思，</p>
-<p>写井底天空，</p>
-<p>写胡言乱语，</p>
-<a id="more"></a>
-
-<p>写不知天高地厚，</p>
-<p>写年少时的兵荒马乱，</p>
-<p>亦写童言无忌海边漫步，</p>
-<p>写夜幕沉睡万籁俱寂。</p>
-</blockquote>
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E8%BF%BD%E6%A2%A6.png" class="" title="This is an example image">
-
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E9%81%AE%E5%A4%A9.png" class="" title="This is an example image">
-
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E6%B1%9F%E6%B9%96.png" class="" title="This is an example image">
-
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E6%97%A0%E4%BA%89.png" class="" title="This is an example image">
-
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E6%95%99%E7%88%B6.png" class="" title="This is an example image">
-
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E9%9D%99%E6%80%9D.png" class="" title="This is an example image">
-
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E9%BE%99%E8%A1%8C%E5%A4%A9%E4%B8%8B1.png" class="" title="This is an example image">
-
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E6%B8%85%E6%98%8E.png" class="" title="This is an example image">
-
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E8%87%AA%E5%8F%A4%E7%BE%8E%E4%BA%BA%E5%A6%82%E5%90%8D%E5%B0%86.png" class="" title="This is an example image">
-
-<img src="/%E6%BB%A1%E7%BA%B8%E8%8D%92%E5%94%90%E8%A8%80/%E4%BA%BA%E7%94%9F%E5%93%AA%E8%83%BD%E9%83%BD%E5%A6%82%E6%84%8F.png" class="" title="This is an example image">
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>字</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法题</title>
     <url>/%E7%AE%97%E6%B3%95%E9%A2%98/</url>
     <content><![CDATA[<blockquote>
@@ -901,53 +901,6 @@
       </categories>
       <tags>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>读《神雕侠侣》</title>
-    <url>/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/</url>
-    <content><![CDATA[<blockquote>
-<p>问世间情为何物，直教人生死相许。</p>
-</blockquote>
-<a id="more"></a>
-
-<p>百忙之际，前几天总算是完成了今年必读书单计划中一个自己早就应该完成了的愿望，完完整整读完了金老爷子著作之一——《神雕侠侣》。</p>
-<p>如今说到金庸，脑海中浮现更多的是在家里的老房子里，坐在用竹子编织的沙发上，端着碗筷看着大头电视机播放的《天龙八部》、《神雕侠侣》或者是《倚天屠龙记》等其影视剧。当时年少，看的更多的是影视剧里的打斗场景，心驰向往那些让人忍不住模仿的武林绝技，对所谓的剧情情感几乎是从未关注过，也不曾知郭靖的为国为民、乔峰的行侠仗义、杨过小龙女的绝对痴情。</p>
-<p>其实，年初整理书单的时候，并没有想到将金庸的武侠小说列入。而后来列入的原因是阅读其他刊物的过程中，无意看到了对金庸老爷子的介绍，那一刹那，宛若遗漏一件很重要的事，怎么说目前为止也是阅读过国内的一些知名著作，但是竟然把金庸老爷子的江湖世界给忘记了？于是赶紧在手机上做了记录，防止明天一觉醒来忘记了。有些遗憾未曾早点阅读，同时也庆幸现在还阅读应该也不算太晚，再过几年，怕是心境又再变，再提不起阅读武侠小说的兴趣。</p>
-<p>在金庸众多书籍中选择《神雕侠侣》作为第一本读物，其主要原因还是始于对李若彤版和刘亦菲版小龙女在屏幕上惊为天人的容颜和气质。</p>
-<p>初始阅读的过程中，书中的情节与自己脑海中的依稀记得的影视场景缓缓重合，而后，这种重合又慢慢散开，直至最后彻底消散，醒悟过来才发现，原来自己脑海中已经构建了一个新神雕侠侣的江湖，在我的江湖里，所有的角色形象都由我因阅读感受而创建，故事的每一帧后面也按照我的想法去拼接串联。我想，这也许是阅读文字的魅力所在，在阅读的过程中，因为每个人的不同，导致的结果是虽为读同一本书，然感受却是千千万万种，而当你要向对方展现你阅读后看到的世界，又发现这并不是一件轻易的事，因为很多时候你所看到的世界只能意会不能言传，即便真的能够言传，却又发现对方无法理解你的世界。而影视剧展现出来的是导演或者演员个体对于角色的理解，由于影视画面的真实呈现性，观众在观影过程中，感受更多的其实是他人对角色的理解，而非自己的理解。所以影视给观众的对于人物的感受往往是一样的。</p>
-<p>说回书中，阅读前期关注的角色还是李莫愁多些。江湖人称赤练仙子，无人不知无人不晓，作为小龙女的师姐，她同样拥有绝美的容颜与高强的武艺。但她豆蔻年华，被情所伤，浪迹江湖杀人遍地，世上人又之称“女魔头”，最终绝情谷一句“问世间情为何物，直教人生死相许”于火焰焚烧中离开这个让她又爱又恨的江湖。我想，生命的最后一刻，她脑海中流转的画面的应该是花季时与情人的种种，生命的凋零于她而言何尝不是一种解脱。</p>
-<blockquote>
-<p>终南山下，活死人墓，神雕侠侣，绝迹江湖。</p>
-</blockquote>
-<p>随着阅读的深入，作为书中主角的杨龙二人情感经历，注定是要扣住读者的心。杨过自幼丧父丧母，一人流浪，性格偏激，却也聪明机敏。儿时偶然情况下，认了西毒欧阳锋作义父。被郭靖黄蓉夫妇认出是故人之子后带回黄花岛生活，后来被送往全真教学艺，因性格原因离开全真教后认小龙女为姑姑并成为了其弟子。二人与在古墓中生活多年，后来相恋，情感历程跌宕起伏。绝情谷一役后，小龙女知杨过情花毒可医治，因自己生命无多，担心自己死后杨过不会独活，故留下“十六年后,在此相会,夫妻情深,勿失信约”十六字后离去。苦等十六年，庆幸小龙女还在世，杨过终得与爱人厮守，从此，终南山下，活死人墓，神雕侠侣，绝迹江湖。</p>
-<p>杨龙二人师徒之情转变为男女之情，这在当时是不被承认的，纵然是处处呵护杨过的郭靖也强烈反对。然而，这些反对诋毁的声音未能阻止二人，反倒让他们的情谊变得更坚定，他们的感情赤城，无惧天地，始终如一，纵然人人反对，也要在一起，更恨不得江湖人人尽知。</p>
-<img src="/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/%E6%9D%A8%E8%BF%87%E5%B0%8F%E9%BE%99%E5%A5%B3.jpg" class="" title="This is an example image">
-
-<p>一文终了，为杨龙二人有情人终成眷属而松了口气，但当最后一字看完时，心中想的更多的并不是这终成眷属的二人，而是望着这二人离去的郭襄。</p>
-<blockquote>
-<p>风陵渡口初相遇</p>
-<p>一见杨过误终生</p>
-<p>数十余载苦追寻</p>
-<p>不曾再遇创峨眉</p>
-</blockquote>
-<p>郭襄，郭靖黄蓉的二女儿，出生于混乱中，被杨过李莫愁抚养过一阵子。十六年后，长大成人，性格乖巧伶俐、善良、好结交江湖英雄人士，人称“小东邪”（其外公为黄药师，人称“东邪”）。听闻神雕大侠事迹，于风陵渡口与杨过初相遇。杨过赠其三枚金针，承诺其三个愿望。第一和第二个愿望使用在她与杨过分离当天，第一个愿望为一睹杨过真容，第二个愿望是让杨过前来参加其生日，第三个愿望是看见杨过跳下绝情谷时也毫不犹豫跟随跳下去，并让杨过承诺如果没有找到小龙女也不能轻生。</p>
-<p>看完书后，郭襄这个角色久久萦绕于脑海中，为她可惜，为她感叹，于是又去看了《神雕侠侣古天乐版》电视剧，从郭襄出现的集数开始看起。这一版的郭襄虽与我阅读中构建的外在形象稍有出入，但是不得不说，演的很好，加之配音（国语版）也很棒，整场看下来，没有丝毫的违和感，算是把书中的角色塑造成功了，最后她一句“问世间情为何物，直教人生死相许”更是让神雕故事彻底完结。看完影视后，还是觉得不过瘾，又去百度了这个角色，才知道原来她一生追寻杨过未果，四十岁时创建了倚天屠龙记里的峨眉派，终生未嫁，她的倾慕者张三丰一生未娶。“情”之一字，让人唏嘘感慨。</p>
-<img src="/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/%E9%83%AD%E8%A5%84.jpg" class="" title="This is an example image">
-
-<p>神雕的故事到此结束了，在接下来的时光里，尚未决定何时阅读它的上篇《射雕英雄传》和下篇《倚天屠龙记》，想来应该也是能在今年读完。儿时的武侠梦，随着时间的流逝，逐渐消散，难再被忆起，希望在后面的书籍中，能寻回更多童年时的一份感动。</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 附</span></span><br><span class="line"><span class="attr">神雕侠侣主要角色：</span></span><br><span class="line"><span class="meta">1、杨过</span> <span class="string">小龙女</span></span><br><span class="line"><span class="meta">2、郭靖</span> <span class="string">黄蓉 郭芙 郭襄 郭破虏 耶律齐</span></span><br><span class="line"><span class="attr">3、李莫愁</span></span><br><span class="line"><span class="meta">4、程英</span> <span class="string">完颜萍 陆无双 公孙绿萼</span></span><br><span class="line"><span class="meta">5、东邪西毒南帝北丐中神通：东邪黄药师</span> <span class="string">西毒欧阳锋 南帝段王爷（一灯大师） 北丐洪七公 中神通王重阳</span></span><br><span class="line"><span class="meta">6、东邪西狂南僧北侠中顽童：东邪黄药师</span> <span class="string">西狂杨过 南僧段王爷（一灯大师） 北侠郭靖 中顽童周伯通</span></span><br><span class="line"><span class="meta">7、金轮法王</span> <span class="string">巴尔达 霍都</span></span><br><span class="line"><span class="attr">。。。</span></span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>北漂</tag>
-        <tag>阅读</tag>
-        <tag>书籍</tag>
       </tags>
   </entry>
   <entry>
@@ -1079,6 +1032,53 @@
       </tags>
   </entry>
   <entry>
+    <title>读《神雕侠侣》</title>
+    <url>/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/</url>
+    <content><![CDATA[<blockquote>
+<p>问世间情为何物，直教人生死相许。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>百忙之际，前几天总算是完成了今年必读书单计划中一个自己早就应该完成了的愿望，完完整整读完了金老爷子著作之一——《神雕侠侣》。</p>
+<p>如今说到金庸，脑海中浮现更多的是在家里的老房子里，坐在用竹子编织的沙发上，端着碗筷看着大头电视机播放的《天龙八部》、《神雕侠侣》或者是《倚天屠龙记》等其影视剧。当时年少，看的更多的是影视剧里的打斗场景，心驰向往那些让人忍不住模仿的武林绝技，对所谓的剧情情感几乎是从未关注过，也不曾知郭靖的为国为民、乔峰的行侠仗义、杨过小龙女的绝对痴情。</p>
+<p>其实，年初整理书单的时候，并没有想到将金庸的武侠小说列入。而后来列入的原因是阅读其他刊物的过程中，无意看到了对金庸老爷子的介绍，那一刹那，宛若遗漏一件很重要的事，怎么说目前为止也是阅读过国内的一些知名著作，但是竟然把金庸老爷子的江湖世界给忘记了？于是赶紧在手机上做了记录，防止明天一觉醒来忘记了。有些遗憾未曾早点阅读，同时也庆幸现在还阅读应该也不算太晚，再过几年，怕是心境又再变，再提不起阅读武侠小说的兴趣。</p>
+<p>在金庸众多书籍中选择《神雕侠侣》作为第一本读物，其主要原因还是始于对李若彤版和刘亦菲版小龙女在屏幕上惊为天人的容颜和气质。</p>
+<p>初始阅读的过程中，书中的情节与自己脑海中的依稀记得的影视场景缓缓重合，而后，这种重合又慢慢散开，直至最后彻底消散，醒悟过来才发现，原来自己脑海中已经构建了一个新神雕侠侣的江湖，在我的江湖里，所有的角色形象都由我因阅读感受而创建，故事的每一帧后面也按照我的想法去拼接串联。我想，这也许是阅读文字的魅力所在，在阅读的过程中，因为每个人的不同，导致的结果是虽为读同一本书，然感受却是千千万万种，而当你要向对方展现你阅读后看到的世界，又发现这并不是一件轻易的事，因为很多时候你所看到的世界只能意会不能言传，即便真的能够言传，却又发现对方无法理解你的世界。而影视剧展现出来的是导演或者演员个体对于角色的理解，由于影视画面的真实呈现性，观众在观影过程中，感受更多的其实是他人对角色的理解，而非自己的理解。所以影视给观众的对于人物的感受往往是一样的。</p>
+<p>说回书中，阅读前期关注的角色还是李莫愁多些。江湖人称赤练仙子，无人不知无人不晓，作为小龙女的师姐，她同样拥有绝美的容颜与高强的武艺。但她豆蔻年华，被情所伤，浪迹江湖杀人遍地，世上人又之称“女魔头”，最终绝情谷一句“问世间情为何物，直教人生死相许”于火焰焚烧中离开这个让她又爱又恨的江湖。我想，生命的最后一刻，她脑海中流转的画面的应该是花季时与情人的种种，生命的凋零于她而言何尝不是一种解脱。</p>
+<blockquote>
+<p>终南山下，活死人墓，神雕侠侣，绝迹江湖。</p>
+</blockquote>
+<p>随着阅读的深入，作为书中主角的杨龙二人情感经历，注定是要扣住读者的心。杨过自幼丧父丧母，一人流浪，性格偏激，却也聪明机敏。儿时偶然情况下，认了西毒欧阳锋作义父。被郭靖黄蓉夫妇认出是故人之子后带回黄花岛生活，后来被送往全真教学艺，因性格原因离开全真教后认小龙女为姑姑并成为了其弟子。二人与在古墓中生活多年，后来相恋，情感历程跌宕起伏。绝情谷一役后，小龙女知杨过情花毒可医治，因自己生命无多，担心自己死后杨过不会独活，故留下“十六年后,在此相会,夫妻情深,勿失信约”十六字后离去。苦等十六年，庆幸小龙女还在世，杨过终得与爱人厮守，从此，终南山下，活死人墓，神雕侠侣，绝迹江湖。</p>
+<p>杨龙二人师徒之情转变为男女之情，这在当时是不被承认的，纵然是处处呵护杨过的郭靖也强烈反对。然而，这些反对诋毁的声音未能阻止二人，反倒让他们的情谊变得更坚定，他们的感情赤城，无惧天地，始终如一，纵然人人反对，也要在一起，更恨不得江湖人人尽知。</p>
+<img src="/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/%E6%9D%A8%E8%BF%87%E5%B0%8F%E9%BE%99%E5%A5%B3.jpg" class="" title="This is an example image">
+
+<p>一文终了，为杨龙二人有情人终成眷属而松了口气，但当最后一字看完时，心中想的更多的并不是这终成眷属的二人，而是望着这二人离去的郭襄。</p>
+<blockquote>
+<p>风陵渡口初相遇</p>
+<p>一见杨过误终生</p>
+<p>数十余载苦追寻</p>
+<p>不曾再遇创峨眉</p>
+</blockquote>
+<p>郭襄，郭靖黄蓉的二女儿，出生于混乱中，被杨过李莫愁抚养过一阵子。十六年后，长大成人，性格乖巧伶俐、善良、好结交江湖英雄人士，人称“小东邪”（其外公为黄药师，人称“东邪”）。听闻神雕大侠事迹，于风陵渡口与杨过初相遇。杨过赠其三枚金针，承诺其三个愿望。第一和第二个愿望使用在她与杨过分离当天，第一个愿望为一睹杨过真容，第二个愿望是让杨过前来参加其生日，第三个愿望是看见杨过跳下绝情谷时也毫不犹豫跟随跳下去，并让杨过承诺如果没有找到小龙女也不能轻生。</p>
+<p>看完书后，郭襄这个角色久久萦绕于脑海中，为她可惜，为她感叹，于是又去看了《神雕侠侣古天乐版》电视剧，从郭襄出现的集数开始看起。这一版的郭襄虽与我阅读中构建的外在形象稍有出入，但是不得不说，演的很好，加之配音（国语版）也很棒，整场看下来，没有丝毫的违和感，算是把书中的角色塑造成功了，最后她一句“问世间情为何物，直教人生死相许”更是让神雕故事彻底完结。看完影视后，还是觉得不过瘾，又去百度了这个角色，才知道原来她一生追寻杨过未果，四十岁时创建了倚天屠龙记里的峨眉派，终生未嫁，她的倾慕者张三丰一生未娶。“情”之一字，让人唏嘘感慨。</p>
+<img src="/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/%E9%83%AD%E8%A5%84.jpg" class="" title="This is an example image">
+
+<p>神雕的故事到此结束了，在接下来的时光里，尚未决定何时阅读它的上篇《射雕英雄传》和下篇《倚天屠龙记》，想来应该也是能在今年读完。儿时的武侠梦，随着时间的流逝，逐渐消散，难再被忆起，希望在后面的书籍中，能寻回更多童年时的一份感动。</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 附</span></span><br><span class="line"><span class="attr">神雕侠侣主要角色：</span></span><br><span class="line"><span class="meta">1、杨过</span> <span class="string">小龙女</span></span><br><span class="line"><span class="meta">2、郭靖</span> <span class="string">黄蓉 郭芙 郭襄 郭破虏 耶律齐</span></span><br><span class="line"><span class="attr">3、李莫愁</span></span><br><span class="line"><span class="meta">4、程英</span> <span class="string">完颜萍 陆无双 公孙绿萼</span></span><br><span class="line"><span class="meta">5、东邪西毒南帝北丐中神通：东邪黄药师</span> <span class="string">西毒欧阳锋 南帝段王爷（一灯大师） 北丐洪七公 中神通王重阳</span></span><br><span class="line"><span class="meta">6、东邪西狂南僧北侠中顽童：东邪黄药师</span> <span class="string">西狂杨过 南僧段王爷（一灯大师） 北侠郭靖 中顽童周伯通</span></span><br><span class="line"><span class="meta">7、金轮法王</span> <span class="string">巴尔达 霍都</span></span><br><span class="line"><span class="attr">。。。</span></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>北漂</tag>
+        <tag>阅读</tag>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>远方</title>
     <url>/%E8%BF%9C%E6%96%B9/</url>
     <content><![CDATA[<blockquote>
@@ -1106,21 +1106,6 @@
       </tags>
   </entry>
   <entry>
-    <title>阳光尚在</title>
-    <url>/%E9%98%B3%E5%85%89%E5%B0%9A%E5%9C%A8/</url>
-    <content><![CDATA[<p>起码阳光尚在。</p>
-<a id="more"></a>
-
-<img src="/%E9%98%B3%E5%85%89%E5%B0%9A%E5%9C%A8/1.jpg" class="">
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>满纸荒唐言</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>远方是远方</title>
     <url>/%E8%BF%9C%E6%96%B9%E6%98%AF%E8%BF%9C%E6%96%B9/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -1140,6 +1125,21 @@
       </categories>
       <tags>
         <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>阳光尚在</title>
+    <url>/%E9%98%B3%E5%85%89%E5%B0%9A%E5%9C%A8/</url>
+    <content><![CDATA[<p>起码阳光尚在。</p>
+<a id="more"></a>
+
+<img src="/%E9%98%B3%E5%85%89%E5%B0%9A%E5%9C%A8/1.jpg" class="">
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>满纸荒唐言</tag>
       </tags>
   </entry>
   <entry>
