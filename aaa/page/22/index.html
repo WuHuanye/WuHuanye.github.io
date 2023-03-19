@@ -191,443 +191,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/SpringCloud/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/SpringCloud/" class="post-title-link" itemprop="url">SpringCloud</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-04 14:45:34" itemprop="dateCreated datePublished" datetime="2022-06-04T14:45:34+08:00">2022-06-04</time>
-            </span>
-
-          
-            <span id="/yq/SpringCloud/" class="post-meta-item leancloud_visitors" data-flag-title="SpringCloud" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/SpringCloud/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/SpringCloud/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考链接 <a target="_blank" rel="noopener" href="https://www.kuangstudy.com/bbs/1374942542566551554">https://www.kuangstudy.com/bbs/1374942542566551554</a><br><strong>自学参考书：</strong></p>
-<ul>
-<li>SpringCloud Netflix 中文文档：<a target="_blank" rel="noopener" href="https://springcloud.cc/spring-cloud-netflix.html">https://springcloud.cc/spring-cloud-netflix.html</a></li>
-<li>SpringCloud 中文 API 文档(官方文档翻译版)：<a target="_blank" rel="noopener" href="https://springcloud.cc/spring-cloud-dalston.html">https://springcloud.cc/spring-cloud-dalston.html</a></li>
-<li>SpringCloud 中国社区：<a target="_blank" rel="noopener" href="http://springcloud.cn/">http://springcloud.cn/</a></li>
-<li>SpringCloud 中文网：<a target="_blank" rel="noopener" href="https://springcloud.cc/">https://springcloud.cc</a></li>
-</ul>
-<h1 id="微服务四个核心问题"><a href="#微服务四个核心问题" class="headerlink" title="微服务四个核心问题"></a>微服务四个核心问题</h1><p>1、服务很多，客户端如何访问？<br>2、多服务之间，如何进行通信？（rpc、http）<br>3、如何治理？<br>4、服务挂了怎么办？</p>
-<h1 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h1><p>Spring Cloud 生态！</p>
-<h2 id="1、Spring-Cloud-NetFlix"><a href="#1、Spring-Cloud-NetFlix" class="headerlink" title="1、Spring Cloud NetFlix"></a>1、Spring Cloud NetFlix</h2><p>一站式解决方案！<br>api 网关，zuul 组件<br>Feign ， Httpclient，http 通信方式，同步，阻塞<br>服务注册与发现：Eureka<br>熔断机制：Hystrix<br>…..</p>
-<h2 id="2、Apache-Dubbo-Zookeeper"><a href="#2、Apache-Dubbo-Zookeeper" class="headerlink" title="2、Apache Dubbo Zookeeper"></a>2、Apache Dubbo Zookeeper</h2><p>API：无，可找第三方组件，或者自己实现<br>Dubbo:rpc 框架<br>Zookeeper :服务注册与发现<br>没有熔断机制</p>
-<h2 id="3、Spring-Cloud-Alibaba"><a href="#3、Spring-Cloud-Alibaba" class="headerlink" title="3、Spring Cloud Alibaba"></a>3、Spring Cloud Alibaba</h2><p>一站式解决方案，更简单！</p>
-<p>学习重点：<br>1、API<br>2、HTTP、RPC<br>3、注册与发现<br>4、熔断机制</p>
-<h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1><p>1.1 什么是微服务？<br>1.2 微服务之间是如何独立通讯的？<br>1.3 SpringCloud 和 Dubbo 有那些区别？<br>1.4 SpringBoot 和 SpringCloud，请谈谈你对他们的理解<br>1.5 什么是服务熔断？什么是服务降级？<br>1.6 微服务的优缺点分别是什么？说下你在项目开发中遇到的坑<br>1.7 你所知道的微服务技术栈有哪些？列举一二<br>1.8 Eureka 和 Zookeeper 都可以提供服务注册与发现的功能，请说说两者的区别</p>
-<h1 id="微服务概述"><a href="#微服务概述" class="headerlink" title="微服务概述"></a>微服务概述</h1><p>什么是微服务？</p>
-<p>微服务(Microservice Architecture) 是近几年流行的一种架构思想，关于它的概念很难一言以蔽之。</p>
-<p>究竟什么是微服务呢？我们在此引用 ThoughtWorks 公司的首席科学家 Martin Fowler 于 2014 年提出的一段话：</p>
-<p>原文：<a target="_blank" rel="noopener" href="https://martinfowler.com/articles/microservices.html">https://martinfowler.com/articles/microservices.html</a></p>
-<p>汉化：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuning8023/p/4493156.html">https://www.cnblogs.com/liuning8023/p/4493156.html</a></p>
-<p>就目前而言，对于微服务，业界并没有一个统一的，标准的定义。<br>但通常而言，微服务架构是一种架构模式，或者说是一种架构风格，它体长将单一的应用程序划分成一组小的服务，每个服务运行在其独立的自己的进程内，服务之间互相协调，互相配置，为用户提供最终价值，服务之间采用轻量级的通信机制(HTTP)互相沟通，每个服务都围绕着具体的业务进行构建，并且能狗被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应该根据业务上下文，选择合适的语言，工具(Maven)对其进行构建，可以有一个非常轻量级的集中式管理来协调这些服务，可以使用不同的语言来编写服务，也可以使用不同的数据存储。<br>再来从技术维度角度理解下：</p>
-<p>微服务化的核心就是将传统的一站式应用，根据业务拆分成一个一个的服务，彻底地去耦合，每一个微服务提供单个业务功能的服务，一个服务做一件事情，从技术角度看就是一种小而独立的处理过程，类似进程的概念，能够自行单独启动或销毁，拥有自己独立的数据库。<br>2.2 微服务与微服务架构<br>微服务</p>
-<p>强调的是服务的大小，它关注的是某一个点，是具体解决某一个问题/提供落地对应服务的一个服务应用，狭义的看，可以看作是 IDEA 中的一个个微服务工程，或者 Moudel。IDEA 工具里面使用 Maven 开发的一个个独立的小 Moudel，它具体是使用 SpringBoot 开发的一个小模块，专业的事情交给专业的模块来做，一个模块就做着一件事情。强调的是一个个的个体，每个个体完成一个具体的任务或者功能。</p>
-<p>微服务架构</p>
-<p>一种新的架构形式，Martin Fowler 于 2014 年提出。</p>
-<p>微服务架构是一种架构模式，它体长将单一应用程序划分成一组小的服务，服务之间相互协调，互相配合，为用户提供最终价值。每个服务运行在其独立的进程中，服务与服务之间采用轻量级的通信机制**(如 HTTP)互相协作，每个服务都围绕着具体的业务进行构建，并且能够被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言、工具(如 Maven)**对其进行构建。</p>
-<p>2.3 微服务优缺点<br>优点</p>
-<p>单一职责原则；<br>每个服务足够内聚，足够小，代码容易理解，这样能聚焦一个指定的业务功能或业务需求；<br>开发简单，开发效率高，一个服务可能就是专一的只干一件事；<br>微服务能够被小团队单独开发，这个团队只需 2-5 个开发人员组成；<br>微服务是松耦合的，是有功能意义的服务，无论是在开发阶段或部署阶段都是独立的；<br>微服务能使用不同的语言开发；<br>易于和第三方集成，微服务允许容易且灵活的方式集成自动部署，通过持续集成工具，如 jenkins，Hudson，bamboo；<br>微服务易于被一个开发人员理解，修改和维护，这样小团队能够更关注自己的工作成果，无需通过合作才能体现价值；<br>微服务允许利用和融合最新技术；<br>微服务只是业务逻辑的代码，不会和 HTML，CSS，或其他的界面混合;<br>每个微服务都有自己的存储能力，可以有自己的数据库，也可以有统一的数据库；<br>缺点</p>
-<p>开发人员要处理分布式系统的复杂性；<br>多服务运维难度，随着服务的增加，运维的压力也在增大；<br>系统部署依赖问题；<br>服务间通信成本问题；<br>数据一致性问题；<br>系统集成测试问题；<br>性能和监控问题；<br>2.4 微服务技术栈有那些？</p>
-<table>
-<thead>
-<tr>
-<th><strong>微服务技术条目</strong></th>
-<th>落地技术</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>服务开发</td>
-<td>SpringBoot、Spring、SpringMVC 等</td>
-</tr>
-<tr>
-<td>服务配置与管理</td>
-<td>Netfix 公司的 Archaius、阿里的 Diamond 等</td>
-</tr>
-<tr>
-<td>服务注册与发现</td>
-<td>Eureka、Consul、Zookeeper 等</td>
-</tr>
-<tr>
-<td>服务调用</td>
-<td>Rest、PRC、gRPC</td>
-</tr>
-<tr>
-<td>服务熔断器</td>
-<td>Hystrix、Envoy 等</td>
-</tr>
-<tr>
-<td>负载均衡</td>
-<td>Ribbon、Nginx 等</td>
-</tr>
-<tr>
-<td>服务接口调用(客户端调用服务的简化工具)</td>
-<td>Fegin 等</td>
-</tr>
-<tr>
-<td>消息队列</td>
-<td>Kafka、RabbitMQ、ActiveMQ 等</td>
-</tr>
-<tr>
-<td>服务配置中心管理</td>
-<td>SpringCloudConfig、Chef 等</td>
-</tr>
-<tr>
-<td>服务路由(API 网关)</td>
-<td>Zuul 等</td>
-</tr>
-<tr>
-<td>服务监控</td>
-<td>Zabbix、Nagios、Metrics、Specatator 等</td>
-</tr>
-<tr>
-<td>全链路追踪</td>
-<td>Zipkin、Brave、Dapper 等</td>
-</tr>
-<tr>
-<td>数据流操作开发包</td>
-<td>SpringCloud Stream(封装与 Redis，Rabbit，Kafka 等发送接收消息)</td>
-</tr>
-<tr>
-<td>时间消息总栈</td>
-<td>SpringCloud Bus</td>
-</tr>
-<tr>
-<td>服务部署</td>
-<td>Docker、OpenStack、Kubernetes 等</td>
-</tr>
-</tbody></table>
-<p>2.5 为什么选择 SpringCloud 作为微服务架构<br>选型依据</p>
-<p>整体解决方案和框架成熟度<br>社区热度<br>可维护性<br>学习曲线<br>当前各大 IT 公司用的微服务架构有那些？</p>
-<p>阿里：dubbo+HFS<br>京东：JFS<br>新浪：Motan<br>当当网：DubboX</p>
-<p>…</p>
-<p>各微服务框架对比</p>
-<p>| 功能点/服务框架 | Netflix/SpringCloud | Motan | gRPC | Thri t | Dubbo/DubboX |<br>| —————— | ———————————————————————————— | —————————————————- | ————————— | ———— | —————————— |<br>| 功能定位 | 完整的微服务框架 | RPC 框架，但整合了 ZK 或 Consul，实现集群环境的基本服务注册发现 | RPC 框架 | RPC 框架 | 服务框架 |<br>| 支持 Rest | 是，Ribbon 支持多种可拔插的序列号选择 | 否 | 否 | 否 | 否 |<br>| 支持 RPC | 否 | 是(Hession2) | 是 | 是 | 是 |<br>| 支持多语言 | 是(Rest 形式) | 否 | 是 | 是 | 否 |<br>| 负载均衡 | 是(服务端 zuul+客户端 Ribbon)，zuul-服务，动态路由，云端负载均衡 Eureka（针对中间层服务器） | 是(客户端) | 否 | 否 | 是(客户端) |<br>| 配置服务 | Netfix Archaius，Spring Cloud Config Server 集中配置 | 是(Zookeeper 提供) | 否 | 否 | 否 |<br>| 服务调用链监控 | 是(zuul)，zuul 提供边缘服务，API 网关 | 否 | 否 | 否 | 否 |<br>| 高可用/容错 | 是(服务端 Hystrix+客户端 Ribbon) | 是(客户端) | 否 | 否 | 是(客户端) |<br>| 典型应用案例 | Netflix | Sina | Google | Facebook | |<br>| 社区活跃程度 | 高 | 一般 | 高 | 一般 | 2017 年后重新开始维护，之前中断了 5 年 |<br>| 学习难度 | 中等 | 低 | 高 | 高 | 低 |<br>| 文档丰富程度 | 高 | 一般 | 一般 | 一般 | 高 |<br>| 其他 | Spring Cloud Bus 为我们的应用程序带来了更多管理端点 | 支持降级 | Netflix 内部在开发集成 gRPC | IDL 定义 | 实践的公司比较多 |</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/BaseTypeHandler%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/BaseTypeHandler%E7%B1%BB/" class="post-title-link" itemprop="url">BaseTypeHandler类</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-04 12:04:08" itemprop="dateCreated datePublished" datetime="2022-06-04T12:04:08+08:00">2022-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/yq/BaseTypeHandler%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="BaseTypeHandler类" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/BaseTypeHandler%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/BaseTypeHandler%E7%B1%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>269</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>部分源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可通过重写该方法为目标字段自定义赋值，比如做数据的加密落表</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setNonNullParameter</span><span class="params">(PreparedStatement ps, <span class="keyword">int</span> i, T parameter, JdbcType jdbcType)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可通过重写该方法为目标字段后自定义做操作，比如对加密字段解密后读取</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> T <span class="title">getNullableResult</span><span class="params">(ResultSet rs, String columnName)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">spring事务传播机制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-04 11:36:01" itemprop="dateCreated datePublished" datetime="2022-06-04T11:36:01+08:00">2022-06-04</time>
-            </span>
-
-          
-            <span id="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="spring事务传播机制" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>459</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考链接<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44956318/article/details/119110150">https://blog.csdn.net/qq_44956318/article/details/119110150</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148504094">https://zhuanlan.zhihu.com/p/148504094</a></p>
-<p>注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(propagation =Propagation.REQUIRED)</span></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>分组</th>
-<th>类型</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>支持当前事务</td>
-<td><strong>REQUIRED</strong></td>
-<td>如果当前方法没有事务，新建一个事务，如果已经存在一个事务中，则加入到这个事务中。</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>SUPPORTS</strong></td>
-<td>支持当前事务，如果当前没有事务，就以非事务方式执行</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>MANDATORY</strong></td>
-<td>使用当前的事务，如果当前没有事务，就抛出异常。</td>
-</tr>
-<tr>
-<td>不支持当前事务</td>
-<td><strong>REQUIRES_NEW</strong></td>
-<td>新建事务，如果当前存在事务，把当前事务挂起。</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>NOT_SUPPORTED</strong></td>
-<td>以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>NEVER</strong></td>
-<td>以非事务方式执行，如果当前存在事务，则抛出异常。</td>
-</tr>
-<tr>
-<td>NESTED</td>
-<td>NESTED</td>
-<td>如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与 PROPAGATION_REQUIRED 类似的操作。</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/AOP%E7%9A%84%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -831,10 +394,317 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/JVM%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/JVM%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">JVM相关</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-03 13:22:28" itemprop="dateCreated datePublished" datetime="2022-06-03T13:22:28+08:00">2022-06-03</time>
+            </span>
+
+          
+            <span id="/yq/JVM%E7%9B%B8%E5%85%B3/" class="post-meta-item leancloud_visitors" data-flag-title="JVM相关" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/JVM%E7%9B%B8%E5%85%B3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/JVM%E7%9B%B8%E5%85%B3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考链接：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1657191673286-feadca1f-3e20-4a6c-b2b1-7f36e2cf160f.jpeg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" class="post-title-link" itemprop="url">Apollo配置中心</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-03 10:46:05" itemprop="dateCreated datePublished" datetime="2022-06-03T10:46:05+08:00">2022-06-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/yq/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" class="post-meta-item leancloud_visitors" data-flag-title="Apollo配置中心" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>62</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>官网：<a target="_blank" rel="noopener" href="https://www.apolloconfig.com/#/zh/usage/java-sdk-user-guide">https://www.apolloconfig.com/#/zh/usage/java-sdk-user-guide</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="post-title-link" itemprop="url">深拷贝和浅拷贝</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-02 10:22:43" itemprop="dateCreated datePublished" datetime="2022-06-02T10:22:43+08:00">2022-06-02</time>
+            </span>
+
+          
+            <span id="/yq/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="post-meta-item leancloud_visitors" data-flag-title="深拷贝和浅拷贝" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>转自 <a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/java/basis/java-basic-questions-02?id=%e6%b7%b1%e6%8b%b7%e8%b4%9d%e5%92%8c%e6%b5%85%e6%8b%b7%e8%b4%9d%e5%8c%ba%e5%88%ab%e4%ba%86%e8%a7%a3%e5%90%97%ef%bc%9f%e4%bb%80%e4%b9%88%e6%98%af%e5%bc%95%e7%94%a8%e6%8b%b7%e8%b4%9d%ef%bc%9f">JavaGuide</a></p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li><strong>浅拷贝</strong>：浅拷贝会在堆上创建一个新的对象（区别于引用拷贝的一点），不过，如果原对象内部的属性是引用类型的话，浅拷贝会直接复制内部对象的引用地址，也就是说拷贝对象和原对象共用同一个内部对象。</li>
+<li><strong>深拷贝</strong> ：深拷贝会完全复制整个对象，包括这个对象所包含的内部对象。</li>
+</ul>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>浅拷贝的示例代码如下，我们这里实现了 Cloneable 接口，并重写了 clone() 方法。<br>clone() 方法的实现很简单，直接调用的是父类 Object 的 clone() 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">// 省略构造函数、Getter&amp;Setter方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Address <span class="title">clone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (Address) <span class="keyword">super</span>.clone();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Address address;</span><br><span class="line">    <span class="comment">// 省略构造函数、Getter&amp;Setter方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Person <span class="title">clone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Person person = (Person) <span class="keyword">super</span>.clone();</span><br><span class="line">            <span class="keyword">return</span> person;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person person1 = <span class="keyword">new</span> Person(<span class="keyword">new</span> Address(<span class="string">&quot;武汉&quot;</span>));</span><br><span class="line">Person person1Copy = person1.clone();</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">System.out.println(person1.getAddress() == person1Copy.getAddress());</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>从输出结构就可以看出， person1 的克隆对象和 person1 使用的仍然是同一个 Address 对象。</p>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>这里我们简单对 Person 类的 clone() 方法进行修改，连带着要把 Person 对象内部的 Address 对象一起复制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Person <span class="title">clone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Person person = (Person) <span class="keyword">super</span>.clone();</span><br><span class="line">        person.setAddress(person.getAddress().clone());</span><br><span class="line">        <span class="keyword">return</span> person;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person person1 = <span class="keyword">new</span> Person(<span class="keyword">new</span> Address(<span class="string">&quot;武汉&quot;</span>));</span><br><span class="line">Person person1Copy = person1.clone();</span><br><span class="line"><span class="comment">// false</span></span><br><span class="line">System.out.println(person1.getAddress() == person1Copy.getAddress());</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>从输出结构就可以看出，虽然 person1 的克隆对象和 person1 包含的 Address 对象已经是不同的了。<br><strong>那什么是引用拷贝呢？</strong> 简单来说，引用拷贝就是两个不同的引用指向同一个对象。<br>我专门画了一张图来描述浅拷贝、深拷贝、引用拷贝：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656495508869-6186f349-7d26-4488-8d2d-361648ed4a29.png#clientId=ua443f20c-f55b-4&from=paste&height=440&id=ufbe9804f&name=image.png&originHeight=879&originWidth=1308&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=230287&status=done&style=none&taskId=udcd8aa64-14be-4e29-a6ed-b6475f8db0f&title=&width=654" alt="image.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/21/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/aaa/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/43/">43</a><a class="extend next" rel="next" href="/aaa/page/23/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/21/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/aaa/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/42/">42</a><a class="extend next" rel="next" href="/aaa/page/23/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -949,12 +819,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">259k</span>
+    <span title="站点总字数">255k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:55</span>
+    <span title="站点阅读时长">3:52</span>
 </div>
 
         

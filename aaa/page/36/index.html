@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E9%9D%9E%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/%E6%B5%85%E8%B0%88java8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E9%9D%9E%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/" class="post-title-link" itemprop="url">非技术经验积累</a>
+            <a href="/%E6%B5%85%E8%B0%88java8/" class="post-title-link" itemprop="url">浅谈java8</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,20 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-09-13 23:01:26" itemprop="dateCreated datePublished" datetime="2021-09-13T23:01:26+08:00">2021-09-13</time>
+              <time title="创建时间：2021-07-18 21:02:28" itemprop="dateCreated datePublished" datetime="2021-07-18T21:02:28+08:00">2021-07-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
             </span>
 
           
-            <span id="/yq/%E9%9D%9E%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/" class="post-meta-item leancloud_visitors" data-flag-title="非技术经验积累" title="阅读次数">
+            <span id="/%E6%B5%85%E8%B0%88java8/" class="post-meta-item leancloud_visitors" data-flag-title="浅谈java8" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +243,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E9%9D%9E%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E9%9D%9E%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%B5%85%E8%B0%88java8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B5%85%E8%B0%88java8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>617</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -264,122 +273,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>接到新需求的时候，不懂或者有疑惑的点一定要提前找产品或者相关人事问清楚，特别是找产品确认清楚，并做有一定的留档，需求彻底明确之后，再进行后续的开发，千万不要去猜测需求，这样很容易出问题，切记。</strong></p>
-<p><strong>接到新需求的时候，多从业务/产品和技术的角度去思考这个功能该不该做，这么做会不会存在风险，这个功能是不是应该是己方该做，还是第三方来做会更好，将这些问题思考清楚后，再进行后续的开发。</strong></p>
-<p>1、场景：我方为用工中台，存放人员的信息，现在需要给符合条件的人员上保险，需要从合同中台（主数据中台）拿到人员所在商户对应的合同的产品，然后拿该产品到保险中台去给这个人员上保险，上保险的过程中，发现从合同中台拿到的数据 code 和保险中台存放的 code 不一致，这个时候是无法给人员上保险的。<br>出现这个问题，产品这边是让我从合同拿到产品的产品 code 后，再做转化去适配保险，我一开始也准备这么做，结果我们老大说这样不行，我们作为取数据方，不应该这么转换去适配保险，这样如果哪天合同这边 code 改了或者新增了，我们是无法实时去做适配，总而言之，这样是不行的，按理应该是保险那边去和合同中台（主数据中台）做数据同步，我们用工中台怎么从合同取什么产品，给保险上什么保险，而不应该做任何的转换！</p>
-<p>总结：仔细一想，确实是这样，做为中间方的我们，不应该去做适配，而是由上游和下游去做这个同步，我们从上游拿数据，直接传入下游，无论数据 code 他们怎么改，只要保持一致，就不会出问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/ElasticSearch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/ElasticSearch/" class="post-title-link" itemprop="url">ElasticSearch</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-28 11:25:35" itemprop="dateCreated datePublished" datetime="2021-08-28T11:25:35+08:00">2021-08-28</time>
-            </span>
-
-          
-            <span id="/yq/ElasticSearch/" class="post-meta-item leancloud_visitors" data-flag-title="ElasticSearch" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/ElasticSearch/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/ElasticSearch/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="linux-安装-ES"><a href="#linux-安装-ES" class="headerlink" title="linux 安装 ES"></a>linux 安装 ES</h1><p>1.下载安装包 地址：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.16.2-linux-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-
-<p>2.解压</p>
-<blockquote>
-<h1 id="上传到-usr-local-es-目录下，执行解压命令"><a href="#上传到-usr-local-es-目录下，执行解压命令" class="headerlink" title="上传到/usr/local/es 目录下，执行解压命令"></a>上传到/usr/local/es 目录下，执行解压命令</h1><p>tar -zxvf elasticsearch-6.4.3.tar.gz</p>
+          <blockquote>
+<p>天上乌飞兔走，人间古往今来。万般回忆化尘埃，只有青山不改。</p>
 </blockquote>
-<p>3.es 不能用 root 用户启动，所以在这里建立新的用户，并/usr/local/es 文件夹的权限赋给创建的用户，具体如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建新用户 es</span></span><br><span class="line">useradd es</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给es创建密码</span></span><br><span class="line">passwd es</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给es赋权</span></span><br><span class="line">chmod -R es /usr/<span class="built_in">local</span>/es</span><br><span class="line"></span><br><span class="line">-R:要授权的目录及其下所有文件和目录</span><br><span class="line">es:要给授权的用户</span><br><span class="line">/usr/<span class="built_in">local</span>/es:要授权的目录</span><br></pre></td></tr></table></figure>
-
-<p>4.进入解压后的目录下的 bin 文件下，启动 es</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前台启动，Ctrl c后会退出</span></span><br><span class="line">./elasticsearch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台启动方式1</span></span><br><span class="line">./elasticsearch -d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台方式启动方式2</span></span><br><span class="line">nohup ./elasticsearch &amp;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>5.启动完成，验证是否成功</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 验证方式1：通过curl方式查看，命令如下</span></span><br><span class="line">curl 0.0.0.0:9200</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证方式2：查看9200端口号是否有进程启动</span></span><br><span class="line">lsof -i:9200</span><br><span class="line"></span><br><span class="line"><span class="comment"># 附：杀死进程命令</span></span><br><span class="line"><span class="built_in">kill</span> -9 PID</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决外网通过 ip 访问不上的问题</strong></p>
-<p>核心配置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2022.8.19 add</span></span><br><span class="line"><span class="attr">network.host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line"><span class="attr">node.master:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">node.data:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.port:</span> <span class="number">9200</span></span><br><span class="line"><span class="attr">cluster.name:</span> <span class="string">my-application</span></span><br><span class="line"><span class="attr">node.name:</span> <span class="string">node-1</span></span><br><span class="line"><span class="attr">cluster.initial_master_nodes:</span> [<span class="string">&quot;node-1&quot;</span>, <span class="string">&quot;node-2&quot;</span>]</span><br><span class="line"><span class="comment"># 解决exception during geoip databases update报错，原因：ES默认会去官网下载最新的GEO信息，公司内网server一般和外网不通或者网速慢，所以会报错；</span></span><br><span class="line"><span class="attr">ingest.geoip.downloader.enabled:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%B5%85%E8%B0%88java8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -398,7 +302,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/2021.06.14%20!%20%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/%E6%BC%82%E4%B8%80%E5%B9%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -412,7 +316,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/2021.06.14%20!%20%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/" class="post-title-link" itemprop="url">2021.06.14 | 读神雕侠侣</a>
+            <a href="/%E6%BC%82%E4%B8%80%E5%B9%B4/" class="post-title-link" itemprop="url">漂一年</a>
         </h2>
 
         <div class="post-meta">
@@ -422,11 +326,20 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-28 10:57:56" itemprop="dateCreated datePublished" datetime="2021-08-28T10:57:56+08:00">2021-08-28</time>
+              <time title="创建时间：2021-07-10 00:43:11" itemprop="dateCreated datePublished" datetime="2021-07-10T00:43:11+08:00">2021-07-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+                </span>
             </span>
 
           
-            <span id="/yq/2021.06.14%20!%20%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/" class="post-meta-item leancloud_visitors" data-flag-title="2021.06.14 | 读神雕侠侣" title="阅读次数">
+            <span id="/%E6%BC%82%E4%B8%80%E5%B9%B4/" class="post-meta-item leancloud_visitors" data-flag-title="漂一年" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -441,8 +354,341 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/2021.06.14%20!%20%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/2021.06.14%20!%20%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%BC%82%E4%B8%80%E5%B9%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%BC%82%E4%B8%80%E5%B9%B4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>910</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>做个正能量的人，不要给他人带来负能。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%BC%82%E4%B8%80%E5%B9%B4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/%E7%A9%86%E6%97%A6-%E8%AF%97%E9%80%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E7%A9%86%E6%97%A6-%E8%AF%97%E9%80%89/" class="post-title-link" itemprop="url">诗选</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-02 01:02:11" itemprop="dateCreated datePublished" datetime="2021-07-02T01:02:11+08:00">2021-07-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E7%A9%86%E6%97%A6-%E8%AF%97%E9%80%89/" class="post-meta-item leancloud_visitors" data-flag-title="诗选" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E7%A9%86%E6%97%A6-%E8%AF%97%E9%80%89/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E7%A9%86%E6%97%A6-%E8%AF%97%E9%80%89/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>853</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>穆旦（1918年4月5日—1977年2月26日），原名查良铮。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E7%A9%86%E6%97%A6-%E8%AF%97%E9%80%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/" class="post-title-link" itemprop="url">海口夜景</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-01 22:18:16" itemprop="dateCreated datePublished" datetime="2021-07-01T22:18:16+08:00">2021-07-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/" class="post-meta-item leancloud_visitors" data-flag-title="海口夜景" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>15</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>家人拍的一些夜景，看着挺好看的</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%B5%B7%E5%8F%A3%E5%A4%9C%E6%99%AF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/" class="post-title-link" itemprop="url">读《神雕侠侣》</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-14 01:25:56" itemprop="dateCreated datePublished" datetime="2021-06-14T01:25:56+08:00">2021-06-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/" class="post-meta-item leancloud_visitors" data-flag-title="读《神雕侠侣》" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -474,222 +720,9 @@
           <blockquote>
 <p>问世间情为何物，直教人生死相许。</p>
 </blockquote>
-<p>百忙之际，前几天总算是完成了今年必读书单计划中一个自己早就应该完成了的愿望，完完整整读完了金老爷子著作之一——《神雕侠侣》。<br>如今说到金庸，脑海中浮现更多的是在家里的老房子里，坐在用竹子编织的沙发上，端着碗筷看着大头电视机播放的《天龙八部》、《神雕侠侣》或者是《倚天屠龙记》等其影视剧。当时年少，看的更多的是影视剧里的打斗场景，心驰向往那些让人忍不住模仿的武林绝技，对所谓的剧情情感几乎是从未关注过，也不曾知郭靖的为国为民、乔峰的行侠仗义、杨过小龙女的绝对痴情。<br>其实，年初整理书单的时候，并没有想到将金庸的武侠小说列入。而后来列入的原因是阅读其他刊物的过程中，无意看到了对金庸老爷子的介绍，那一刹那，宛若遗漏一件很重要的事，怎么说目前为止也是阅读过国内的一些知名著作，但是竟然把金庸老爷子的江湖世界给忘记了？于是赶紧在手机上做了记录，防止明天一觉醒来忘记了。有些遗憾未曾早点阅读，同时也庆幸现在还阅读应该也不算太晚，再过几年，怕是心境又再变，再提不起阅读武侠小说的兴趣。<br>在金庸众多书籍中选择《神雕侠侣》作为第一本读物，其主要原因还是始于对李若彤版和刘亦菲版小龙女在屏幕上惊为天人的容颜和气质。<br>初始阅读的过程中，书中的情节与自己脑海中的依稀记得的影视场景缓缓重合，而后，这种重合又慢慢散开，直至最后彻底消散，醒悟过来才发现，原来自己脑海中已经构建了一个新神雕侠侣的江湖，在我的江湖里，所有的角色形象都由我因阅读感受而创建，故事的每一帧后面也按照我的想法去拼接串联。我想，这也许是阅读文字的魅力所在，在阅读的过程中，因为每个人的不同，导致的结果是虽为读同一本书，然感受却是千千万万种，而当你要向对方展现你阅读后看到的世界，又发现这并不是一件轻易的事，因为很多时候你所看到的世界只能意会不能言传，即便真的能够言传，却又发现对方无法理解你的世界。而影视剧展现出来的是导演或者演员个体对于角色的理解，由于影视画面的真实呈现性，观众在观影过程中，感受更多的其实是他人对角色的理解，而非自己的理解。所以影视给观众的对于人物的感受往往是一样的。<br>说回书中，阅读前期关注的角色还是李莫愁多些。江湖人称赤练仙子，无人不知无人不晓，作为小龙女的师姐，她同样拥有绝美的容颜与高强的武艺。但她豆蔻年华，被情所伤，浪迹江湖杀人遍地，世上人又之称“女魔头”，最终绝情谷一句“问世间情为何物，直教人生死相许”于火焰焚烧中离开这个让她又爱又恨的江湖。我想，生命的最后一刻，她脑海中流转的画面的应该是花季时与情人的种种，生命的凋零于她而言何尝不是一种解脱。</p>
-<blockquote>
-<p>终南山下，活死人墓，神雕侠侣，绝迹江湖。</p>
-</blockquote>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/22422342/1630119792546-059073c0-8c7e-4942-a9ec-c33c62fce7e0.png#averageHue=%23807e75&clientId=uc43d12da-3a19-4&from=paste&id=jSDVo&name=image.png&originHeight=800&originWidth=1280&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=1476024&status=done&style=none&taskId=u2013506c-2e9c-4371-83a4-a568ced201e&title=" alt="image.png"><br>随着阅读的深入，作为书中主角的杨龙二人情感经历，注定是要扣住读者的心。杨过自幼丧父丧母，一人流浪，性格偏激，却也聪明机敏。儿时偶然情况下，认了西毒欧阳锋作义父。被郭靖黄蓉夫妇认出是故人之子后带回黄花岛生活，后来被送往全真教学艺，因性格原因离开全真教后认小龙女为姑姑并成为了其弟子。二人与在古墓中生活多年，后来相恋，情感历程跌宕起伏。绝情谷一役后，小龙女知杨过情花毒可医治，因自己生命无多，担心自己死后杨过不会独活，故留下“十六年后,在此相会,夫妻情深,勿失信约”十六字后离去。苦等十六年，庆幸小龙女还在世，杨过终得与爱人厮守，从此，终南山下，活死人墓，神雕侠侣，绝迹江湖。<br>杨龙二人师徒之情转变为男女之情，这在当时是不被承认的，纵然是处处呵护杨过的郭靖也强烈反对。然而，这些反对诋毁的声音未能阻止二人，反倒让他们的情谊变得更坚定，他们的感情赤城，无惧天地，始终如一，纵然人人反对，也要在一起，更恨不得江湖人人尽知。<br>一文终了，为杨龙二人有情人终成眷属而松了口气，但当最后一字看完时，心中想的更多的并不是这终成眷属的二人，而是望着这二人离去的郭襄。</p>
-<blockquote>
-<p>风陵渡口初相遇<br>一见杨过误终生<br>数十余载苦追寻<br>不曾再遇创峨眉</p>
-</blockquote>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/22422342/1630119791745-e3d37769-b8a4-4c64-83a7-acba56f89580.png?x-oss-process=image/resize,w_800,limit_0#averageHue=%23807161&from=url&id=pY8zn&originHeight=500&originWidth=800&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="><br>郭襄，郭靖黄蓉的二女儿，出生于混乱中，被杨过李莫愁抚养过一阵子。十六年后，长大成人，性格乖巧伶俐、善良、好结交江湖英雄人士，人称“小东邪”（其外公为黄药师，人称“东邪”）。听闻神雕大侠事迹，于风陵渡口与杨过初相遇。杨过赠其三枚金针，承诺其三个愿望。第一和第二个愿望使用在她与杨过分离当天，第一个愿望为一睹杨过真容，第二个愿望是让杨过前来参加其生日，第三个愿望是看见杨过跳下绝情谷时也毫不犹豫跟随跳下去，并让杨过承诺如果没有找到小龙女也不能轻生。<br>看完书后，郭襄这个角色久久萦绕于脑海中，为她可惜，为她感叹，于是又去看了《神雕侠侣古天乐版》电视剧，从郭襄出现的集数开始看起。这一版的郭襄虽与我阅读中构建的外在形象稍有出入，但是不得不说，演的很好，加之配音（国语版）也很棒，整场看下来，没有丝毫的违和感，算是把书中的角色塑造成功了，最后她一句“问世间情为何物，直教人生死相许”更是让神雕故事彻底完结。看完影视后，还是觉得不过瘾，又去百度了这个角色，才知道原来她一生追寻杨过未果，四十岁时创建了倚天屠龙记里的峨眉派，终生未嫁，她的倾慕者张三丰一生未娶。“情”之一字，让人唏嘘感慨。<br>神雕的故事到此结束了，在接下来的时光里，尚未决定何时阅读它的上篇《射雕英雄传》和下篇《倚天屠龙记》，想来应该也是能在今年读完。儿时的武侠梦，随着时间的流逝，逐渐消散，难再被忆起，希望在后面的书籍中，能寻回更多童年时的一份感动。</p>
-<p>| # 附<br>神雕侠侣主要角色：<br>1、杨过 小龙女<br>2、郭靖 黄蓉 郭芙 郭襄 郭破虏 耶律齐<br>3、李莫愁<br>4、程英 完颜萍 陆无双 公孙绿萼<br>5、东邪西毒南帝北丐中神通：东邪黄药师 西毒欧阳锋 南帝段王爷（一灯大师） 北丐洪七公 中神通王重阳<br>6、东邪西狂南僧北侠中顽童：东邪黄药师 西狂杨过 南僧段王爷（一灯大师） 北侠郭靖 中顽童周伯通<br>7、金轮法王 巴尔达 霍都<br>。。。</p>
-<p>|  |<br>|  |</p>
-<p><a href="https://wuhuanye.github.io/tags/%E5%8C%97%E6%BC%82/"># 北漂</a> <a href="https://wuhuanye.github.io/tags/%E9%98%85%E8%AF%BB/"># 阅读</a> <a href="https://wuhuanye.github.io/tags/%E4%B9%A6%E7%B1%8D/"># 书籍</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/java/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/java/" class="post-title-link" itemprop="url">java</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-28 01:55:06" itemprop="dateCreated datePublished" datetime="2021-08-28T01:55:06+08:00">2021-08-28</time>
-            </span>
-
-          
-            <span id="/yq/java/" class="post-meta-item leancloud_visitors" data-flag-title="java" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/java/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/java/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>10</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>学海无涯，永无止境。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1648227147072-e01475f0-86bb-4729-95ec-5250b16e6acb.png#clientId=u0f93f4f4-d733-4&from=paste&height=964&id=u726029de&name=a28cbf9a1e28c506cea392c9a48e01f8.png&originHeight=1205&originWidth=1080&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=308900&status=done&style=none&taskId=u51ecbc53-5a40-48c7-91d3-f74e81159ea&title=&width=864" alt="a28cbf9a1e28c506cea392c9a48e01f8.png"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1648227168655-e8c0fff0-75e8-4435-b229-851e3df51ed3.png#clientId=u0f93f4f4-d733-4&from=paste&height=1022&id=uac839f80&name=055ae16ce36b31ea23851ed3faaa7976.png&originHeight=1278&originWidth=1080&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=376753&status=done&style=none&taskId=ucd4aedb1-a4b9-4220-b114-7ca582ddd1e&title=&width=864" alt="055ae16ce36b31ea23851ed3faaa7976.png"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1648227184268-61a94399-2c03-4ec0-bc00-d2ea967985eb.png#clientId=u0f93f4f4-d733-4&from=paste&height=1046&id=u8ffea3b7&name=a55e9dc5d3d2d7009381ae8942a01dee.png&originHeight=1308&originWidth=1080&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=387789&status=done&style=none&taskId=u01ab4ee2-1bcc-4e48-af31-9f7db8accbb&title=&width=864" alt="a55e9dc5d3d2d7009381ae8942a01dee.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/%E5%9B%9E%E9%A6%96%E5%B1%B1%E6%B2%B3%E5%B7%B2%E7%A7%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E5%9B%9E%E9%A6%96%E5%B1%B1%E6%B2%B3%E5%B7%B2%E7%A7%8B/" class="post-title-link" itemprop="url">回首山河已秋</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-07 21:02:28" itemprop="dateCreated datePublished" datetime="2021-08-07T21:02:28+08:00">2021-08-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E5%9B%9E%E9%A6%96%E5%B1%B1%E6%B2%B3%E5%B7%B2%E7%A7%8B/" class="post-meta-item leancloud_visitors" data-flag-title="回首山河已秋" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E5%9B%9E%E9%A6%96%E5%B1%B1%E6%B2%B3%E5%B7%B2%E7%A7%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%9E%E9%A6%96%E5%B1%B1%E6%B2%B3%E5%B7%B2%E7%A7%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>24</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>忽有故人心上过，回首，山河已秋。</p>
-<p>——2021立秋</p>
-</blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E5%9B%9E%E9%A6%96%E5%B1%B1%E6%B2%B3%E5%B7%B2%E7%A7%8B/#more" rel="contents">
+              <a class="btn" href="/%E8%AF%BB%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -712,7 +745,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/35/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/aaa/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/43/">43</a><a class="extend next" rel="next" href="/aaa/page/37/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/35/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/aaa/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/42/">42</a><a class="extend next" rel="next" href="/aaa/page/37/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -827,12 +860,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">259k</span>
+    <span title="站点总字数">255k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:55</span>
+    <span title="站点阅读时长">3:52</span>
 </div>
 
         
