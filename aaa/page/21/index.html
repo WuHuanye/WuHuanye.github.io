@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">SpringCloud入门概述</a>
+            <a href="/yq/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">常用命令</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-04 20:51:49" itemprop="dateCreated datePublished" datetime="2022-06-04T20:51:49+08:00">2022-06-04</time>
+              <time title="创建时间：2022-05-30 02:17:24" itemprop="dateCreated datePublished" datetime="2022-05-30T02:17:24+08:00">2022-05-30</time>
             </span>
 
           
-            <span id="/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/" class="post-meta-item leancloud_visitors" data-flag-title="SpringCloud入门概述" title="阅读次数">
+            <span id="/yq/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="常用命令" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,618 +245,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="SpringCloud-是什么？"><a href="#SpringCloud-是什么？" class="headerlink" title="SpringCloud 是什么？"></a>SpringCloud 是什么？</h1><p>Spring 官网：<a target="_blank" rel="noopener" href="https://spring.io/">https://spring.io/</a><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345092-e9ed6712-a809-4a58-aa41-f6f8f2319a1b.png#clientId=udfe0731e-5af8-4&from=paste&id=u70ccf781&originHeight=805&originWidth=1308&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u2cd7f389-35d6-4d75-a158-7dba487dce8&title="><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345084-6269c3e2-cf19-437a-97b2-7a6591d5306a.png#clientId=udfe0731e-5af8-4&from=paste&id=u6337d379&originHeight=395&originWidth=755&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=ufe20d9d9-3b86-4746-b902-bd9d3d62396&title="></p>
-<h1 id="SpringCloud-和-SpringBoot-的关系"><a href="#SpringCloud-和-SpringBoot-的关系" class="headerlink" title="SpringCloud 和 SpringBoot 的关系"></a>SpringCloud 和 SpringBoot 的关系</h1><ul>
-<li>SpringBoot 专注于开苏方便的开发单个个体微服务；</li>
-<li>SpringCloud 是关注全局的微服务协调整理治理框架，它将 SpringBoot 开发的一个个单体微服务，整合并管理起来，为各个微服务之间提供：配置管理、服务发现、断路器、路由、为代理、事件总栈、全局锁、决策竞选、分布式会话等等集成服务；</li>
-<li>SpringBoot 可以离开 SpringCloud 独立使用，开发项目，但 SpringCloud 离不开 SpringBoot，属于依赖关系；</li>
-<li>SpringBoot 专注于快速、方便的开发单个个体微服务，SpringCloud 关注全局的服务治理框架；</li>
-</ul>
-<h1 id="Dubbo-和-SpringCloud-技术选型"><a href="#Dubbo-和-SpringCloud-技术选型" class="headerlink" title="Dubbo 和 SpringCloud 技术选型"></a>Dubbo 和 SpringCloud 技术选型</h1><h2 id="1-分布式-服务治理-Dubbo"><a href="#1-分布式-服务治理-Dubbo" class="headerlink" title="1. 分布式+服务治理 Dubbo"></a>1. 分布式+服务治理 Dubbo</h2><p>目前成熟的互联网架构，应用服务化拆分 + 消息中间件</p>
-<h2 id="2-Dubbo-和-SpringCloud-对比"><a href="#2-Dubbo-和-SpringCloud-对比" class="headerlink" title="2. Dubbo 和 SpringCloud 对比"></a>2. Dubbo 和 SpringCloud 对比</h2><p>可以看一下社区活跃度：<br><a target="_blank" rel="noopener" href="https://github.com/dubbo">https://github.com/dubbo</a><br><a target="_blank" rel="noopener" href="https://github.com/spring-cloud">https://github.com/spring-cloud</a><br><strong>对比结果：</strong></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Dubbo</th>
-<th>SpringCloud</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>服务注册中心</td>
-<td>Zookeeper</td>
-<td>Spring Cloud Netfilx Eureka</td>
-</tr>
-<tr>
-<td>服务调用方式</td>
-<td>RPC</td>
-<td>REST API</td>
-</tr>
-<tr>
-<td>服务监控</td>
-<td>Dubbo-monitor</td>
-<td>Spring Boot Admin</td>
-</tr>
-<tr>
-<td>断路器</td>
-<td>不完善</td>
-<td>Spring Cloud Netfilx Hystrix</td>
-</tr>
-<tr>
-<td>服务网关</td>
-<td>无</td>
-<td>Spring Cloud Netfilx Zuul</td>
-</tr>
-<tr>
-<td>分布式配置</td>
-<td>无</td>
-<td>Spring Cloud Config</td>
-</tr>
-<tr>
-<td>服务跟踪</td>
-<td>无</td>
-<td>Spring Cloud Sleuth</td>
-</tr>
-<tr>
-<td>消息总栈</td>
-<td>无</td>
-<td>Spring Cloud Bus</td>
-</tr>
-<tr>
-<td>数据流</td>
-<td>无</td>
-<td>Spring Cloud Stream</td>
-</tr>
-<tr>
-<td>批量任务</td>
-<td>无</td>
-<td>Spring Cloud Task</td>
-</tr>
-</tbody></table>
-<p><strong>最大区别：Spring Cloud 抛弃了 Dubbo 的 RPC 通信，采用的是基于 HTTP 的 REST 方式</strong><br>严格来说，这两种方式各有优劣。虽然从一定程度上来说，后者牺牲了服务调用的性能，但也避免了上面提到的原生 RPC 带来的问题。而且 REST 相比 RPC 更为灵活，服务提供方和调用方的依赖只依靠一纸契约，不存在代码级别的强依赖，这个优点在当下强调快速演化的微服务环境下，显得更加合适。<br><strong>品牌机和组装机的区别</strong><br><strong>社区支持与更新力度的区别</strong><br><strong>总结：</strong>二者解决的问题域不一样：Dubbo 的定位是一款 RPC 框架，而 SpringCloud 的目标是微服务架构下的一站式解决方案。</p>
-<h2 id="3、SpringCloud-能干嘛？"><a href="#3、SpringCloud-能干嘛？" class="headerlink" title="3、SpringCloud 能干嘛？"></a>3、SpringCloud 能干嘛？</h2><ul>
-<li>Distributed/versioned configuration 分布式/版本控制配置</li>
-<li>Service registration and discovery 服务注册与发现</li>
-<li>Routing 路由</li>
-<li>Service-to-service calls 服务到服务的调用</li>
-<li>Load balancing 负载均衡配置</li>
-<li>Circuit Breakers 断路器</li>
-<li>Distributed messaging 分布式消息管理</li>
-<li>…</li>
-</ul>
-<h2 id="4、SpringCloud-下载"><a href="#4、SpringCloud-下载" class="headerlink" title="4、SpringCloud 下载"></a>4、SpringCloud 下载</h2><p>官网：<a target="_blank" rel="noopener" href="http://projects.spring.io/spring-cloud/">http://projects.spring.io/spring-cloud/</a><br>版本号有点特别：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345236-8560f9fc-4d15-45e2-bec2-3351f2749d7b.png#clientId=udfe0731e-5af8-4&from=paste&id=u31e53acc&name=image.png&originHeight=421&originWidth=756&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=40628&status=done&style=none&taskId=ud35429f8-5e38-4130-891b-c71a925fe3c&title=" alt="image.png"><br>SpringCloud 没有采用数字编号的方式命名版本号，而是采用了伦敦地铁站的名称，<strong>同时根据字母表的顺序来对应版本时间顺序</strong>，比如最早的 Realse 版本：Angel，第二个 Realse 版本：Brixton，然后是 Camden、Dalston、Edgware，目前最新的是 Hoxton SR4 CURRENT GA 通用稳定版。<br><strong>自学参考书：</strong></p>
-<ul>
-<li>SpringCloud Netflix 中文文档：<a target="_blank" rel="noopener" href="https://springcloud.cc/spring-cloud-netflix.html">https://springcloud.cc/spring-cloud-netflix.html</a></li>
-<li>SpringCloud 中文 API 文档(官方文档翻译版)：<a target="_blank" rel="noopener" href="https://springcloud.cc/spring-cloud-dalston.html">https://springcloud.cc/spring-cloud-dalston.html</a></li>
-<li>SpringCloud 中国社区：<a target="_blank" rel="noopener" href="http://springcloud.cn/">http://springcloud.cn/</a></li>
-<li>SpringCloud 中文网：<a target="_blank" rel="noopener" href="https://springcloud.cc/">https://springcloud.cc</a></li>
-</ul>
-<h1 id="SpringCloud-Rest-学习环境搭建：服务提供者"><a href="#SpringCloud-Rest-学习环境搭建：服务提供者" class="headerlink" title="SpringCloud Rest 学习环境搭建：服务提供者"></a>SpringCloud Rest 学习环境搭建：服务提供者</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
-<li>我们会使用一个 Dept 部门模块做一个微服务通用案例<strong>Consumer</strong>消费者(<strong>Client</strong>)通过 REST 调用<strong>Provider</strong>提供者(<strong>Server</strong>)提供的服务。</li>
-<li>回顾 Spring，SpringMVC，Mybatis 等以往学习的知识。</li>
-<li>Maven 的分包分模块架构复习。</li>
-</ul>
-<p>一个简单的 Maven 模块结构是这样的：– app-parent: 一个父项目(app-parent)聚合了很多子项目(app-util\app-dao\app-web…) |– pom.xml | |– app-core ||—- pom.xml | |– app-web ||—- pom.xml ……<br>一个父工程带着多个 Moudule 子模块<br>MicroServiceCloud 父工程(Project)下初次带着 3 个子模块(Module)</p>
-<ul>
-<li>microservicecloud-api 【封装的整体 entity/接口/公共配置等】</li>
-<li>microservicecloud-consumer-dept-80 【服务提供者】</li>
-<li>microservicecloud-provider-dept-8001 【服务消费者】</li>
-</ul>
-<h2 id="SpringCloud-版本选择"><a href="#SpringCloud-版本选择" class="headerlink" title="SpringCloud 版本选择"></a>SpringCloud 版本选择</h2><p><strong>大版本说明</strong></p>
-<table>
-<thead>
-<tr>
-<th>SpringBoot</th>
-<th>SpringCloud</th>
-<th>关系</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1.2.x</td>
-<td>Angel 版本(天使)</td>
-<td>兼容 SpringBoot1.2x</td>
-</tr>
-<tr>
-<td>1.3.x</td>
-<td>Brixton 版本(布里克斯顿)</td>
-<td>兼容 SpringBoot1.3x，也兼容 SpringBoot1.4x</td>
-</tr>
-<tr>
-<td>1.4.x</td>
-<td>Camden 版本(卡姆登)</td>
-<td>兼容 SpringBoot1.4x，也兼容 SpringBoot1.5x</td>
-</tr>
-<tr>
-<td>1.5.x</td>
-<td>Dalston 版本(多尔斯顿)</td>
-<td>兼容 SpringBoot1.5x，不兼容 SpringBoot2.0x</td>
-</tr>
-<tr>
-<td>1.5.x</td>
-<td>Edgware 版本(埃奇韦尔)</td>
-<td>兼容 SpringBoot1.5x，不兼容 SpringBoot2.0x</td>
-</tr>
-<tr>
-<td>2.0.x</td>
-<td>Finchley 版本(芬奇利)</td>
-<td>兼容 SpringBoot2.0x，不兼容 SpringBoot1.5x</td>
-</tr>
-<tr>
-<td>2.1.x</td>
-<td>Greenwich 版本(格林威治)</td>
-<td></td>
-</tr>
-</tbody></table>
-<p><strong>实际开发版本关系</strong></p>
-<table>
-<thead>
-<tr>
-<th>spring-boot-starter-parent</th>
-<th></th>
-<th>spring-cloud-dependencles</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>版本号</strong></td>
-<td><strong>发布日期</strong></td>
-<td><strong>版本号</strong></td>
-<td><strong>发布日期</strong></td>
-</tr>
-<tr>
-<td>1.5.2.RELEASE</td>
-<td>2017-03</td>
-<td>Dalston.RC1</td>
-<td>2017-x</td>
-</tr>
-<tr>
-<td>1.5.9.RELEASE</td>
-<td>2017-11</td>
-<td>Edgware.RELEASE</td>
-<td>2017-11</td>
-</tr>
-<tr>
-<td>1.5.16.RELEASE</td>
-<td>2018-04</td>
-<td>Edgware.SR5</td>
-<td>2018-10</td>
-</tr>
-<tr>
-<td>1.5.20.RELEASE</td>
-<td>2018-09</td>
-<td>Edgware.SR5</td>
-<td>2018-10</td>
-</tr>
-<tr>
-<td>2.0.2.RELEASE</td>
-<td>2018-05</td>
-<td>Fomchiey.BULD-SNAPSHOT</td>
-<td>2018-x</td>
-</tr>
-<tr>
-<td>2.0.6.RELEASE</td>
-<td>2018-10</td>
-<td>Fomchiey-SR2</td>
-<td>2018-10</td>
-</tr>
-<tr>
-<td>2.1.4.RELEASE</td>
-<td>2019-04</td>
-<td>Greenwich.SR1</td>
-<td>2019-03</td>
-</tr>
-</tbody></table>
-<p><strong>使用后两个</strong></p>
-<h2 id="创建父工程"><a href="#创建父工程" class="headerlink" title="创建父工程"></a>创建父工程</h2><ul>
-<li>新建父工程项目 springcloud，切记<strong>Packageing 是 pom 模式</strong></li>
-<li>主要是定义 POM 文件，将后续各个子模块公用的 jar 包等统一提取出来，类似一个抽象父类<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345171-1fc18bb5-67f4-4660-b6fb-040e9115d853.png#clientId=udfe0731e-5af8-4&from=paste&id=ub0598a1d&name=image.png&originHeight=148&originWidth=435&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=13054&status=done&style=none&taskId=u648ce973-32e6-4e48-8ba4-79af5c929ba&title=" alt="image.png"></li>
-</ul>
-<p><strong>pom.xml</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.haust<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springcloud<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-api<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-provider-dept-8001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-consumer-dept-80<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-eureka-7001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-eureka-7002<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-eureka-7003<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-provider-dept-8002<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-provider-dept-8003<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-consumer-dept-feign<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-provider-dept-hystrix-8001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-consumer-hystrix-dashboard<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-zuul-9527<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-config-server-3344<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-config-client-3355<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-config-eureka-7001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-config-dept-8001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--打包方式  pom--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">junit.version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">junit.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">log4j.version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">log4j.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">lombok.version</span>&gt;</span>1.16.18<span class="tag">&lt;/<span class="name">lombok.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--springCloud的依赖--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>Greenwich.SR1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--SpringBoot--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.4.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--数据库--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.47<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--SpringBoot 启动器--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--日志测试~--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;junit.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;lombok.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A6%82%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">微服务概述</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-04 20:42:45" itemprop="dateCreated datePublished" datetime="2022-06-04T20:42:45+08:00">2022-06-04</time>
-            </span>
-
-          
-            <span id="/yq/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A6%82%E8%BF%B0/" class="post-meta-item leancloud_visitors" data-flag-title="微服务概述" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A6%82%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="什么是微服务？"><a href="#什么是微服务？" class="headerlink" title="什么是微服务？"></a>什么是微服务？</h1><p>微服务(Microservice Architecture) 是近几年流行的一种架构思想，关于它的概念很难一言以蔽之。<br>究竟什么是微服务呢？我们在此引用 ThoughtWorks 公司的首席科学家 Martin Fowler 于 2014 年提出的一段话：<br>原文：<a target="_blank" rel="noopener" href="https://martinfowler.com/articles/microservices.html">https://martinfowler.com/articles/microservices.html</a><br>汉化：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuning8023/p/4493156.html">https://www.cnblogs.com/liuning8023/p/4493156.html</a></p>
-<p>就目前而言，对于微服务，业界并没有一个统一的，标准的定义。<br>但通常而言，微服务架构是一种架构模式，或者说是一种架构风格，它体长将单一的应用程序划分成一组小的服务，每个服务运行在其独立的自己的进程内，服务之间互相协调，互相配置，为用户提供最终价值，服务之间采用轻量级的通信机制(HTTP)互相沟通，每个服务都围绕着具体的业务进行构建，并且能狗被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应该根据业务上下文，选择合适的语言，工具(Maven)对其进行构建，可以有一个非常轻量级的集中式管理来协调这些服务，可以使用不同的语言来编写服务，也可以使用不同的数据存储。</p>
-<p>再来从技术维度角度理解下：<br>微服务化的核心就是将传统的一站式应用，根据业务拆分成一个一个的服务，彻底地去耦合，每一个微服务提供单个业务功能的服务，一个服务做一件事情，从技术角度看就是一种小而独立的处理过程，类似进程的概念，能够自行单独启动或销毁，拥有自己独立的数据库。</p>
-<p>#</p>
-<p>微服务与微服务架构</p>
-<h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><p>强调的是服务的大小，它关注的是某一个点，是具体解决某一个问题/提供落地对应服务的一个服务应用，狭义的看，可以看作是 IDEA 中的一个个微服务工程，或者 Moudel。IDEA 工具里面使用 Maven 开发的一个个独立的小 Moudel，它具体是使用 SpringBoot 开发的一个小模块，专业的事情交给专业的模块来做，一个模块就做着一件事情。强调的是一个个的个体，每个个体完成一个具体的任务或者功能。</p>
-<h2 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h2><p>一种新的架构形式，Martin Fowler 于 2014 年提出。<br>微服务架构是一种架构模式，它体长将单一应用程序划分成一组小的服务，服务之间相互协调，互相配合，为用户提供最终价值。每个服务运行在其独立的进程中，服务与服务之间采用轻量级的通信机制**(如 HTTP)互相协作，每个服务都围绕着具体的业务进行构建，并且能够被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言、工具(如 Maven)**对其进行构建。</p>
-<h1 id="微服务优缺点"><a href="#微服务优缺点" class="headerlink" title="微服务优缺点"></a>微服务优缺点</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>单一职责原则；<br>每个服务足够内聚，足够小，代码容易理解，这样能聚焦一个指定的业务功能或业务需求；<br>开发简单，开发效率高，一个服务可能就是专一的只干一件事；<br>微服务能够被小团队单独开发，这个团队只需 2-5 个开发人员组成；<br>微服务是松耦合的，是有功能意义的服务，无论是在开发阶段或部署阶段都是独立的；<br>微服务能使用不同的语言开发；<br>易于和第三方集成，微服务允许容易且灵活的方式集成自动部署，通过持续集成工具，如 jenkins，Hudson，bamboo；<br>微服务易于被一个开发人员理解，修改和维护，这样小团队能够更关注自己的工作成果，无需通过合作才能体现价值；<br>微服务允许利用和融合最新技术；<br>微服务只是业务逻辑的代码，不会和 HTML，CSS，或其他的界面混合;<br>每个微服务都有自己的存储能力，可以有自己的数据库，也可以有统一的数据库；</p>
-<p>##</p>
-<p>缺点<br>开发人员要处理分布式系统的复杂性；<br>多服务运维难度，随着服务的增加，运维的压力也在增大；<br>系统部署依赖问题；<br>服务间通信成本问题；<br>数据一致性问题；<br>系统集成测试问题；<br>性能和监控问题；</p>
-<p>#</p>
-<p>微服务技术栈<br>| <strong>微服务技术条目</strong> | 落地技术 |<br>| — | — |<br>| 服务开发 | SpringBoot、Spring、SpringMVC 等 |<br>| 服务配置与管理 | Netfix 公司的 Archaius、阿里的 Diamond 等 |<br>| 服务注册与发现 | Eureka、Consul、Zookeeper 等 |<br>| 服务调用 | Rest、PRC、gRPC |<br>| 服务熔断器 | Hystrix、Envoy 等 |<br>| 负载均衡 | Ribbon、Nginx 等 |<br>| 服务接口调用(客户端调用服务的简化工具) | Fegin 等 |<br>| 消息队列 | Kafka、RabbitMQ、ActiveMQ 等 |<br>| 服务配置中心管理 | SpringCloudConfig、Chef 等 |<br>| 服务路由(API 网关) | Zuul 等 |<br>| 服务监控 | Zabbix、Nagios、Metrics、Specatator 等 |<br>| 全链路追踪 | Zipkin、Brave、Dapper 等 |<br>| 数据流操作开发包 | SpringCloud Stream(封装与 Redis，Rabbit，Kafka 等发送接收消息) |<br>| 时间消息总栈 | SpringCloud Bus |<br>| 服务部署 | Docker、OpenStack、Kubernetes 等 |</p>
-<h1 id="为什么选择-SpringCloud-作为微服务架构"><a href="#为什么选择-SpringCloud-作为微服务架构" class="headerlink" title="为什么选择 SpringCloud 作为微服务架构"></a>为什么选择 SpringCloud 作为微服务架构</h1><h2 id="选型依据"><a href="#选型依据" class="headerlink" title="选型依据"></a>选型依据</h2><p>整体解决方案和框架成熟度<br>社区热度<br>可维护性<br>学习曲线<br>当前各大 IT 公司用的微服务架构有那些？</p>
-<p>阿里：dubbo+HFS<br>京东：JFS<br>新浪：Motan<br>当当网：DubboX</p>
-<p>…</p>
-<h1 id="各微服务框架对比"><a href="#各微服务框架对比" class="headerlink" title="各微服务框架对比"></a>各微服务框架对比</h1><p>| 功能点/服务框架 | Netflix/SpringCloud | Motan | gRPC | Thri t | Dubbo/DubboX |<br>| —————— | ———————————————————————————— | —————————————————- | ————————— | ———— | —————————— |<br>| 功能定位 | 完整的微服务框架 | RPC 框架，但整合了 ZK 或 Consul，实现集群环境的基本服务注册发现 | RPC 框架 | RPC 框架 | 服务框架 |<br>| 支持 Rest | 是，Ribbon 支持多种可拔插的序列号选择 | 否 | 否 | 否 | 否 |<br>| 支持 RPC | 否 | 是(Hession2) | 是 | 是 | 是 |<br>| 支持多语言 | 是(Rest 形式) | 否 | 是 | 是 | 否 |<br>| 负载均衡 | 是(服务端 zuul+客户端 Ribbon)，zuul-服务，动态路由，云端负载均衡 Eureka（针对中间层服务器） | 是(客户端) | 否 | 否 | 是(客户端) |<br>| 配置服务 | Netfix Archaius，Spring Cloud Config Server 集中配置 | 是(Zookeeper 提供) | 否 | 否 | 否 |<br>| 服务调用链监控 | 是(zuul)，zuul 提供边缘服务，API 网关 | 否 | 否 | 否 | 否 |<br>| 高可用/容错 | 是(服务端 Hystrix+客户端 Ribbon) | 是(客户端) | 否 | 否 | 是(客户端) |<br>| 典型应用案例 | Netflix | Sina | Google | Facebook | |<br>| 社区活跃程度 | 高 | 一般 | 高 | 一般 | 2017 年后重新开始维护，之前中断了 5 年 |<br>| 学习难度 | 中等 | 低 | 高 | 高 | 低 |<br>| 文档丰富程度 | 高 | 一般 | 一般 | 一般 | 高 |<br>| 其他 | Spring Cloud Bus 为我们的应用程序带来了更多管理端点 | 支持降级 | Netflix 内部在开发集成 gRPC | IDL 定义 | 实践的公司比较多 |</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/SpringCloud/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/SpringCloud/" class="post-title-link" itemprop="url">SpringCloud</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-04 14:45:34" itemprop="dateCreated datePublished" datetime="2022-06-04T14:45:34+08:00">2022-06-04</time>
-            </span>
-
-          
-            <span id="/yq/SpringCloud/" class="post-meta-item leancloud_visitors" data-flag-title="SpringCloud" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/SpringCloud/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/SpringCloud/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考链接 <a target="_blank" rel="noopener" href="https://www.kuangstudy.com/bbs/1374942542566551554">https://www.kuangstudy.com/bbs/1374942542566551554</a><br><strong>自学参考书：</strong></p>
-<ul>
-<li>SpringCloud Netflix 中文文档：<a target="_blank" rel="noopener" href="https://springcloud.cc/spring-cloud-netflix.html">https://springcloud.cc/spring-cloud-netflix.html</a></li>
-<li>SpringCloud 中文 API 文档(官方文档翻译版)：<a target="_blank" rel="noopener" href="https://springcloud.cc/spring-cloud-dalston.html">https://springcloud.cc/spring-cloud-dalston.html</a></li>
-<li>SpringCloud 中国社区：<a target="_blank" rel="noopener" href="http://springcloud.cn/">http://springcloud.cn/</a></li>
-<li>SpringCloud 中文网：<a target="_blank" rel="noopener" href="https://springcloud.cc/">https://springcloud.cc</a></li>
-</ul>
-<h1 id="微服务四个核心问题"><a href="#微服务四个核心问题" class="headerlink" title="微服务四个核心问题"></a>微服务四个核心问题</h1><p>1、服务很多，客户端如何访问？<br>2、多服务之间，如何进行通信？（rpc、http）<br>3、如何治理？<br>4、服务挂了怎么办？</p>
-<h1 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h1><p>Spring Cloud 生态！</p>
-<h2 id="1、Spring-Cloud-NetFlix"><a href="#1、Spring-Cloud-NetFlix" class="headerlink" title="1、Spring Cloud NetFlix"></a>1、Spring Cloud NetFlix</h2><p>一站式解决方案！<br>api 网关，zuul 组件<br>Feign ， Httpclient，http 通信方式，同步，阻塞<br>服务注册与发现：Eureka<br>熔断机制：Hystrix<br>…..</p>
-<h2 id="2、Apache-Dubbo-Zookeeper"><a href="#2、Apache-Dubbo-Zookeeper" class="headerlink" title="2、Apache Dubbo Zookeeper"></a>2、Apache Dubbo Zookeeper</h2><p>API：无，可找第三方组件，或者自己实现<br>Dubbo:rpc 框架<br>Zookeeper :服务注册与发现<br>没有熔断机制</p>
-<h2 id="3、Spring-Cloud-Alibaba"><a href="#3、Spring-Cloud-Alibaba" class="headerlink" title="3、Spring Cloud Alibaba"></a>3、Spring Cloud Alibaba</h2><p>一站式解决方案，更简单！</p>
-<p>学习重点：<br>1、API<br>2、HTTP、RPC<br>3、注册与发现<br>4、熔断机制</p>
-<h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1><p>1.1 什么是微服务？<br>1.2 微服务之间是如何独立通讯的？<br>1.3 SpringCloud 和 Dubbo 有那些区别？<br>1.4 SpringBoot 和 SpringCloud，请谈谈你对他们的理解<br>1.5 什么是服务熔断？什么是服务降级？<br>1.6 微服务的优缺点分别是什么？说下你在项目开发中遇到的坑<br>1.7 你所知道的微服务技术栈有哪些？列举一二<br>1.8 Eureka 和 Zookeeper 都可以提供服务注册与发现的功能，请说说两者的区别</p>
-<h1 id="微服务概述"><a href="#微服务概述" class="headerlink" title="微服务概述"></a>微服务概述</h1><p>什么是微服务？</p>
-<p>微服务(Microservice Architecture) 是近几年流行的一种架构思想，关于它的概念很难一言以蔽之。</p>
-<p>究竟什么是微服务呢？我们在此引用 ThoughtWorks 公司的首席科学家 Martin Fowler 于 2014 年提出的一段话：</p>
-<p>原文：<a target="_blank" rel="noopener" href="https://martinfowler.com/articles/microservices.html">https://martinfowler.com/articles/microservices.html</a></p>
-<p>汉化：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuning8023/p/4493156.html">https://www.cnblogs.com/liuning8023/p/4493156.html</a></p>
-<p>就目前而言，对于微服务，业界并没有一个统一的，标准的定义。<br>但通常而言，微服务架构是一种架构模式，或者说是一种架构风格，它体长将单一的应用程序划分成一组小的服务，每个服务运行在其独立的自己的进程内，服务之间互相协调，互相配置，为用户提供最终价值，服务之间采用轻量级的通信机制(HTTP)互相沟通，每个服务都围绕着具体的业务进行构建，并且能狗被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应该根据业务上下文，选择合适的语言，工具(Maven)对其进行构建，可以有一个非常轻量级的集中式管理来协调这些服务，可以使用不同的语言来编写服务，也可以使用不同的数据存储。<br>再来从技术维度角度理解下：</p>
-<p>微服务化的核心就是将传统的一站式应用，根据业务拆分成一个一个的服务，彻底地去耦合，每一个微服务提供单个业务功能的服务，一个服务做一件事情，从技术角度看就是一种小而独立的处理过程，类似进程的概念，能够自行单独启动或销毁，拥有自己独立的数据库。<br>2.2 微服务与微服务架构<br>微服务</p>
-<p>强调的是服务的大小，它关注的是某一个点，是具体解决某一个问题/提供落地对应服务的一个服务应用，狭义的看，可以看作是 IDEA 中的一个个微服务工程，或者 Moudel。IDEA 工具里面使用 Maven 开发的一个个独立的小 Moudel，它具体是使用 SpringBoot 开发的一个小模块，专业的事情交给专业的模块来做，一个模块就做着一件事情。强调的是一个个的个体，每个个体完成一个具体的任务或者功能。</p>
-<p>微服务架构</p>
-<p>一种新的架构形式，Martin Fowler 于 2014 年提出。</p>
-<p>微服务架构是一种架构模式，它体长将单一应用程序划分成一组小的服务，服务之间相互协调，互相配合，为用户提供最终价值。每个服务运行在其独立的进程中，服务与服务之间采用轻量级的通信机制**(如 HTTP)互相协作，每个服务都围绕着具体的业务进行构建，并且能够被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言、工具(如 Maven)**对其进行构建。</p>
-<p>2.3 微服务优缺点<br>优点</p>
-<p>单一职责原则；<br>每个服务足够内聚，足够小，代码容易理解，这样能聚焦一个指定的业务功能或业务需求；<br>开发简单，开发效率高，一个服务可能就是专一的只干一件事；<br>微服务能够被小团队单独开发，这个团队只需 2-5 个开发人员组成；<br>微服务是松耦合的，是有功能意义的服务，无论是在开发阶段或部署阶段都是独立的；<br>微服务能使用不同的语言开发；<br>易于和第三方集成，微服务允许容易且灵活的方式集成自动部署，通过持续集成工具，如 jenkins，Hudson，bamboo；<br>微服务易于被一个开发人员理解，修改和维护，这样小团队能够更关注自己的工作成果，无需通过合作才能体现价值；<br>微服务允许利用和融合最新技术；<br>微服务只是业务逻辑的代码，不会和 HTML，CSS，或其他的界面混合;<br>每个微服务都有自己的存储能力，可以有自己的数据库，也可以有统一的数据库；<br>缺点</p>
-<p>开发人员要处理分布式系统的复杂性；<br>多服务运维难度，随着服务的增加，运维的压力也在增大；<br>系统部署依赖问题；<br>服务间通信成本问题；<br>数据一致性问题；<br>系统集成测试问题；<br>性能和监控问题；<br>2.4 微服务技术栈有那些？</p>
-<table>
-<thead>
-<tr>
-<th><strong>微服务技术条目</strong></th>
-<th>落地技术</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>服务开发</td>
-<td>SpringBoot、Spring、SpringMVC 等</td>
-</tr>
-<tr>
-<td>服务配置与管理</td>
-<td>Netfix 公司的 Archaius、阿里的 Diamond 等</td>
-</tr>
-<tr>
-<td>服务注册与发现</td>
-<td>Eureka、Consul、Zookeeper 等</td>
-</tr>
-<tr>
-<td>服务调用</td>
-<td>Rest、PRC、gRPC</td>
-</tr>
-<tr>
-<td>服务熔断器</td>
-<td>Hystrix、Envoy 等</td>
-</tr>
-<tr>
-<td>负载均衡</td>
-<td>Ribbon、Nginx 等</td>
-</tr>
-<tr>
-<td>服务接口调用(客户端调用服务的简化工具)</td>
-<td>Fegin 等</td>
-</tr>
-<tr>
-<td>消息队列</td>
-<td>Kafka、RabbitMQ、ActiveMQ 等</td>
-</tr>
-<tr>
-<td>服务配置中心管理</td>
-<td>SpringCloudConfig、Chef 等</td>
-</tr>
-<tr>
-<td>服务路由(API 网关)</td>
-<td>Zuul 等</td>
-</tr>
-<tr>
-<td>服务监控</td>
-<td>Zabbix、Nagios、Metrics、Specatator 等</td>
-</tr>
-<tr>
-<td>全链路追踪</td>
-<td>Zipkin、Brave、Dapper 等</td>
-</tr>
-<tr>
-<td>数据流操作开发包</td>
-<td>SpringCloud Stream(封装与 Redis，Rabbit，Kafka 等发送接收消息)</td>
-</tr>
-<tr>
-<td>时间消息总栈</td>
-<td>SpringCloud Bus</td>
-</tr>
-<tr>
-<td>服务部署</td>
-<td>Docker、OpenStack、Kubernetes 等</td>
-</tr>
-</tbody></table>
-<p>2.5 为什么选择 SpringCloud 作为微服务架构<br>选型依据</p>
-<p>整体解决方案和框架成熟度<br>社区热度<br>可维护性<br>学习曲线<br>当前各大 IT 公司用的微服务架构有那些？</p>
-<p>阿里：dubbo+HFS<br>京东：JFS<br>新浪：Motan<br>当当网：DubboX</p>
-<p>…</p>
-<p>各微服务框架对比</p>
-<p>| 功能点/服务框架 | Netflix/SpringCloud | Motan | gRPC | Thri t | Dubbo/DubboX |<br>| —————— | ———————————————————————————— | —————————————————- | ————————— | ———— | —————————— |<br>| 功能定位 | 完整的微服务框架 | RPC 框架，但整合了 ZK 或 Consul，实现集群环境的基本服务注册发现 | RPC 框架 | RPC 框架 | 服务框架 |<br>| 支持 Rest | 是，Ribbon 支持多种可拔插的序列号选择 | 否 | 否 | 否 | 否 |<br>| 支持 RPC | 否 | 是(Hession2) | 是 | 是 | 是 |<br>| 支持多语言 | 是(Rest 形式) | 否 | 是 | 是 | 否 |<br>| 负载均衡 | 是(服务端 zuul+客户端 Ribbon)，zuul-服务，动态路由，云端负载均衡 Eureka（针对中间层服务器） | 是(客户端) | 否 | 否 | 是(客户端) |<br>| 配置服务 | Netfix Archaius，Spring Cloud Config Server 集中配置 | 是(Zookeeper 提供) | 否 | 否 | 否 |<br>| 服务调用链监控 | 是(zuul)，zuul 提供边缘服务，API 网关 | 否 | 否 | 否 | 否 |<br>| 高可用/容错 | 是(服务端 Hystrix+客户端 Ribbon) | 是(客户端) | 否 | 否 | 是(客户端) |<br>| 典型应用案例 | Netflix | Sina | Google | Facebook | |<br>| 社区活跃程度 | 高 | 一般 | 高 | 一般 | 2017 年后重新开始维护，之前中断了 5 年 |<br>| 学习难度 | 中等 | 低 | 高 | 高 | 低 |<br>| 文档丰富程度 | 高 | 一般 | 一般 | 一般 | 高 |<br>| 其他 | Spring Cloud Bus 为我们的应用程序带来了更多管理端点 | 支持降级 | Netflix 内部在开发集成 gRPC | IDL 定义 | 实践的公司比较多 |</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/BaseTypeHandler%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/BaseTypeHandler%E7%B1%BB/" class="post-title-link" itemprop="url">BaseTypeHandler类</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-04 12:04:08" itemprop="dateCreated datePublished" datetime="2022-06-04T12:04:08+08:00">2022-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/yq/BaseTypeHandler%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="BaseTypeHandler类" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/BaseTypeHandler%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/BaseTypeHandler%E7%B1%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>269</span>
+              <span>71</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -875,8 +264,283 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>部分源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可通过重写该方法为目标字段自定义赋值，比如做数据的加密落表</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setNonNullParameter</span><span class="params">(PreparedStatement ps, <span class="keyword">int</span> i, T parameter, JdbcType jdbcType)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可通过重写该方法为目标字段后自定义做操作，比如对加密字段解密后读取</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> T <span class="title">getNullableResult</span><span class="params">(ResultSet rs, String columnName)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <h1 id="简单命令"><a href="#简单命令" class="headerlink" title="简单命令"></a>简单命令</h1><h2 id="who"><a href="#who" class="headerlink" title="who"></a>who</h2><h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><h2 id="date"><a href="#date" class="headerlink" title="date"></a>date</h2><h2 id="cal"><a href="#cal" class="headerlink" title="cal"></a>cal</h2><h1 id="文件命令"><a href="#文件命令" class="headerlink" title="文件命令"></a>文件命令</h1><h2 id="文件显示命令"><a href="#文件显示命令" class="headerlink" title="文件显示命令"></a>文件显示命令</h2><h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><h3 id="less"><a href="#less" class="headerlink" title="less"></a>less</h3><h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><h2 id="匹配、排序及显示指定内容的命令"><a href="#匹配、排序及显示指定内容的命令" class="headerlink" title="匹配、排序及显示指定内容的命令"></a>匹配、排序及显示指定内容的命令</h2><h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-24 20:53:02" itemprop="dateCreated datePublished" datetime="2022-05-24T20:53:02+08:00">2022-05-24</time>
+            </span>
+
+          
+            <span id="/yq/%E7%AE%97%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="算法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E7%AE%97%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Git%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/Git%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">Git工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-24 18:38:45" itemprop="dateCreated datePublished" datetime="2022-05-24T18:38:45+08:00">2022-05-24</time>
+            </span>
+
+          
+            <span id="/yq/Git%E5%B7%A5%E5%85%B7/" class="post-meta-item leancloud_visitors" data-flag-title="Git工具" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/Git%E5%B7%A5%E5%85%B7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Git%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/Docker/" class="post-title-link" itemprop="url">Docker</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-24 12:15:26" itemprop="dateCreated datePublished" datetime="2022-05-24T12:15:26+08:00">2022-05-24</time>
+            </span>
+
+          
+            <span id="/yq/Docker/" class="post-meta-item leancloud_visitors" data-flag-title="Docker" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/Docker/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Docker/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>55</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-tutorial.html">https://www.runoob.com/docker/docker-tutorial.html</a></p>
 
       
     </div>
@@ -896,7 +560,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/XXJOB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -910,7 +574,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">spring事务传播机制</a>
+            <a href="/yq/XXJOB/" class="post-title-link" itemprop="url">XXJOB</a>
         </h2>
 
         <div class="post-meta">
@@ -920,11 +584,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-04 11:36:01" itemprop="dateCreated datePublished" datetime="2022-06-04T11:36:01+08:00">2022-06-04</time>
+              <time title="创建时间：2022-05-17 09:16:13" itemprop="dateCreated datePublished" datetime="2022-05-17T09:16:13+08:00">2022-05-17</time>
             </span>
 
           
-            <span id="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="spring事务传播机制" title="阅读次数">
+            <span id="/yq/XXJOB/" class="post-meta-item leancloud_visitors" data-flag-title="XXJOB" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -939,8 +603,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/XXJOB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/XXJOB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -950,7 +614,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>459</span>
+              <span>0</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -969,55 +633,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>参考链接<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44956318/article/details/119110150">https://blog.csdn.net/qq_44956318/article/details/119110150</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148504094">https://zhuanlan.zhihu.com/p/148504094</a></p>
-<p>注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(propagation =Propagation.REQUIRED)</span></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>分组</th>
-<th>类型</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>支持当前事务</td>
-<td><strong>REQUIRED</strong></td>
-<td>如果当前方法没有事务，新建一个事务，如果已经存在一个事务中，则加入到这个事务中。</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>SUPPORTS</strong></td>
-<td>支持当前事务，如果当前没有事务，就以非事务方式执行</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>MANDATORY</strong></td>
-<td>使用当前的事务，如果当前没有事务，就抛出异常。</td>
-</tr>
-<tr>
-<td>不支持当前事务</td>
-<td><strong>REQUIRES_NEW</strong></td>
-<td>新建事务，如果当前存在事务，把当前事务挂起。</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>NOT_SUPPORTED</strong></td>
-<td>以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>NEVER</strong></td>
-<td>以非事务方式执行，如果当前存在事务，则抛出异常。</td>
-</tr>
-<tr>
-<td>NESTED</td>
-<td>NESTED</td>
-<td>如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与 PROPAGATION_REQUIRED 类似的操作。</td>
-</tr>
-</tbody></table>
-
+          
       
     </div>
 
@@ -1035,7 +651,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/20/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/aaa/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/42/">42</a><a class="extend next" rel="next" href="/aaa/page/22/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/20/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/aaa/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/39/">39</a><a class="extend next" rel="next" href="/aaa/page/22/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1103,7 +719,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1150,12 +766,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">255k</span>
+    <span title="站点总字数">234k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:52</span>
+    <span title="站点阅读时长">3:32</span>
 </div>
 
         

@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">代理模式</a>
+            <a href="/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决 Hexo d 突然报错问题</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-25 13:46:38" itemprop="dateCreated datePublished" datetime="2022-03-25T13:46:38+08:00">2022-03-25</time>
+              <time title="创建时间：2022-01-03 23:24:41" itemprop="dateCreated datePublished" datetime="2022-01-03T23:24:41+08:00">2022-01-03</time>
             </span>
 
           
-            <span id="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="代理模式" title="阅读次数">
+            <span id="/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="解决 Hexo d 突然报错问题" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,7 +245,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>244</span>
+              <span>890</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -264,8 +264,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>参考文档：<a target="_blank" rel="noopener" href="https://blog.csdn.net/flyfeifei66/article/details/81481222">https://blog.csdn.net/flyfeifei66/article/details/81481222</a><br>代理模式是 23 种设计模式的一种，他是指一个对象 A 通过持有另一个对象 B，可以具有 B 同样的行为的模式。为了对外开放协议，B 往往实现了一个接口，A 也会去实现接口。但是 B 是“真正”实现类，A 则比较“虚”，他借用了 B 的方法去实现接口的方法。A 虽然是“伪军”，但它可以增强 B，在调用 B 的方法前后都做些其他的事情。Spring AOP 就是使用了动态代理完成了代码的动态“织入”。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/flyfeifei66/article/details/81481222">
-</a></p>
+          <p>时隔四五个月，今天往 hexo 推了篇文章，结果走到 hexo d 时竟然报错了</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/【******】/【*****】.github.io.git/&#x27;: OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\hexo\blog\node_modules\_hexo-util@1.9.1@hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:314:20)</span><br><span class="line">      at ChildProcess.cp.emit (D:\hexo\blog\node_modules\_cross-spawn@7.0.3@cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后网上查了好长时间，原因貌似是 2021 年 8 月 13 日 github 不再支持密码验证，而使用了 token，然后解决上述问题的具体步骤是：<br>1、登录 github 申请 token，点击个人头像进入 setting<img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224073369-1233fd3c-686a-4c0d-8f87-bbb205e696fe.png#clientId=u97f84e88-26d0-4&from=paste&height=279&id=u6ed292ab&name=image.png&originHeight=558&originWidth=379&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=30320&status=done&style=none&taskId=u6ee4cf62-7b3f-4974-bfd1-b04c61c06a4&title=&width=189.5" alt="image.png"></p>
+<p>2、接着找到 Developer settings<img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224156047-95eb515e-f9ce-4089-85a2-5076bedca6dd.png#clientId=u97f84e88-26d0-4&from=paste&height=130&id=u298cbdae&name=image.png&originHeight=260&originWidth=616&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=17894&status=done&style=none&taskId=u79f6cc45-84ee-4506-b62f-3e26dd5ac45&title=&width=308" alt="image.png"></p>
+<p>3、然后进入 personnel access tokens 中<img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224217280-f3b1a251-ce60-4a1d-979c-74b048d08b21.png#clientId=u97f84e88-26d0-4&from=paste&height=137&id=u0a519b83&name=image.png&originHeight=274&originWidth=906&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=24254&status=done&style=none&taskId=u9748114c-4496-4ee6-95ff-f253017d9b3&title=&width=453" alt="image.png"></p>
+<p>4、点击 <img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224272356-a5cf096b-06b2-4bc5-9f18-58c319fe3e3b.png#clientId=u97f84e88-26d0-4&from=paste&height=158&id=u1b3c13cb&name=image.png&originHeight=315&originWidth=1103&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=35887&status=done&style=none&taskId=u8c362965-83ac-47ab-9a2c-f21ec7309f4&title=&width=551.5" alt="image.png"></p>
+<p>5、<img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224446774-65348c7e-74dc-4894-ba42-13110c699875.png#clientId=u97f84e88-26d0-4&from=paste&height=432&id=ue5ac1c99&name=image.png&originHeight=864&originWidth=1174&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=112778&status=done&style=none&taskId=u77ecc260-a2e6-439b-a146-c42d0b3ff92&title=&width=587" alt="image.png"></p>
+<p>6、接着打开你个人 hexo 里面的这个配置文件<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224525404-feb7b7cf-e18c-4108-9b30-db8488ca1910.png#clientId=u97f84e88-26d0-4&from=paste&height=217&id=u00e89bb8&name=image.png&originHeight=434&originWidth=884&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=45936&status=done&style=none&taskId=u2feaa096-b980-4831-bd66-30bbb93d024&title=&width=442" alt="image.png"><br>7、把 deploy 里的 repo 地址改成这个格式（这样做不知道安不安全？）<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224826677-e58a78e3-1bb7-419e-ab49-d33471ebbd06.png#clientId=u97f84e88-26d0-4&from=paste&height=68&id=u5dcfbdfd&name=image.png&originHeight=136&originWidth=1256&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=22540&status=done&style=none&taskId=uf9c27b49-bdc6-49be-a94f-0e03d5652d8&title=&width=628" alt="image.png"></p>
+<p>8、然后重新<br>hexo clean<br>hexo g<br>hexo d<br>应该就能解决问题了</p>
 
       
     </div>
@@ -285,7 +293,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -299,7 +307,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/" class="post-title-link" itemprop="url">Spring 和 Spring Boot的AOP用的是什么代理？</a>
+            <a href="/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2021年度阅读总结</a>
         </h2>
 
         <div class="post-meta">
@@ -309,11 +317,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-25 13:15:04" itemprop="dateCreated datePublished" datetime="2022-03-25T13:15:04+08:00">2022-03-25</time>
+              <time title="创建时间：2022-01-03 18:12:36" itemprop="dateCreated datePublished" datetime="2022-01-03T18:12:36+08:00">2022-01-03</time>
             </span>
 
           
-            <span id="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/" class="post-meta-item leancloud_visitors" data-flag-title="Spring 和 Spring Boot的AOP用的是什么代理？" title="阅读次数">
+            <span id="/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="2021年度阅读总结" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -328,8 +336,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -339,7 +347,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>195</span>
+              <span>432</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -358,12 +366,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li>Spring 中的 AOP，有接口就用 JDK 动态代理，没有接口就用 Cglib 动态代理。</li>
-<li>Spring Boot 中的 AOP，2.0 之前和 Spring 一样；2.0 之后首选 Cglib 动态代理，如果用户想要使用 JDK 动态代理，需要自己手动配置。</li>
-</ol>
-<p>如果 springboot2.0 版本之后，想默认使用 jdk 代理，则需要在配置文件中手动设置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.aop.proxy-target-class</span>=<span class="string">false</span></span><br></pre></td></tr></table></figure>
+          <p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1643846926452-ef9dac6d-1fd5-40c9-b274-a4ed156427ad.jpeg"></p>
+<h1 id="年度阅读总结"><a href="#年度阅读总结" class="headerlink" title="年度阅读总结"></a>年度阅读总结</h1><p>3 月份开始确定的读书，原计划是至少读十本，很遗憾，没有完成任务，原因各方面吧，最主要的原因有两项吧：<br>1、换了工作，忙，时间少；<br>2、执行力还是不够，还是懒了些。</p>
+<p>最后，今年的从阅读上获得的收获还是很多的，读了巴金先生的《春》和《秋》，加上之前的《家》，算是彻底读完了雷雨三部曲；重新认识了金老爷子的江湖世界，也构建了自己的江湖世界，真的好看，神雕的郭襄至今仍让人无法忘怀。再有就是阅读了大刘的科幻世界，在敲下这行字的此刻，我又再一次起了鸡皮疙瘩，三体和球闪的一幕幕重新浮现，我从没有想到小说能这么写，大刘的想象竟可以达到这样的高度，相比之下，我这二十多年来自以为是天马行空的幻想显得幼稚可笑，阅读过程中，血液如同沸腾的岩浆，好久未曾再有这样的感觉了，太好看了，2022 年的目标之一也是看一些知名的科幻小说吧。</p>
+<p>今天是 2022 年 1 月 3 号，新年伊始那股强劲的总结欲望到此刻只像一个必须完成而不用在乎质量的任务，未完成则心有挂念，故扯下这几笔以散去心中的挂念求轻。</p>
 
       
     </div>
@@ -383,7 +389,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/AtomicInteger/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%9A%84%E5%AE%9E%E8%B7%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -397,7 +403,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/AtomicInteger/" class="post-title-link" itemprop="url">AtomicInteger</a>
+            <a href="/yq/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%9A%84%E5%AE%9E%E8%B7%B5/" class="post-title-link" itemprop="url">项目中敏感数据加解密的实践</a>
         </h2>
 
         <div class="post-meta">
@@ -407,20 +413,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-24 21:35:53" itemprop="dateCreated datePublished" datetime="2022-03-24T21:35:53+08:00">2022-03-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
+              <time title="创建时间：2022-01-03 17:45:14" itemprop="dateCreated datePublished" datetime="2022-01-03T17:45:14+08:00">2022-01-03</time>
             </span>
 
           
-            <span id="/yq/AtomicInteger/" class="post-meta-item leancloud_visitors" data-flag-title="AtomicInteger" title="阅读次数">
+            <span id="/yq/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%9A%84%E5%AE%9E%E8%B7%B5/" class="post-meta-item leancloud_visitors" data-flag-title="项目中敏感数据加解密的实践" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -435,8 +432,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/AtomicInteger/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/AtomicInteger/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%9A%84%E5%AE%9E%E8%B7%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%9A%84%E5%AE%9E%E8%B7%B5/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -446,7 +443,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>538</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -465,10 +462,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>并发包下，多线程下依旧保证原子。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicInteger</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">6214790243416807050L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * This class intended to be implemented using VarHandles, but there</span></span><br><span class="line"><span class="comment">     * are unresolved cyclic startup dependencies.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> jdk.internal.misc.Unsafe U = jdk.internal.misc.Unsafe.getUnsafe();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> VALUE = U.objectFieldOffset(AtomicInteger.class, <span class="string">&quot;value&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> value;</span><br></pre></td></tr></table></figure>
+          <h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p><strong>背景</strong><br>由滴滴事件引发国家对数据安全的一系列反应，为贯彻国家的政策、维护数据的安全，我们公司也开始着手对系统中存储的敏感数据进行加密。<br>目前我们组管理的系统包含敏感数据字段包括：姓名、证件号、电话、邮箱、住址等。<br><strong>国家层面</strong></p>
+<ul>
+<li>数据安全保障能力是国家竞争力的直接体现；</li>
+<li>数据保护与安全是国家安全的重要方面；</li>
+<li>数据安全有序是数字经济健康发展的基础；</li>
+<li>数据安全是国家数字治理的重要议题。</li>
+</ul>
+<p><strong>企业层面</strong></p>
+<ul>
+<li>数据安全保障直接影响企业与客户的关系；</li>
+<li>数据安全在企业信息化建设中占据主导地位。</li>
+</ul>
+<h2 id="项目中的加解密流程"><a href="#项目中的加解密流程" class="headerlink" title="项目中的加解密流程"></a>项目中的加解密流程</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>1、搭建新库，与需要做加密的旧库建立主从关系；<br>2、同步数据；<br>3、数据由旧库向新库同步完成（接近 100%）；<br>4、启动定时任务，从旧库取数据，在程序中进行加密，按照 id<br>更新到新库；（保证幂等）<br>5、更新完成后，通过修改数据源配置切换到加密后的数据源；<br>6、部署上线包含加解密逻辑的业务代码。</p>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641203404407-e4136485-cab2-41a8-88df-d1d6907f50ab.png#clientId=ud348d3f8-7d3a-4&from=paste&height=435&id=u010d645a&name=image.png&originHeight=870&originWidth=1031&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=185621&status=done&style=none&taskId=uce0d64ad-0d19-4cc3-87e5-29d115a532f&title=&width=515.5" alt="image.png"></p>
+<h3 id="补偿处理"><a href="#补偿处理" class="headerlink" title="补偿处理"></a>补偿处理</h3><p>由于数据量较大，采用分页进行加密，并用 redis 记录加密的最新页码，执行到某一页加密失败时，查明失败原因，修复程序，重新执行定时加密，此时加密的页码从出错页码开始执行，避免重头开始进行全量数据加密导致耗时。（如果要重头开始跑，可以通过输入指定参数清除 Redis 缓存重新跑全量加密）<br>对定时任务加密完成后，切换数据源上线加解密业务代码的期间的增量数据（未加密数据），仍旧可以通过启动定时任务加密。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641203692639-fb4b64d4-822f-4e22-ac63-81c047c64e0d.png#clientId=u11518223-e39d-4&from=paste&height=452&id=u86277b6a&name=image.png&originHeight=903&originWidth=778&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=152474&status=done&style=none&taskId=ub6fa2384-4f1a-412d-a001-e43443602af&title=&width=389" alt="image.png"></p>
+<h2 id="多数据源配置"><a href="#多数据源配置" class="headerlink" title="多数据源配置"></a>多数据源配置</h2><h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>1、自定义类 DynamicDataSource 继承 AbstractRoutingDatasource 类并注入 bean；<br>2、将所有数据源写入到 AbstractRoutingDatasource 类中；<br>3、以注解+切面的形式实现数据源的切换；<br>具体做法：<br>1）、在需要切换数据源的方法上标注注解，声明要切换后的数据源；<br>2）、执行到标注注解的方法时，通过切面获取到方法注解的 数据源名称；<br>3）、将数据源名称 set 进入当前线程中。<br>4、执行注解方法里的 mapper 时，AbstractRoutingDatasource.getConnection()方法调用<br>determineTargetDataSource()，该方法又调用 determineCurrentLookupKey()方法，获取<br>到第三步当前线程保存的数据源名称；<br>5、根据数据源 map 集合和作为 key 的数据源名称，获取到切换的数据源。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641203740554-6ddee491-e8c7-406d-81d7-d19d30ec14a4.png#clientId=u11518223-e39d-4&from=paste&height=388&id=u4f6e68a6&name=image.png&originHeight=776&originWidth=802&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=157505&status=done&style=none&taskId=ue87954ff-a126-47ca-b4e0-5c7fedfce81&title=&width=401" alt="image.png"><br><strong>初始化数据源并注入到 bean 中</strong><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641203802258-e46efdbf-dc07-4fef-85a4-b8b1a21c5d40.png#clientId=u11518223-e39d-4&from=paste&height=89&id=u3194695a&name=image.png&originHeight=177&originWidth=791&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=76575&status=done&style=none&taskId=u0d56b27b-6937-4b63-b05c-648b00201a6&title=&width=395.5" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641203808894-9b81679b-88bc-44b4-8396-9ab4cc2efff6.png#clientId=u11518223-e39d-4&from=paste&height=466&id=u63cdb4b3&name=image.png&originHeight=931&originWidth=1419&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=370152&status=done&style=none&taskId=u97a63f6f-61ae-4e43-b69a-183b01e5046&title=&width=709.5" alt="image.png"></p>
+<h3 id="多数据源切换"><a href="#多数据源切换" class="headerlink" title="多数据源切换"></a>多数据源切换</h3><p><strong>使用注解+切面的方式实现数据源的动态切换</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> CurDataSource &#123;</span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>volatile 修饰，保证 value 是可见的，当某个线程修改 value 值时，对其他线程可见，其他线程访问时就不会通过缓存去取，而是到内存中取，保证 value 的一致性。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641203918283-2a46367d-32b6-496e-b48c-5e4baf8b3c28.png#clientId=u11518223-e39d-4&from=paste&height=398&id=u80c3fa01&name=image.png&originHeight=795&originWidth=1047&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=261480&status=done&style=none&taskId=u8bf1bee6-25a9-4dea-b928-d294f922ca1&title=&width=523.5" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641203927388-ae88c64e-26e8-4ce1-9954-ebb532e81627.png#clientId=u11518223-e39d-4&from=paste&height=33&id=uf06bab4a&name=image.png&originHeight=65&originWidth=1198&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=30154&status=done&style=none&taskId=ub543d944-974c-4795-a58e-c3640f3902c&title=&width=599" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641203932225-12e3aa12-8722-437f-aeee-bcd07af79634.png#clientId=u11518223-e39d-4&from=paste&height=69&id=u9f718ee1&name=image.png&originHeight=137&originWidth=865&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=43159&status=done&style=none&taskId=u885c9f63-ea66-49ca-8c3c-a2e33b092ef&title=&width=432.5" alt="image.png"></p>
+<h2 id="AbstractRoutingDatasource-核心代码"><a href="#AbstractRoutingDatasource-核心代码" class="headerlink" title="AbstractRoutingDatasource 核心代码"></a>AbstractRoutingDatasource 核心代码</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641204013362-2f3c7ac5-0e0c-44e9-8b85-e9c5e1670eb9.png#clientId=u11518223-e39d-4&from=paste&height=308&id=u7f408859&name=image.png&originHeight=616&originWidth=1353&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=155856&status=done&style=none&taskId=ue8b23e80-d6df-4a97-9a0c-b59fb3c7156&title=&width=676.5" alt="image.png"></p>
+<h2 id="数据加解密的方式"><a href="#数据加解密的方式" class="headerlink" title="数据加解密的方式"></a>数据加解密的方式</h2><h3 id="SQL-函数实现加解密"><a href="#SQL-函数实现加解密" class="headerlink" title="SQL 函数实现加解密"></a>SQL 函数实现加解密</h3><p>采用 Mysql 内置的 AES 加解密函数，对某个字段进行加解密，如下。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 加密 张三</span></span><br><span class="line"><span class="keyword">select</span>   <span class="keyword">HEX</span>(<span class="keyword">AES_ENCRYPT</span>(‘张三’,<span class="string">&#x27;ABC123!&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 解密  张三</span></span><br><span class="line"><span class="keyword">select</span>  <span class="keyword">AES_DECRYPT</span>(<span class="keyword">UNHEX</span>(<span class="string">&#x27;B85BECE4E75D2AB848CD89BEAD6E2528&#x27;</span>),<span class="string">&#x27;ABC123!&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用场景：<br>需求小，指定加密内容，该方法可行。<br>密钥变 ，所有代码跟着变。<br>不推荐。</p>
+<h3 id="TypeHandler-实现"><a href="#TypeHandler-实现" class="headerlink" title="TypeHandler 实现"></a>TypeHandler 实现</h3><ul>
+<li><strong>Mybatis 的类型转换器，可将 java 数据类型转换成与数据库适配的格式。</strong></li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641204184705-464e3ae0-34e9-435b-af1f-918c53f0af17.png#clientId=u11518223-e39d-4&from=paste&height=414&id=u697f8073&name=image.png&originHeight=828&originWidth=1332&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=415048&status=done&style=none&taskId=u0033e412-f473-497b-8946-c51bfde3326&title=&width=666" alt="image.png"></p>
+<ul>
+<li><strong>加解密中的使用</strong></li>
+</ul>
+<p>自定义 EncryptionHandler 继承 BaseTypeHandler，重写里面的 setNonNullParameter 和 getNonableResult 方法，在敏感数据入库前做加密处理，在敏感数据出库时做解密处理。</p>
+<ul>
+<li>加密</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641204249998-4bc70668-7357-47d5-acb5-a86356fe2290.png#clientId=u11518223-e39d-4&from=paste&height=200&id=u8430b081&name=image.png&originHeight=400&originWidth=1954&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=182204&status=done&style=none&taskId=u6fe92028-92b7-490d-a026-44bd2454b7b&title=&width=977" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641204257213-ccf0d27d-28df-4dc7-ba3d-da04050c5ff0.png#clientId=u11518223-e39d-4&from=paste&height=152&id=u2bbb1862&name=image.png&originHeight=304&originWidth=1324&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=178389&status=done&style=none&taskId=u3caf3163-e715-4875-bd76-a3f8c5f997e&title=&width=662" alt="image.png"></p>
+<ul>
+<li>解密</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641204299514-2b9b8199-f2c7-4f28-8eea-6f4caec207f7.png#clientId=u11518223-e39d-4&from=paste&height=309&id=udd540d20&name=image.png&originHeight=618&originWidth=1637&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=241724&status=done&style=none&taskId=uee1834e8-bf44-446d-8c1e-cf4b6d95e58&title=&width=818.5" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641204305456-d6fddb09-c4b2-444a-bfec-5d1033ad8cd9.png#clientId=u11518223-e39d-4&from=paste&height=153&id=uca406dd7&name=image.png&originHeight=306&originWidth=1617&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=296815&status=done&style=none&taskId=u0eb1c259-afb6-4b4d-adf0-aadf98342ba&title=&width=808.5" alt="image.png"></p>
 
       
     </div>
@@ -488,7 +526,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -502,7 +540,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">事务相关</a>
+            <a href="/yq/Mysql/" class="post-title-link" itemprop="url">Mysql</a>
         </h2>
 
         <div class="post-meta">
@@ -512,11 +550,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-24 12:29:52" itemprop="dateCreated datePublished" datetime="2022-03-24T12:29:52+08:00">2022-03-24</time>
+              <time title="创建时间：2021-12-27 21:23:46" itemprop="dateCreated datePublished" datetime="2021-12-27T21:23:46+08:00">2021-12-27</time>
             </span>
 
           
-            <span id="/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/" class="post-meta-item leancloud_visitors" data-flag-title="事务相关" title="阅读次数">
+            <span id="/yq/Mysql/" class="post-meta-item leancloud_visitors" data-flag-title="Mysql" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -531,8 +569,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/Mysql/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Mysql/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -542,7 +580,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>335</span>
+              <span>632</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -561,9 +599,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="spring-事务-Transactional-在同一个类中的方法调用不生效"><a href="#spring-事务-Transactional-在同一个类中的方法调用不生效" class="headerlink" title="spring 事务@Transactional 在同一个类中的方法调用不生效"></a>spring 事务@Transactional 在同一个类中的方法调用不生效</h1><p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30336433/article/details/83338835">https://blog.csdn.net/qq_30336433/article/details/83338835</a></p>
-<p>Transactional 是 Spring 提供的事务管理注解。<br>重点在于，Spring 采用动态代理(AOP)实现对 bean 的管理和切片，它为我们的每个 class 生成一个代理对象。只有在代理对象之间进行调用时，可以触发切面逻辑。<br>而在同一个 class 中，方法 B 调用方法 A，调用的是原对象的方法，而不通过代理对象。所以 Spring 无法切到这次调用，也就无法通过注解保证事务性了。<br>也就是说，在同一个类中的方法调用，则不会被方法拦截器拦截到，因此事务不会起作用。</p>
-<h1 id="spring-事务传播机制"><a href="#spring-事务传播机制" class="headerlink" title="spring 事务传播机制"></a>spring 事务传播机制</h1>
+          <p>参考链接：<a target="_blank" rel="noopener" href="https://app.yinxiang.com/fx/0911e5b1-fdf8-443e-86e4-aedc4058d641">https://app.yinxiang.com/fx/0911e5b1-fdf8-443e-86e4-aedc4058d641</a>MySQL 体系构架、存储引擎和索引结构 <a target="_blank" rel="noopener" href="https://blog.csdn.net/wangfeijiu/article/details/112454405">https://blog.csdn.net/wangfeijiu/article/details/112454405</a><br>一文搞懂索引：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wangfeijiu/article/details/113409719">https://blog.csdn.net/wangfeijiu/article/details/113409719</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/22422342/1640611506041-78022088-5097-47e3-94be-e3edb419e11b.png#clientId=ub663b488-677f-4&from=paste&height=409&id=uf9c43f36&name=image.png&originHeight=817&originWidth=818&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=189794&status=done&style=none&taskId=ue40a01e7-dcb2-470b-a69b-22a24617e10&title=&width=409" alt="image.png"></p>
+<h2 id="MySql-性能的依据条件"><a href="#MySql-性能的依据条件" class="headerlink" title="MySql 性能的依据条件"></a>MySql 性能的依据条件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">什么是TPS，什么是QPS，区别是什么？</span><br><span class="line">一、TPS：Transactions Per Second（每秒传输事务处理个数），即服务器每秒处理的事务数。TPS包括一条消息入和一条消息出，加上一次用户数据库访问。（业务TPS &#x3D; CAPS × 每个呼叫平均TPS）</span><br><span class="line"></span><br><span class="line">TPS是软件测试结果的测量单位。一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数。</span><br><span class="line"></span><br><span class="line">一般的，评价系统性能均以每秒钟完成的技术交易的数量来衡量。系统整体处理能力取决于处理能力最低模块的TPS值。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">二、QPS：每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。</span><br><span class="line"></span><br><span class="line">对应fetches&#x2F;sec，即每秒的响应请求数，也即是最大吞吐能力。</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -582,7 +621,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/CopyOnWriteArrayList/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/springBoot%20%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -596,7 +635,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/CopyOnWriteArrayList/" class="post-title-link" itemprop="url">CopyOnWriteArrayList</a>
+            <a href="/yq/springBoot%20%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/" class="post-title-link" itemprop="url">springBoot 数据源切换</a>
         </h2>
 
         <div class="post-meta">
@@ -606,11 +645,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-23 13:02:32" itemprop="dateCreated datePublished" datetime="2022-03-23T13:02:32+08:00">2022-03-23</time>
+              <time title="创建时间：2021-10-23 22:09:18" itemprop="dateCreated datePublished" datetime="2021-10-23T22:09:18+08:00">2021-10-23</time>
             </span>
 
           
-            <span id="/yq/CopyOnWriteArrayList/" class="post-meta-item leancloud_visitors" data-flag-title="CopyOnWriteArrayList" title="阅读次数">
+            <span id="/yq/springBoot%20%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/" class="post-meta-item leancloud_visitors" data-flag-title="springBoot 数据源切换" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -625,8 +664,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/CopyOnWriteArrayList/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/CopyOnWriteArrayList/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/springBoot%20%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/springBoot%20%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -636,14 +675,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -655,14 +694,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h2><p>并发容器；增删改加锁，拷贝一份做操作，操作完成后原引用指向拷贝出来的这个对象；读操作不加锁，读的是原容器的数据；保证数据最终一致性，不保证数据实时一致性。<br><strong>应用场景：多读少写，黑白名单配置。</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> copyonwrite;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CopyOnWriteArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by dingxiangyong on 2016/3/26.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 结束标识</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> stopFlag = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        CopyOnWriteArrayList&lt;Integer&gt; list = <span class="keyword">new</span> CopyOnWriteArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="comment">//初始化集合</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ReadTask readTask1 = <span class="keyword">new</span> ReadTask(list);</span><br><span class="line">        ReadTask readTask2 = <span class="keyword">new</span> ReadTask(list);</span><br><span class="line">        ReadTask readTask3 = <span class="keyword">new</span> ReadTask(list);</span><br><span class="line">        ReadTask readTask4 = <span class="keyword">new</span> ReadTask(list);</span><br><span class="line"></span><br><span class="line">        WriteTask writeTask = <span class="keyword">new</span> WriteTask(list);</span><br><span class="line"></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">5</span>);</span><br><span class="line">        service.execute(readTask1);</span><br><span class="line">        service.execute(readTask2);</span><br><span class="line">        service.execute(readTask3);</span><br><span class="line">        service.execute(readTask4);</span><br><span class="line">        service.execute(writeTask);</span><br><span class="line"></span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 读线程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReadTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; list;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ReadTask</span><span class="params">(List&lt;Integer&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.list = list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!Test.stopFlag) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> index = (<span class="keyword">int</span>) (Math.random() * list.size());</span><br><span class="line">                Integer value = list.get(index);</span><br><span class="line">                System.out.println(<span class="string">&quot;正在读取值：&quot;</span> + value);</span><br><span class="line">                Thread.sleep(<span class="number">10</span>); <span class="comment">//模拟耗时操作</span></span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 写线程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WriteTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; list;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WriteTask</span><span class="params">(List&lt;Integer&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.list = list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; newList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">100000</span>; i &lt; <span class="number">2000000</span>; i++) &#123;</span><br><span class="line">            newList.add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>); <span class="comment">//模拟耗时操作，让读线程可以读到</span></span><br><span class="line">            System.out.println(<span class="string">&quot;准备写入copyonwritelist&quot;</span>);</span><br><span class="line">            list.addAll(newList);</span><br><span class="line">            System.out.println(<span class="string">&quot;写入copyonwritelist完毕&quot;</span>);</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>); <span class="comment">//模拟耗时操作，让读线程可以读到</span></span><br><span class="line">            Test.stopFlag = <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>自定义 DynamicDataSource 继承 AbstractRoutingDataSource，重写 determineCurrentLookupKey（）获取数据源 key 值实现数据源的切换。</p>
+<h2 id="DynamicDataSource"><a href="#DynamicDataSource" class="headerlink" title="DynamicDataSource"></a>DynamicDataSource</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.why.datasource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 扩展 Spring 的 AbstractRoutingDataSource 抽象类，重写 determineCurrentLookupKey 方法</span></span><br><span class="line"><span class="comment"> * 动态数据源</span></span><br><span class="line"><span class="comment"> * determineCurrentLookupKey() 方法决定使用哪个数据源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicDataSource</span> <span class="keyword">extends</span> <span class="title">AbstractRoutingDataSource</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * ThreadLocal 用于提供线程局部变量，在多线程环境可以保证各个线程里的变量独立于其它线程里的变量。</span></span><br><span class="line"><span class="comment">     * 也就是说 ThreadLocal 可以为每个线程创建一个【单独的变量副本】，相当于线程的 private static 类型变量。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;String&gt; CONTEXT_HOLDER = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 决定使用哪个数据源之前需要把多个数据源的信息以及默认数据源信息配置好</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> defaultTargetDataSource 默认数据源</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> targetDataSources       目标数据源</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DynamicDataSource</span><span class="params">(DataSource defaultTargetDataSource, Map&lt;Object, Object&gt; targetDataSources)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.setDefaultTargetDataSource(defaultTargetDataSource);</span><br><span class="line">        <span class="keyword">super</span>.setTargetDataSources(targetDataSources);</span><br><span class="line">        <span class="keyword">super</span>.afterPropertiesSet();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//从当前线程中取出放进去的datasource的键值</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">determineCurrentLookupKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getDataSource();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setDataSource</span><span class="params">(String dataSource)</span> </span>&#123;</span><br><span class="line">        CONTEXT_HOLDER.set(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> CONTEXT_HOLDER.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clearDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        CONTEXT_HOLDER.remove();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>运行结果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">....</span><br><span class="line">正在读取值：<span class="number">79029</span></span><br><span class="line">正在读取值：<span class="number">29270</span></span><br><span class="line">正在读取值：<span class="number">61694</span></span><br><span class="line">正在读取值：<span class="number">3373</span></span><br><span class="line">正在读取值：<span class="number">33155</span></span><br><span class="line">正在读取值：<span class="number">78532</span></span><br><span class="line">正在读取值：<span class="number">12583</span></span><br><span class="line">正在读取值：<span class="number">2778</span></span><br><span class="line">正在读取值：<span class="number">32738</span></span><br><span class="line">正在读取值：<span class="number">82363</span></span><br><span class="line">准备写入copyonwritelist</span><br><span class="line">正在读取值：<span class="number">61661</span></span><br><span class="line">正在读取值：<span class="number">5817</span></span><br><span class="line">正在读取值：<span class="number">84120</span></span><br><span class="line">正在读取值：<span class="number">43250</span></span><br><span class="line">写入copyonwritelist完毕</span><br><span class="line">正在读取值：<span class="number">1744710</span></span><br><span class="line">正在读取值：<span class="number">422552</span></span><br><span class="line">正在读取值：<span class="number">1038943</span></span><br><span class="line">正在读取值：<span class="number">1229489</span></span><br><span class="line">正在读取值：<span class="number">200887</span></span><br><span class="line">正在读取值：<span class="number">1547701</span></span><br><span class="line">正在读取值：<span class="number">1841575</span></span><br><span class="line">正在读取值：<span class="number">1785725</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="DynamicDataSourceConfig-配置数据源"><a href="#DynamicDataSourceConfig-配置数据源" class="headerlink" title="DynamicDataSourceConfig 配置数据源"></a>DynamicDataSourceConfig 配置数据源</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.why.datasource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Qualifier;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Primary;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配置多数据源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicDataSourceConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties(&quot;spring.datasource.druid.first&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DataSource <span class="title">firstDataSource</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> DruidDataSourceBuilder.create().build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties(&quot;spring.datasource.druid.second&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DataSource <span class="title">secondDataSource</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> DruidDataSourceBuilder.create().build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@Primary</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DynamicDataSource <span class="title">dataSource</span><span class="params">(<span class="meta">@Qualifier(&quot;firstDataSource&quot;)</span> DataSource firstDataSource1,</span></span></span><br><span class="line"><span class="function"><span class="params">                                        <span class="meta">@Qualifier(&quot;secondDataSource&quot;)</span> DataSource secondDataSource1)</span> </span>&#123;</span><br><span class="line">        Map&lt;Object, Object&gt; targetDataSources = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">5</span>);</span><br><span class="line">        targetDataSources.put(DataSourceNames.FIRST, firstDataSource1);</span><br><span class="line">        targetDataSources.put(DataSourceNames.SECOND, secondDataSource1);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DynamicDataSource(firstDataSource1, targetDataSources);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>从如上结果可以看出，在写入数据的时候，读取操作并没有被终止，写入完毕后读取操作可以读取到最新的数据。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/super_wj0820/article/details/96154828">
-</a></p>
+<h2 id="CurDataSource-注解类"><a href="#CurDataSource-注解类" class="headerlink" title="CurDataSource 注解类"></a>CurDataSource 注解类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.why.datasource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 多数据源注解</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> CurDataSource &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="AbstractRoutingDataSource-核心方法"><a href="#AbstractRoutingDataSource-核心方法" class="headerlink" title="AbstractRoutingDataSource 核心方法"></a>AbstractRoutingDataSource 核心方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化数据源</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.targetDataSources == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Property &#x27;targetDataSources&#x27; is required&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">this</span>.resolvedDataSources = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="keyword">this</span>.targetDataSources.size());</span><br><span class="line">		<span class="keyword">this</span>.targetDataSources.forEach((key, value) -&gt; &#123;</span><br><span class="line">			Object lookupKey = resolveSpecifiedLookupKey(key);</span><br><span class="line">			DataSource dataSource = resolveSpecifiedDataSource(value);</span><br><span class="line">			<span class="keyword">this</span>.resolvedDataSources.put(lookupKey, dataSource);</span><br><span class="line">		&#125;);</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.defaultTargetDataSource != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>.resolvedDefaultDataSource = resolveSpecifiedDataSource(<span class="keyword">this</span>.defaultTargetDataSource);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取源链接</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Connection <span class="title">getConnection</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> determineTargetDataSource().getConnection();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// determineCurrentLookupKey()获取当前线程的数据源名称</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> DataSource <span class="title">determineTargetDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Assert.notNull(<span class="keyword">this</span>.resolvedDataSources, <span class="string">&quot;DataSource router not initialized&quot;</span>);</span><br><span class="line">		Object lookupKey = determineCurrentLookupKey();</span><br><span class="line">		DataSource dataSource = <span class="keyword">this</span>.resolvedDataSources.get(lookupKey);</span><br><span class="line">		<span class="keyword">if</span> (dataSource == <span class="keyword">null</span> &amp;&amp; (<span class="keyword">this</span>.lenientFallback || lookupKey == <span class="keyword">null</span>)) &#123;</span><br><span class="line">			dataSource = <span class="keyword">this</span>.resolvedDefaultDataSource;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (dataSource == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">&quot;Cannot determine target DataSource for lookup key [&quot;</span> + lookupKey + <span class="string">&quot;]&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dataSource;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/22422342/1635084132291-6a9fb5f4-54d6-4692-af0e-a9837950e6c1.png#clientId=u138dfad6-60cc-4&from=paste&height=411&id=u2cb0526d&name=image.png&originHeight=821&originWidth=848&originalType=binary%E2%88%B6=1&size=165015&status=done&style=none&taskId=u90502888-2fe5-43e0-814b-000077aa454&width=424" alt="image.png"></p>
 
       
     </div>
@@ -681,7 +722,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/29/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/aaa/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/42/">42</a><a class="extend next" rel="next" href="/aaa/page/31/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/29/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/aaa/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/39/">39</a><a class="extend next" rel="next" href="/aaa/page/31/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -749,7 +790,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -796,12 +837,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">255k</span>
+    <span title="站点总字数">234k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:52</span>
+    <span title="站点阅读时长">3:32</span>
 </div>
 
         

@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">索引的使用和优化</a>
+            <a href="/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">日期的使用</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-15 23:15:55" itemprop="dateCreated datePublished" datetime="2022-05-15T23:15:55+08:00">2022-05-15</time>
+              <time title="创建时间：2022-03-25 14:20:05" itemprop="dateCreated datePublished" datetime="2022-03-25T14:20:05+08:00">2022-03-25</time>
             </span>
 
           
-            <span id="/yq/%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="索引的使用和优化" title="阅读次数">
+            <span id="/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="日期的使用" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E4%BC%98%E5%8C%96/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,14 +245,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4</span>
+              <span>3.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -264,7 +264,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>参考链接</p>
+          <h1 id="Calendar-类"><a href="#Calendar-类" class="headerlink" title="Calendar 类"></a>Calendar 类</h1><p>参考文档：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44259720/article/details/86669177">https://blog.csdn.net/weixin_44259720/article/details/86669177</a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Calendar</span></span></span><br><span class="line"><span class="class">	<span class="keyword">extends</span> <span class="title">Objectimplements</span> <span class="title">Serializable</span>, <span class="title">Cloneable</span>, <span class="title">Comparable</span>&lt;<span class="title">Calendar</span>&gt;</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该类由 abstract 修饰，是一个抽象类，因此无法通过 new 来实现。它提供了 getInstance()方法来获取由当前日期及时间初始化的子类。</p>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h3 id="获取时间"><a href="#获取时间" class="headerlink" title="获取时间"></a>获取时间</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalenderTest</span> </span>&#123;</span><br><span class="line">	<span class="comment">//获取时间：以目前系统时间 ：2019:01:27 16:27:27 为例</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetCalender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Calendar cal = Calendar.getInstance();    							<span class="comment">//Calendar类的实例化</span></span><br><span class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);	<span class="comment">//时间的格式化</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前系统时间</span></span><br><span class="line">		Date date = cal.getTime();								<span class="comment">//date=Sun Jan 27 16:27:27 CST 2019</span></span><br><span class="line">		String nowTime = sdf.format(cal.getTime());				<span class="comment">//nowTime=2019-01-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前年</span></span><br><span class="line">		<span class="keyword">int</span> year = cal.get(Calendar.YEAR);						<span class="comment">//year=2019</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前月 Calendar.MONTH从0开始 ,使用时通常会+1</span></span><br><span class="line">		<span class="keyword">int</span> month = cal.get(Calendar.MONTH) + <span class="number">1</span>;				<span class="comment">//month=1</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前日：两种方法等价</span></span><br><span class="line">		<span class="keyword">int</span> day_of_month = cal.get(Calendar.DAY_OF_MONTH);		<span class="comment">//day_of_month=27</span></span><br><span class="line">		<span class="keyword">int</span> day = cal.get(Calendar.DATE);  						<span class="comment">//day=27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//获取当月day的最大值！！</span></span><br><span class="line">		<span class="keyword">int</span> max_day_of_month = cal.getActualMaximum(Calendar.DAY_OF_MONTH);	<span class="comment">//max_day_of_month=31</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前时钟：24小时制</span></span><br><span class="line">		<span class="keyword">int</span> hour24 = cal.get(Calendar.HOUR_OF_DAY);				<span class="comment">//hour24=16</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前时钟：12小时制</span></span><br><span class="line">		<span class="keyword">int</span> hour12 = cal.get(Calendar.HOUR); 					<span class="comment">//hour12=4</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前:分钟</span></span><br><span class="line">		<span class="keyword">int</span> minute = cal.get(Calendar.MINUTE);   				<span class="comment">//minute=27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前秒</span></span><br><span class="line">		<span class="keyword">int</span> second = cal.get(Calendar.SECOND);  				<span class="comment">//second=27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//星期几：用数字（1~7）表示（星期日~星期六），使用时通常会-1</span></span><br><span class="line">		<span class="keyword">int</span> day_of_week = cal.get(Calendar.DAY_OF_WEEK) - <span class="number">1</span>;	<span class="comment">//day_of_week=0</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//上午-0；下午-1</span></span><br><span class="line">		<span class="keyword">int</span> amOrPm = cal.get(Calendar.AM_PM);  					<span class="comment">//amOrPm=1</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前年的第几周</span></span><br><span class="line">		<span class="keyword">int</span> week_of_year = cal.get(Calendar.WEEK_OF_YEAR);		<span class="comment">//week_of_year=5</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前月的星期数</span></span><br><span class="line">		<span class="keyword">int</span> week_of_month = cal.get(Calendar.WEEK_OF_MONTH);	<span class="comment">//week_of_month=5</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前月中的第几个星期</span></span><br><span class="line">		<span class="keyword">int</span> day_of_week_in_month = cal.get(Calendar.DAY_OF_WEEK_IN_MONTH); <span class="comment">//day_of_week_in_month=4</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前年的第几天</span></span><br><span class="line">		<span class="keyword">int</span> day_of_year = cal.get(Calendar.DAY_OF_YEAR);		<span class="comment">//day_of_year=27</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置时间"><a href="#设置时间" class="headerlink" title="设置时间"></a>设置时间</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalenderTest</span> </span>&#123;</span><br><span class="line">	<span class="comment">//设置时间：以目前系统时间 ：2019:01:27 16:27:27 为例</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSetCalender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Calendar cal = Calendar.getInstance();    							<span class="comment">//Calendar类的实例化</span></span><br><span class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);	<span class="comment">//时间的格式化</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//1.当前系统时间</span></span><br><span class="line">		Date date = cal.getTime();							<span class="comment">//data=Sun Jan 27 16:27:27 CST 2019</span></span><br><span class="line">		String nowTime = sdf.format(cal.getTime());			<span class="comment">//nowTime=2019-01-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//2.设置时间：不设置项，默认Calendar已经存在日期</span></span><br><span class="line">		cal.set(Calendar.HOUR_OF_DAY, <span class="number">11</span>);</span><br><span class="line">		cal.set(Calendar.MINUTE, <span class="number">30</span>);</span><br><span class="line">		cal.set(Calendar.SECOND, <span class="number">30</span>);</span><br><span class="line">		String date1 = sdf.format(cal.getTime());			<span class="comment">//time=2019-01-27 11:30:30</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//3.设置时间：全部设置，则输出自定义时间</span></span><br><span class="line">		cal.set(Calendar.YEAR, <span class="number">2018</span>);</span><br><span class="line">		cal.set(Calendar.MARCH, <span class="number">7</span>);</span><br><span class="line">		cal.set(Calendar.DATE, <span class="number">21</span>);</span><br><span class="line">		String date2 = sdf.format(cal.getTime());			<span class="comment">//time=2018-08-21 11:30:30</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//4.时间重置：Date date = new date();</span></span><br><span class="line">		String newDate1 = sdf.format(cal.getTime());		<span class="comment">//newDate1=2018-08-21 11:30:30</span></span><br><span class="line">		String newDate2 = sdf.format(<span class="keyword">new</span> Date());			<span class="comment">//newDate2=2019:01:27 16:27:27</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="时间运算"><a href="#时间运算" class="headerlink" title="时间运算"></a>时间运算</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalenderTest</span> </span>&#123;</span><br><span class="line">	<span class="comment">//时间运算：以目前系统时间 ：2019:01:27 16:27:27 为例</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddCalender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Calendar cal = Calendar.getInstance();    							<span class="comment">//Calendar类的实例化</span></span><br><span class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);	<span class="comment">//时间的格式化</span></span><br><span class="line"></span><br><span class="line">		String nowTime = sdf.format(cal.getTime());		<span class="comment">//nowTime=2019-01-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.YEAR, <span class="number">1</span>);</span><br><span class="line">		String time1 = sdf.format(cal.getTime());		<span class="comment">//年:2020-01-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.MONTH, <span class="number">2</span>);</span><br><span class="line">		String time2 = sdf.format(cal.getTime());		<span class="comment">//月:2020-03-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.DATE, <span class="number">5</span>);</span><br><span class="line">		String time3 = sdf.format(cal.getTime());		<span class="comment">//日:2020-04-01 16:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.HOUR_OF_DAY, -<span class="number">1</span>);</span><br><span class="line">		String time4 = sdf.format(cal.getTime());		<span class="comment">//时:2020-04-01 15:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.MINUTE, <span class="number">1</span>);</span><br><span class="line">		String time5 = sdf.format(cal.getTime());		<span class="comment">//分:2020-04-01 15:28:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.SECOND, <span class="number">1</span>);</span><br><span class="line">		String time6 = sdf.format(cal.getTime());		<span class="comment">//秒:2020-04-01 15:27:28</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -284,7 +292,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -298,7 +306,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/" class="post-title-link" itemprop="url">Flowable工作流引擎</a>
+            <a href="/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="post-title-link" itemprop="url">Mac常用快捷键</a>
         </h2>
 
         <div class="post-meta">
@@ -308,11 +316,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-15 23:13:36" itemprop="dateCreated datePublished" datetime="2022-05-15T23:13:36+08:00">2022-05-15</time>
+              <time title="创建时间：2022-03-25 14:18:16" itemprop="dateCreated datePublished" datetime="2022-03-25T14:18:16+08:00">2022-03-25</time>
             </span>
 
           
-            <span id="/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/" class="post-meta-item leancloud_visitors" data-flag-title="Flowable工作流引擎" title="阅读次数">
+            <span id="/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="post-meta-item leancloud_visitors" data-flag-title="Mac常用快捷键" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -327,8 +335,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -338,7 +346,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>117</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -357,8 +365,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>参考链接：<a target="_blank" rel="noopener" href="http://blog.itpub.net/69961615/viewspace-2715439/">http://blog.itpub.net/69961615/viewspace-2715439/</a></p>
-<p>官方 api:<a target="_blank" rel="noopener" href="https://www.flowable.com/open-source/docs/bpmn/ch15-REST/">https://www.flowable.com/open-source/docs/bpmn/ch15-REST/</a></p>
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">一、mac系统键盘和符号对应关系</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> Control（或 Ctrl）⌃</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> Caps Lock ⇪</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> Command（或 Cmd）⌘</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> Option（或 Alt）⌥</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> Shift ⇧</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">二、mac系统自有快捷键</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> command系列</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>). command+space 切换输入法</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>). command +M 最小化当前窗口</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>). command+Q 关闭当前程序（文件夹不适用）</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>). command+S 保存</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>). command+A 全选</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>). Control+Command+Q 立即锁定屏幕</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>). command+tab 切换app界面</span><br><span class="line"></span><br><span class="line"><span class="number">8</span>). command+control+F 最大化当前窗口</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 选中文件+enter 文件重命名</span><br><span class="line"></span><br><span class="line">三、IDEA开发工具快捷键</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> command+N </span><br><span class="line"></span><br><span class="line"> <span class="number">1</span>）光标在代码编辑界面时</span><br><span class="line"></span><br><span class="line">     生成setter getter等方法 </span><br><span class="line"></span><br><span class="line"> <span class="number">2</span>）光标在左侧工程结构时</span><br><span class="line"></span><br><span class="line">     创建新类/包等</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> command+delete 删除当前行</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> command+D 复制当前行</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> command+alt+M 将当前选中到代码块抽取为方法</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> command+E 最近浏览的文体</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span> alt+command+L 格式化代码</span><br><span class="line"></span><br><span class="line"><span class="number">7.</span> alt+enter 生成局部变量（introduce local variable）</span><br><span class="line"></span><br><span class="line"><span class="number">8.</span> <span class="keyword">double</span> shift （快速按两次shift键）快速查找</span><br><span class="line"></span><br><span class="line"><span class="number">9.</span> shift+alt+⬇️ 将当前代码整体下移一行（上移同理）</span><br><span class="line"></span><br><span class="line"><span class="number">10.</span> shift+ctrl+R 编译并执行</span><br><span class="line"></span><br><span class="line"><span class="number">11.</span> fn+左键 将光标定位到当前代码行最左侧(最右侧同理 )</span><br><span class="line"></span><br><span class="line"><span class="number">12.</span> command+R 查找和替换</span><br><span class="line"></span><br><span class="line"><span class="number">13.</span> command+alt+U 在当前类中，查看继承关系视图</span><br><span class="line"></span><br><span class="line"><span class="number">14.</span> command+alt+左键/右键 将光标返回到上次查看代码的地方</span><br><span class="line"></span><br><span class="line"><span class="number">15.</span> command+F12 查找当前类的方法</span><br><span class="line"></span><br><span class="line"><span class="number">16.</span> shift*<span class="number">2</span> 快速查找</span><br><span class="line"></span><br><span class="line"><span class="number">17.</span> shift+F6 选中当前对象，重命名</span><br><span class="line"></span><br><span class="line"><span class="number">18.</span> shift+alt+⬇️ 将当前代码整体下移一行</span><br><span class="line"></span><br><span class="line"><span class="number">19.</span>shift+command+v 剪切板</span><br><span class="line"></span><br><span class="line"><span class="number">20.</span> command+shift+U 大小写切换</span><br><span class="line"></span><br><span class="line"><span class="number">21.</span> control + 左右键  idea窗口切换</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -378,7 +385,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -392,7 +399,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">网络原理</a>
+            <a href="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">代理模式</a>
         </h2>
 
         <div class="post-meta">
@@ -402,11 +409,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-15 23:12:32" itemprop="dateCreated datePublished" datetime="2022-05-15T23:12:32+08:00">2022-05-15</time>
+              <time title="创建时间：2022-03-25 13:46:38" itemprop="dateCreated datePublished" datetime="2022-03-25T13:46:38+08:00">2022-03-25</time>
             </span>
 
           
-            <span id="/yq/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="网络原理" title="阅读次数">
+            <span id="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="代理模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -421,8 +428,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -432,7 +439,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>244</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -451,100 +458,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/" class="post-title-link" itemprop="url">Google EventBus（事件总线）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-15 15:15:28" itemprop="dateCreated datePublished" datetime="2022-05-15T15:15:28+08:00">2022-05-15</time>
-            </span>
-
-          
-            <span id="/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="Google EventBus（事件总线）" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>58</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a target="_blank" rel="noopener" href="https://github.com/greenrobot/EventBus">https://github.com/greenrobot/EventBus</a><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652600058972-245ee3b0-33d7-4706-84ac-8b2b3a9e9080.png#clientId=uf6fc35c4-008e-4&from=paste&id=uc72a07ef&name=image.png&originHeight=479&originWidth=1280&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=48762&status=done&style=none&taskId=uf216fe86-dd64-4281-82cc-95093a7a832&title=" alt="image.png"></p>
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>业务数据变更与日志记录的解耦</p>
+          <p>参考文档：<a target="_blank" rel="noopener" href="https://blog.csdn.net/flyfeifei66/article/details/81481222">https://blog.csdn.net/flyfeifei66/article/details/81481222</a><br>代理模式是 23 种设计模式的一种，他是指一个对象 A 通过持有另一个对象 B，可以具有 B 同样的行为的模式。为了对外开放协议，B 往往实现了一个接口，A 也会去实现接口。但是 B 是“真正”实现类，A 则比较“虚”，他借用了 B 的方法去实现接口的方法。A 虽然是“伪军”，但它可以增强 B，在调用 B 的方法前后都做些其他的事情。Spring AOP 就是使用了动态代理完成了代码的动态“织入”。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/flyfeifei66/article/details/81481222">
+</a></p>
 
       
     </div>
@@ -564,7 +479,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -578,7 +493,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" class="post-title-link" itemprop="url">日志框架</a>
+            <a href="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/" class="post-title-link" itemprop="url">Spring 和 Spring Boot的AOP用的是什么代理？</a>
         </h2>
 
         <div class="post-meta">
@@ -588,11 +503,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-15 14:00:46" itemprop="dateCreated datePublished" datetime="2022-05-15T14:00:46+08:00">2022-05-15</time>
+              <time title="创建时间：2022-03-25 13:15:04" itemprop="dateCreated datePublished" datetime="2022-03-25T13:15:04+08:00">2022-03-25</time>
             </span>
 
           
-            <span id="/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" class="post-meta-item leancloud_visitors" data-flag-title="日志框架" title="阅读次数">
+            <span id="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/" class="post-meta-item leancloud_visitors" data-flag-title="Spring 和 Spring Boot的AOP用的是什么代理？" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -607,8 +522,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -618,7 +533,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>195</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -637,7 +552,117 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1653313587057-ea2021c0-df7b-461f-96a0-4384a0670865.png#clientId=u0ca72cef-316e-4&from=paste&height=165&id=u2739038b&name=image.png&originHeight=330&originWidth=640&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=127558&status=done&style=none&taskId=uada8473b-171d-4b55-aacc-72e3b17b6ed&title=&width=320" alt="image.png"></p>
+          <ol>
+<li>Spring 中的 AOP，有接口就用 JDK 动态代理，没有接口就用 Cglib 动态代理。</li>
+<li>Spring Boot 中的 AOP，2.0 之前和 Spring 一样；2.0 之后首选 Cglib 动态代理，如果用户想要使用 JDK 动态代理，需要自己手动配置。</li>
+</ol>
+<p>如果 springboot2.0 版本之后，想默认使用 jdk 代理，则需要在配置文件中手动设置：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.aop.proxy-target-class</span>=<span class="string">false</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/AtomicInteger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/AtomicInteger/" class="post-title-link" itemprop="url">AtomicInteger</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-24 21:35:53" itemprop="dateCreated datePublished" datetime="2022-03-24T21:35:53+08:00">2022-03-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/yq/AtomicInteger/" class="post-meta-item leancloud_visitors" data-flag-title="AtomicInteger" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/AtomicInteger/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/AtomicInteger/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>538</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>并发包下，多线程下依旧保证原子。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicInteger</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">6214790243416807050L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * This class intended to be implemented using VarHandles, but there</span></span><br><span class="line"><span class="comment">     * are unresolved cyclic startup dependencies.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> jdk.internal.misc.Unsafe U = jdk.internal.misc.Unsafe.getUnsafe();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> VALUE = U.objectFieldOffset(AtomicInteger.class, <span class="string">&quot;value&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> value;</span><br></pre></td></tr></table></figure>
+
+<p>volatile 修饰，保证 value 是可见的，当某个线程修改 value 值时，对其他线程可见，其他线程访问时就不会通过缓存去取，而是到内存中取，保证 value 的一致性。</p>
 
       
     </div>
@@ -656,7 +681,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/aaa/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/42/">42</a><a class="extend next" rel="next" href="/aaa/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/aaa/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/39/">39</a><a class="extend next" rel="next" href="/aaa/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -724,7 +749,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -771,12 +796,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">255k</span>
+    <span title="站点总字数">234k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:52</span>
+    <span title="站点阅读时长">3:32</span>
 </div>
 
         

@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Integer/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%8F%8D%E5%B0%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/Integer/" class="post-title-link" itemprop="url">Integer</a>
+            <a href="/yq/%E5%8F%8D%E5%B0%84/" class="post-title-link" itemprop="url">反射</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-29 10:54:49" itemprop="dateCreated datePublished" datetime="2022-06-29T10:54:49+08:00">2022-06-29</time>
+              <time title="创建时间：2022-06-21 08:03:45" itemprop="dateCreated datePublished" datetime="2022-06-21T08:03:45+08:00">2022-06-21</time>
             </span>
 
           
-            <span id="/yq/Integer/" class="post-meta-item leancloud_visitors" data-flag-title="Integer" title="阅读次数">
+            <span id="/yq/%E5%8F%8D%E5%B0%84/" class="post-meta-item leancloud_visitors" data-flag-title="反射" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/Integer/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Integer/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E5%8F%8D%E5%B0%84/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%8F%8D%E5%B0%84/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,7 +245,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>999</span>
+              <span>658</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -264,12 +264,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Integer i1 = <span class="number">33</span>; <span class="comment">// 装箱，会调用valueOf方法</span></span><br><span class="line">Integer i2 = <span class="number">33</span>;</span><br><span class="line">System.out.println(i1 == i2);  <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">Integer i3 = <span class="number">129</span>;</span><br><span class="line">Integer i4 = <span class="number">129</span>;</span><br><span class="line">System.out.println(i3 == i4); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+          <h1 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h1><p>反射之所以被称为框架的灵魂，主要是因为它<strong>赋予了我们在运行时分析类以及执行类中方法的能力</strong>。<br>通过反射你可以获取任意一个类的所有属性和方法，你还可以调用这些方法和属性。</p>
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>动态代理 注解 + 反射</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Value</span></span><br></pre></td></tr></table></figure>
 
-<p>Integer i1 = 33 进行了装箱，因为值在 IntegerCache.low 和 IntegerCache.high 之间，直接使用的是缓存机制里常量池的值 IntegerCache.cache[i + (-IntegerCache.low)]</p>
-<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntegerCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> low = -<span class="number">128</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> high;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// high value may be configured by property</span></span><br><span class="line">        <span class="keyword">int</span> h = <span class="number">127</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="非常用方法"><a href="#非常用方法" class="headerlink" title="非常用方法"></a>非常用方法</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 16进制转10进制</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">parseInt</span><span class="params">(String s, <span class="keyword">int</span> radix)</span></span></span><br><span class="line"><span class="function">                <span class="keyword">throws</span> NumberFormatException</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 进制转换方法</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> n </span>= <span class="number">18</span>;</span><br><span class="line">Integer.toHexString(n);</span><br><span class="line">System.out.println(n + <span class="string">&quot;的二进制是:&quot;</span> + Integer.toBinaryString(n));</span><br><span class="line">System.out.println(n + <span class="string">&quot;的八进制是:&quot;</span> + Integer.toOctalString(n));</span><br><span class="line">System.out.println(n + <span class="string">&quot;的十六进制是:&quot;</span> + Integer.toHexString(n));</span><br><span class="line">System.out.println(n + <span class="string">&quot;的三进制是:&quot;</span> + Integer.toString(n, <span class="number">3</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p>优点：<br>可以让咱们的代码更加灵活、为各种框架提供开箱即用的功能提供了便利。<br>缺点：<br>让我们在运行时有了分析操作类的能力，这同样也增加了安全问题。比如可以无视泛型参数的安全检查（泛型参数的安全检查发生在编译时）。另外，反射的性能也要稍差点，不过，对于框架来说实际是影响不大的。</p>
+<h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h1><h2 id="获取-Class-对象的四种方式"><a href="#获取-Class-对象的四种方式" class="headerlink" title="获取 Class 对象的四种方式"></a>获取 Class 对象的四种方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.知道具体类的情况下可以使用</span></span><br><span class="line">Class alunbarClass = TargetObject.class;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.通过 Class.forName()传入类的全路径获取</span></span><br><span class="line">Class alunbarClass1 = Class.forName(<span class="string">&quot;cn.javaguide.TargetObject&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.通过对象实例instance.getClass()获取</span></span><br><span class="line">TargetObject o = <span class="keyword">new</span> TargetObject();</span><br><span class="line">Class alunbarClass2 = o.getClass();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.通过类加载器xxxClassLoader.loadClass()传入类路径获取</span></span><br><span class="line">ClassLoader.getSystemClassLoader().loadClass(<span class="string">&quot;cn.javaguide.TargetObject&quot;</span>);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -289,7 +289,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/IO%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -303,7 +303,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">单例模式</a>
+            <a href="/yq/IO%E6%B5%81/" class="post-title-link" itemprop="url">IO流</a>
         </h2>
 
         <div class="post-meta">
@@ -313,11 +313,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-29 09:18:23" itemprop="dateCreated datePublished" datetime="2022-06-29T09:18:23+08:00">2022-06-29</time>
+              <time title="创建时间：2022-06-21 08:03:22" itemprop="dateCreated datePublished" datetime="2022-06-21T08:03:22+08:00">2022-06-21</time>
             </span>
 
           
-            <span id="/yq/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="单例模式" title="阅读次数">
+            <span id="/yq/IO%E6%B5%81/" class="post-meta-item leancloud_visitors" data-flag-title="IO流" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -332,8 +332,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/IO%E6%B5%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/IO%E6%B5%81/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -343,14 +343,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
+              <span>0</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -362,37 +362,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>单例模式：某一个类在系统中只需要有一个实例对象，而且对象是由这个类自行实例化并提供给系统其它地方使用，这个类称为单例类。单例模式是 GOF 23 种设计模式中最简单的一种，但同时也是在项目中接触最多的一种。单例模式属于一种创建型设计模式。</p>
-<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>大家都使用过 Windows 任务管理器，正常情况下，无论我们在 Windows 任务栏的右键菜单上点击启动多少次“任务管理器”，系统始终只能弹出一个任务管理器窗口。也就是说，在一个 Windows 系统中，系统只维护一个任务管理器。这就是一个典型的单例模式运用。<br>再举一个例子，网站的计数器，一般也是采用单例模式实现，如果你存在多个计数器，每一个用户的访问都刷新计数器的值，这样的话你的实计数的值是难以同步的。但是如果采用单例模式实现就不会存在这样的问题，而且还可以避免线程安全问题。同样多线程的线程池的设计一般也是采用单例模式，这是由于线程池需要方便对池中的线程进行控制。<br>可以看出，我们在程序中使用单例模式，目的一般是处理资源访问的冲突，或者从业务概念上，有些数据在系统中只应保存一份，那也比较适合设计为单例类，比如配置类、全局流水号生成器等。</p>
-<h1 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656469337986-8919ea46-be70-44f5-a2fe-be70e82c9e2d.png#clientId=u57c29727-1d00-4&from=paste&height=112&id=u4e7856de&name=image.png&originHeight=223&originWidth=731&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=84482&status=done&style=none&taskId=u30026a47-38d7-4448-8969-034bfcd5a40&title=&width=365.5" alt="image.png"></p>
-<h1 id="实现要点"><a href="#实现要点" class="headerlink" title="实现要点"></a>实现要点</h1><p>单例模式虽然简单，但是要写出一个能保证在多线程环境下也能保证实例唯一性的单例确不是那么简单，实现一个正确的单例模式有以下几个要点： 1.某个类只能有一个实例，即使是多线程运行环境下； 2.单例类的实例一定是单例类自身创建，而不是在单例类外部用其它方式如 new 方式创建； 3.单例类需要提供一个方法向整个系统提供这个实例对象。</p>
-<h1 id="两种模式"><a href="#两种模式" class="headerlink" title="两种模式"></a>两种模式</h1><p>单例模式分为饿汉模式和懒汉模式，这两种模式很好理解，懒汉模式的意思就是这个类很懒，只要别人不找它要实例，它都懒得创建。饿汉模式在初始化时，我们就创建了唯一的实例，即便这个实例后面并不会被使用。<br>下面分别介绍两种单例模式的写法。</p>
-<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><p>下面这种写法的单例是大家最简单最容易写出的一种单例写法，只适用于单线程的系统，也就是说它不是线程安全的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//懒汉式，线程不安全</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Singleton1</span></span>&#123;</span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">static</span>  Singleton1 instance;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//构造函数定义为私有，防止外部创建实例</span></span><br><span class="line">     <span class="function"><span class="keyword">private</span> <span class="title">Singleton1</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//系统使用单例的入口</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton1 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">         <span class="keyword">if</span> (<span class="keyword">null</span> == instance)&#123;</span><br><span class="line">             instance = <span class="keyword">new</span> Singleton1();</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">return</span> instance;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<p>针对线程不安全的问题，可以通过获取实例的方法添加了 synchronized 来解决，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//懒汉式，线程安全，效率低</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton2</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  Singleton2 instance;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造函数定义为私有，防止外部创建实例</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton2</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//系统使用单例的入口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton2 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton2();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样一来，确实线程安全了，但是又带来了另一个问题：程序的性能极大的降低了，高并发下多个线程去获取这个实例，现在却要排队。<br>针对性能问题，有同学想到了减小 synchronized 的粒度，不加在方法上，而是放在代码块中：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//懒汉式，线程不安全</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton3</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  Singleton3 instance;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造函数定义为私有，防止外部创建实例</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton3</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//系统使用单例的入口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton3 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(Singleton3.class) &#123;</span><br><span class="line">                instance = <span class="keyword">new</span> Singleton3();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但是，很不幸，如果改成这样，又变得线程不安全了，我们试着分析一个代码执行的场景：假设我们有两个线程 T1 与 T2 并发访问 getInstance 方法。当 T1 执行完 if (instance == null)且 instance 为 null 时，其 CUP 执行时间被 T2 抢占，所以 T1 还没有创建实例。T2 也执行 if (instance == null)，此时 instance 肯定还为 null，T2 执行创建实例的代码，当 T1 再次获得 CPU 执行时间后，其从 synchronized 处恢复，又会创建一个实例。<br>那么有没有一种写法，可以同时兼顾到效率和线程安全两方面了，还真有，就是我们下面将要介绍的 double-check 的方式。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">////懒汉式，线程安全，效率还可以</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton4</span></span>&#123;</span><br><span class="line">     <span class="comment">//注意加上volatile关键字</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  <span class="keyword">volatile</span> Singleton4 instance;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造函数定义为私有，防止外部创建实例</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton4</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//系统使用单例的入口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton4 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//第一次检查提高访问性能</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(Singleton4.class) &#123;</span><br><span class="line">                <span class="comment">//第二次检查为了线程安全</span></span><br><span class="line">                <span class="keyword">if</span>(instance ==<span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton4();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这种单例的写法做了两次 if (null == instance)的判断，因此被称为 double-check 的方式。</p>
-<ul>
-<li>第一次 check 为了提高访问性能。因为一旦实例被创建，后面线程的所有的 check 都为假，不需要执行 synchronized 竞争锁了。</li>
-<li>第二次 check 是为了线程安全，确保多线程环境下只生成一个实例。</li>
-</ul>
-<p>需要注意的是，这种方式，在定义实例时一定需要加上 volatile 关键字，禁止虚拟机指令重排，否则，还是有一定几率会生成多个实例，关于 volatile 关键字和指令重排的问题这里不过多介绍，后面在多线程安全系列文章中再详细介绍。</p>
-<h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><p>使用静态常量在类加载时候就创建了实例，属于饿汉模式。其是线程安全的，这一点由 JVM 来保证。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//饿汉式，线程安全</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton5</span></span>&#123;</span><br><span class="line">     <span class="comment">//</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton5 INSTANCE = <span class="keyword">new</span> Singleton5();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造函数定义为私有，防止外部创建实例</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton5</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//系统使用单例的入口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton5 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ol>
-<li><strong>线程安全</strong>：饿汉式在线程还没出现之前就已经实例化了，所以饿汉式一定是线程安全的。懒汉式加载是在使用时才会去 new 实例的，那么你去 new 的时候是一个动态的过程，是放到方法中实现的，如果这个时候有多个线程访问这个实例，这个时候实例还不存在，还在 new，就会进入到方法中，有多少线程就会 new 出多少个实例。一个方法只能 return 一个实例，那最终 return 出哪个呢？是不是会覆盖很多 new 的实例？这种情况当然也可以解决，那就是加同步锁，避免这种情况发生。</li>
-<li><strong>执行效率</strong>：饿汉式没有加任何的锁，因此执行效率比较高。懒汉式一般使用都会加同步锁，效率比饿汉式差。</li>
-<li><strong>内存使用</strong>：饿汉式在一开始类加载的时候就实例化，无论使用与否，都会实例化，所以会占据空间，浪费内存。懒汉式什么时候用就什么时候实例化，不浪费内存。</li>
-</ol>
+          <p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656549287183-13790f90-111e-4850-94fc-f0a400181b82.png#clientId=uea08b81a-0f3a-4&from=paste&id=ua41e04c6&originHeight=1080&originWidth=720&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u08c03071-441f-4684-ab7b-d43a5e09213&title="></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656549302616-ada3590b-98f4-40b8-aeaf-3b5a144b79d5.png#clientId=uea08b81a-0f3a-4&from=paste&id=u8a39442a&originHeight=535&originWidth=720&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u6e0e4f84-aa55-40d5-86d9-e37590fd910&title="></p>
 
       
     </div>
@@ -412,7 +383,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Set%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%98%93%E5%BF%98%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -426,7 +397,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/Set%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">Set的数据结构</a>
+            <a href="/yq/%E6%98%93%E5%BF%98%E7%82%B9/" class="post-title-link" itemprop="url">易忘点</a>
         </h2>
 
         <div class="post-meta">
@@ -436,11 +407,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-29 00:30:52" itemprop="dateCreated datePublished" datetime="2022-06-29T00:30:52+08:00">2022-06-29</time>
+              <time title="创建时间：2022-06-20 21:17:18" itemprop="dateCreated datePublished" datetime="2022-06-20T21:17:18+08:00">2022-06-20</time>
             </span>
 
           
-            <span id="/yq/Set%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="Set的数据结构" title="阅读次数">
+            <span id="/yq/%E6%98%93%E5%BF%98%E7%82%B9/" class="post-meta-item leancloud_visitors" data-flag-title="易忘点" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -455,8 +426,101 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/Set%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Set%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E6%98%93%E5%BF%98%E7%82%B9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%98%93%E5%BF%98%E7%82%B9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>49</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="解决循环依赖"><a href="#解决循环依赖" class="headerlink" title="解决循环依赖"></a>解决循环依赖</h1><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.main.allow-circular-references</span> = <span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E8%BF%90%E7%BB%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E8%BF%90%E7%BB%B4/" class="post-title-link" itemprop="url">运维</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-18 09:47:15" itemprop="dateCreated datePublished" datetime="2022-06-18T09:47:15+08:00">2022-06-18</time>
+            </span>
+
+          
+            <span id="/yq/%E8%BF%90%E7%BB%B4/" class="post-meta-item leancloud_visitors" data-flag-title="运维" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E8%BF%90%E7%BB%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E8%BF%90%E7%BB%B4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -504,7 +568,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/HashMap%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -518,7 +582,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/HashMap%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">HashMap底层实现原理</a>
+            <a href="/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">数据库</a>
         </h2>
 
         <div class="post-meta">
@@ -528,11 +592,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-29 00:21:46" itemprop="dateCreated datePublished" datetime="2022-06-29T00:21:46+08:00">2022-06-29</time>
+              <time title="创建时间：2022-06-18 09:43:27" itemprop="dateCreated datePublished" datetime="2022-06-18T09:43:27+08:00">2022-06-18</time>
             </span>
 
           
-            <span id="/yq/HashMap%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="HashMap底层实现原理" title="阅读次数">
+            <span id="/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-meta-item leancloud_visitors" data-flag-title="数据库" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -547,101 +611,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/HashMap%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/HashMap%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>11</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1656433338955-d213b44f-c8e6-4491-b35a-d56cb103ee79.jpeg#clientId=u8339e564-1ffb-4&from=paste&id=uc590756a&originHeight=1684&originWidth=1191&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=ua059d5ac-5dda-452f-9fc4-30af393a202&title="><br><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1656433351279-82f38613-bd1a-462d-9f40-8277dc3bf3af.jpeg#clientId=u8339e564-1ffb-4&from=paste&id=u6a21b07a&originHeight=1684&originWidth=1191&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=ue6497123-2532-49bd-b3c6-5b1a322eb7c&title="><br><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1656433364372-cbdf166e-b6a2-482b-985d-30f6ad77ad9d.jpeg#clientId=u8339e564-1ffb-4&from=paste&id=ub6a6b2af&originHeight=1684&originWidth=1191&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=ua93d62d3-c8fd-40a3-825f-b85d31762b0&title="></p>
-<h1 id="java8-版本源码"><a href="#java8-版本源码" class="headerlink" title="java8 版本源码"></a>java8 版本源码</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/QuickBI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/QuickBI/" class="post-title-link" itemprop="url">QuickBI</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-29 00:19:00" itemprop="dateCreated datePublished" datetime="2022-06-29T00:19:00+08:00">2022-06-29</time>
-            </span>
-
-          
-            <span id="/yq/QuickBI/" class="post-meta-item leancloud_visitors" data-flag-title="QuickBI" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/QuickBI/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/QuickBI/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -688,7 +659,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/aaa/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/42/">42</a><a class="extend next" rel="next" href="/aaa/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/aaa/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/39/">39</a><a class="extend next" rel="next" href="/aaa/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -756,7 +727,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -803,12 +774,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">255k</span>
+    <span title="站点总字数">234k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:52</span>
+    <span title="站点阅读时长">3:32</span>
 </div>
 
         
