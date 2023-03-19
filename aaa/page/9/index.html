@@ -191,297 +191,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD%EF%BC%88%E6%80%9D%E8%B7%AF%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD%EF%BC%88%E6%80%9D%E8%B7%AF%EF%BC%89/" class="post-title-link" itemprop="url">服务熔断（思路）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-06 14:08:35" itemprop="dateCreated datePublished" datetime="2022-07-06T14:08:35+08:00">2022-07-06</time>
-            </span>
-
-          
-            <span id="/yq/%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD%EF%BC%88%E6%80%9D%E8%B7%AF%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="服务熔断（思路）" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD%EF%BC%88%E6%80%9D%E8%B7%AF%EF%BC%89/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD%EF%BC%88%E6%80%9D%E8%B7%AF%EF%BC%89/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>333</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>有时候一个需求可能会涉及到多条业务线共同开发，在上线时业务线之间因为存在依赖关系需要顺序发版，但为了避免我们所依赖的业务线上线出了问题回滚代码，导致我们也需要跟着回滚的情况，或者有时候我们的依赖方因为各种原因要等到深夜一两点才上线，我们并不想拖到那个点，基于这两种情况我们在开发中其实可以入侵一些参数作为代码块执行的控制（开关），起一个熔断的作用，顺序上线时我们开启新代码配置走新逻辑，依赖方出问题时我们只需要改变参数走老逻辑即可实现模拟性的回滚而不用真实再去回滚我们的代码，运行一阵子顺利后我们再将配置给去除；如果我们需要提前上线时设置 参数值 走旧逻辑，待到依赖方上线完成后，我们只需要修改参数值走 新逻辑 即可。【提前上线有时候可以缓解甚至避免正常上线带来的紧张感】。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Sql%E5%9C%A8MySQL%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/Sql%E5%9C%A8MySQL%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" class="post-title-link" itemprop="url">Sql在MySQL中的执行流程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-05 18:40:40" itemprop="dateCreated datePublished" datetime="2022-07-05T18:40:40+08:00">2022-07-05</time>
-            </span>
-
-          
-            <span id="/yq/Sql%E5%9C%A8MySQL%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="Sql在MySQL中的执行流程" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/Sql%E5%9C%A8MySQL%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Sql%E5%9C%A8MySQL%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>32</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>连接器 -》 查询缓存(8.0 后移除) -》分析器-》优化器-》执行器</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">事务问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-05 17:43:35" itemprop="dateCreated datePublished" datetime="2022-07-05T17:43:35+08:00">2022-07-05</time>
-            </span>
-
-          
-            <span id="/yq/%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="事务问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="事务问题"><a href="#事务问题" class="headerlink" title="事务问题"></a>事务问题</h1><p>在典型的应用程序中，多个事务并发运行，经常会操作相同的数据来完成各自的任务（多个用户对同一数据进行操作）。并发虽然是必须的，但可能会导致以下的问题。</p>
-<h2 id="脏读（Dirty-read）"><a href="#脏读（Dirty-read）" class="headerlink" title="脏读（Dirty read）"></a>脏读（Dirty read）</h2><p>当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，然后使用了这个数据。因为这个数据是还没有提交的数据，那么另外一个事务读到的这个数据是“脏数据”，依据“脏数据”所做的操作可能是不正确的。<br>【产生的隔离级别：读未提交】</p>
-<h2 id="丢失修改（Lost-to-modify）"><a href="#丢失修改（Lost-to-modify）" class="headerlink" title="丢失修改（Lost to modify）"></a>丢失修改（Lost to modify）</h2><p>指在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。 例如：事务 1 读取某表中的数据 A=20，事务 2 也读取 A=20，事务 1 修改 A=A-1，事务 2 也修改 A=A-1，最终结果 A=19，事务 1 的修改被丢失。</p>
-<h2 id="不可重复读（Unrepeatable-read）"><a href="#不可重复读（Unrepeatable-read）" class="headerlink" title="不可重复读（Unrepeatable read）"></a>不可重复读（Unrepeatable read）</h2><p>指在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。</p>
-<h2 id="幻读（Phantom-read）"><a href="#幻读（Phantom-read）" class="headerlink" title="幻读（Phantom read）"></a>幻读（Phantom read）</h2><p>幻读与不可重复读类似。它发生在一个事务（T1）读取了几行数据，接着另一个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。</p>
-<h2 id="不可重复读和幻读区别"><a href="#不可重复读和幻读区别" class="headerlink" title="不可重复读和幻读区别"></a>不可重复读和幻读区别</h2><p>不可重复读的重点是修改比如多次读取一条记录发现其中某些列的值被修改，幻读的重点在于新增或者删除比如多次读取一条记录发现记录增多或减少了。</p>
-<h1 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h1><h2 id="四个隔离级别"><a href="#四个隔离级别" class="headerlink" title="四个隔离级别"></a>四个隔离级别</h2><p>**READ-UNCOMMITTED(读取未提交)**： 最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读。<br>**READ-COMMITTED(读取已提交)**： 允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生。<br>**REPEATABLE-READ(可重复读)**： 对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生。<br>**SERIALIZABLE(可串行化)**： 最高的隔离级别，完全服从 ACID 的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1657014985521-1ddfde8a-80f5-40ba-becd-d6787cbbe9bb.png#clientId=u8d6c3c54-f293-4&from=paste&height=227&id=uc4da40e0&name=image.png&originHeight=454&originWidth=1004&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=50202&status=done&style=none&taskId=u9015e3cb-f03a-48fa-a6d4-1f60d602ab2&title=&width=502" alt="image.png"></p>
-<h2 id="mysql-默认级别"><a href="#mysql-默认级别" class="headerlink" title="mysql 默认级别"></a>mysql 默认级别</h2><p>MySQL InnoDB 存储引擎的默认支持的隔离级别是 <strong>REPEATABLE-READ（可重读）</strong>。我们可以通过<strong>SELECT @@tx_isolation</strong>;命令来查看，MySQL 8.0 该命令改为**SELECT @@transaction_isolation; **</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT @@tx_isolation;</span><br><span class="line">+<span class="comment">-----------------+</span></span><br><span class="line">| @@tx_isolation  |</span><br><span class="line">+<span class="comment">-----------------+</span></span><br><span class="line">| REPEATABLE-READ |</span><br><span class="line">+<span class="comment">-----------------+</span></span><br></pre></td></tr></table></figure>
-
-<p><del>这里需要注意的是：与 SQL 标准不同的地方在于 InnoDB 存储引擎在 <strong>REPEATABLE-READ（可重读）</strong> 事务隔离级别下使用的是 Next-Key Lock 锁算法，因此可以避免幻读的产生，这与其他数据库系统(如 SQL Server)是不同的。所以说 InnoDB 存储引擎的默认支持的隔离级别是 <strong>REPEATABLE-READ（可重读）</strong> 已经可以完全保证事务的隔离性要求，即达到了 SQL 标准的 <strong>SERIALIZABLE(可串行化)</strong> 隔离级别。</del><br>🐛 问题更正：<strong>MySQL InnoDB 的 REPEATABLE-READ（可重读）并不保证避免幻读，需要应用使用加锁读来保证。而这个加锁度使用到的机制就是 Next-Key Locks。</strong><br>因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是 <strong>READ-COMMITTED(读取提交内容)</strong> ，但是你要知道的是 InnoDB 存储引擎默认使用 <strong>REPEATABLE-READ（可重读）</strong> 并不会有任何性能损失。<br>InnoDB 存储引擎在 <strong>分布式事务</strong> 的情况下一般会用到 <strong>SERIALIZABLE(可串行化)</strong> 隔离级别。</p>
-<p><a target="_blank" rel="noopener" href="https://javaguide.cn/database/mysql/mysql%E7%9F%A5%E8%AF%86%E7%82%B9&%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/#mysql-%E7%9A%84%E9%BB%98%E8%AE%A4%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88">
-</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/MVCC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -693,10 +402,334 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/" class="post-title-link" itemprop="url">知识点概览</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-04 22:36:40" itemprop="dateCreated datePublished" datetime="2022-07-04T22:36:40+08:00">2022-07-04</time>
+            </span>
+
+          
+            <span id="/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/" class="post-meta-item leancloud_visitors" data-flag-title="知识点概览" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h1><ul>
+<li>类加载器（ClassLoader）</li>
+<li>运行时数据区（Runtime Data Area）</li>
+<li>执行引擎（Execution Engine）</li>
+<li>本地库接口（Native Interface）</li>
+</ul>
+<p>组件的作用： 首先通过类加载器（ClassLoader）会把 Java 代码转换成字节码，运行时数据区（Runtime Data Area）再把字节码加载到内存中，而字节码文件只是 JVM 的一套指令集规范，并不能直接交个底层操作系统去执行，因此需要特定的命令解析器执行引擎（Execution Engine），将字节码翻译成底层系统指令，再交由 CPU 去执行，而这个过程中需要调用其他语言的本地库接口（NativeInterface）来实现整个程序的功能。</p>
+<h1 id="说一下-JVM-运行时数据区？"><a href="#说一下-JVM-运行时数据区？" class="headerlink" title="说一下 JVM 运行时数据区？"></a>说一下 JVM 运行时数据区？</h1><p>不同虚拟机的运行时数据区可能略微有所不同，但都会遵从 Java 虚拟机规范， Java 虚拟机规范规定的区域分为以下 5 个部分：</p>
+<ul>
+<li><strong>程序计数器/pc 寄存器</strong>（Program Counter Register）：当前线程所执行的字节码的行号指示器，字节码解析器的工作是通过改变这个计数器的值，来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能，都需要依赖这个计数器来完成；</li>
+<li><strong>Java 虚拟机栈</strong>（Java Virtual Machine Stacks）：用于存储局部变量表、操作数栈、动态链接、方法出口等信息；</li>
+<li><strong>本地方法栈</strong>（Native Method Stack）：与虚拟机栈的作用是一样的，只不过虚拟机栈是服务 Java 方法的，而本地方法栈是为虚拟机调用 Native 方法服务的；</li>
+<li><strong>Java 堆</strong>（Java Heap）：Java 虚拟机中内存最大的一块，是被所有线程共享的，几乎所有的对象实例都在这里分配内存；</li>
+<li><strong>方法区</strong>（Methed Area）：用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等数据。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656944303845-157f4f56-d041-4393-847f-6f21473ad876.png#clientId=u11f1e445-c5d7-4&from=paste&id=uae419bcb&originHeight=610&originWidth=650&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u197c025e-8f62-4cfa-91b7-a9e85a3fcc0&title="></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656944318049-a292418e-2705-4fbc-b46b-eece17f191dc.png#clientId=u11f1e445-c5d7-4&from=paste&id=u23b322f7&originHeight=561&originWidth=650&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u240be4d1-e5f1-4926-9aaa-cb7d578641e&title="></p>
+<h1 id="说一下堆栈的区别？"><a href="#说一下堆栈的区别？" class="headerlink" title="说一下堆栈的区别？"></a>说一下堆栈的区别？</h1><ul>
+<li>功能方面：堆是用来存放对象的，栈是用来执行程序的。</li>
+<li>共享性：<strong>堆</strong>是线程<strong>共享</strong>的，<strong>栈</strong>是线程<strong>私有</strong>的。</li>
+<li>空间大小：堆大小远远大于栈在介绍双亲委派模型之前先说下类加载器。对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立在 JVM 中的唯一性，每一个类加载器，都有一个独立的类名称空间。类加载器就是根据指定全限定名称将 class 文件加载到 JVM 内存，然后再转化为 class 对象。</li>
+</ul>
+<h1 id="什么是双亲委派模型？"><a href="#什么是双亲委派模型？" class="headerlink" title="什么是双亲委派模型？"></a>什么是双亲委派模型？</h1><p>在介绍双亲委派模型之前先说下类加载器。对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立在 JVM 中的唯一性，每一个类加载器，都有一个独立的类名称空间。类加载器就是根据指定全限定名称将 class 文件加载到 JVM 内存，然后再转化为 class 对象。</p>
+<h1 id="类加载的执行过程（5-个步骤）"><a href="#类加载的执行过程（5-个步骤）" class="headerlink" title="类加载的执行过程（5 个步骤）"></a>类加载的执行过程（5 个步骤）</h1><ul>
+<li><strong>加载</strong>：根据查找路径找到相应的 class 文件然后导入；</li>
+<li><strong>检查</strong>：检查加载的 class 文件的正确性；</li>
+<li><strong>准备</strong>：给类中的静态变量分配内存空间；</li>
+<li><strong>解析</strong>：虚拟机将常量池中的符号引用替换成直接引用的过程。符号引用就理解为一个标示，而在直接引用直接指向内存中的地址；</li>
+<li><strong>初始化</strong>：对静态变量和静态代码块执行初始化工作。</li>
+</ul>
+<h1 id="判断对象是否可以被回收"><a href="#判断对象是否可以被回收" class="headerlink" title="判断对象是否可以被回收"></a>判断对象是否可以被回收</h1><p>一般有两种方法来判断：</p>
+<ul>
+<li><strong>引用计数器</strong>：为每个对象创建一个引用计数，有对象引用时计数器 +1，引用被释放时计数 -1，当计数器为 0 时就可以被回收。它有一个缺点不能解决循环引用的问题；</li>
+<li><strong>可达性分析</strong>：从 GC Roots 开始向下搜索，搜索所走过的路径称为引用链。当一个对象到 GC Roots 没有任何引用链相连时，则证明此对象是可以被回收的。</li>
+</ul>
+<h1 id="JVM-有哪些垃圾回收算法"><a href="#JVM-有哪些垃圾回收算法" class="headerlink" title="JVM 有哪些垃圾回收算法"></a>JVM 有哪些垃圾回收算法</h1><ul>
+<li><strong>标记-清除算法</strong>：标记无用对象，然后进行清除回收。缺点：效率不高，无法清除垃圾碎片。</li>
+<li><strong>标记-整理算法</strong>：标记无用对象，让所有存活的对象都向一端移动，然后直接清除掉端边界以外的内存。</li>
+<li><strong>复制算法</strong>：按照容量划分二个大小相等的内存区域，当一块用完的时候将活着的对象复制到另一块上，然后再把已使用的内存空间一次清理掉。缺点：内存使用率不高，只有原来的一半。</li>
+<li><strong>分代算法</strong>：根据对象存活周期的不同将内存划分为几块，一般是新生代和老年代，新生代基本采用复制算法，老年代采用标记整理算法。</li>
+</ul>
+<h1 id="JVM-垃圾回收器"><a href="#JVM-垃圾回收器" class="headerlink" title="JVM 垃圾回收器"></a>JVM 垃圾回收器</h1><p>1）<strong>Serial</strong>：最早的单线程串行垃圾回收器。<br>2）<strong>Serial Old</strong>：Serial 垃圾回收器的老年版本，同样也是单线程的，可以作为 CMS 垃圾回收器的备选预案。<br>3）<strong>ParNew</strong>：是 Serial 的多线程版本。<br>4）Parallel 和 ParNew 收集器类似是多线程的，但 Parallel 是吞吐量优先的收集器，可以牺牲等待时间换取系统的吞吐量。<br>5）Parallel Old 是 Parallel 老生代版本，Parallel 使用的是复制的内存回收算法，Parallel Old 使用的是标记-整理的内存回收算法。<br>6）CMS：一种以获得最短停顿时间为目标的收集器，非常适用 B/S 系统。<br>7）G1：一种兼顾吞吐量和停顿时间的 GC 实现，是 JDK 9 以后的默认 GC 选项。</p>
+<h1 id="CMS-垃圾回收器"><a href="#CMS-垃圾回收器" class="headerlink" title="CMS 垃圾回收器"></a>CMS 垃圾回收器</h1><p>CMS 是英文 Concurrent Mark-Sweep 的简称，是以牺牲吞吐量为代价来获得最短回收停顿时间的垃圾回收器。对于要求服务器响应速度的应用上，这种垃圾回收器非常适合。在启动 JVM 的参数加上“-XX:+UseConcMarkSweepGC”来指定使用 CMS 垃圾回收器。<br>CMS 使用的是标记-清除的算法实现的，所以在 gc 的时候回产生大量的内存碎片，当剩余内存不能满足程序运行要求时，系统将会出现 Concurrent Mode Failure，临时 CMS 会采用 Serial Old 回收器进行垃圾清除，此时的性能将会被降低。</p>
+<h1 id="新生代垃圾回收器和老生代垃圾回收器都有哪些？有什么区别？"><a href="#新生代垃圾回收器和老生代垃圾回收器都有哪些？有什么区别？" class="headerlink" title="新生代垃圾回收器和老生代垃圾回收器都有哪些？有什么区别？"></a>新生代垃圾回收器和老生代垃圾回收器都有哪些？有什么区别？</h1><p>新生代回收器：Serial、ParNew、Parallel Scavenge<br>老年代回收器：Serial Old、Parallel Old、CMS<br>整堆回收器：G1<br>新生代垃圾回收器一般采用的是复制算法，复制算法的优点是效率高，缺点是内存利用率低；老年代回收<br>器一般采用的是标记-整理的算法进行垃圾回收。</p>
+<h1 id="简述分代垃圾回收器是怎么工作的？"><a href="#简述分代垃圾回收器是怎么工作的？" class="headerlink" title="简述分代垃圾回收器是怎么工作的？"></a>简述分代垃圾回收器是怎么工作的？</h1><p>分代回收器有两个分区：老生代和新生代，新生代默认的空间占比总空间的 1/3，老生代的默认占比是 2/3。新生代使用的是复制算法，新生代里有 3 个分区：Eden、To Survivor、From Survivor，它们的默认占比是 8:1:1，它的执行流程如下：<br>1）把 Eden + From Survivor 存活的对象放入 To Survivor 区；<br>2）清空 Eden 和 From Survivor 分区；<br>3）From Survivor 和 To Survivor 分区交换，From Survivor 变 To Survivor，To Survivor 变 FromSurvivor。<br>4）每次在 From Survivor 到 To Survivor 移动时都存活的对象，年龄就 +1，当年龄到达 15（默认配置是 15）时，升级为老生代。大对象也会直接进入老生代。<br>5）老生代当空间占用到达某个值之后就会触发全局垃圾收回，一般使用标记整理的执行算法。以上这些循环往复就构成了整个分代垃圾回收的整体执行流程。</p>
+<h1 id="说一下-JVM-调优的工具？"><a href="#说一下-JVM-调优的工具？" class="headerlink" title="说一下 JVM 调优的工具？"></a>说一下 JVM 调优的工具？</h1><p>JDK 自带了很多监控工具，都位于 JDK 的 bin 目录下，其中最常用的是 <strong>jconsole</strong> 和 <strong>jvisualvm</strong> 这两款视图监控工具。<br><strong>jconsole</strong>：用于对 JVM 中的内存、线程和类等进行监控；<br><strong>jvisualvm：JDK</strong> 自带的全能分析工具，可以分析：内存快照、线程快照、程序死锁、监控内存的变化、gc 变化等。</p>
+<h1 id="常用的-JVM-调优的参数都有哪些？"><a href="#常用的-JVM-调优的参数都有哪些？" class="headerlink" title="常用的 JVM 调优的参数都有哪些？"></a>常用的 JVM 调优的参数都有哪些？</h1><p>-Xms2g：初始化推大小为 2g；<br>-Xmx2g：堆最大内存为 2g；<br>-XX:NewRatio=4：设置年轻的和老年代的内存比例为 1:4；<br>-XX:SurvivorRatio=8：设置新生代 Eden 和 Survivor 比例为 8:2；<br>–XX:+UseParNewGC：指定使用 ParNew + Serial Old 垃圾回收器组合；<br>-XX:+UseParallelOldGC：指定使用 ParNew + ParNew Old 垃圾回收器组合；<br>-XX:+UseConcMarkSweepGC：指定使用 CMS + Serial Old 垃圾回收器组合；<br>-XX:+PrintGC：开启打印 gc 信息；<br>-XX:+PrintGCDetails：打印 gc 详细信息。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/" class="post-title-link" itemprop="url">对象的创建</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-04 22:31:54" itemprop="dateCreated datePublished" datetime="2022-07-04T22:31:54+08:00">2022-07-04</time>
+            </span>
+
+          
+            <span id="/yq/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/" class="post-meta-item leancloud_visitors" data-flag-title="对象的创建" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1656945348220-1edd5583-83d4-457a-970c-deab2fbae539.jpeg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%96%B9%E6%B3%95%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E6%96%B9%E6%B3%95%E8%AE%BA/" class="post-title-link" itemprop="url">方法论</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-04 22:15:40" itemprop="dateCreated datePublished" datetime="2022-07-04T22:15:40+08:00">2022-07-04</time>
+            </span>
+
+          
+            <span id="/yq/%E6%96%B9%E6%B3%95%E8%AE%BA/" class="post-meta-item leancloud_visitors" data-flag-title="方法论" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E6%96%B9%E6%B3%95%E8%AE%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%96%B9%E6%B3%95%E8%AE%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/aaa/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/44/">44</a><a class="extend next" rel="next" href="/aaa/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/aaa/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/43/">43</a><a class="extend next" rel="next" href="/aaa/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

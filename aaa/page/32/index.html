@@ -191,295 +191,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">事务相关</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-24 12:29:52" itemprop="dateCreated datePublished" datetime="2022-03-24T12:29:52+08:00">2022-03-24</time>
-            </span>
-
-          
-            <span id="/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/" class="post-meta-item leancloud_visitors" data-flag-title="事务相关" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>335</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="spring-事务-Transactional-在同一个类中的方法调用不生效"><a href="#spring-事务-Transactional-在同一个类中的方法调用不生效" class="headerlink" title="spring 事务@Transactional 在同一个类中的方法调用不生效"></a>spring 事务@Transactional 在同一个类中的方法调用不生效</h1><p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30336433/article/details/83338835">https://blog.csdn.net/qq_30336433/article/details/83338835</a></p>
-<p>Transactional 是 Spring 提供的事务管理注解。<br>重点在于，Spring 采用动态代理(AOP)实现对 bean 的管理和切片，它为我们的每个 class 生成一个代理对象。只有在代理对象之间进行调用时，可以触发切面逻辑。<br>而在同一个 class 中，方法 B 调用方法 A，调用的是原对象的方法，而不通过代理对象。所以 Spring 无法切到这次调用，也就无法通过注解保证事务性了。<br>也就是说，在同一个类中的方法调用，则不会被方法拦截器拦截到，因此事务不会起作用。</p>
-<h1 id="spring-事务传播机制"><a href="#spring-事务传播机制" class="headerlink" title="spring 事务传播机制"></a>spring 事务传播机制</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/CopyOnWriteArrayList/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/CopyOnWriteArrayList/" class="post-title-link" itemprop="url">CopyOnWriteArrayList</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-23 13:02:32" itemprop="dateCreated datePublished" datetime="2022-03-23T13:02:32+08:00">2022-03-23</time>
-            </span>
-
-          
-            <span id="/yq/CopyOnWriteArrayList/" class="post-meta-item leancloud_visitors" data-flag-title="CopyOnWriteArrayList" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/CopyOnWriteArrayList/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/CopyOnWriteArrayList/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h2><p>并发容器；增删改加锁，拷贝一份做操作，操作完成后原引用指向拷贝出来的这个对象；读操作不加锁，读的是原容器的数据；保证数据最终一致性，不保证数据实时一致性。<br><strong>应用场景：多读少写，黑白名单配置。</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> copyonwrite;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CopyOnWriteArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by dingxiangyong on 2016/3/26.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 结束标识</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> stopFlag = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        CopyOnWriteArrayList&lt;Integer&gt; list = <span class="keyword">new</span> CopyOnWriteArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="comment">//初始化集合</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ReadTask readTask1 = <span class="keyword">new</span> ReadTask(list);</span><br><span class="line">        ReadTask readTask2 = <span class="keyword">new</span> ReadTask(list);</span><br><span class="line">        ReadTask readTask3 = <span class="keyword">new</span> ReadTask(list);</span><br><span class="line">        ReadTask readTask4 = <span class="keyword">new</span> ReadTask(list);</span><br><span class="line"></span><br><span class="line">        WriteTask writeTask = <span class="keyword">new</span> WriteTask(list);</span><br><span class="line"></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">5</span>);</span><br><span class="line">        service.execute(readTask1);</span><br><span class="line">        service.execute(readTask2);</span><br><span class="line">        service.execute(readTask3);</span><br><span class="line">        service.execute(readTask4);</span><br><span class="line">        service.execute(writeTask);</span><br><span class="line"></span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 读线程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReadTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; list;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ReadTask</span><span class="params">(List&lt;Integer&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.list = list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!Test.stopFlag) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> index = (<span class="keyword">int</span>) (Math.random() * list.size());</span><br><span class="line">                Integer value = list.get(index);</span><br><span class="line">                System.out.println(<span class="string">&quot;正在读取值：&quot;</span> + value);</span><br><span class="line">                Thread.sleep(<span class="number">10</span>); <span class="comment">//模拟耗时操作</span></span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 写线程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WriteTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; list;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WriteTask</span><span class="params">(List&lt;Integer&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.list = list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; newList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">100000</span>; i &lt; <span class="number">2000000</span>; i++) &#123;</span><br><span class="line">            newList.add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>); <span class="comment">//模拟耗时操作，让读线程可以读到</span></span><br><span class="line">            System.out.println(<span class="string">&quot;准备写入copyonwritelist&quot;</span>);</span><br><span class="line">            list.addAll(newList);</span><br><span class="line">            System.out.println(<span class="string">&quot;写入copyonwritelist完毕&quot;</span>);</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>); <span class="comment">//模拟耗时操作，让读线程可以读到</span></span><br><span class="line">            Test.stopFlag = <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>运行结果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">....</span><br><span class="line">正在读取值：<span class="number">79029</span></span><br><span class="line">正在读取值：<span class="number">29270</span></span><br><span class="line">正在读取值：<span class="number">61694</span></span><br><span class="line">正在读取值：<span class="number">3373</span></span><br><span class="line">正在读取值：<span class="number">33155</span></span><br><span class="line">正在读取值：<span class="number">78532</span></span><br><span class="line">正在读取值：<span class="number">12583</span></span><br><span class="line">正在读取值：<span class="number">2778</span></span><br><span class="line">正在读取值：<span class="number">32738</span></span><br><span class="line">正在读取值：<span class="number">82363</span></span><br><span class="line">准备写入copyonwritelist</span><br><span class="line">正在读取值：<span class="number">61661</span></span><br><span class="line">正在读取值：<span class="number">5817</span></span><br><span class="line">正在读取值：<span class="number">84120</span></span><br><span class="line">正在读取值：<span class="number">43250</span></span><br><span class="line">写入copyonwritelist完毕</span><br><span class="line">正在读取值：<span class="number">1744710</span></span><br><span class="line">正在读取值：<span class="number">422552</span></span><br><span class="line">正在读取值：<span class="number">1038943</span></span><br><span class="line">正在读取值：<span class="number">1229489</span></span><br><span class="line">正在读取值：<span class="number">200887</span></span><br><span class="line">正在读取值：<span class="number">1547701</span></span><br><span class="line">正在读取值：<span class="number">1841575</span></span><br><span class="line">正在读取值：<span class="number">1785725</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>从如上结果可以看出，在写入数据的时候，读取操作并没有被终止，写入完毕后读取操作可以读取到最新的数据。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/super_wj0820/article/details/96154828">
-</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">并发编程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-22 13:38:09" itemprop="dateCreated datePublished" datetime="2022-03-22T13:38:09+08:00">2022-03-22</time>
-            </span>
-
-          
-            <span id="/yq/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="并发编程" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>29</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>相关链接：</p>
-<p><a target="_blank" rel="noopener" href="https://www.yuque.com/lius/java/fer1ie?view=doc_embed">可见性、原子性和有序性问题：并发编程 Bug 的源头</a></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656308533720-4771b7cf-20ab-4901-b18c-bea1d2488ea7.png#clientId=u8dd7de02-537d-4&from=paste&height=546&id=u5154816d&name=%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16551990752127.png&originHeight=1092&originWidth=820&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=70822&status=done&style=none&taskId=u5308e050-2f26-4efe-afd6-5853ec822a6&title=&width=410" alt="企业微信截图_16551990752127.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/case%20%E7%A7%AF%E7%B4%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -679,10 +390,312 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决无法下载某些jar包源码问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-03 19:03:22" itemprop="dateCreated datePublished" datetime="2022-03-03T19:03:22+08:00">2022-03-03</time>
+            </span>
+
+          
+            <span id="/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="解决无法下载某些jar包源码问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>296</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在公司，有时候 maven 的 setting.xml 没有配置相应的镜像或者配置出错了，会导致无法拉取外部 jar 包的源码，所以一般我们会在自己配置文件上加入阿里的镜像，这样很多 jar 包源码都可以拉取到。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云公共仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/" class="post-title-link" itemprop="url">2018.08.15 | 随笔重录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-13 22:36:22" itemprop="dateCreated datePublished" datetime="2022-02-13T22:36:22+08:00">2022-02-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="2018.08.15 | 随笔重录" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>189</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>行尸走肉的躯壳，麻木的情感，再难激起波澜的心灵，竟也要不时为生活露出讨好般的笑容。<br>光阴一点点流逝，日子仍旧一天天过。童稚的挥手告别，思想愈渐的成熟，回头一望，好多事已然改变。不再痴迷那些年球场的奔驰，不再热衷挥洒热血的动漫，亦不愿再和人提起曾扬言走四方的梦。<br>是成长带来了身体的疲倦，还是生活带来了灵魂的低迷？<br>月色柔美，晚风轻拂，波光摇曳，脚下大道依旧。<br>2018.8.15<br>月色正美<br><img src="https://cdn.nlark.com/yuque/0/2023/webp/22422342/1676212585817-3c4f8b8a-693e-4e41-b269-79fbe5116f83.webp#averageHue=%235a6071&clientId=u23561c8a-1b78-4&from=paste&id=ud3d0b50a&originHeight=720&originWidth=720&originalType=url%E2%88%B6=0.8999999761581421&rotation=0&showTitle=false&status=done&style=none&taskId=u574c473e-76af-4493-9257-619fd0e8540&title="></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/" class="post-title-link" itemprop="url">2013.12.05 | 情灭缘散</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-12 22:30:47" itemprop="dateCreated datePublished" datetime="2022-02-12T22:30:47+08:00">2022-02-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/" class="post-meta-item leancloud_visitors" data-flag-title="2013.12.05 | 情灭缘散" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>110</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>纪念那些摸不着头脑的岁月</p>
+</blockquote>
+<p>时光漫步，足迹轻点<br>折翼天使，舞降尘世<br>世间纠缠，悲观离合<br>姻缘情愫，绕困于心<br>百年人生，梦过一场<br>只为一瞬<br>轮回百世，本以<br>看破红尘<br>却<br>复灭于情<br>夕阳西坠，昏黄天地<br>轻风吹拂，落花缤纷<br>笛声悠扬<br>只为 祭奠<br>那些曾经的<br>岁月</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/webp/22422342/1676212256661-533b71cd-3d23-49c2-8f17-4b7458d922b5.webp#averageHue=%23958d81&clientId=u5c966e83-ca34-4&from=paste&id=u3e84af53&originHeight=1600&originWidth=1200&originalType=url%E2%88%B6=0.8999999761581421&rotation=0&showTitle=false&status=done&style=none&taskId=ua6dfceed-624f-48e5-acd3-ba3da76a703&title="></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/aaa/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/44/">44</a><a class="extend next" rel="next" href="/aaa/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/aaa/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/43/">43</a><a class="extend next" rel="next" href="/aaa/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
