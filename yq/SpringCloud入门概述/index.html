@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+<meta name="referrer" content="no-referrer" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wuhuanye.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+
+  <meta name="description" content="SpringCloud 是什么？Spring 官网：https:&#x2F;&#x2F;spring.io&#x2F; SpringCloud 和 SpringBoot 的关系 SpringBoot 专注于开苏方便的开发单个个体微服务； SpringCloud 是关注全局的微服务协调整理治理框架，它将 SpringBoot 开发的一个个单体微服务，整合并管理起来，为各个微服务之间提供：配置管理、服务发现、断路器、路由、为代理、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud入门概述">
+<meta property="og:url" content="https://wuhuanye.github.io/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Ronetver-Blog">
+<meta property="og:description" content="SpringCloud 是什么？Spring 官网：https:&#x2F;&#x2F;spring.io&#x2F; SpringCloud 和 SpringBoot 的关系 SpringBoot 专注于开苏方便的开发单个个体微服务； SpringCloud 是关注全局的微服务协调整理治理框架，它将 SpringBoot 开发的一个个单体微服务，整合并管理起来，为各个微服务之间提供：配置管理、服务发现、断路器、路由、为代理、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345092-e9ed6712-a809-4a58-aa41-f6f8f2319a1b.png#clientId=udfe0731e-5af8-4&from=paste&id=u70ccf781&originHeight=805&originWidth=1308&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u2cd7f389-35d6-4d75-a158-7dba487dce8&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345084-6269c3e2-cf19-437a-97b2-7a6591d5306a.png#clientId=udfe0731e-5af8-4&from=paste&id=u6337d379&originHeight=395&originWidth=755&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=ufe20d9d9-3b86-4746-b902-bd9d3d62396&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345236-8560f9fc-4d15-45e2-bec2-3351f2749d7b.png#clientId=udfe0731e-5af8-4&from=paste&id=u31e53acc&name=image.png&originHeight=421&originWidth=756&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=40628&status=done&style=none&taskId=ud35429f8-5e38-4130-891b-c71a925fe3c&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345171-1fc18bb5-67f4-4660-b6fb-040e9115d853.png#clientId=udfe0731e-5af8-4&from=paste&id=ub0598a1d&name=image.png&originHeight=148&originWidth=435&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=13054&status=done&style=none&taskId=u648ce973-32e6-4e48-8ba4-79af5c929ba&title=">
+<meta property="article:published_time" content="2022-06-04T12:51:49.000Z">
+<meta property="article:modified_time" content="2023-03-19T11:32:56.381Z">
+<meta property="article:author" content="Ronetver">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345092-e9ed6712-a809-4a58-aa41-f6f8f2319a1b.png#clientId=udfe0731e-5af8-4&from=paste&id=u70ccf781&originHeight=805&originWidth=1308&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u2cd7f389-35d6-4d75-a158-7dba487dce8&title=">
+
+<link rel="canonical" href="https://wuhuanye.github.io/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SpringCloud入门概述 | Ronetver-Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ronetver-Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpringCloud入门概述
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-04 20:51:49" itemprop="dateCreated datePublished" datetime="2022-06-04T20:51:49+08:00">2022-06-04</time>
+            </span>
+
+          
+            <span id="/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/" class="post-meta-item leancloud_visitors" data-flag-title="SpringCloud入门概述" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/SpringCloud%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="SpringCloud-是什么？"><a href="#SpringCloud-是什么？" class="headerlink" title="SpringCloud 是什么？"></a>SpringCloud 是什么？</h1><p>Spring 官网：<a target="_blank" rel="noopener" href="https://spring.io/">https://spring.io/</a><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345092-e9ed6712-a809-4a58-aa41-f6f8f2319a1b.png#clientId=udfe0731e-5af8-4&from=paste&id=u70ccf781&originHeight=805&originWidth=1308&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u2cd7f389-35d6-4d75-a158-7dba487dce8&title="><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345084-6269c3e2-cf19-437a-97b2-7a6591d5306a.png#clientId=udfe0731e-5af8-4&from=paste&id=u6337d379&originHeight=395&originWidth=755&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=ufe20d9d9-3b86-4746-b902-bd9d3d62396&title="></p>
+<h1 id="SpringCloud-和-SpringBoot-的关系"><a href="#SpringCloud-和-SpringBoot-的关系" class="headerlink" title="SpringCloud 和 SpringBoot 的关系"></a>SpringCloud 和 SpringBoot 的关系</h1><ul>
+<li>SpringBoot 专注于开苏方便的开发单个个体微服务；</li>
+<li>SpringCloud 是关注全局的微服务协调整理治理框架，它将 SpringBoot 开发的一个个单体微服务，整合并管理起来，为各个微服务之间提供：配置管理、服务发现、断路器、路由、为代理、事件总栈、全局锁、决策竞选、分布式会话等等集成服务；</li>
+<li>SpringBoot 可以离开 SpringCloud 独立使用，开发项目，但 SpringCloud 离不开 SpringBoot，属于依赖关系；</li>
+<li>SpringBoot 专注于快速、方便的开发单个个体微服务，SpringCloud 关注全局的服务治理框架；</li>
+</ul>
+<h1 id="Dubbo-和-SpringCloud-技术选型"><a href="#Dubbo-和-SpringCloud-技术选型" class="headerlink" title="Dubbo 和 SpringCloud 技术选型"></a>Dubbo 和 SpringCloud 技术选型</h1><h2 id="1-分布式-服务治理-Dubbo"><a href="#1-分布式-服务治理-Dubbo" class="headerlink" title="1. 分布式+服务治理 Dubbo"></a>1. 分布式+服务治理 Dubbo</h2><p>目前成熟的互联网架构，应用服务化拆分 + 消息中间件</p>
+<h2 id="2-Dubbo-和-SpringCloud-对比"><a href="#2-Dubbo-和-SpringCloud-对比" class="headerlink" title="2. Dubbo 和 SpringCloud 对比"></a>2. Dubbo 和 SpringCloud 对比</h2><p>可以看一下社区活跃度：<br><a target="_blank" rel="noopener" href="https://github.com/dubbo">https://github.com/dubbo</a><br><a target="_blank" rel="noopener" href="https://github.com/spring-cloud">https://github.com/spring-cloud</a><br><strong>对比结果：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Dubbo</th>
+<th>SpringCloud</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务注册中心</td>
+<td>Zookeeper</td>
+<td>Spring Cloud Netfilx Eureka</td>
+</tr>
+<tr>
+<td>服务调用方式</td>
+<td>RPC</td>
+<td>REST API</td>
+</tr>
+<tr>
+<td>服务监控</td>
+<td>Dubbo-monitor</td>
+<td>Spring Boot Admin</td>
+</tr>
+<tr>
+<td>断路器</td>
+<td>不完善</td>
+<td>Spring Cloud Netfilx Hystrix</td>
+</tr>
+<tr>
+<td>服务网关</td>
+<td>无</td>
+<td>Spring Cloud Netfilx Zuul</td>
+</tr>
+<tr>
+<td>分布式配置</td>
+<td>无</td>
+<td>Spring Cloud Config</td>
+</tr>
+<tr>
+<td>服务跟踪</td>
+<td>无</td>
+<td>Spring Cloud Sleuth</td>
+</tr>
+<tr>
+<td>消息总栈</td>
+<td>无</td>
+<td>Spring Cloud Bus</td>
+</tr>
+<tr>
+<td>数据流</td>
+<td>无</td>
+<td>Spring Cloud Stream</td>
+</tr>
+<tr>
+<td>批量任务</td>
+<td>无</td>
+<td>Spring Cloud Task</td>
+</tr>
+</tbody></table>
+<p><strong>最大区别：Spring Cloud 抛弃了 Dubbo 的 RPC 通信，采用的是基于 HTTP 的 REST 方式</strong><br>严格来说，这两种方式各有优劣。虽然从一定程度上来说，后者牺牲了服务调用的性能，但也避免了上面提到的原生 RPC 带来的问题。而且 REST 相比 RPC 更为灵活，服务提供方和调用方的依赖只依靠一纸契约，不存在代码级别的强依赖，这个优点在当下强调快速演化的微服务环境下，显得更加合适。<br><strong>品牌机和组装机的区别</strong><br><strong>社区支持与更新力度的区别</strong><br><strong>总结：</strong>二者解决的问题域不一样：Dubbo 的定位是一款 RPC 框架，而 SpringCloud 的目标是微服务架构下的一站式解决方案。</p>
+<h2 id="3、SpringCloud-能干嘛？"><a href="#3、SpringCloud-能干嘛？" class="headerlink" title="3、SpringCloud 能干嘛？"></a>3、SpringCloud 能干嘛？</h2><ul>
+<li>Distributed/versioned configuration 分布式/版本控制配置</li>
+<li>Service registration and discovery 服务注册与发现</li>
+<li>Routing 路由</li>
+<li>Service-to-service calls 服务到服务的调用</li>
+<li>Load balancing 负载均衡配置</li>
+<li>Circuit Breakers 断路器</li>
+<li>Distributed messaging 分布式消息管理</li>
+<li>…</li>
+</ul>
+<h2 id="4、SpringCloud-下载"><a href="#4、SpringCloud-下载" class="headerlink" title="4、SpringCloud 下载"></a>4、SpringCloud 下载</h2><p>官网：<a target="_blank" rel="noopener" href="http://projects.spring.io/spring-cloud/">http://projects.spring.io/spring-cloud/</a><br>版本号有点特别：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345236-8560f9fc-4d15-45e2-bec2-3351f2749d7b.png#clientId=udfe0731e-5af8-4&from=paste&id=u31e53acc&name=image.png&originHeight=421&originWidth=756&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=40628&status=done&style=none&taskId=ud35429f8-5e38-4130-891b-c71a925fe3c&title=" alt="image.png"><br>SpringCloud 没有采用数字编号的方式命名版本号，而是采用了伦敦地铁站的名称，<strong>同时根据字母表的顺序来对应版本时间顺序</strong>，比如最早的 Realse 版本：Angel，第二个 Realse 版本：Brixton，然后是 Camden、Dalston、Edgware，目前最新的是 Hoxton SR4 CURRENT GA 通用稳定版。<br><strong>自学参考书：</strong></p>
+<ul>
+<li>SpringCloud Netflix 中文文档：<a target="_blank" rel="noopener" href="https://springcloud.cc/spring-cloud-netflix.html">https://springcloud.cc/spring-cloud-netflix.html</a></li>
+<li>SpringCloud 中文 API 文档(官方文档翻译版)：<a target="_blank" rel="noopener" href="https://springcloud.cc/spring-cloud-dalston.html">https://springcloud.cc/spring-cloud-dalston.html</a></li>
+<li>SpringCloud 中国社区：<a target="_blank" rel="noopener" href="http://springcloud.cn/">http://springcloud.cn/</a></li>
+<li>SpringCloud 中文网：<a target="_blank" rel="noopener" href="https://springcloud.cc/">https://springcloud.cc</a></li>
+</ul>
+<h1 id="SpringCloud-Rest-学习环境搭建：服务提供者"><a href="#SpringCloud-Rest-学习环境搭建：服务提供者" class="headerlink" title="SpringCloud Rest 学习环境搭建：服务提供者"></a>SpringCloud Rest 学习环境搭建：服务提供者</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>我们会使用一个 Dept 部门模块做一个微服务通用案例<strong>Consumer</strong>消费者(<strong>Client</strong>)通过 REST 调用<strong>Provider</strong>提供者(<strong>Server</strong>)提供的服务。</li>
+<li>回顾 Spring，SpringMVC，Mybatis 等以往学习的知识。</li>
+<li>Maven 的分包分模块架构复习。</li>
+</ul>
+<p>一个简单的 Maven 模块结构是这样的：– app-parent: 一个父项目(app-parent)聚合了很多子项目(app-util\app-dao\app-web…) |– pom.xml | |– app-core ||—- pom.xml | |– app-web ||—- pom.xml ……<br>一个父工程带着多个 Moudule 子模块<br>MicroServiceCloud 父工程(Project)下初次带着 3 个子模块(Module)</p>
+<ul>
+<li>microservicecloud-api 【封装的整体 entity/接口/公共配置等】</li>
+<li>microservicecloud-consumer-dept-80 【服务提供者】</li>
+<li>microservicecloud-provider-dept-8001 【服务消费者】</li>
+</ul>
+<h2 id="SpringCloud-版本选择"><a href="#SpringCloud-版本选择" class="headerlink" title="SpringCloud 版本选择"></a>SpringCloud 版本选择</h2><p><strong>大版本说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>SpringBoot</th>
+<th>SpringCloud</th>
+<th>关系</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.2.x</td>
+<td>Angel 版本(天使)</td>
+<td>兼容 SpringBoot1.2x</td>
+</tr>
+<tr>
+<td>1.3.x</td>
+<td>Brixton 版本(布里克斯顿)</td>
+<td>兼容 SpringBoot1.3x，也兼容 SpringBoot1.4x</td>
+</tr>
+<tr>
+<td>1.4.x</td>
+<td>Camden 版本(卡姆登)</td>
+<td>兼容 SpringBoot1.4x，也兼容 SpringBoot1.5x</td>
+</tr>
+<tr>
+<td>1.5.x</td>
+<td>Dalston 版本(多尔斯顿)</td>
+<td>兼容 SpringBoot1.5x，不兼容 SpringBoot2.0x</td>
+</tr>
+<tr>
+<td>1.5.x</td>
+<td>Edgware 版本(埃奇韦尔)</td>
+<td>兼容 SpringBoot1.5x，不兼容 SpringBoot2.0x</td>
+</tr>
+<tr>
+<td>2.0.x</td>
+<td>Finchley 版本(芬奇利)</td>
+<td>兼容 SpringBoot2.0x，不兼容 SpringBoot1.5x</td>
+</tr>
+<tr>
+<td>2.1.x</td>
+<td>Greenwich 版本(格林威治)</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>实际开发版本关系</strong></p>
+<table>
+<thead>
+<tr>
+<th>spring-boot-starter-parent</th>
+<th></th>
+<th>spring-cloud-dependencles</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>版本号</strong></td>
+<td><strong>发布日期</strong></td>
+<td><strong>版本号</strong></td>
+<td><strong>发布日期</strong></td>
+</tr>
+<tr>
+<td>1.5.2.RELEASE</td>
+<td>2017-03</td>
+<td>Dalston.RC1</td>
+<td>2017-x</td>
+</tr>
+<tr>
+<td>1.5.9.RELEASE</td>
+<td>2017-11</td>
+<td>Edgware.RELEASE</td>
+<td>2017-11</td>
+</tr>
+<tr>
+<td>1.5.16.RELEASE</td>
+<td>2018-04</td>
+<td>Edgware.SR5</td>
+<td>2018-10</td>
+</tr>
+<tr>
+<td>1.5.20.RELEASE</td>
+<td>2018-09</td>
+<td>Edgware.SR5</td>
+<td>2018-10</td>
+</tr>
+<tr>
+<td>2.0.2.RELEASE</td>
+<td>2018-05</td>
+<td>Fomchiey.BULD-SNAPSHOT</td>
+<td>2018-x</td>
+</tr>
+<tr>
+<td>2.0.6.RELEASE</td>
+<td>2018-10</td>
+<td>Fomchiey-SR2</td>
+<td>2018-10</td>
+</tr>
+<tr>
+<td>2.1.4.RELEASE</td>
+<td>2019-04</td>
+<td>Greenwich.SR1</td>
+<td>2019-03</td>
+</tr>
+</tbody></table>
+<p><strong>使用后两个</strong></p>
+<h2 id="创建父工程"><a href="#创建父工程" class="headerlink" title="创建父工程"></a>创建父工程</h2><ul>
+<li>新建父工程项目 springcloud，切记<strong>Packageing 是 pom 模式</strong></li>
+<li>主要是定义 POM 文件，将后续各个子模块公用的 jar 包等统一提取出来，类似一个抽象父类<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654347345171-1fc18bb5-67f4-4660-b6fb-040e9115d853.png#clientId=udfe0731e-5af8-4&from=paste&id=ub0598a1d&name=image.png&originHeight=148&originWidth=435&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=13054&status=done&style=none&taskId=u648ce973-32e6-4e48-8ba4-79af5c929ba&title=" alt="image.png"></li>
+</ul>
+<p><strong>pom.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.haust<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springcloud<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-api<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-provider-dept-8001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-consumer-dept-80<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-eureka-7001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-eureka-7002<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-eureka-7003<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-provider-dept-8002<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-provider-dept-8003<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-consumer-dept-feign<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-provider-dept-hystrix-8001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-consumer-hystrix-dashboard<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-zuul-9527<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-config-server-3344<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-config-client-3355<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-config-eureka-7001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>springcloud-config-dept-8001<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--打包方式  pom--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">junit.version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">junit.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">log4j.version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">log4j.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">lombok.version</span>&gt;</span>1.16.18<span class="tag">&lt;/<span class="name">lombok.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--springCloud的依赖--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>Greenwich.SR1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--SpringBoot--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.4.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--数据库--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.47<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--SpringBoot 启动器--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--日志测试~--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;junit.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;lombok.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/yq/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A6%82%E8%BF%B0/" rel="prev" title="微服务概述">
+      <i class="fa fa-chevron-left"></i> 微服务概述
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/yq/Eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/" rel="next" title="Eureka服务注册中心">
+      Eureka服务注册中心 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringCloud-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">SpringCloud 是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringCloud-%E5%92%8C-SpringBoot-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">2.</span> <span class="nav-text">SpringCloud 和 SpringBoot 的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dubbo-%E5%92%8C-SpringCloud-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">Dubbo 和 SpringCloud 技术选型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%88%86%E5%B8%83%E5%BC%8F-%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86-Dubbo"><span class="nav-number">3.1.</span> <span class="nav-text">1. 分布式+服务治理 Dubbo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Dubbo-%E5%92%8C-SpringCloud-%E5%AF%B9%E6%AF%94"><span class="nav-number">3.2.</span> <span class="nav-text">2. Dubbo 和 SpringCloud 对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81SpringCloud-%E8%83%BD%E5%B9%B2%E5%98%9B%EF%BC%9F"><span class="nav-number">3.3.</span> <span class="nav-text">3、SpringCloud 能干嘛？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81SpringCloud-%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.4.</span> <span class="nav-text">4、SpringCloud 下载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringCloud-Rest-%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%9A%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E8%80%85"><span class="nav-number">4.</span> <span class="nav-text">SpringCloud Rest 学习环境搭建：服务提供者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringCloud-%E7%89%88%E6%9C%AC%E9%80%89%E6%8B%A9"><span class="nav-number">4.2.</span> <span class="nav-text">SpringCloud 版本选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%88%B6%E5%B7%A5%E7%A8%8B"><span class="nav-number">4.3.</span> <span class="nav-text">创建父工程</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ronetver"
+      src="/images/joba.gif">
+  <p class="site-author-name" itemprop="name">Ronetver</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:Ronetver@163.com" title="E-Mail → mailto:Ronetver@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ronetver</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">259k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:55</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wrXD3vNopdfrXxfKPnw4dIzN-gzGzoHsz","app_key":"8sco9lmytjT3ef69dTIk9C1r","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wrXD3vNopdfrXxfKPnw4dIzN-gzGzoHsz',
+      appKey     : '8sco9lmytjT3ef69dTIk9C1r',
+      placeholder: "欢迎留言交流~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":180,"height":300,"position":"left","hOffset":20,"vOffset":50},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

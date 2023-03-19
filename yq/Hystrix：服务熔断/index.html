@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+<meta name="referrer" content="no-referrer" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wuhuanye.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+
+  <meta name="description" content="分布式系统面临的问题复杂分布式体系结构中的应用程序有数十个依赖关系，每个依赖关系在某些时候将不可避免失败！ 服务雪崩多个微服务之间调用的时候，假设微服务 A 调用微服务 B 和微服务 C，微服务 B 和微服务 C 又调用其他的微服务，这就是所谓的“扇出”，如果扇出的链路上某个微服务的调用响应时间过长，或者不可用，对微服务 A 的调用就会占用越来越多的系统资源，进而引起系统崩溃，所谓的“雪崩效应”。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hystrix：服务熔断">
+<meta property="og:url" content="https://wuhuanye.github.io/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/index.html">
+<meta property="og:site_name" content="Ronetver-Blog">
+<meta property="og:description" content="分布式系统面临的问题复杂分布式体系结构中的应用程序有数十个依赖关系，每个依赖关系在某些时候将不可避免失败！ 服务雪崩多个微服务之间调用的时候，假设微服务 A 调用微服务 B 和微服务 C，微服务 B 和微服务 C 又调用其他的微服务，这就是所谓的“扇出”，如果扇出的链路上某个微服务的调用响应时间过长，或者不可用，对微服务 A 的调用就会占用越来越多的系统资源，进而引起系统崩溃，所谓的“雪崩效应”。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530266-2f732998-8a30-4393-a06e-28e295ccb6c3.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u718e3d0d&name=image.png&originHeight=431&originWidth=587&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=96472&status=done&style=none&taskId=ueaa305d1-1e09-4767-bf70-8426b02d968&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530358-d4cf2df6-70d2-46ac-b248-ddd439045c3f.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u06797f4a&name=image.png&originHeight=397&originWidth=614&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=92805&status=done&style=none&taskId=u99e917a9-4749-4d9d-a4a7-3d3658acfb3&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530226-5de32f2f-22ec-44ed-9d4e-1f9500cbf11e.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u5774f836&originHeight=582&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u5090d28d-9c25-4755-9d0d-0489860913f&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530209-b4d35bc7-55ee-4de6-a018-a3ab2439c0ed.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u5f56885e&originHeight=582&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u3013f63e-f1e5-4706-ae1c-4633ba60b16&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530278-a71e9d39-893f-4d6f-9d79-f88a4761d84b.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u81b5c46f&originHeight=583&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u563e53fe-8a08-402d-95fc-543a01c6aae&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530888-e9a4a6a6-6a65-410b-8abc-5acf9ae2d2f5.png#clientId=u8f87fd90-b0c1-4&from=paste&id=uca407b3a&name=image.png&originHeight=869&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=203183&status=done&style=none&taskId=uc4092f78-fd66-4d50-8549-2b78e61b785&title=">
+<meta property="article:published_time" content="2022-06-04T14:04:35.000Z">
+<meta property="article:modified_time" content="2023-03-19T11:32:56.379Z">
+<meta property="article:author" content="Ronetver">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530266-2f732998-8a30-4393-a06e-28e295ccb6c3.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u718e3d0d&name=image.png&originHeight=431&originWidth=587&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=96472&status=done&style=none&taskId=ueaa305d1-1e09-4767-bf70-8426b02d968&title=">
+
+<link rel="canonical" href="https://wuhuanye.github.io/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hystrix：服务熔断 | Ronetver-Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ronetver-Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hystrix：服务熔断
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-04 22:04:35" itemprop="dateCreated datePublished" datetime="2022-06-04T22:04:35+08:00">2022-06-04</time>
+            </span>
+
+          
+            <span id="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/" class="post-meta-item leancloud_visitors" data-flag-title="Hystrix：服务熔断" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="分布式系统面临的问题"><a href="#分布式系统面临的问题" class="headerlink" title="分布式系统面临的问题"></a>分布式系统面临的问题</h1><p>复杂分布式体系结构中的应用程序有数十个依赖关系，每个依赖关系在某些时候将不可避免失败！</p>
+<h1 id="服务雪崩"><a href="#服务雪崩" class="headerlink" title="服务雪崩"></a>服务雪崩</h1><p>多个微服务之间调用的时候，假设微服务 A 调用微服务 B 和微服务 C，微服务 B 和微服务 C 又调用其他的微服务，这就是所谓的“扇出”，如果扇出的链路上<strong>某个微服务的调用响应时间过长，或者不可用</strong>，对微服务 A 的调用就会占用越来越多的系统资源，进而引起系统崩溃，所谓的“雪崩效应”。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530266-2f732998-8a30-4393-a06e-28e295ccb6c3.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u718e3d0d&name=image.png&originHeight=431&originWidth=587&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=96472&status=done&style=none&taskId=ueaa305d1-1e09-4767-bf70-8426b02d968&title=" alt="image.png"><br>对于高流量的应用来说，单一的后端依赖可能会导致所有服务器上的所有资源都在几十秒内饱和。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，备份队列，线程和其他系统资源紧张，导致整个系统发生更多的级联故障，<strong>这些都表示需要对故障和延迟进行隔离和管理，以达到单个依赖关系的失败而不影响整个应用程序或系统运行</strong>。<br>我们需要，<strong>弃车保帅</strong>！</p>
+<h1 id="什么是-Hystrix？"><a href="#什么是-Hystrix？" class="headerlink" title="什么是 Hystrix？"></a>什么是 Hystrix？</h1><p><strong>Hystrix</strong>是一个应用于处理分布式系统的延迟和容错的开源库，在分布式系统里，许多依赖不可避免的会调用失败，比如超时，异常等，<strong>Hystrix</strong> 能够保证在一个依赖出问题的情况下，不会导致整个体系服务失败，避免级联故障，以提高分布式系统的弹性。<br>“<strong>断路器</strong>”本身是一种开关装置，当某个服务单元发生故障之后，通过断路器的故障监控 (类似熔断保险丝) ，<strong>向调用方返回一个服务预期的，可处理的备选响应 (FallBack) ，而不是长时间的等待或者抛出调用方法无法处理的异常，这样就可以保证了服务调用方的线程不会被长时间，不必要的占用</strong>，从而避免了故障在分布式系统中的蔓延，乃至雪崩。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530358-d4cf2df6-70d2-46ac-b248-ddd439045c3f.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u06797f4a&name=image.png&originHeight=397&originWidth=614&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=92805&status=done&style=none&taskId=u99e917a9-4749-4d9d-a4a7-3d3658acfb3&title=" alt="image.png"></p>
+<h1 id="Hystrix-能干嘛？"><a href="#Hystrix-能干嘛？" class="headerlink" title="Hystrix 能干嘛？"></a>Hystrix 能干嘛？</h1><ul>
+<li>服务降级</li>
+<li>服务熔断</li>
+<li>服务限流</li>
+<li>接近实时的监控</li>
+<li>…</li>
+</ul>
+<p>当一切正常时，请求流可以如下所示：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530226-5de32f2f-22ec-44ed-9d4e-1f9500cbf11e.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u5774f836&originHeight=582&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u5090d28d-9c25-4755-9d0d-0489860913f&title="><br>当许多后端系统中有一个潜在阻塞服务时，它可以阻止整个用户请求：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530209-b4d35bc7-55ee-4de6-a018-a3ab2439c0ed.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u5f56885e&originHeight=582&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u3013f63e-f1e5-4706-ae1c-4633ba60b16&title="><br>随着大容量通信量的增加，单个后端依赖项的潜在性会导致所有服务器上的所有资源在几秒钟内饱和。<br>应用程序中通过网络或客户端库可能导致网络请求的每个点都是潜在故障的来源。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，从而备份队列、线程和其他系统资源，从而导致更多跨系统的级联故障。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530278-a71e9d39-893f-4d6f-9d79-f88a4761d84b.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u81b5c46f&originHeight=583&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u563e53fe-8a08-402d-95fc-543a01c6aae&title="><br>当使用<strong>Hystrix</strong>包装每个基础依赖项时，上面的图表中所示的体系结构会发生类似于以下关系图的变化。<strong>每个依赖项是相互隔离的</strong>，限制在延迟发生时它可以填充的资源中，并包含在回退逻辑中，该逻辑决定在依赖项中发生任何类型的故障时要做出什么样的响应：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530888-e9a4a6a6-6a65-410b-8abc-5acf9ae2d2f5.png#clientId=u8f87fd90-b0c1-4&from=paste&id=uca407b3a&name=image.png&originHeight=869&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=203183&status=done&style=none&taskId=uc4092f78-fd66-4d50-8549-2b78e61b785&title=" alt="image.png"><br><strong>官网资料</strong>：<a target="_blank" rel="noopener" href="https://github.com/Netflix/Hystrix/wiki">https://github.com/Netflix/Hystrix/wiki</a></p>
+<h1 id="服务熔断"><a href="#服务熔断" class="headerlink" title="服务熔断"></a>服务熔断</h1><h5 id="什么是服务熔断"><a href="#什么是服务熔断" class="headerlink" title="什么是服务熔断?"></a>什么是服务熔断?</h5><p><strong>熔断机制是赌赢雪崩效应的一种微服务链路保护机制</strong>。<br>当扇出链路的某个微服务不可用或者响应时间太长时，会进行服务的降级，<strong>进而熔断该节点微服务的调用，快速返回错误的响应信息</strong>。检测到该节点微服务调用响应正常后恢复调用链路。在 SpringCloud 框架里熔断机制通过 Hystrix 实现。Hystrix 会监控微服务间调用的状况，当失败的调用到一定阀值缺省是<strong>5 秒内 20 次调用失败，就会启动熔断机制</strong>。熔断机制的注解是：<a target="_blank" rel="noopener" href="https://github.com/HystrixCommand">@HystrixCommand</a>。<br>服务熔断解决如下问题：</p>
+<ul>
+<li>当所依赖的对象不稳定时，能够起到快速失败的目的；</li>
+<li>快速失败后，能够根据一定的算法动态试探所依赖对象是否恢复。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/" rel="prev" title="Ribbon：负载均衡(基于客户端)">
+      <i class="fa fa-chevron-left"></i> Ribbon：负载均衡(基于客户端)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/yq/Dubbo/" rel="next" title="Dubbo">
+      Dubbo <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E9%9D%A2%E4%B8%B4%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">分布式系统面临的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E9%9B%AA%E5%B4%A9"><span class="nav-number">2.</span> <span class="nav-text">服务雪崩</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Hystrix%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">什么是 Hystrix？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hystrix-%E8%83%BD%E5%B9%B2%E5%98%9B%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">Hystrix 能干嘛？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD"><span class="nav-number">5.</span> <span class="nav-text">服务熔断</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD"><span class="nav-number">5.0.0.0.1.</span> <span class="nav-text">什么是服务熔断?</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ronetver"
+      src="/images/joba.gif">
+  <p class="site-author-name" itemprop="name">Ronetver</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:Ronetver@163.com" title="E-Mail → mailto:Ronetver@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ronetver</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">259k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:55</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wrXD3vNopdfrXxfKPnw4dIzN-gzGzoHsz","app_key":"8sco9lmytjT3ef69dTIk9C1r","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wrXD3vNopdfrXxfKPnw4dIzN-gzGzoHsz',
+      appKey     : '8sco9lmytjT3ef69dTIk9C1r',
+      placeholder: "欢迎留言交流~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":180,"height":300,"position":"left","hOffset":20,"vOffset":50},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
