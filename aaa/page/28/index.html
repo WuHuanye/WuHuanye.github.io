@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决无法下载某些jar包源码问题</a>
+            <a href="/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="post-title-link" itemprop="url">线程池</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-03 19:03:22" itemprop="dateCreated datePublished" datetime="2022-03-03T19:03:22+08:00">2022-03-03</time>
+              <time title="创建时间：2022-01-04 20:05:59" itemprop="dateCreated datePublished" datetime="2022-01-04T20:05:59+08:00">2022-01-04</time>
             </span>
 
           
-            <span id="/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="解决无法下载某些jar包源码问题" title="阅读次数">
+            <span id="/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="post-meta-item leancloud_visitors" data-flag-title="线程池" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%BA%9Bjar%E5%8C%85%E6%BA%90%E7%A0%81%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,14 +245,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>296</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -264,322 +264,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在公司，有时候 maven 的 setting.xml 没有配置相应的镜像或者配置出错了，会导致无法拉取外部 jar 包的源码，所以一般我们会在自己配置文件上加入阿里的镜像，这样很多 jar 包源码都可以拉取到。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云公共仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/" class="post-title-link" itemprop="url">2018.08.15 | 随笔重录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-13 22:36:22" itemprop="dateCreated datePublished" datetime="2022-02-13T22:36:22+08:00">2022-02-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="2018.08.15 | 随笔重录" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/2018.08.15%20!%20%E9%9A%8F%E7%AC%94%E9%87%8D%E5%BD%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>189</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>行尸走肉的躯壳，麻木的情感，再难激起波澜的心灵，竟也要不时为生活露出讨好般的笑容。<br>光阴一点点流逝，日子仍旧一天天过。童稚的挥手告别，思想愈渐的成熟，回头一望，好多事已然改变。不再痴迷那些年球场的奔驰，不再热衷挥洒热血的动漫，亦不愿再和人提起曾扬言走四方的梦。<br>是成长带来了身体的疲倦，还是生活带来了灵魂的低迷？<br>月色柔美，晚风轻拂，波光摇曳，脚下大道依旧。<br>2018.8.15<br>月色正美<br><img src="https://cdn.nlark.com/yuque/0/2023/webp/22422342/1676212585817-3c4f8b8a-693e-4e41-b269-79fbe5116f83.webp#averageHue=%235a6071&clientId=u23561c8a-1b78-4&from=paste&id=ud3d0b50a&originHeight=720&originWidth=720&originalType=url%E2%88%B6=0.8999999761581421&rotation=0&showTitle=false&status=done&style=none&taskId=u574c473e-76af-4493-9257-619fd0e8540&title="></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/" class="post-title-link" itemprop="url">2013.12.05 | 情灭缘散</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-12 22:30:47" itemprop="dateCreated datePublished" datetime="2022-02-12T22:30:47+08:00">2022-02-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/" class="post-meta-item leancloud_visitors" data-flag-title="2013.12.05 | 情灭缘散" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/2013.12.05%20!%20%E6%83%85%E7%81%AD%E7%BC%98%E6%95%A3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>110</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>纪念那些摸不着头脑的岁月</p>
-</blockquote>
-<p>时光漫步，足迹轻点<br>折翼天使，舞降尘世<br>世间纠缠，悲观离合<br>姻缘情愫，绕困于心<br>百年人生，梦过一场<br>只为一瞬<br>轮回百世，本以<br>看破红尘<br>却<br>复灭于情<br>夕阳西坠，昏黄天地<br>轻风吹拂，落花缤纷<br>笛声悠扬<br>只为 祭奠<br>那些曾经的<br>岁月</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/webp/22422342/1676212256661-533b71cd-3d23-49c2-8f17-4b7458d922b5.webp#averageHue=%23958d81&clientId=u5c966e83-ca34-4&from=paste&id=u3e84af53&originHeight=1600&originWidth=1200&originalType=url%E2%88%B6=0.8999999761581421&rotation=0&showTitle=false&status=done&style=none&taskId=ua6dfceed-624f-48e5-acd3-ba3da76a703&title="></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E7%BB%93%E6%9E%84%E6%80%9D%E8%80%83%E5%8A%9B%20%E9%98%85%E8%AF%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E7%BB%93%E6%9E%84%E6%80%9D%E8%80%83%E5%8A%9B%20%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">结构思考力 阅读</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-04 19:45:38" itemprop="dateCreated datePublished" datetime="2022-02-04T19:45:38+08:00">2022-02-04</time>
-            </span>
-
-          
-            <span id="/yq/%E7%BB%93%E6%9E%84%E6%80%9D%E8%80%83%E5%8A%9B%20%E9%98%85%E8%AF%BB/" class="post-meta-item leancloud_visitors" data-flag-title="结构思考力 阅读" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E7%BB%93%E6%9E%84%E6%80%9D%E8%80%83%E5%8A%9B%20%E9%98%85%E8%AF%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E7%BB%93%E6%9E%84%E6%80%9D%E8%80%83%E5%8A%9B%20%E9%98%85%E8%AF%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>328</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>概述结构化思考力的重要性。</p>
+          <p>推荐阅读：<a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html">https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1641298896168-b013ddab-2f7c-4d30-bda8-52f1b5c9c144.jpeg"></p>
 <ul>
-<li>没有要点、杂乱无章的口头表达和文字表达往往对对方没有说服力，甚至降低整个组织的工作效率。</li>
-<li>如果没有结构，我们的思维就很容易从一点漂到另一点，却总也无法得出一个有效结论，没有结构，事情就会变得非常复杂，让人瞻前顾后、犹豫不决。</li>
-<li>结构思考力可以帮助我们构化一个结构，在表达核心观点的基础上，有理有据、条例分明地证明这个观点，使我们能够做到清晰思考和有力表达。</li>
+<li>corePoolSize：核心池的大小，这个参数跟后面讲述的线程池的实现原理有非常大的关系。在创建了线程池后，默认情况下，线程池中并没有任何线程，而是等待有任务到来才创建线程去执行任务，除非调用了 prestartAllCoreThreads()或者 prestartCoreThread()方法，从这 2 个方法的名字就可以看出，是预创建线程的意思，即在没有任务到来之前就创建 corePoolSize 个线程或者一个线程。默认情况下，在创建了线程池后，线程池中的线程数为 0，当有任务来之后，就会创建一个线程去执行任务，当线程池中的线程数目达到 corePoolSize 后，就会把到达的任务放到缓存队列当中；</li>
+<li>maximumPoolSize：线程池最大线程数，这个参数也是一个非常重要的参数，它表示在线程池中最多能创建多少个线程；</li>
+<li>keepAliveTime：表示线程没有任务执行时最多保持多久时间会终止。默认情况下，只有当线程池中的线程数大于 corePoolSize 时，keepAliveTime 才会起作用，直到线程池中的线程数不大于 corePoolSize，即当线程池中的线程数大于 corePoolSize 时，如果一个线程空闲的时间达到 keepAliveTime，则会终止，直到线程池中的线程数不超过 corePoolSize。但是如果调用了 allowCoreThreadTimeOut(boolean)方法，在线程池中的线程数不大于 corePoolSize 时，keepAliveTime 参数也会起作用，直到线程池中的线程数为 0；</li>
+<li>unit：参数 keepAliveTime 的时间单位，有 7 种取值，在 TimeUnit 类中有 7 种静态属性：</li>
 </ul>
-<h1 id="第一节-Why——结构思考力的作用非凡"><a href="#第一节-Why——结构思考力的作用非凡" class="headerlink" title="第一节 Why——结构思考力的作用非凡"></a>第一节 Why——结构思考力的作用非凡</h1><h2 id="所有人都需要具备的核心技能"><a href="#所有人都需要具备的核心技能" class="headerlink" title="所有人都需要具备的核心技能"></a>所有人都需要具备的核心技能</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1643976189521-6f14d7b0-f397-4d7a-a94d-472a6dfad174.png#clientId=u369a14ef-f835-4&from=paste&height=445&id=u1eed16c9&name=image.png&originHeight=445&originWidth=641&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=143996&status=done&style=none&taskId=u58682bf8-67ab-4237-8184-f3389956a3f&title=&width=641" alt="image.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.DAYS;               <span class="comment">//天</span></span><br><span class="line">TimeUnit.HOURS;             <span class="comment">//小时</span></span><br><span class="line">TimeUnit.MINUTES;           <span class="comment">//分钟</span></span><br><span class="line">TimeUnit.SECONDS;           <span class="comment">//秒</span></span><br><span class="line">TimeUnit.MILLISECONDS;      <span class="comment">//毫秒</span></span><br><span class="line">TimeUnit.MICROSECONDS;      <span class="comment">//微妙</span></span><br><span class="line">TimeUnit.NANOSECONDS;       <span class="comment">//纳秒</span></span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>结构思考力是开展所有工作的基础</li>
-<li>很多专业岗位对于结构思考力有更高的要求</li>
-<li>所以管理者必备的管理技能</li>
-<li>助力职业发展的重要保障</li>
+<li>workQueue：一个阻塞队列，用来存储等待执行的任务，这个参数的选择也很重要，会对线程池的运行过程产生重大影响，一般来说，这里的阻塞队列有以下几种选择：ArrayBlockingQueue; LinkedBlockingQueue; SynchronousQueue;ArrayBlockingQueue 和 PriorityBlockingQueue 使用较少，一般使用 LinkedBlockingQueue 和 Synchronous。线程池的排队策略与 BlockingQueue 有关。</li>
+<li>threadFactory：线程工厂，主要用来创建线程；</li>
+<li>handler：表示当拒绝处理任务时的策略，有以下四种取值:</li>
 </ul>
-<p><strong>结构思考力一种先总后分的思考与表达方式，强调先框架后细节，先总结后具体，先结论后原因，先重要后次要。</strong></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">ThreadPoolExecutor.AbortPolicy</span>:<span class="string">丢弃任务并抛出RejectedExecutionException异常。</span></span><br><span class="line"><span class="attr">ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。</span></span><br><span class="line"><span class="attr">ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）</span></span><br><span class="line"><span class="attr">ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>通俗理解参数</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">每个变量的作用都已经标明出来了，这里要重点解释一下corePoolSize、maximumPoolSize、largestPoolSize三个变量。</span></span><br><span class="line"></span><br><span class="line"><span class="string">corePoolSize在很多地方被翻译成核心池大小，其实我的理解这个就是线程池的大小。举个简单的例子：</span></span><br><span class="line"></span><br><span class="line"><span class="string">假如有一个工厂，工厂里面有10个工人，每个工人同时只能做一件任务。</span></span><br><span class="line"></span><br><span class="line"><span class="string">因此只要当10个工人中有工人是空闲的，来了任务就分配给空闲的工人做；</span></span><br><span class="line"></span><br><span class="line"><span class="string">当10个工人都有任务在做时，如果还来了任务，就把任务进行排队等待；</span></span><br><span class="line"></span><br><span class="line"><span class="string">如果说新任务数目增长的速度远远大于工人做任务的速度，那么此时工厂主管可能会想补救措施，比如重新招4个临时工人进来；</span></span><br><span class="line"></span><br><span class="line"><span class="string">然后就将任务也分配给这4个临时工人做；</span></span><br><span class="line"></span><br><span class="line"><span class="string">如果说着14个工人做任务的速度还是不够，此时工厂主管可能就要考虑不再接收新的任务或者抛弃前面的一些任务了。</span></span><br><span class="line"></span><br><span class="line"><span class="string">当这14个工人当中有人空闲时，而新任务增长的速度又比较缓慢，工厂主管可能就考虑辞掉4个临时工了，只保持原来的10个工人，毕竟请额外的工人是要花钱的。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">这个例子中的corePoolSize就是10，而maximumPoolSize就是14（10+4）。</span></span><br><span class="line"></span><br><span class="line"><span class="string">也就是说corePoolSize就是线程池大小，maximumPoolSize在我看来是线程池的一种补救措施，即任务量突然过大时的一种补救措施。</span></span><br><span class="line"></span><br><span class="line"><span class="string">不过为了方便理解，在本文后面还是将corePoolSize翻译成核心池大小。</span></span><br><span class="line"></span><br><span class="line"><span class="string">largestPoolSize只是一个用来起记录作用的变量，用来记录线程池中曾经有过的最大线程数目，跟线程池的容量没有任何关系。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641299493625-f2b11349-c968-494d-b614-dc85761d9d9a.png#clientId=ube887dfc-7659-4&from=paste&height=288&id=ub9990a73&name=image.png&originHeight=373&originWidth=389&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=14930&status=done&style=none&taskId=u579c33e2-983d-4c8b-8666-11aef37c66f&title=&width=300" alt="image.png"></p>
+<h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p>下面我们进入正题，看一下任务从提交到最终执行完毕经历了哪些过程。<br>在 ThreadPoolExecutor 类中，最核心的任务提交方法是 execute()方法，虽然通过 submit 也可以提交任务，但是实际上 submit 方法里面最终调用的还是 execute()方法，所以我们只需要研究 execute()方法的实现原理即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (command == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="keyword">if</span> (poolSize &gt;= corePoolSize || !addIfUnderCorePoolSize(command)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (runState == RUNNING &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (runState != RUNNING || poolSize == <span class="number">0</span>)</span><br><span class="line">                ensureQueuedTaskHandled(command);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!addIfUnderMaximumPoolSize(command))</span><br><span class="line">            reject(command); <span class="comment">// is shutdown or saturated</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -599,7 +306,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -613,7 +320,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/" class="post-title-link" itemprop="url">字符集</a>
+            <a href="/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">主题和队列的区别</a>
         </h2>
 
         <div class="post-meta">
@@ -623,11 +330,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-01-28 16:30:42" itemprop="dateCreated datePublished" datetime="2022-01-28T16:30:42+08:00">2022-01-28</time>
+              <time title="创建时间：2022-01-04 20:04:06" itemprop="dateCreated datePublished" datetime="2022-01-04T20:04:06+08:00">2022-01-04</time>
             </span>
 
           
-            <span id="/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/" class="post-meta-item leancloud_visitors" data-flag-title="字符集" title="阅读次数">
+            <span id="/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-meta-item leancloud_visitors" data-flag-title="主题和队列的区别" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -642,8 +349,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -653,7 +360,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>197</span>
+              <span>49</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -672,9 +379,324 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>转码工具：<a target="_blank" rel="noopener" href="https://www.haomeili.net/HanZi/ZiFuBianMaZhuanHuan">https://www.haomeili.net/HanZi/ZiFuBianMaZhuanHuan</a></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1643359095640-7df45cab-3854-43fb-ad97-922550bdb795.jpeg"></p>
-<p>MySQL 中 utf8 编码只支持 1-3 个字节 。 在 utf8 编码中，中文是占 3 个字节，其他数字、英文、符号占一个字节。但 emoji 符号占 4 个字节，一些较复杂的文字、繁体字也是 4 个字；<br><strong>UTF8mb4</strong> 是 UTF-8 的完整实现，正版！最多支持使用 4 个字节表示字符，因此，可以用来存储 emoji 符号。</p>
+          <p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/chjxbt/p/11407890.html">https://www.cnblogs.com/chjxbt/p/11407890.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/" class="post-title-link" itemprop="url">阿里云消息服务MNS-JAVA SDK</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-04 18:59:04" itemprop="dateCreated datePublished" datetime="2022-01-04T18:59:04+08:00">2022-01-04</time>
+            </span>
+
+          
+            <span id="/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/" class="post-meta-item leancloud_visitors" data-flag-title="阿里云消息服务MNS-JAVA SDK" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ol>
+<li><p>下载最新版 Java SDK，解压到 aliyun-sdk-mns-samples 文件夹。</p>
+</li>
+<li><p>用 Eclipse 导入 Maven 工程，选中 aliyun-sdk-mns-samples 文件夹。</p>
+<p>3.在用户目录中创建.aliyun-mns.properties 文件，并填写服务地址、AccessKeyId 和 AccessKeySecret</p>
+</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mns.accountendpoint</span>=<span class="string">http://&lt;yourAccountId&gt;.mns.cn-hangzhou.aliyuncs.com</span></span><br><span class="line"><span class="meta">mns.accesskeyid</span>=<span class="string">&lt;yourAccessKeyId&gt;</span></span><br><span class="line"><span class="meta">mns.accesskeysecret</span>=<span class="string">&lt;yourAccessKeySecret&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>4.Maven 依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.mns<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-mns<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.9.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="主题使用手册"><a href="#主题使用手册" class="headerlink" title="主题使用手册"></a>主题使用手册</h1><h2 id="创建主题"><a href="#创建主题" class="headerlink" title="创建主题"></a>创建主题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateTopicDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        String topicName = <span class="string">&quot;TestTopic&quot;</span>;</span><br><span class="line">        TopicMeta meta = <span class="keyword">new</span> TopicMeta();</span><br><span class="line">        meta.setTopicName(topicName);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            CloudTopic topic = client.createTopic(meta);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;create topic error, &quot;</span> + e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建队列"><a href="#创建队列" class="headerlink" title="创建队列"></a>创建队列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateQueueDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(</span><br><span class="line">                ServiceSettings.getMNSAccessKeyId(),</span><br><span class="line">                ServiceSettings.getMNSAccessKeySecret(),</span><br><span class="line">                ServiceSettings.getMNSAccountEndpoint());</span><br><span class="line">        MNSClient client = account.getMNSClient();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            QueueMeta qMeta = <span class="keyword">new</span> QueueMeta();</span><br><span class="line">            qMeta.setQueueName(<span class="string">&quot;queue-demo&quot;</span>);</span><br><span class="line">            qMeta.setPollingWaitSeconds(<span class="number">30</span>);</span><br><span class="line">            CloudQueue cQueue = client.createQueue(qMeta);</span><br><span class="line">            System.out.println(<span class="string">&quot;Create queue successfully. URL: &quot;</span> + cQueue.getQueueURL());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientException ce)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Something wrong with the network connection between client and MNS service.&quot;</span></span><br><span class="line">                    + <span class="string">&quot;Please check your network and DNS availablity.&quot;</span>);</span><br><span class="line">            ce.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ServiceException se)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (se.getErrorCode().equals(<span class="string">&quot;QueueNotExist&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;Queue is not exist.Please create before use&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (se.getErrorCode().equals(<span class="string">&quot;TimeExpired&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;The request is time expired. Please check your local machine timeclock&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            se.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Unknown exception happened!&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建订阅"><a href="#创建订阅" class="headerlink" title="创建订阅"></a>创建订阅</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubscribeDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String region = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        String accountId = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        String queueName = <span class="string">&quot;TestQueue&quot;</span>;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        CloudTopic topic = client.getTopicRef(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            SubscriptionMeta subMeta = <span class="keyword">new</span> SubscriptionMeta();</span><br><span class="line">            subMeta.setSubscriptionName(<span class="string">&quot;QueueEndpoint2&quot;</span>);</span><br><span class="line">            subMeta.setEndpoint(String.format(<span class="string">&quot;acs:mns:%s:%s:queues/%s&quot;</span>, region, accountId, queueName));</span><br><span class="line">            subMeta.setNotifyContentFormat(SubscriptionMeta.NotifyContentFormat.XML);</span><br><span class="line">            String subUrl = topic.subscribe(subMeta);</span><br><span class="line">            System.out.println(<span class="string">&quot;subscription url: &quot;</span> + subUrl);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;subscribe/unsubribe error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="发布消息"><a href="#发布消息" class="headerlink" title="发布消息"></a>发布消息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PublishMessageDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        CloudTopic topic = client.getTopicRef(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TopicMessage msg = <span class="keyword">new</span> Base64TopicMessage(); <span class="comment">//可以使用TopicMessage结构，选择不进行Base64加密。</span></span><br><span class="line">            msg.setMessageBody(<span class="string">&quot;hello world!&quot;</span>);</span><br><span class="line">            <span class="comment">//msg.setMessageTag(&quot;filterTag&quot;); //设置该条发布消息的filterTag。</span></span><br><span class="line">            msg = topic.publishMessage(msg);</span><br><span class="line">            System.out.println(msg.getMessageId());</span><br><span class="line">            System.out.println(msg.getMessageBodyMD5());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;subscribe error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="从队列接收和删除消息"><a href="#从队列接收和删除消息" class="headerlink" title="从队列接收和删除消息"></a>从队列接收和删除消息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComsumerDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(</span><br><span class="line">                ServiceSettings.getMNSAccessKeyId(),</span><br><span class="line">                ServiceSettings.getMNSAccessKeySecret(),</span><br><span class="line">                ServiceSettings.getMNSAccountEndpoint());</span><br><span class="line">        MNSClient client = account.getMNSClient();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            CloudQueue queue = client.getQueueRef(<span class="string">&quot;queue-demo&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Message popMsg = queue.popMessage();</span><br><span class="line">                <span class="keyword">if</span> (popMsg != <span class="keyword">null</span>)&#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;message handle: &quot;</span> + popMsg.getReceiptHandle());</span><br><span class="line">                    System.out.println(<span class="string">&quot;message body: &quot;</span> + popMsg.getMessageBodyAsString());</span><br><span class="line">                    System.out.println(<span class="string">&quot;message id: &quot;</span> + popMsg.getMessageId());</span><br><span class="line">                    System.out.println(<span class="string">&quot;message dequeue count:&quot;</span> + popMsg.getDequeueCount());</span><br><span class="line"></span><br><span class="line">                    queue.deleteMessage(popMsg.getReceiptHandle());</span><br><span class="line">                    System.out.println(<span class="string">&quot;delete message successfully.\n&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientException ce)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Something wrong with the network connection between client and MNS service.&quot;</span></span><br><span class="line">                    + <span class="string">&quot;Please check your network and DNS availablity.&quot;</span>);</span><br><span class="line">            ce.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ServiceException se)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (se.getErrorCode().equals(<span class="string">&quot;QueueNotExist&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;Queue is not exist.Please create queue before use&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (se.getErrorCode().equals(<span class="string">&quot;TimeExpired&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;The request is time expired. Please check your local machine timeclock&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            se.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Unknown exception happened!&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除主题"><a href="#删除主题" class="headerlink" title="删除主题"></a>删除主题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeleteTopicDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        CloudTopic topic = client.getTopicRef(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            topic.delete();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;delete topic error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除队列"><a href="#删除队列" class="headerlink" title="删除队列"></a>删除队列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeleteTopicDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        CloudTopic topic = client.getTopicRef(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            topic.delete();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;delete topic error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="FitletTag-使用示例"><a href="#FitletTag-使用示例" class="headerlink" title="FitletTag 使用示例"></a>FitletTag 使用示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.aliyun.mns.samples;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.client.CloudAccount;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.client.CloudQueue;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.client.CloudTopic;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.client.MNSClient;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.common.utils.ServiceSettings;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.model.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TopicSample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(</span><br><span class="line">                ServiceSettings.getMNSAccessKeyId(),</span><br><span class="line">                ServiceSettings.getMNSAccessKeySecret(),</span><br><span class="line">                ServiceSettings.getMNSAccountEndpoint());</span><br><span class="line">        MNSClient client = account.getMNSClient();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1．创建队列。</span></span><br><span class="line">        QueueMeta queueMeta = <span class="keyword">new</span> QueueMeta();</span><br><span class="line">        queueMeta.setQueueName(<span class="string">&quot;TestSubForQueue&quot;</span>);</span><br><span class="line">        CloudQueue queue = client.createQueue(queueMeta);</span><br><span class="line">        <span class="comment">// 2．创建主题。</span></span><br><span class="line">        TopicMeta topicMeta = <span class="keyword">new</span> TopicMeta();</span><br><span class="line">        topicMeta.setTopicName(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        CloudTopic topic = client.createTopic(topicMeta);</span><br><span class="line">        <span class="comment">// 3．创建订阅。</span></span><br><span class="line">        SubscriptionMeta subMeta = <span class="keyword">new</span> SubscriptionMeta();</span><br><span class="line">        subMeta.setSubscriptionName(<span class="string">&quot;TestForQueueSub&quot;</span>);</span><br><span class="line">        subMeta.setNotifyContentFormat(SubscriptionMeta.NotifyContentFormat.SIMPLIFIED);</span><br><span class="line">        subMeta.setEndpoint(topic.generateQueueEndpoint(<span class="string">&quot;TestSubForQueue&quot;</span>));</span><br><span class="line">        subMeta.setFilterTag(<span class="string">&quot;filterTag&quot;</span>);</span><br><span class="line">        topic.subscribe(subMeta);</span><br><span class="line">        <span class="comment">// 4．发布消息。</span></span><br><span class="line">        TopicMessage msg = <span class="keyword">new</span> Base64TopicMessage();</span><br><span class="line">        msg.setMessageBody(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">        msg.setMessageTag(<span class="string">&quot;filterTag&quot;</span>);</span><br><span class="line">        msg = topic.publishMessage(msg);</span><br><span class="line">        <span class="comment">// 5．从订阅的队列中获取消息。</span></span><br><span class="line">        Message msgReceive = queue.popMessage(<span class="number">30</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;ReceiveMessage From TestSubForQueue:&quot;</span>);</span><br><span class="line">        System.out.println(msgReceive.getMessageBody());</span><br><span class="line">        System.exit(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决 Hexo d 突然报错问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-03 23:24:41" itemprop="dateCreated datePublished" datetime="2022-01-03T23:24:41+08:00">2022-01-03</time>
+            </span>
+
+          
+            <span id="/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="解决 Hexo d 突然报错问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E8%A7%A3%E5%86%B3%20Hexo%20d%20%E7%AA%81%E7%84%B6%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>890</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>时隔四五个月，今天往 hexo 推了篇文章，结果走到 hexo d 时竟然报错了</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/【******】/【*****】.github.io.git/&#x27;: OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\hexo\blog\node_modules\_hexo-util@1.9.1@hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:314:20)</span><br><span class="line">      at ChildProcess.cp.emit (D:\hexo\blog\node_modules\_cross-spawn@7.0.3@cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后网上查了好长时间，原因貌似是 2021 年 8 月 13 日 github 不再支持密码验证，而使用了 token，然后解决上述问题的具体步骤是：<br>1、登录 github 申请 token，点击个人头像进入 setting<img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224073369-1233fd3c-686a-4c0d-8f87-bbb205e696fe.png#clientId=u97f84e88-26d0-4&from=paste&height=279&id=u6ed292ab&name=image.png&originHeight=558&originWidth=379&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=30320&status=done&style=none&taskId=u6ee4cf62-7b3f-4974-bfd1-b04c61c06a4&title=&width=189.5" alt="image.png"></p>
+<p>2、接着找到 Developer settings<img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224156047-95eb515e-f9ce-4089-85a2-5076bedca6dd.png#clientId=u97f84e88-26d0-4&from=paste&height=130&id=u298cbdae&name=image.png&originHeight=260&originWidth=616&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=17894&status=done&style=none&taskId=u79f6cc45-84ee-4506-b62f-3e26dd5ac45&title=&width=308" alt="image.png"></p>
+<p>3、然后进入 personnel access tokens 中<img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224217280-f3b1a251-ce60-4a1d-979c-74b048d08b21.png#clientId=u97f84e88-26d0-4&from=paste&height=137&id=u0a519b83&name=image.png&originHeight=274&originWidth=906&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=24254&status=done&style=none&taskId=u9748114c-4496-4ee6-95ff-f253017d9b3&title=&width=453" alt="image.png"></p>
+<p>4、点击 <img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224272356-a5cf096b-06b2-4bc5-9f18-58c319fe3e3b.png#clientId=u97f84e88-26d0-4&from=paste&height=158&id=u1b3c13cb&name=image.png&originHeight=315&originWidth=1103&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=35887&status=done&style=none&taskId=u8c362965-83ac-47ab-9a2c-f21ec7309f4&title=&width=551.5" alt="image.png"></p>
+<p>5、<img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224446774-65348c7e-74dc-4894-ba42-13110c699875.png#clientId=u97f84e88-26d0-4&from=paste&height=432&id=ue5ac1c99&name=image.png&originHeight=864&originWidth=1174&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=112778&status=done&style=none&taskId=u77ecc260-a2e6-439b-a146-c42d0b3ff92&title=&width=587" alt="image.png"></p>
+<p>6、接着打开你个人 hexo 里面的这个配置文件<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224525404-feb7b7cf-e18c-4108-9b30-db8488ca1910.png#clientId=u97f84e88-26d0-4&from=paste&height=217&id=u00e89bb8&name=image.png&originHeight=434&originWidth=884&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=45936&status=done&style=none&taskId=u2feaa096-b980-4831-bd66-30bbb93d024&title=&width=442" alt="image.png"><br>7、把 deploy 里的 repo 地址改成这个格式（这样做不知道安不安全？）<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641224826677-e58a78e3-1bb7-419e-ab49-d33471ebbd06.png#clientId=u97f84e88-26d0-4&from=paste&height=68&id=u5dcfbdfd&name=image.png&originHeight=136&originWidth=1256&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=22540&status=done&style=none&taskId=uf9c27b49-bdc6-49be-a94f-0e03d5652d8&title=&width=628" alt="image.png"></p>
+<p>8、然后重新<br>hexo clean<br>hexo g<br>hexo d<br>应该就能解决问题了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2021年度阅读总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-03 18:12:36" itemprop="dateCreated datePublished" datetime="2022-01-03T18:12:36+08:00">2022-01-03</time>
+            </span>
+
+          
+            <span id="/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="2021年度阅读总结" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/2021%E5%B9%B4%E5%BA%A6%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>432</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1643846926452-ef9dac6d-1fd5-40c9-b274-a4ed156427ad.jpeg"></p>
+<h1 id="年度阅读总结"><a href="#年度阅读总结" class="headerlink" title="年度阅读总结"></a>年度阅读总结</h1><p>3 月份开始确定的读书，原计划是至少读十本，很遗憾，没有完成任务，原因各方面吧，最主要的原因有两项吧：<br>1、换了工作，忙，时间少；<br>2、执行力还是不够，还是懒了些。</p>
+<p>最后，今年的从阅读上获得的收获还是很多的，读了巴金先生的《春》和《秋》，加上之前的《家》，算是彻底读完了雷雨三部曲；重新认识了金老爷子的江湖世界，也构建了自己的江湖世界，真的好看，神雕的郭襄至今仍让人无法忘怀。再有就是阅读了大刘的科幻世界，在敲下这行字的此刻，我又再一次起了鸡皮疙瘩，三体和球闪的一幕幕重新浮现，我从没有想到小说能这么写，大刘的想象竟可以达到这样的高度，相比之下，我这二十多年来自以为是天马行空的幻想显得幼稚可笑，阅读过程中，血液如同沸腾的岩浆，好久未曾再有这样的感觉了，太好看了，2022 年的目标之一也是看一些知名的科幻小说吧。</p>
+<p>今天是 2022 年 1 月 3 号，新年伊始那股强劲的总结欲望到此刻只像一个必须完成而不用在乎质量的任务，未完成则心有挂念，故扯下这几笔以散去心中的挂念求轻。</p>
 
       
     </div>
@@ -693,7 +715,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/27/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/aaa/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/38/">38</a><a class="extend next" rel="next" href="/aaa/page/29/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/27/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/aaa/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/37/">37</a><a class="extend next" rel="next" href="/aaa/page/29/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -761,13 +783,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -799,7 +821,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -808,12 +830,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">230k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:29</span>
 </div>
 
         
