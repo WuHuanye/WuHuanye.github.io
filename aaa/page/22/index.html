@@ -191,6 +191,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/SpringBoot%E9%A1%B9%E7%9B%AE%E9%80%9A%E8%BF%87idea%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%8F%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/SpringBoot%E9%A1%B9%E7%9B%AE%E9%80%9A%E8%BF%87idea%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%8F%B7/" class="post-title-link" itemprop="url">SpringBoot项目通过idea修改端口号</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-27 11:58:57" itemprop="dateCreated datePublished" datetime="2022-04-27T11:58:57+08:00">2022-04-27</time>
+            </span>
+
+          
+            <span id="/yq/SpringBoot%E9%A1%B9%E7%9B%AE%E9%80%9A%E8%BF%87idea%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%8F%B7/" class="post-meta-item leancloud_visitors" data-flag-title="SpringBoot项目通过idea修改端口号" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/SpringBoot%E9%A1%B9%E7%9B%AE%E9%80%9A%E8%BF%87idea%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%8F%B7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/SpringBoot%E9%A1%B9%E7%9B%AE%E9%80%9A%E8%BF%87idea%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%8F%B7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>154</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有时候我们需要在本地启动几个服务，服务之间端口号有可能冲突，这个时候可以通过修改配置文件或者通过 idea 修改端口号来解决冲突；个人不太喜欢修改配置文件，修改配置文件难免会不小心给 commit 上去。<br>通过 idea 修改端口号方式<br>1、<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1651032144574-bb2d657d-6ce5-43c9-b683-dbc954c174b9.png#clientId=u5c0b31cc-ab14-4&from=paste&height=169&id=u3a753a92&name=wecom-temp-4209a6d0d1d8fea48234cb1c008cda39.png&originHeight=338&originWidth=882&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=91532&status=done&style=none&taskId=u7c346492-7c01-4ac1-b265-b45b28fcecb&title=&width=441" alt="wecom-temp-4209a6d0d1d8fea48234cb1c008cda39.png"><br>2、<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1651032160632-c22fe310-8a40-47e0-9fb1-3371d0da9e15.png#clientId=u5c0b31cc-ab14-4&from=paste&height=192&id=ud3581879&name=wecom-temp-62f50d9e2959008f493ae544e51026ed.png&originHeight=384&originWidth=866&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=187022&status=done&style=none&taskId=u5909bcb4-d1a6-430d-901c-238ce880a39&title=&width=433" alt="wecom-temp-62f50d9e2959008f493ae544e51026ed.png"><br>3、<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1651032170378-63ab2af9-6101-4df6-baa6-470b30c0ab7d.png#clientId=u5c0b31cc-ab14-4&from=paste&height=200&id=u9cc2d3e6&name=wecom-temp-5b28b0ed64f0d04ec20e780d9be29d90.png&originHeight=400&originWidth=752&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=64180&status=done&style=none&taskId=uc454ab0e-6867-47b6-862b-e6533ac320b&title=&width=376" alt="wecom-temp-5b28b0ed64f0d04ec20e780d9be29d90.png"><br>4、<br>输入需要配置的端口号，重新启动即可，如<br>server.port=9000</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98%E5%92%8C%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -614,120 +707,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/2022-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/2022-04/" class="post-title-link" itemprop="url">2022-04</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-20 21:53:05" itemprop="dateCreated datePublished" datetime="2022-04-20T21:53:05+08:00">2022-04-20</time>
-            </span>
-
-          
-            <span id="/yq/2022-04/" class="post-meta-item leancloud_visitors" data-flag-title="2022-04" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/2022-04/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/2022-04/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Mysql-查看表最全结构"><a href="#Mysql-查看表最全结构" class="headerlink" title="Mysql 查看表最全结构"></a>Mysql 查看表最全结构</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39603604/article/details/113270950">https://blog.csdn.net/weixin_39603604/article/details/113270950</a></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> +表名\G；</span><br><span class="line"></span><br><span class="line">例如：<span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> customer_register_promotion\G；</span><br></pre></td></tr></table></figure>
-
-<h1 id="MyBatis-对-map-入参的更新"><a href="#MyBatis-对-map-入参的更新" class="headerlink" title="MyBatis 对 map 入参的更新"></a>MyBatis 对 map 入参的更新</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateBusinessPeopleCustomerName&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.util.Map&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;customerNameByCodeMap.entrySet()&quot;</span> <span class="attr">item</span>=<span class="string">&quot;customerName&quot;</span> <span class="attr">index</span>=<span class="string">&quot;customerCode&quot;</span> <span class="attr">open</span>=<span class="string">&quot;&quot;</span> <span class="attr">close</span>=<span class="string">&quot;&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;customerCode != null and customerName != null&quot;</span>&gt;</span></span><br><span class="line">            update people</span><br><span class="line">            <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">                customer_name = #&#123;customerName&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">                customer_code = #&#123;customerCode&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Integer <span class="title">updateBusinessPeopleCustomerName</span><span class="params">(<span class="meta">@Param(&quot;customerNameByCodeMap&quot;)</span> Map&lt;Long,String&gt; customerNameByCodeMap)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Java-方法多返回值问题-类似-Groovy-中的元组-Tuple"><a href="#Java-方法多返回值问题-类似-Groovy-中的元组-Tuple" class="headerlink" title="Java 方法多返回值问题(类似 Groovy 中的元组 Tuple)"></a>Java 方法多返回值问题(类似 Groovy 中的元组 Tuple)</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43274002/article/details/120464358">https://blog.csdn.net/weixin_43274002/article/details/120464358</a><br>使用 commons-lang3 工具包下的 Pair 或 Triple 类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">      <span class="comment">// 双返回值</span></span><br><span class="line">      Pair&lt;Integer, Integer&gt; pair = <span class="keyword">new</span> ImmutablePair&lt;&gt;(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">System.out.println(pair.getLeft());</span><br><span class="line">System.out.println(pair.getRight());</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 三返回值</span></span><br><span class="line">Triple&lt;String, String, String&gt; triple =</span><br><span class="line">                                 <span class="keyword">new</span> ImmutableTriple&lt;&gt;(<span class="string">&quot;我是第一个结果&quot;</span>,</span><br><span class="line">                                                       <span class="string">&quot;我是第二个结果&quot;</span>,</span><br><span class="line">                                                       <span class="string">&quot;我是第三个结果&quot;</span>);</span><br><span class="line">System.out.println(triple.getLeft());</span><br><span class="line">System.out.println(triple.getMiddle());</span><br><span class="line">System.out.println(triple.getRight());</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂-SQL-鉴赏"><a href="#复杂-SQL-鉴赏" class="headerlink" title="复杂 SQL 鉴赏"></a>复杂 SQL 鉴赏</h1><p>(非公司系统表)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> t1.id t1_id,t2.id t2_id,t1.file_id t1_file_id,t2.file_id t2_file_id,t2.file_name file_name <span class="keyword">from</span> (<span class="keyword">select</span> * <span class="keyword">from</span> attachments <span class="keyword">where</span> file_id=<span class="number">0</span>) t1 <span class="keyword">left</span> <span class="keyword">join</span></span><br><span class="line">   (<span class="keyword">select</span> * <span class="keyword">from</span> attachments <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span> (</span><br><span class="line">                                                   <span class="keyword">select</span>  <span class="keyword">max</span>(<span class="keyword">id</span>) max_id <span class="keyword">from</span> attachments <span class="keyword">where</span> file_id!=<span class="number">0</span> <span class="keyword">and</span> contract_id <span class="keyword">in</span></span><br><span class="line">                                                                                                                                   (<span class="keyword">select</span> contract_id <span class="keyword">from</span> attachments <span class="keyword">where</span> file_id=<span class="number">0</span>) <span class="keyword">group</span> <span class="keyword">by</span> contract_id )) t2  <span class="keyword">on</span> t1.contract_id =t2.contract_id ;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">&#x27;update attachments set file_id=&#x27;</span>,t2_file_id,<span class="string">&#x27;where id=&#x27;</span>,t1_id,<span class="string">&#x27;;&#x27;</span>) <span class="keyword">from</span> (<span class="keyword">select</span> t1.id t1_id,t2.id t2_id,t1.file_id t1_file_id,t2.file_id t2_file_id,t2.file_name file_name <span class="keyword">from</span> (<span class="keyword">select</span> * <span class="keyword">from</span> attachments <span class="keyword">where</span> file_id=<span class="number">0</span>) t1 <span class="keyword">left</span> <span class="keyword">join</span></span><br><span class="line">                                               (<span class="keyword">select</span> * <span class="keyword">from</span> attachments <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span> (</span><br><span class="line">                                                   <span class="keyword">select</span>  <span class="keyword">max</span>(<span class="keyword">id</span>) max_id <span class="keyword">from</span> attachments <span class="keyword">where</span> file_id!=<span class="number">0</span> <span class="keyword">and</span> contract_id <span class="keyword">in</span></span><br><span class="line">                                                                                                                                   (<span class="keyword">select</span> contract_id <span class="keyword">from</span> attachments <span class="keyword">where</span> file_id=<span class="number">0</span>) <span class="keyword">group</span> <span class="keyword">by</span> personnel_contract_id )) t2  <span class="keyword">on</span> t1.contract_id =t2.contract_id ) <span class="keyword">as</span> t3;</span><br></pre></td></tr></table></figure>
-
-<h1 id="查看端口进程和杀死进程"><a href="#查看端口进程和杀死进程" class="headerlink" title="查看端口进程和杀死进程"></a>查看端口进程和杀死进程</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找端口进程</span></span><br><span class="line">lsof -i:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># 杀死进程</span></span><br><span class="line"><span class="built_in">kill</span> -9 pid(进程号)</span><br></pre></td></tr></table></figure>
-
-<h1 id="Long-类型的比较方法源码"><a href="#Long-类型的比较方法源码" class="headerlink" title="Long 类型的比较方法源码"></a>Long 类型的比较方法源码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现比较器接口Comparable，重写里面的compareTo方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Long anotherLong)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> compare(<span class="keyword">this</span>.value, anotherLong.value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">long</span> x, <span class="keyword">long</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x &lt; y) ? -<span class="number">1</span> : ((x == y) ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/21/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/aaa/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/36/">36</a><a class="extend next" rel="next" href="/aaa/page/23/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/21/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/aaa/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/37/">37</a><a class="extend next" rel="next" href="/aaa/page/23/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -795,13 +778,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -842,12 +825,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:30</span>
 </div>
 
         
