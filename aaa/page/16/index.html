@@ -191,6 +191,122 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/" class="post-title-link" itemprop="url">Ribbon：负载均衡(基于客户端)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-04 21:47:05" itemprop="dateCreated datePublished" datetime="2022-06-04T21:47:05+08:00">2022-06-04</time>
+            </span>
+
+          
+            <span id="/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/" class="post-meta-item leancloud_visitors" data-flag-title="Ribbon：负载均衡(基于客户端)" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>654</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Ribbon-是什么？"><a href="#Ribbon-是什么？" class="headerlink" title="Ribbon 是什么？"></a>Ribbon 是什么？</h1><ul>
+<li>Spring Cloud Ribbon 是基于 Netflix Ribbon 实现的一套<strong>客户端负载均衡的工具</strong>。</li>
+<li>简单的说，Ribbon 是 Netflix 发布的开源项目，主要功能是提供客户端的软件负载均衡算法，将 Netflix 的中间层服务连接在一起。Ribbon 的客户端组件提供一系列完整的配置项，如：连接超时、重试等。简单的说，就是在配置文件中列出 LoadBalancer (简称 LB：负载均衡) 后面所有的及其，Ribbon 会自动的帮助你基于某种规则 (如简单轮询，随机连接等等) 去连接这些机器。我们也容易使用 Ribbon 实现自定义的负载均衡算法！</li>
+</ul>
+<h1 id="Ribbon-能干嘛？"><a href="#Ribbon-能干嘛？" class="headerlink" title="Ribbon 能干嘛？"></a>Ribbon 能干嘛？</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654350520228-d3d0a06b-ef6d-4d9f-b0be-3f05b35605d1.png#clientId=u660e2136-e68f-4&from=paste&id=udff79111&name=image.png&originHeight=482&originWidth=779&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=267331&status=done&style=none&taskId=udfee50c0-8c01-4833-b694-cac675044d7&title=" alt="image.png"></p>
+<ul>
+<li>LB，即负载均衡 (LoadBalancer) ，在微服务或分布式集群中经常用的一种应用。</li>
+<li>负载均衡简单的说就是将用户的请求平摊的分配到多个服务上，从而达到系统的 HA (高用)。</li>
+<li>常见的负载均衡软件有 Nginx、Lvs 等等。</li>
+<li>Dubbo、SpringCloud 中均给我们提供了负载均衡，<strong>SpringCloud 的负载均衡算法可以自定义</strong>。</li>
+<li>负载均衡简单分类：<ul>
+<li>集中式 LB<ul>
+<li>即在服务的提供方和消费方之间使用独立的 LB 设施，如**Nginx(反向代理服务器)**，由该设施负责把访问请求通过某种策略转发至服务的提供方！</li>
+</ul>
+</li>
+<li>进程式 LB<ul>
+<li>将 LB 逻辑集成到消费方，消费方从服务注册中心获知有哪些地址可用，然后自己再从这些地址中选出一个合适的服务器。</li>
+<li><strong>Ribbon 就属于进程内 LB</strong>，它只是一个类库，集成于消费方进程，消费方通过它来获取到服务提供方的地址！</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="使用-Ribbon-实现负载均衡"><a href="#使用-Ribbon-实现负载均衡" class="headerlink" title="使用 Ribbon 实现负载均衡"></a>使用 Ribbon 实现负载均衡</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654350618145-892d7982-48f9-43ce-b9e5-0f1f374682ce.png#clientId=u660e2136-e68f-4&from=paste&id=u8e4453ff&name=image.png&originHeight=419&originWidth=951&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=65454&status=done&style=none&taskId=u4ec0d3ab-d8fd-4c92-b408-7d89e80fbd7&title=" alt="image.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -903,109 +1019,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/BaseTypeHandler%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/BaseTypeHandler%E7%B1%BB/" class="post-title-link" itemprop="url">BaseTypeHandler类</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-04 12:04:08" itemprop="dateCreated datePublished" datetime="2022-06-04T12:04:08+08:00">2022-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/yq/BaseTypeHandler%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="BaseTypeHandler类" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/BaseTypeHandler%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/BaseTypeHandler%E7%B1%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>269</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>部分源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可通过重写该方法为目标字段自定义赋值，比如做数据的加密落表</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setNonNullParameter</span><span class="params">(PreparedStatement ps, <span class="keyword">int</span> i, T parameter, JdbcType jdbcType)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可通过重写该方法为目标字段后自定义做操作，比如对加密字段解密后读取</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> T <span class="title">getNullableResult</span><span class="params">(ResultSet rs, String columnName)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1077,13 +1090,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1124,12 +1137,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">231k</span>
+    <span title="站点总字数">235k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:30</span>
+    <span title="站点阅读时长">3:34</span>
 </div>
 
         

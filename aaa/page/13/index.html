@@ -191,6 +191,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/JsonUtils/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/JsonUtils/" class="post-title-link" itemprop="url">JsonUtils</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-14 17:32:58" itemprop="dateCreated datePublished" datetime="2022-06-14T17:32:58+08:00">2022-06-14</time>
+            </span>
+
+          
+            <span id="/yq/JsonUtils/" class="post-meta-item leancloud_visitors" data-flag-title="JsonUtils" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/JsonUtils/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/JsonUtils/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSON;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSONObject;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.serializer.SerializerFeature;</span><br><span class="line"><span class="keyword">import</span> com.shebao.framework.util.base.CommonConstants;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理单条查询响应结果</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> result 查询结果字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tClass 结果对象的class对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 响应类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">handleSingleResult</span><span class="params">(String result, Class&lt;T&gt; tClass)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtil.isBlank(result)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        JSONObject jsonObject = JSON.parseObject(result);</span><br><span class="line">        <span class="keyword">if</span> (CommonConstants.RETURN_CODE_SUCCESS != jsonObject.getInteger(CommonConstants.RET)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> jsonObject.getObject(<span class="string">&quot;data&quot;</span>, tClass);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理list查询响应结果</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> result 查询结果字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tClass 结果对象的class对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 响应类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">handleListResult</span><span class="params">(String result, Class&lt;T&gt; tClass)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtil.isBlank(result)) &#123;</span><br><span class="line">            <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        &#125;</span><br><span class="line">        JSONObject jsonObject = JSON.parseObject(result);</span><br><span class="line">        <span class="keyword">if</span> (CommonConstants.RETURN_CODE_SUCCESS != jsonObject.getInteger(CommonConstants.RET)) &#123;</span><br><span class="line">            <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> JSON.parseArray(jsonObject.getString(<span class="string">&quot;data&quot;</span>), tClass);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理RPC返回List结果</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> result 待处理json字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tClass 待转型的目标类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; ResultData&lt;List&lt;T&gt;&gt; handleRpcResultForList(String result, Class&lt;T&gt; tClass) &#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtil.isBlank(result)) &#123;</span><br><span class="line">            <span class="keyword">return</span> ResultData.error(<span class="string">&quot;Rpc请求失败&quot;</span>,Collections.emptyList());</span><br><span class="line">        &#125;</span><br><span class="line">        JSONObject jsonObject = JSON.parseObject(result);</span><br><span class="line">        <span class="keyword">if</span> (CommonConstants.RETURN_CODE_SUCCESS != jsonObject.getInteger(CommonConstants.RET)) &#123;</span><br><span class="line">             <span class="keyword">return</span> ResultData.error(<span class="string">&quot;Rpc返回错误:&quot;</span>+jsonObject.getString(CommonConstants.MSG),Collections.emptyList());</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;T&gt; data = JSON.parseArray(jsonObject.getString(<span class="string">&quot;data&quot;</span>), tClass);</span><br><span class="line">        <span class="keyword">return</span> ResultData.success(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理RPC返回单个结果</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> result 待处理json字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tClass 待转型的目标类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">ResultData&lt;T&gt; <span class="title">handleRpcResultForOne</span><span class="params">(String result, Class&lt;T&gt; tClass)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtil.isBlank(result)) &#123;</span><br><span class="line">            <span class="keyword">return</span> ResultData.error(<span class="string">&quot;Rpc请求失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        JSONObject jsonObject = JSON.parseObject(result);</span><br><span class="line">        <span class="keyword">if</span> (CommonConstants.RETURN_CODE_SUCCESS != jsonObject.getInteger(CommonConstants.RET)) &#123;</span><br><span class="line">            <span class="keyword">return</span> ResultData.error(<span class="string">&quot;Rpc返回错误:&quot;</span>+jsonObject.getString(CommonConstants.MSG));</span><br><span class="line">        &#125;</span><br><span class="line">        T data = jsonObject.getObject(<span class="string">&quot;data&quot;</span>, tClass);</span><br><span class="line">        <span class="keyword">return</span> ResultData.success(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理RPC返回分页结果</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> result</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tClass</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; ResultData&lt;List&lt;T&gt;&gt; handleRpcResultForPageList(String result, Class&lt;T&gt; tClass) &#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtil.isBlank(result)) &#123;</span><br><span class="line">            <span class="keyword">return</span> ResultData.error(<span class="string">&quot;Rpc请求失败&quot;</span>,Collections.emptyList());</span><br><span class="line">        &#125;</span><br><span class="line">        JSONObject jsonObject = JSON.parseObject(result);</span><br><span class="line">        <span class="keyword">if</span> (CommonConstants.RETURN_CODE_SUCCESS != jsonObject.getInteger(CommonConstants.RET)) &#123;</span><br><span class="line">            <span class="keyword">return</span> ResultData.error(<span class="string">&quot;Rpc返回错误:&quot;</span>+jsonObject.getString(CommonConstants.MSG),Collections.emptyList());</span><br><span class="line">        &#125;</span><br><span class="line">        JSONObject pageDataObj = JSON.parseObject(jsonObject.getString(<span class="string">&quot;data&quot;</span>));</span><br><span class="line">        List&lt;T&gt; data = JSON.parseArray(pageDataObj.getString(<span class="string">&quot;list&quot;</span>), tClass);</span><br><span class="line">        <span class="keyword">return</span> ResultData.success(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toJson</span><span class="params">(Object obj)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JSONObject.toJSONString(obj);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toJsonWriteMapNullValue</span><span class="params">(Object obj)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JSONObject.toJSONString(obj, SerializerFeature.WriteMapNullValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将对象解析成JSON对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> JSONObject <span class="title">toJSONObject</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">            <span class="keyword">return</span> JSON.parseObject(obj.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> JSON.parseObject(JSON.toJSONString(obj));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过设置type将字符串解析成对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> text</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">parseObject</span><span class="params">(String text, Type type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JSON.parseObject(text, type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将字符串解析成对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> text</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">parseObject</span><span class="params">(String text, Class&lt;T&gt; clazz)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JSON.parseObject(text, clazz);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/ObjectUtils/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -570,120 +663,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">事故复盘报告模板</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-14 12:43:02" itemprop="dateCreated datePublished" datetime="2022-06-14T12:43:02+08:00">2022-06-14</time>
-            </span>
-
-          
-            <span id="/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/" class="post-meta-item leancloud_visitors" data-flag-title="事故复盘报告模板" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>32</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="事故背景"><a href="#事故背景" class="headerlink" title="事故背景"></a>事故背景</h1><h1 id="事故过程"><a href="#事故过程" class="headerlink" title="事故过程"></a>事故过程</h1><h1 id="事故原因"><a href="#事故原因" class="headerlink" title="事故原因"></a>事故原因</h1><h1 id="处理过程"><a href="#处理过程" class="headerlink" title="处理过程"></a>处理过程</h1><h1 id="改进方案"><a href="#改进方案" class="headerlink" title="改进方案"></a>改进方案</h1><table>
-<thead>
-<tr>
-<th><strong>负责方</strong></th>
-<th><strong>动作</strong></th>
-<th><strong>责任人</strong></th>
-<th><strong>完成时间</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -755,13 +734,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -802,12 +781,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">231k</span>
+    <span title="站点总字数">235k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:30</span>
+    <span title="站点阅读时长">3:34</span>
 </div>
 
         

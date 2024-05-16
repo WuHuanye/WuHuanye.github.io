@@ -191,6 +191,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/COLA%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/COLA%E6%9E%B6%E6%9E%84/" class="post-title-link" itemprop="url">COLA架构</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 10:42:56" itemprop="dateCreated datePublished" datetime="2022-05-10T10:42:56+08:00">2022-05-10</time>
+            </span>
+
+          
+            <span id="/yq/COLA%E6%9E%B6%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="COLA架构" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/COLA%E6%9E%B6%E6%9E%84/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/COLA%E6%9E%B6%E6%9E%84/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>资料<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/significantfrank/article/details/110934799">https://blog.csdn.net/significantfrank/article/details/110934799</a><br>源码<br><a target="_blank" rel="noopener" href="https://github.com/alibaba/COLA">https://github.com/alibaba/COLA</a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>随着业务复杂性的逐步提高，为兼容各种场景，原有的代码也变得越来越复杂不易维护且容易出问题。故公司高层提出了重构我们现有的项目，经过几次会议的讨论，最终确定采用 COLA 架构作为本次重构的指导思想。</p>
+<h1 id="COLA-了解"><a href="#COLA-了解" class="headerlink" title="COLA 了解"></a>COLA 了解</h1><h2 id="分层结构"><a href="#分层结构" class="headerlink" title="分层结构"></a>分层结构</h2><p><strong>应用系统处理复杂业务逻辑也应该是分层的，下层对上层屏蔽处理细节，每一层各司其职，分离关注点，而不是一个 ServiceImpl 解决所有问题</strong>。对于一个典型的业务应用系统来说，COLA 会做如下层次定义，每一层都有明确的职责定义：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652595249195-bbe2a985-dddc-41fc-94c1-44087ec657ac.png#clientId=u3f77690d-dba3-4&from=paste&id=u00672630&name=image.png&originHeight=493&originWidth=372&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=49940&status=done&style=none&taskId=udd742a71-ff23-42f0-8e7c-00ab4d618b5&title=" alt="image.png"><br>1）适配层（Adapter Layer）：负责对前端展示（web，wireless，wap）的路由和适配，对于传统 B/S 系统而言，adapter 就相当于 MVC 中的 controller；</p>
+<p>2）应用层（Application Layer）：主要负责获取输入，组装上下文，参数校验，调用领域层做业务处理，如果需要的话，发送消息通知等。层次是开放的，应用层也可以绕过领域层，直接访问基础实施层；</p>
+<p>3）领域层（Domain Layer）：主要是封装了核心业务逻辑，并通过领域服务（Domain Service）和领域对象（Domain Entity）的方法对 App 层提供业务实体和业务逻辑计算。领域是应用的核心，不依赖任何其他层次；</p>
+<p>4）基础实施层（Infrastructure Layer）：主要负责技术细节问题的处理，比如数据库的 CRUD、搜索引擎、文件系统、分布式服务的 RPC 等。此外，领域防腐的重任也落在这里，外部依赖需要通过 gateway 的转义处理，才能被上面的 App 层和 Domain 层使用。</p>
+<h2 id="分包结构"><a href="#分包结构" class="headerlink" title="分包结构"></a>分包结构</h2><p>分层是整体项目的职责划分，细分到包结构的粒度，才能更好指导我们的工作。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652595401770-a263b2c4-d0f8-4e59-afb8-a2b41e787148.png#clientId=u3f77690d-dba3-4&from=paste&id=u09d89b0b&name=image.png&originHeight=722&originWidth=1476&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=287874&status=done&style=none&taskId=u15be2a4e-2117-4aee-8ed2-66c82c1469d&title=" alt="image.png"></p>
+<p>各个包结构的简要功能描述，如下表所示：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652595806389-9276d4d4-eb10-4c1c-99e6-a32afab8ecce.png#clientId=u3f77690d-dba3-4&from=paste&height=535&id=ud88c7899&name=image.png&originHeight=669&originWidth=733&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=43760&status=done&style=none&taskId=uaceb907c-bb2d-4846-964d-6b0eac63403&title=&width=586.4" alt="image.png"><br><strong>无有必要勿增实体</strong>。领域模型对设计能力要求很高，没把握用好，一个错误的抽象还不如不抽象，宁可不要用，也不要滥用，不要为了 DDD 而 DDD。<br>问题的关键是要看，新增的模型没有给你带来收益。比如有没有帮助系统解耦，有没有提升业务语义表达能力的提升，有没有提升系统的可维护性和可测性等等。<br>模型虽然可选，但 DDD 的思想是一定要去学习和贯彻的，特别是统一语言、边界上下文、防腐层的思想，值得深入学习，仔细体会。实际上，COLA 里面的很多设计思想都来自于 DDD。其中就包括领域包的设计。<br>前面的包定义，都是功能维度的定义。为了兼顾领域维度的内聚性，我们有必要对包结构进行一下微调，即顶层包结构应该是按照领域划分，让领域内聚。<br>也就是说，我们要综合考虑功能和领域两个维度包结构定义。按照领域和功能两个维度分包策略，最后呈现出来的，是如下图所示的顶层包节点是领域名称，领域之下，再按功能划分包结构。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652595947916-fa897609-9e8d-4693-a9cb-4c08465e8837.png#clientId=u3f77690d-dba3-4&from=paste&id=u1ec5259c&name=image.png&originHeight=462&originWidth=796&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=204437&status=done&style=none&taskId=ub51e3cbe-05c1-4fe5-9ae2-3368322f39e&title=" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652596012571-51722ab0-e7a5-4465-b07a-87dcffeeb060.png#clientId=u3f77690d-dba3-4&from=paste&id=u18031ef0&name=image.png&originHeight=480&originWidth=948&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=237531&status=done&style=none&taskId=u61c8266e-d247-4e86-9733-432eff5b977&title=" alt="image.png"></p>
+<h2 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h2><p>实现 <strong>高内聚低耦合。</strong><br>采用<strong>防腐层</strong>的解耦设计思想，不直接依赖外域的信息，要把外域的信息转换成自己领域上下文的实体再去使用，从而实现本域和外部依赖的解耦。<br>在 cola 中，将数据库、搜索引擎等数据存储也列为外部依赖的范畴。<br>其实现方式如下图所示，主要是<strong>在 Domain 层定义 Gateway 接口，然后在 Infrastructure 提供 Gateway 接口的实现。</strong><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652596395594-79a7d642-20a4-431c-bd48-d6c80a6eae67.png#clientId=u3f77690d-dba3-4&from=paste&id=u9cd1c418&name=image.png&originHeight=410&originWidth=1012&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=138786&status=done&style=none&taskId=u59f36eb9-2398-40ba-a42b-372d1af68bd&title=" alt="image.png"><br>举个例子，假如有一个电商系统，对于下单这个操作，它需要联动订单服务、商品服务、库存服务、营销服务等多个系统才能完成。<br>那么在订单域，该如何获取商品和库存信息呢？最直接的方式，无外乎就是 RPC 调用商品和库存服务，拿到 DTO 直接使用就完了。<br>然而，商品域吐出的是一个大而全的 DTO（可能包含几十个字段），而在下单这个阶段，订单所需要的可能只是其中几个字段而已。更合适的做法，应该是在订单域中，使用 gateway 对商品域和库存域的依赖进行解耦<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652596936299-1836b7e3-b78d-4594-83db-67ce97121b42.png#clientId=u3f77690d-dba3-4&from=paste&id=ua602439f&name=image.png&originHeight=666&originWidth=1024&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=290654&status=done&style=none&taskId=u4093de99-cde1-440f-a25d-c01f651f955&title=" alt="image.png"></p>
+<h2 id="落地"><a href="#落地" class="headerlink" title="落地"></a>落地</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/SpringBoot%E9%A1%B9%E7%9B%AE%E9%80%9A%E8%BF%87idea%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%8F%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -607,106 +708,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">并发问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-23 23:10:33" itemprop="dateCreated datePublished" datetime="2022-04-23T23:10:33+08:00">2022-04-23</time>
-            </span>
-
-          
-            <span id="/yq/%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="并发问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>303</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>之前：<br>我司在电子签签署完成后，会给我们发送签署消息，我们进行消费将流转状态改为【流转完成】并给发消息给电子签进行归档操作；电子签归档完成后会将归档完成的消息发送给我们，我们将合同状态由【待签约】更新为【已签约】</p>
-<p>现在：周二自动归档功能上线<br>我司在电子签签署完成后，自动进行归档，而不再由我们发消息通知归档，电子签签署完成的消息和归档的消息几乎同时发送给我们，消息并发处理，先消费的归档消息再消费的签署消息，导致归档后合同状态为【待签约】</p>
-<p>解决方案：<br>签约状态更新只能由小值变为大值</p>
-<p>数据修复：</p>
-<ul>
-<li>查询已流转完成但是签约状态为【待签约】的合同，提审批将签约状态刷新为【已签约】<br>代码优化：加强幂等</li>
-<li>增加合同操作枚举值：归档操作</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -778,13 +779,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -825,12 +826,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">231k</span>
+    <span title="站点总字数">235k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:30</span>
+    <span title="站点阅读时长">3:34</span>
 </div>
 
         

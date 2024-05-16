@@ -191,6 +191,132 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/2024/%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%85%A5TSC%E6%9D%A1%E7%A0%81%E6%89%93%E5%8D%B0%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%85%A5TSC%E6%9D%A1%E7%A0%81%E6%89%93%E5%8D%B0%E6%9C%BA/" class="post-title-link" itemprop="url">系统接入TSC条码打印机</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-03-29 21:02:11" itemprop="dateCreated datePublished" datetime="2024-03-29T21:02:11+08:00">2024-03-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%88%E4%BE%8B/" itemprop="url" rel="index"><span itemprop="name">案例</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2024/%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%85%A5TSC%E6%9D%A1%E7%A0%81%E6%89%93%E5%8D%B0%E6%9C%BA/" class="post-meta-item leancloud_visitors" data-flag-title="系统接入TSC条码打印机" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2024/%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%85%A5TSC%E6%9D%A1%E7%A0%81%E6%89%93%E5%8D%B0%E6%9C%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2024/%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%85%A5TSC%E6%9D%A1%E7%A0%81%E6%89%93%E5%8D%B0%E6%9C%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近做历史件档案归档的需求，数据量有几百万，其中一个功能是生成的归档号以条码加姓名的形式打印出来，然后贴到文件袋上。</p>
+<p>也没接触过这玩意，只能上网查找资料，最后选定了TSC的TTP 342 pro。</p>
+<p>分两种方式实现。</p>
+<h1 id="装驱动"><a href="#装驱动" class="headerlink" title="装驱动"></a>装驱动</h1><p><img src="https://cdn.nlark.com/yuque/0/2023/png/22422342/1690609673393-c949f6d0-2adc-4ad8-8c74-e73f3481e816.png" alt="img"></p>
+<p>后续next。。。装下来即可</p>
+<h1 id="JAVA实现"><a href="#JAVA实现" class="headerlink" title="JAVA实现"></a>JAVA实现</h1><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="https://cdn.nlark.com/yuque/0/2023/png/22422342/1690610218209-ad08d910-acd2-49d9-b64f-ad73562b05a0.png" alt="img"></p>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tscsdk.mytest;</span><br><span class="line"><span class="keyword">import</span> com.sun.jna.Library;</span><br><span class="line"><span class="keyword">import</span> com.sun.jna.Native;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintFontTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TscLibDll</span> <span class="keyword">extends</span> <span class="title">Library</span> </span>&#123;</span><br><span class="line">        TscLibDll INSTANCE = Native.loadLibrary(<span class="string">&quot;\\TSCLIB&quot;</span>, TscLibDll.class);</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">openport</span><span class="params">(String printerName)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">closeport</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">sendcommand</span><span class="params">(String command)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">printerfont</span><span class="params">(String x, String y, String fontType, String rotation, String xMultiplication, String yMultiplication, String content)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">clearbuffer</span> <span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">windowsfont</span> <span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> fontheight, <span class="keyword">int</span> rotation, <span class="keyword">int</span> fontstyle, <span class="keyword">int</span> fontunderline, String szFaceName, String content)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">printlabel</span> <span class="params">(String set, String copy)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">windowsfontUnicodeLengh</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> fontheight, <span class="keyword">int</span> rotation, <span class="keyword">int</span> fontstyle, <span class="keyword">int</span> fontunderline, String szFaceName, <span class="keyword">byte</span>[] content, <span class="keyword">int</span> length)</span></span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 设置打印机名称</span></span><br><span class="line">        String printerName = <span class="string">&quot;TSC TTP-342 Pro&quot;</span>;</span><br><span class="line">        <span class="comment">// 打开打印机端口</span></span><br><span class="line">        <span class="keyword">int</span> result = TscLibDll.INSTANCE.openport(printerName);</span><br><span class="line">        <span class="keyword">if</span> (result != <span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;打印机状态不正确....&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 发送打印指令</span></span><br><span class="line">        TscLibDll.INSTANCE.sendcommand(<span class="string">&quot;SIZE 60 mm, 40 mm&quot;</span>);</span><br><span class="line">        TscLibDll.INSTANCE.sendcommand(<span class="string">&quot;SPEED 3&quot;</span>);</span><br><span class="line">        TscLibDll.INSTANCE.sendcommand(<span class="string">&quot;DENSITY 12&quot;</span>);</span><br><span class="line">        TscLibDll.INSTANCE.sendcommand(<span class="string">&quot;DIRECTION 1&quot;</span>);</span><br><span class="line">        TscLibDll.INSTANCE.sendcommand(<span class="string">&quot;SET TEAR ON&quot;</span>);</span><br><span class="line">        TscLibDll.INSTANCE.sendcommand(<span class="string">&quot;CODEPAGE UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        TscLibDll.INSTANCE.clearbuffer();</span><br><span class="line">        String preContent = <span class="string">&quot;GD90090716QQQQQQQ&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; <span class="number">3</span>;i++)&#123;</span><br><span class="line">            TscLibDll.INSTANCE.clearbuffer();</span><br><span class="line">            String gdArchiveNo = preContent + (i+<span class="string">&quot;&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;archiveNo::&quot;</span> + gdArchiveNo);</span><br><span class="line">            TscLibDll.INSTANCE.windowsfont(<span class="number">60</span>, <span class="number">200</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;Arial&quot;</span>, gdArchiveNo);</span><br><span class="line">            TscLibDll.INSTANCE.printlabel(<span class="string">&quot;1&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 关闭打印机端口</span></span><br><span class="line">        TscLibDll.INSTANCE.closeport();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>jar包：</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2024/jar/22422342/1711551806474-a06800d3-aee9-4427-a077-845bee5f220c.jar">📎jna-4.5.1.jar</a></p>
+<h1 id="JS实现"><a href="#JS实现" class="headerlink" title="JS实现"></a>JS实现</h1><h2 id="装载库"><a href="#装载库" class="headerlink" title="装载库"></a>装载库</h2><p>将  <strong>TSCActiveX.dll, TSCLIB.dll</strong> 两个dll拷贝到</p>
+<p>32bit 系统: <strong>C:\Windows\System32</strong></p>
+<p>64bit 系统: <strong>C:\Windows\SysWOW64</strong></p>
+<p>用管理员身份进入cmd,切换到dll安装的位置，输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">regsvr32  TSCActiveX.dll</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22422342/1690609838431-e55e33ea-c136-484b-9473-e125666759d7.png" alt="img"></p>
+<h2 id="demo-拿来即用"><a href="#demo-拿来即用" class="headerlink" title="demo(拿来即用)"></a>demo(拿来即用)</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>打印测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">id</span>=<span class="string">&quot;MYAvtiveX&quot;</span>  <span class="attr">classid</span>=<span class="string">&quot;clsid:0BF5203E-A4C7-4E4F-A637-4B29BAE979FD&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;bt&quot;</span>&gt;</span>打印按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;bt&quot;</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> collection = [<span class="string">&quot;GD2023050511111122&quot;</span>, <span class="string">&quot;GD2023050511111133&quot;</span>]; <span class="comment">// 要发送的集合</span></span></span><br><span class="line"><span class="javascript">        $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">            type: <span class="string">&quot;POST&quot;</span>,</span></span><br><span class="line"><span class="javascript">            url: <span class="string">&quot;http://localhost:8080/tsc/printGdArchiveNo&quot;</span>,</span></span><br><span class="line"><span class="javascript">            data: <span class="built_in">JSON</span>.stringify(collection),</span></span><br><span class="line"><span class="javascript">            contentType: <span class="string">&quot;application/json&quot;</span>,</span></span><br><span class="line"><span class="javascript">            success: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(response); <span class="comment">// 输出后端返回的结果</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;bt&quot;</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> TSCObj;</span></span><br><span class="line"><span class="javascript">        TSCObj = <span class="keyword">new</span> ActiveXObject(<span class="string">&quot;TSCActiveX.TSCLIB&quot;</span>);</span></span><br><span class="line"><span class="javascript">        TSCObj.ActiveXopenport(<span class="string">&quot;TSC TTP-342 Pro&quot;</span>);</span></span><br><span class="line"><span class="javascript">        TSCObj.ActiveXsendcommand(<span class="string">&quot;SIZE 70 mm, 10 mm&quot;</span>);</span></span><br><span class="line"><span class="javascript">        TSCObj.ActiveXsendcommand(<span class="string">&quot;SPEED 2&quot;</span>);</span></span><br><span class="line"><span class="javascript">        TSCObj.ActiveXsendcommand(<span class="string">&quot;DENSITY 12&quot;</span>);</span></span><br><span class="line"><span class="javascript">        TSCObj.ActiveXsendcommand(<span class="string">&quot;DIRECTION 1&quot;</span>);</span></span><br><span class="line"><span class="javascript">        TSCObj.ActiveXsendcommand(<span class="string">&quot;SET TEAR ON&quot;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> map = &#123;</span></span><br><span class="line"><span class="javascript">            <span class="string">&quot;GD2023072712340007&quot;</span>:<span class="string">&quot;东方闪电&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="string">&quot;GD2023072712340008&quot;</span>:<span class="string">&quot;得给对的&quot;</span></span></span><br><span class="line">        &#125;;</span><br><span class="line"><span class="javascript">        <span class="comment">// 70 * 10</span></span></span><br><span class="line"><span class="javascript">        $.each(map,<span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(key + <span class="string">&quot;:&quot;</span> + value);</span></span><br><span class="line">            TSCObj.ActiveXclearbuffer();</span><br><span class="line"><span class="javascript">            TSCObj.ActiveXbarcode(<span class="string">&quot;80&quot;</span>, <span class="string">&quot;6&quot;</span>, <span class="string">&quot;128&quot;</span>, <span class="string">&quot;80&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;3&quot;</span>, <span class="string">&quot;2&quot;</span>, key);</span></span><br><span class="line"><span class="javascript">            TSCObj.ActiveXwindowsfont(<span class="string">&quot;600&quot;</span>, <span class="string">&quot;12&quot;</span>, <span class="string">&quot;60&quot;</span>, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;Arial&quot;</span>, value);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">            TSCObj.ActiveXprintlabel(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>)</span></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        TSCObj.ActiveXcloseport()</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>一些方法还是得看去官方查看文档…</p>
+<p>成品展示</p>
+<p><video preload="metadata" playsinline="" poster="https://img.alicdn.com/imgextra/i3/6000000001023/O1CN013sv3Jn1JQa7JdJySN_!!6000000001023-0-tbvideo.jpg" style="box-sizing: border-box; width: 746px; height: 450px; outline: none;"></video></p>
+<p><img src="https://gw.alipayobjects.com/zos/bmw-prod/b805f4eb-90d6-4436-83c9-db779654f71a.svg" alt="play"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/2024/selenium%20+%20java%E7%AE%80%E5%8D%95%E4%BE%8B%E5%AD%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -625,101 +751,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Java%E5%AF%B9map%E9%9B%86%E5%90%88%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/Java%E5%AF%B9map%E9%9B%86%E5%90%88%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">Java对map集合排序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-19 21:12:41" itemprop="dateCreated datePublished" datetime="2022-07-19T21:12:41+08:00">2022-07-19</time>
-            </span>
-
-          
-            <span id="/yq/Java%E5%AF%B9map%E9%9B%86%E5%90%88%E6%8E%92%E5%BA%8F/" class="post-meta-item leancloud_visitors" data-flag-title="Java对map集合排序" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/Java%E5%AF%B9map%E9%9B%86%E5%90%88%E6%8E%92%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Java%E5%AF%B9map%E9%9B%86%E5%90%88%E6%8E%92%E5%BA%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="对-key-排序"><a href="#对-key-排序" class="headerlink" title="对 key 排序"></a>对 key 排序</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对 map 集合按照key排序的方式来进行排序打印</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;张三&quot;</span>,<span class="string">&quot;99&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;aa&quot;</span>,<span class="string">&quot;53&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;王五&quot;</span>,<span class="string">&quot;59&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;ca&quot;</span>,<span class="string">&quot;51&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;bw&quot;</span>,<span class="string">&quot;52&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Map&lt;String,String&gt; treeMap = <span class="keyword">new</span> TreeMap&lt;&gt;(<span class="keyword">new</span> MyComparator());</span><br><span class="line">        treeMap.putAll(map);</span><br><span class="line"></span><br><span class="line">        Set&lt;String&gt; sets = treeMap.keySet();</span><br><span class="line">        Iterator&lt;String&gt; iterator = sets.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            String key = iterator.next();</span><br><span class="line">            System.out.println(key + <span class="string">&quot;--&quot;</span> + map.get(key));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写比较器的compare方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">String</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String o1, String o2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> o1.compareTo(o2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="对-value-排序"><a href="#对-value-排序" class="headerlink" title="对 value 排序"></a>对 value 排序</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对 map 集合按照value排序的方式来进行排序打印</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;张三&quot;</span>,<span class="string">&quot;99&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;aa&quot;</span>,<span class="string">&quot;53&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;王五&quot;</span>,<span class="string">&quot;59&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;ca&quot;</span>,<span class="string">&quot;51&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;bw&quot;</span>,<span class="string">&quot;52&quot;</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;Map.Entry&lt;String, String&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(map.entrySet());</span><br><span class="line">        Collections.sort(list,<span class="keyword">new</span> MyComparator());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;String,String&gt; entry : list)&#123;</span><br><span class="line">            System.out.println(entry.getKey() + <span class="string">&quot; -- &quot;</span> + entry.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写比较器的compare方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Map</span>.<span class="title">Entry</span>&gt;</span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Map.Entry o1, Map.Entry o2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> ((String)o1.getValue()).compareTo((String) o2.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -791,13 +822,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -838,12 +869,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">231k</span>
+    <span title="站点总字数">235k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:30</span>
+    <span title="站点阅读时长">3:34</span>
 </div>
 
         
