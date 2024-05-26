@@ -25,20 +25,21 @@
 
   <meta name="description" content="内存模型 类加载器（ClassLoader） 运行时数据区（Runtime Data Area） 执行引擎（Execution Engine） 本地库接口（Native Interface）  组件的作用： 首先通过类加载器（ClassLoader）会把 Java 代码转换成字节码，运行时数据区（Runtime Data Area）再把字节码加载到内存中，而字节码文件只是 JVM 的一套指令集规范">
 <meta property="og:type" content="article">
-<meta property="og:title" content="知识点概览">
-<meta property="og:url" content="https://wuhuanye.github.io/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/index.html">
+<meta property="og:title" content="JVM知识点概览">
+<meta property="og:url" content="https://wuhuanye.github.io/yq/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/index.html">
 <meta property="og:site_name" content="Ronetver-Blog">
 <meta property="og:description" content="内存模型 类加载器（ClassLoader） 运行时数据区（Runtime Data Area） 执行引擎（Execution Engine） 本地库接口（Native Interface）  组件的作用： 首先通过类加载器（ClassLoader）会把 Java 代码转换成字节码，运行时数据区（Runtime Data Area）再把字节码加载到内存中，而字节码文件只是 JVM 的一套指令集规范">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656944303845-157f4f56-d041-4393-847f-6f21473ad876.png#clientId=u11f1e445-c5d7-4&from=paste&id=uae419bcb&originHeight=610&originWidth=650&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u197c025e-8f62-4cfa-91b7-a9e85a3fcc0&title=">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656944318049-a292418e-2705-4fbc-b46b-eece17f191dc.png#clientId=u11f1e445-c5d7-4&from=paste&id=u23b322f7&originHeight=561&originWidth=650&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u240be4d1-e5f1-4926-9aaa-cb7d578641e&title=">
 <meta property="article:published_time" content="2022-07-04T14:36:40.000Z">
-<meta property="article:modified_time" content="2023-03-19T11:32:56.350Z">
+<meta property="article:modified_time" content="2024-05-26T07:55:40.164Z">
 <meta property="article:author" content="Ronetver">
+<meta property="article:tag" content="jvm">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656944303845-157f4f56-d041-4393-847f-6f21473ad876.png#clientId=u11f1e445-c5d7-4&from=paste&id=uae419bcb&originHeight=610&originWidth=650&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u197c025e-8f62-4cfa-91b7-a9e85a3fcc0&title=">
 
-<link rel="canonical" href="https://wuhuanye.github.io/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/">
+<link rel="canonical" href="https://wuhuanye.github.io/yq/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/">
 
 
 <script id="page-configurations">
@@ -51,7 +52,7 @@
   };
 </script>
 
-  <title>知识点概览 | Ronetver-Blog</title>
+  <title>JVM知识点概览 | Ronetver-Blog</title>
   
 
 
@@ -199,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -212,7 +213,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          知识点概览
+          JVM知识点概览
         </h1>
 
         <div class="post-meta">
@@ -224,9 +225,18 @@
 
               <time title="创建时间：2022-07-04 22:36:40" itemprop="dateCreated datePublished" datetime="2022-07-04T22:36:40+08:00">2022-07-04</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
 
           
-            <span id="/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/" class="post-meta-item leancloud_visitors" data-flag-title="知识点概览" title="阅读次数">
+            <span id="/yq/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/" class="post-meta-item leancloud_visitors" data-flag-title="JVM知识点概览" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -241,8 +251,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A6%82%E8%A7%88/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -326,6 +336,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jvm/" rel="tag"># jvm</a>
+          </div>
 
         
 
@@ -415,13 +428,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
