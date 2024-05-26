@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E9%99%90%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">自动化配置</a>
+            <a href="/yq/%E9%99%90%E6%B5%81/" class="post-title-link" itemprop="url">限流</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-21 08:04:41" itemprop="dateCreated datePublished" datetime="2022-06-21T08:04:41+08:00">2022-06-21</time>
+              <time title="创建时间：2022-06-17 07:45:53" itemprop="dateCreated datePublished" datetime="2022-06-17T07:45:53+08:00">2022-06-17</time>
             </span>
 
           
-            <span id="/yq/%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="自动化配置" title="阅读次数">
+            <span id="/yq/%E9%99%90%E6%B5%81/" class="post-meta-item leancloud_visitors" data-flag-title="限流" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E9%99%90%E6%B5%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E9%99%90%E6%B5%81/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,14 +245,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>4.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -264,104 +264,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-      
-    </div>
+          <p>转自：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904161604009997">人人都能看懂的 6 种限流实现方案！(纯干货) - 掘金</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==%E2%88%A3=2247490393&idx=1&sn=98189caa486406f8fa94d84ba0667604&chksm=cf21c470f8564d665ce04ccb9dc7502633246da87a0541b07ba4ac99423b28ce544cdd6c036b&mpshare=1&scene=1&srcid=0621Avaq0iV2s9Lerg3VwtKT&sharer_sharetime=1655774473518&sharer_shareid=2536e8014e43f2284d7ea28e8a3c3f3e&version=4.0.2.90460&platform=mac#rd">面试必备：4 种经典限流算法讲解</a></p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>计算机网络中，限流就是通过一些手段去限制发送或者接收请求的速率，可以防止 DOS 攻击和限制 web 爬虫。<br>在我们的系统中，限流是避免因高并发、大流量请求拖垮系统，导致系统崩溃的一种手段。<br>eg：景区限流、疫情商场限流</p>
+<h1 id="时间窗口算法"><a href="#时间窗口算法" class="headerlink" title="时间窗口算法"></a>时间窗口算法</h1><p>单位时间内允许的最大请求量。</p>
+<h2 id="固定窗口限流算法"><a href="#固定窗口限流算法" class="headerlink" title="固定窗口限流算法"></a>固定窗口限流算法</h2><p>首先维护一个计数器，将单位时间段当做一个窗口，计数器记录这个窗口接收请求的次数。</p>
+<ul>
+<li>当次数少于限流阀值，就允许访问，并且计数器+1</li>
+<li>当次数大于限流阀值，就拒绝访问。</li>
+<li>当前的时间窗口过去之后，计数器清零。</li>
+</ul>
+<p>假设单位时间是 1 秒，限流阀值为 3。在单位时间 1 秒内，每来一个请求,计数器就加 1，如果计数器累加的次数超过限流阀值 3，后续的请求全部拒绝。等到 1s 结束后，计数器清 0，重新开始计数。如下图：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1657092846675-ef9f8387-5155-4b5b-a5d5-5c53b89c1d44.png#clientId=u62c14b1a-9342-4&from=paste&height=277&id=ufdde3a04&name=image.png&originHeight=554&originWidth=1080&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=99372&status=done&style=none&taskId=ua2f224ad-4973-4e62-99b1-b808d7f28c5&title=&width=540" alt="image.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 固定窗口时间算法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">fixedWindowsTryAcquire</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> currentTime = System.currentTimeMillis();  <span class="comment">//获取系统当前时间</span></span><br><span class="line">        <span class="keyword">if</span> (currentTime - lastRequestTime &gt; windowUnit) &#123;  <span class="comment">//检查是否在时间窗口内</span></span><br><span class="line">            counter = <span class="number">0</span>;  <span class="comment">// 计数器清0</span></span><br><span class="line">            lastRequestTime = currentTime;  <span class="comment">//开启新的时间窗口</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (counter &lt; threshold) &#123;  <span class="comment">// 小于阀值</span></span><br><span class="line">            counter++;  <span class="comment">//计数器加1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<p>但是，这种算法有一个很明显的<strong>临界问题</strong>：假设限流阀值为 5 个请求，单位时间窗口是 1s,如果我们在单位时间内的前 0.8-1s 和 1-1.2s，分别并发 5 个请求。虽然都没有超过阀值，但是如果算 0.8-1.2s,则并发数高达 10，已经<strong>超过单位时间 1s 不超过 5 阀值</strong>的定义啦。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1657092913013-ffed70e3-8aa1-430b-af64-027274c7659f.png#clientId=u62c14b1a-9342-4&from=paste&height=219&id=u7baa97d1&name=image.png&originHeight=437&originWidth=1080&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=69184&status=done&style=none&taskId=uf6385153-b8a6-401c-b4ea-f40597a052d&title=&width=540" alt="image.png"></p>
+<h2 id="滑动窗口限流算法"><a href="#滑动窗口限流算法" class="headerlink" title="滑动窗口限流算法"></a>滑动窗口限流算法</h2><p>滑动窗口限流解决固定窗口临界值的问题。它将单位时间周期分为 n 个小周期，分别记录每个小周期内接口的访问次数，并且根据时间滑动删除过期的小周期。<br>一张图解释滑动窗口算法，如下：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1657092937972-da0f65ae-c1a6-4d09-957c-bf74638860fd.png#clientId=u62c14b1a-9342-4&from=paste&height=325&id=u3237c82d&name=image.png&originHeight=649&originWidth=1080&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=59848&status=done&style=none&taskId=u66bee795-b36b-466f-b7a8-fbaa56f6d9a&title=&width=540" alt="image.png"><br>假设单位时间还是 1s，滑动窗口算法把它划分为 5 个小周期，也就是滑动窗口（单位时间）被划分为 5 个小格子。每格表示 0.2s。每过 0.2s，时间窗口就会往右滑动一格。然后呢，每个小周期，都有自己独立的计数器，如果请求是 0.83s 到达的，0.8<del>1.0s 对应的计数器就会加 1。<br>我们来看下滑动窗口是如何解决临界问题的？<br>假设我们 1s 内的限流阀值还是 5 个请求，0.8</del>1.0s 内（比如 0.9s 的时候）来了 5 个请求，落在黄色格子里。时间过了 1.0s 这个点之后，又来 5 个请求，落在紫色格子里。如果<strong>是固定窗口算法，是不会被限流的</strong>，但是<strong>滑动窗口的话，每过一个小周期，它会右移一个小格</strong>。过了 1.0s 这个点后，会右移一小格，当前的单位时间段是 0.2~1.2s，这个区域的请求已经超过限定的 5 了，已触发限流啦，实际上，紫色格子的请求都被拒绝啦。<br><strong>TIPS:</strong> 当滑动窗口的格子周期划分的越多，那么滑动窗口的滚动就越平滑，限流的统计就会越精确。<br>滑动窗口算法<strong>伪代码实现</strong>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">/</span><br><span class="line">    **</span><br><span class="line">     * 单位时间划分的小周期（单位时间是<span class="number">1</span>分钟，<span class="number">10</span>s一个小格子窗口，一共<span class="number">6</span>个格子）</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> SUB_CYCLE = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 每分钟限流请求数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> thresholdPerMin = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计数器, k-为当前窗口的开始时间值秒，value为当前窗口的计数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> TreeMap&lt;Long, Integer&gt; counters = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 滑动窗口时间算法实现</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">slidingWindowsTryAcquire</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> currentWindowTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) / SUB_CYCLE * SUB_CYCLE; <span class="comment">//获取当前时间在哪个小周期窗口</span></span><br><span class="line">        <span class="keyword">int</span> currentWindowNum = countCurrentWindow(currentWindowTime); <span class="comment">//当前窗口总请求数</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//超过阀值限流</span></span><br><span class="line">        <span class="keyword">if</span> (currentWindowNum &gt;= thresholdPerMin) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//计数器+1</span></span><br><span class="line">        counters.get(currentWindowTime)++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 统计当前窗口的请求数</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">countCurrentWindow</span><span class="params">(<span class="keyword">long</span> currentWindowTime)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//计算窗口开始位置</span></span><br><span class="line">        <span class="keyword">long</span> startTime = currentWindowTime - SUB_CYCLE* (<span class="number">60</span>s/SUB_CYCLE-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历存储的计数器</span></span><br><span class="line">        Iterator&lt;Map.Entry&lt;Long, Integer&gt;&gt; iterator = counters.entrySet().iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">            Map.Entry&lt;Long, Integer&gt; entry = iterator.next();</span><br><span class="line">            <span class="comment">// 删除无效过期的子窗口计数器</span></span><br><span class="line">            <span class="keyword">if</span> (entry.getKey() &lt; startTime) &#123;</span><br><span class="line">                iterator.remove();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//累加当前窗口的所有计数器之和</span></span><br><span class="line">                count =count + entry.getValue();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%8F%8D%E5%B0%84/">
+<p>滑动窗口算法虽然解决了<strong>固定窗口的临界问题</strong>，但是一旦到达限流后，请求都会直接暴力被拒绝。酱紫我们会损失一部分请求，这其实对于产品来说，并不太友好。</p>
+<h1 id="漏桶算法"><a href="#漏桶算法" class="headerlink" title="漏桶算法"></a>漏桶算法</h1><p>漏桶算法类似于生活中的漏斗，无论上面的水流倒入漏斗有多大，也就是无论请求有多少，它都是以均匀的速度慢慢流出的。当上面的水流速度大于下面的流出速度时，漏斗会慢慢变满，当漏斗满了之后就会丢弃新来的请求;当上面的水流速度小于下面流出的速度的话，漏斗永远不会被装满，并且可以一直流出。<br>漏桶算法的实现步骤是，先声明一个队列用来保存请求，这个队列相当于漏斗，当队列容量满了之后就放弃新来的请求，然后重新声明一个线程定期从任务队列中获取一个或多个任务进行执行，这样就实现了漏桶算法。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1657091230526-bdd83066-3f3b-43a9-a299-b02bb20ddde4.png#clientId=u62c14b1a-9342-4&from=paste&height=306&id=ud930c8cd&name=image.png&originHeight=612&originWidth=458&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=57061&status=done&style=none&taskId=ue8f90fd2-c640-4031-96bd-bd6bca234c3&title=&width=229" alt="image.png"></p>
+<h1 id="令牌桶算法"><a href="#令牌桶算法" class="headerlink" title="令牌桶算法"></a>令牌桶算法</h1><p>在令牌桶算法中有一个程序以某种恒定的速度生成令牌，并存入令牌桶中，而每个请求需要先获取令牌才能执行，如果没有获取到令牌的请求可以选择等待或者放弃执行，如下图所示：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1657091240891-1ecc85db-ca9e-47f6-8ca0-dea3d1b7ac27.png#clientId=u62c14b1a-9342-4&from=paste&height=499&id=u7b711ab7&name=image.png&originHeight=998&originWidth=798&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=99557&status=done&style=none&taskId=u589400d7-3b4a-4036-a347-043340e8dd6&title=&width=399" alt="image.png"><br>我们可以使用 Google 开源的 guava 包，很方便的实现令牌桶算法，首先在 pom.xml 添加 guava 引用，配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.guava<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>guava<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>28.2-jre<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">mport com.google.common.util.concurrent.RateLimiter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.Instant;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Guava 实现限流</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RateLimiterExample</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 每秒产生 10 个令牌（每 100 ms 产生一个）</span></span><br><span class="line">        RateLimiter rt = RateLimiter.create(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">11</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">                <span class="comment">// 获取 1 个令牌</span></span><br><span class="line">                rt.acquire();</span><br><span class="line">                System.out.println(<span class="string">&quot;正常执行方法，ts:&quot;</span> + Instant.now());</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">37.175</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">37.237</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">37.339</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">37.442</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">37.542</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">37.640</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">37.741</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">37.840</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">37.942</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">38.042</span>Z</span><br><span class="line">正常执行方法，ts:<span class="number">2020</span>-<span class="number">05</span>-<span class="number">15</span>T14:<span class="number">46</span>:<span class="number">38.142</span>Z</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E5%8F%8D%E5%B0%84/" class="post-title-link" itemprop="url">反射</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-21 08:03:45" itemprop="dateCreated datePublished" datetime="2022-06-21T08:03:45+08:00">2022-06-21</time>
-            </span>
-
-          
-            <span id="/yq/%E5%8F%8D%E5%B0%84/" class="post-meta-item leancloud_visitors" data-flag-title="反射" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E5%8F%8D%E5%B0%84/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%8F%8D%E5%B0%84/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>658</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h1><p>反射之所以被称为框架的灵魂，主要是因为它<strong>赋予了我们在运行时分析类以及执行类中方法的能力</strong>。<br>通过反射你可以获取任意一个类的所有属性和方法，你还可以调用这些方法和属性。</p>
-<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>动态代理 注解 + 反射</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Value</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p>优点：<br>可以让咱们的代码更加灵活、为各种框架提供开箱即用的功能提供了便利。<br>缺点：<br>让我们在运行时有了分析操作类的能力，这同样也增加了安全问题。比如可以无视泛型参数的安全检查（泛型参数的安全检查发生在编译时）。另外，反射的性能也要稍差点，不过，对于框架来说实际是影响不大的。</p>
-<h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h1><h2 id="获取-Class-对象的四种方式"><a href="#获取-Class-对象的四种方式" class="headerlink" title="获取 Class 对象的四种方式"></a>获取 Class 对象的四种方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.知道具体类的情况下可以使用</span></span><br><span class="line">Class alunbarClass = TargetObject.class;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.通过 Class.forName()传入类的全路径获取</span></span><br><span class="line">Class alunbarClass1 = Class.forName(<span class="string">&quot;cn.javaguide.TargetObject&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.通过对象实例instance.getClass()获取</span></span><br><span class="line">TargetObject o = <span class="keyword">new</span> TargetObject();</span><br><span class="line">Class alunbarClass2 = o.getClass();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.通过类加载器xxxClassLoader.loadClass()传入类路径获取</span></span><br><span class="line">ClassLoader.getSystemClassLoader().loadClass(<span class="string">&quot;cn.javaguide.TargetObject&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>从以上结果可以看出令牌确实是每 100ms 产生一个，而 acquire() 方法为阻塞等待获取令牌，它可以传递一个 int 类型的参数，用于指定获取令牌的个数。它的替代方法还有 tryAcquire()，此方法在没有可用令牌时就会返回 false 这样就不会阻塞等待了。当然 tryAcquire() 方法也可以设置超时时间，未超过最大等待时间会阻塞等待获取令牌，如果超过了最大等待时间，还没有可用的令牌就会返回 false。<br>注意：使用 guava 实现的令牌算法属于程序级别的单机限流方案，而上面使用 Redis-Cell 的是分布式的限流方案。</p>
 
       
     </div>
@@ -381,7 +308,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/IO%E6%B5%81/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%B8%B8%E7%94%A8SQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -395,7 +322,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/IO%E6%B5%81/" class="post-title-link" itemprop="url">IO流</a>
+            <a href="/yq/%E5%B8%B8%E7%94%A8SQL/" class="post-title-link" itemprop="url">常用SQL</a>
         </h2>
 
         <div class="post-meta">
@@ -405,11 +332,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-21 08:03:22" itemprop="dateCreated datePublished" datetime="2022-06-21T08:03:22+08:00">2022-06-21</time>
+              <time title="创建时间：2022-06-16 19:52:10" itemprop="dateCreated datePublished" datetime="2022-06-16T19:52:10+08:00">2022-06-16</time>
             </span>
 
           
-            <span id="/yq/IO%E6%B5%81/" class="post-meta-item leancloud_visitors" data-flag-title="IO流" title="阅读次数">
+            <span id="/yq/%E5%B8%B8%E7%94%A8SQL/" class="post-meta-item leancloud_visitors" data-flag-title="常用SQL" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -424,8 +351,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/IO%E6%B5%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/IO%E6%B5%81/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E5%B8%B8%E7%94%A8SQL/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%B8%B8%E7%94%A8SQL/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -435,7 +362,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>489</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -454,8 +381,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656549287183-13790f90-111e-4850-94fc-f0a400181b82.png#clientId=uea08b81a-0f3a-4&from=paste&id=ua41e04c6&originHeight=1080&originWidth=720&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u08c03071-441f-4684-ab7b-d43a5e09213&title="></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1656549302616-ada3590b-98f4-40b8-aeaf-3b5a144b79d5.png#clientId=uea08b81a-0f3a-4&from=paste&id=u8a39442a&originHeight=535&originWidth=720&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u6e0e4f84-aa55-40d5-86d9-e37590fd910&title="></p>
+          <h1 id="更改线上数据"><a href="#更改线上数据" class="headerlink" title="更改线上数据"></a>更改线上数据</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 创建备份表</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> backup.contract20220531140100 <span class="keyword">like</span> shebao_dispatch_personnel.personnel_contract ;</span><br><span class="line"></span><br><span class="line">// 要更新的数据备份到备份表中</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> backup.contract20220531140100</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> personnel.contract  <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">9999</span>；</span><br><span class="line"></span><br><span class="line">// 执行修改</span><br></pre></td></tr></table></figure>
+
+<h1 id="改表字段"><a href="#改表字段" class="headerlink" title="改表字段"></a>改表字段</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> shebao_dispatch_personnel.contract <span class="keyword">MODIFY</span> <span class="keyword">COLUMN</span> contract_type <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;备注*****&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="改索引"><a href="#改索引" class="headerlink" title="改索引"></a>改索引</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除索引</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> contract_2022_06_07 <span class="keyword">drop</span> <span class="keyword">key</span> idx_contract_type_business_people_id;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加索引</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> contract_2022_06_07 <span class="keyword">add</span> <span class="keyword">key</span> idx_person_email (person_code,email) ;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -475,7 +405,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%98%93%E5%BF%98%E7%82%B9/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%B7%B1%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -489,7 +419,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E6%98%93%E5%BF%98%E7%82%B9/" class="post-title-link" itemprop="url">易忘点</a>
+            <a href="/yq/%E6%B7%B1%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">深分页问题</a>
         </h2>
 
         <div class="post-meta">
@@ -499,11 +429,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-20 21:17:18" itemprop="dateCreated datePublished" datetime="2022-06-20T21:17:18+08:00">2022-06-20</time>
+              <time title="创建时间：2022-06-16 19:50:23" itemprop="dateCreated datePublished" datetime="2022-06-16T19:50:23+08:00">2022-06-16</time>
             </span>
 
           
-            <span id="/yq/%E6%98%93%E5%BF%98%E7%82%B9/" class="post-meta-item leancloud_visitors" data-flag-title="易忘点" title="阅读次数">
+            <span id="/yq/%E6%B7%B1%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="深分页问题" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -518,8 +448,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E6%98%93%E5%BF%98%E7%82%B9/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%98%93%E5%BF%98%E7%82%B9/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E6%B7%B1%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%B7%B1%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -529,7 +459,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>49</span>
+              <span>528</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -548,7 +478,111 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="解决循环依赖"><a href="#解决循环依赖" class="headerlink" title="解决循环依赖"></a>解决循环依赖</h1><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.main.allow-circular-references</span> = <span class="string">true</span></span><br></pre></td></tr></table></figure>
+          <p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36380516/article/details/120520705">https://blog.csdn.net/weixin_36380516/article/details/120520705</a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>近期，随着我们系统数据量的快速增长，达到 40w 左右，一个导出全量花名册的功能造成了 SQL 慢查询，该功能调用的是一个分页查询的接口，每一页 20 条数据。我们的分页查询用的是自定义分页插件，底层数据库操作实现为常见的 <strong>limit pageNo,pageSize</strong>，当进行深分页时就很容易造成慢 SQL，比如达到 ** limit 300000,20**</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h2 id="深分页为什么会变慢"><a href="#深分页为什么会变慢" class="headerlink" title="深分页为什么会变慢"></a>深分页为什么会变慢</h2><ol>
+<li>limit 语句会先扫描 offset+n 行，然后再丢弃掉前 offset 行，返回后 n 行数据。也就是说 limit 100000,10，就会扫描 100010 行，而 limit 0,10，只扫描 10 行。</li>
+<li>limit 100000,10 扫描更多的行数，也意味着<strong>回表</strong>更多的次数。</li>
+</ol>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="减少回表的次数"><a href="#减少回表的次数" class="headerlink" title="减少回表的次数"></a>减少回表的次数</h2><p>通过分析，知道深分页慢的原因主要是回表次数过多导致，那减少回表的次数即可。<br>InnoDB 中，索引分<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%B8%BB%E9%94%AE&spm=1001.2101.3001.7020">主键</a>索引（聚簇索引）和二级索引</p>
+<ul>
+<li>主键索引，叶子节点存放的是整行数据</li>
+<li>二级索引，叶子节点存放的是<strong>主键的值</strong>。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1655425187614-bc612c12-5590-47b0-992f-411c4b34218b.png#clientId=u5d7ef5f3-51ba-4&from=paste&id=xNhWR&name=image.png&originHeight=466&originWidth=1080&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=95251&status=done&style=none&taskId=u82ea4bb0-0bb8-4052-af65-88c554d0491&title=" alt="image.png"><br><strong>将普通索索引的查询转化为主键的查询，这样一来便可以减少回表的次数。</strong></p>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><h2 id="inner-join-查询"><a href="#inner-join-查询" class="headerlink" title="inner join 查询"></a>inner join 查询</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/canel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/canel/" class="post-title-link" itemprop="url">canel</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-16 08:26:07" itemprop="dateCreated datePublished" datetime="2022-06-16T08:26:07+08:00">2022-06-16</time>
+            </span>
+
+          
+            <span id="/yq/canel/" class="post-meta-item leancloud_visitors" data-flag-title="canel" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/canel/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/canel/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>47</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考链接 <a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/770496">https://developer.aliyun.com/article/770496</a></p>
 
       
     </div>
@@ -568,7 +602,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -582,7 +616,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">数据库</a>
+            <a href="/yq/%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">边界问题</a>
         </h2>
 
         <div class="post-meta">
@@ -592,11 +626,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-18 09:43:27" itemprop="dateCreated datePublished" datetime="2022-06-18T09:43:27+08:00">2022-06-18</time>
+              <time title="创建时间：2022-06-15 08:17:17" itemprop="dateCreated datePublished" datetime="2022-06-15T08:17:17+08:00">2022-06-15</time>
             </span>
 
           
-            <span id="/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-meta-item leancloud_visitors" data-flag-title="数据库" title="阅读次数">
+            <span id="/yq/%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="边界问题" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -611,8 +645,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -622,7 +656,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>331</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -641,7 +675,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>1、添加人员进来</p>
+<p>2、入职日期选择 2022-01-01 00:00:00</p>
+<p>3、合同期限选择 1 年-&gt;合同结束日联动变为 2023-01-01 00:00:00</p>
+<p>4、续签时，新的合同开始日会从 2023-01-02 00:00:00 开始，这样一来就会与上一份合同的结束日 2023-01-01 00:00:00 差了 24 小时，会存在法规风险。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>1、添加人员进来</p>
+<p>2、入职日期选择 2022-01-01 00:00:00</p>
+<p>3、合同期限选择 1 年-&gt;合同结束日联动变为 2022-12-31 23:59:59</p>
+<p>4、续签时，新的合同开始日会从 2023-01-01 00:00:00 开始，这样一来时间就连续上了，不会存在法规风险了。</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p><strong>以后对于结束日的字段需要考虑时分秒置为 23:59:59.</strong></p>
+
       
     </div>
 
@@ -659,7 +702,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/aaa/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/36/">36</a><a class="extend next" rel="next" href="/aaa/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/aaa/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/33/">33</a><a class="extend next" rel="next" href="/aaa/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

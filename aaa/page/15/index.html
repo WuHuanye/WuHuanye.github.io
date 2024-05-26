@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/BaseTypeHandler%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/" class="post-title-link" itemprop="url">树形结构数据构建</a>
+            <a href="/yq/BaseTypeHandler%E7%B1%BB/" class="post-title-link" itemprop="url">BaseTypeHandler类</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,20 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-05 09:48:54" itemprop="dateCreated datePublished" datetime="2022-06-05T09:48:54+08:00">2022-06-05</time>
+              <time title="创建时间：2022-06-04 12:04:08" itemprop="dateCreated datePublished" datetime="2022-06-04T12:04:08+08:00">2022-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
             </span>
 
           
-            <span id="/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/" class="post-meta-item leancloud_visitors" data-flag-title="树形结构数据构建" title="阅读次数">
+            <span id="/yq/BaseTypeHandler%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="BaseTypeHandler类" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +243,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/BaseTypeHandler%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/BaseTypeHandler%E7%B1%BB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,113 +254,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在项目中，我们经常涉及单张表数据进行树形目录结构展示（即具有层级关系的数据结构），比如菜单层级展示、商品分类展示等。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>单张表之间要具备层级关系，必然会有能体现父子之间的字段，比如常见的<strong>id</strong>和<strong>parentId</strong><br>比如这样一张表<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654393775795-14a8eaa4-2106-4446-97e9-b6a485f4542f.png#clientId=ua8044348-8b27-4&from=paste&id=u9020b477&name=image.png&originHeight=185&originWidth=753&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=20471&status=done&style=none&taskId=u9934c338-c89a-4826-9811-6d8572c4f9d&title=" alt="image.png"><br>pid 为 0 时即为最高层级，pid 为 1366 的是 id 为 1366 的孩子，在上面的体现是<strong>裤子和上衣都在衣服这一个分类下面</strong><br>要实现这张表树形结构的展示，我们一方面得在该表对应的实体类里添加一个自身的集合 childList 作为其孩子的集合。</p>
-<h1 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h1><p>这里我是将它封装成一个工具类使用。<br>注意：这里默认表里的父级字段为 <strong>parentId</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 构建树的时候需要实体继承此类</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Mr Ye</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/10/15 17:42</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>&lt;<span class="title">C</span> <span class="keyword">extends</span> <span class="title">TreeNode</span>&lt;?&gt;&gt;</span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 父id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String parentId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  子节点j集合</span></span><br><span class="line"><span class="comment">     * 	非数据库字段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;TreeNode&gt; children;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>工具类实现树形结构的展示（递归思想找子节点）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 生成树工具(根节点可有多个)</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> Mr Ye</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> treeNodes 所有节点（所有数据）</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> parentId  指定根节点的唯一标识</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@since</span> 2020/10/15 18:01</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span>  <span class="keyword">static</span> &lt;T extends TreeNode&gt;<span class="function">List&lt;T&gt; <span class="title">build</span><span class="params">(List&lt;T&gt; treeNodes, String parentId)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (parentId == <span class="keyword">null</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       List&lt;T&gt; rootNodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (T t : treeNodes)&#123;</span><br><span class="line">           <span class="keyword">if</span> (parentId.equals(t.getParentId()))&#123;</span><br><span class="line">               <span class="comment">//得到根节点</span></span><br><span class="line">               rootNodes.add(t);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (T t : rootNodes)&#123;</span><br><span class="line">           t.setChildren(getChildNodes(t,treeNodes));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> rootNodes;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 获得子节点</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> Mr Ye</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> treeNodes</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@since</span> 2020/10/6 18:27</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> &lt;T extends TreeNode&gt;<span class="function">List&lt;TreeNode&gt; <span class="title">getChildNodes</span><span class="params">(TreeNode t,List&lt;T&gt; treeNodes)</span></span>&#123;</span><br><span class="line">       List&lt;TreeNode&gt; childNodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (TreeNode t1 : treeNodes)&#123;</span><br><span class="line">           <span class="keyword">if</span> (t1.getParentId().equals(t.getId()))&#123;</span><br><span class="line">               childNodes.add(t1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (childNodes.size() == <span class="number">0</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (TreeNode t1 : childNodes)&#123;</span><br><span class="line">           t1.setChildren(getChildNodes(t1,treeNodes));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> childNodes;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>要实现树形结构的步骤：</p>
-<ul>
-<li>表设计要有父子级关系（一般用 id 和 parentId）</li>
-<li>实体要新增 子节点 的集合变量，一般用 List 接收</li>
-<li>查找获得所有符合要求的数据，通过遍历得到 <strong>父节点集合</strong>，遍历<strong>父节点集合</strong>，遍历<strong>子节点结合</strong>，父节点的 id 和子节点的父 id 相等时，说明该节点数属于当前父节点的孩子，将其放入父节点的孩子集合中，遍历结束后，将子节点集合赋值给 <strong>集合变量</strong>。（这里用递归思想实现）</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Dubbo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/Dubbo/" class="post-title-link" itemprop="url">Dubbo</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-05 01:26:40" itemprop="dateCreated datePublished" datetime="2022-06-05T01:26:40+08:00">2022-06-05</time>
-            </span>
-
-          
-            <span id="/yq/Dubbo/" class="post-meta-item leancloud_visitors" data-flag-title="Dubbo" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/Dubbo/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Dubbo/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>62</span>
+              <span>269</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -370,7 +273,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xishilife/article/details/119984710">https://blog.csdn.net/xishilife/article/details/119984710</a></p>
+          <p>部分源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可通过重写该方法为目标字段自定义赋值，比如做数据的加密落表</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setNonNullParameter</span><span class="params">(PreparedStatement ps, <span class="keyword">int</span> i, T parameter, JdbcType jdbcType)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可通过重写该方法为目标字段后自定义做操作，比如对加密字段解密后读取</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> T <span class="title">getNullableResult</span><span class="params">(ResultSet rs, String columnName)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -390,7 +294,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -404,7 +308,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/" class="post-title-link" itemprop="url">Hystrix：服务熔断</a>
+            <a href="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">spring事务传播机制</a>
         </h2>
 
         <div class="post-meta">
@@ -414,11 +318,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-04 22:04:35" itemprop="dateCreated datePublished" datetime="2022-06-04T22:04:35+08:00">2022-06-04</time>
+              <time title="创建时间：2022-06-04 11:36:01" itemprop="dateCreated datePublished" datetime="2022-06-04T11:36:01+08:00">2022-06-04</time>
             </span>
 
           
-            <span id="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/" class="post-meta-item leancloud_visitors" data-flag-title="Hystrix：服务熔断" title="阅读次数">
+            <span id="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="spring事务传播机制" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -433,8 +337,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/spring%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -444,7 +348,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>459</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -463,22 +367,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="分布式系统面临的问题"><a href="#分布式系统面临的问题" class="headerlink" title="分布式系统面临的问题"></a>分布式系统面临的问题</h1><p>复杂分布式体系结构中的应用程序有数十个依赖关系，每个依赖关系在某些时候将不可避免失败！</p>
-<h1 id="服务雪崩"><a href="#服务雪崩" class="headerlink" title="服务雪崩"></a>服务雪崩</h1><p>多个微服务之间调用的时候，假设微服务 A 调用微服务 B 和微服务 C，微服务 B 和微服务 C 又调用其他的微服务，这就是所谓的“扇出”，如果扇出的链路上<strong>某个微服务的调用响应时间过长，或者不可用</strong>，对微服务 A 的调用就会占用越来越多的系统资源，进而引起系统崩溃，所谓的“雪崩效应”。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530266-2f732998-8a30-4393-a06e-28e295ccb6c3.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u718e3d0d&name=image.png&originHeight=431&originWidth=587&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=96472&status=done&style=none&taskId=ueaa305d1-1e09-4767-bf70-8426b02d968&title=" alt="image.png"><br>对于高流量的应用来说，单一的后端依赖可能会导致所有服务器上的所有资源都在几十秒内饱和。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，备份队列，线程和其他系统资源紧张，导致整个系统发生更多的级联故障，<strong>这些都表示需要对故障和延迟进行隔离和管理，以达到单个依赖关系的失败而不影响整个应用程序或系统运行</strong>。<br>我们需要，<strong>弃车保帅</strong>！</p>
-<h1 id="什么是-Hystrix？"><a href="#什么是-Hystrix？" class="headerlink" title="什么是 Hystrix？"></a>什么是 Hystrix？</h1><p><strong>Hystrix</strong>是一个应用于处理分布式系统的延迟和容错的开源库，在分布式系统里，许多依赖不可避免的会调用失败，比如超时，异常等，<strong>Hystrix</strong> 能够保证在一个依赖出问题的情况下，不会导致整个体系服务失败，避免级联故障，以提高分布式系统的弹性。<br>“<strong>断路器</strong>”本身是一种开关装置，当某个服务单元发生故障之后，通过断路器的故障监控 (类似熔断保险丝) ，<strong>向调用方返回一个服务预期的，可处理的备选响应 (FallBack) ，而不是长时间的等待或者抛出调用方法无法处理的异常，这样就可以保证了服务调用方的线程不会被长时间，不必要的占用</strong>，从而避免了故障在分布式系统中的蔓延，乃至雪崩。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530358-d4cf2df6-70d2-46ac-b248-ddd439045c3f.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u06797f4a&name=image.png&originHeight=397&originWidth=614&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=92805&status=done&style=none&taskId=u99e917a9-4749-4d9d-a4a7-3d3658acfb3&title=" alt="image.png"></p>
-<h1 id="Hystrix-能干嘛？"><a href="#Hystrix-能干嘛？" class="headerlink" title="Hystrix 能干嘛？"></a>Hystrix 能干嘛？</h1><ul>
-<li>服务降级</li>
-<li>服务熔断</li>
-<li>服务限流</li>
-<li>接近实时的监控</li>
-<li>…</li>
-</ul>
-<p>当一切正常时，请求流可以如下所示：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530226-5de32f2f-22ec-44ed-9d4e-1f9500cbf11e.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u5774f836&originHeight=582&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u5090d28d-9c25-4755-9d0d-0489860913f&title="><br>当许多后端系统中有一个潜在阻塞服务时，它可以阻止整个用户请求：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530209-b4d35bc7-55ee-4de6-a018-a3ab2439c0ed.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u5f56885e&originHeight=582&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u3013f63e-f1e5-4706-ae1c-4633ba60b16&title="><br>随着大容量通信量的增加，单个后端依赖项的潜在性会导致所有服务器上的所有资源在几秒钟内饱和。<br>应用程序中通过网络或客户端库可能导致网络请求的每个点都是潜在故障的来源。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，从而备份队列、线程和其他系统资源，从而导致更多跨系统的级联故障。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530278-a71e9d39-893f-4d6f-9d79-f88a4761d84b.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u81b5c46f&originHeight=583&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u563e53fe-8a08-402d-95fc-543a01c6aae&title="><br>当使用<strong>Hystrix</strong>包装每个基础依赖项时，上面的图表中所示的体系结构会发生类似于以下关系图的变化。<strong>每个依赖项是相互隔离的</strong>，限制在延迟发生时它可以填充的资源中，并包含在回退逻辑中，该逻辑决定在依赖项中发生任何类型的故障时要做出什么样的响应：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530888-e9a4a6a6-6a65-410b-8abc-5acf9ae2d2f5.png#clientId=u8f87fd90-b0c1-4&from=paste&id=uca407b3a&name=image.png&originHeight=869&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=203183&status=done&style=none&taskId=uc4092f78-fd66-4d50-8549-2b78e61b785&title=" alt="image.png"><br><strong>官网资料</strong>：<a target="_blank" rel="noopener" href="https://github.com/Netflix/Hystrix/wiki">https://github.com/Netflix/Hystrix/wiki</a></p>
-<h1 id="服务熔断"><a href="#服务熔断" class="headerlink" title="服务熔断"></a>服务熔断</h1><h5 id="什么是服务熔断"><a href="#什么是服务熔断" class="headerlink" title="什么是服务熔断?"></a>什么是服务熔断?</h5><p><strong>熔断机制是赌赢雪崩效应的一种微服务链路保护机制</strong>。<br>当扇出链路的某个微服务不可用或者响应时间太长时，会进行服务的降级，<strong>进而熔断该节点微服务的调用，快速返回错误的响应信息</strong>。检测到该节点微服务调用响应正常后恢复调用链路。在 SpringCloud 框架里熔断机制通过 Hystrix 实现。Hystrix 会监控微服务间调用的状况，当失败的调用到一定阀值缺省是<strong>5 秒内 20 次调用失败，就会启动熔断机制</strong>。熔断机制的注解是：<a target="_blank" rel="noopener" href="https://github.com/HystrixCommand">@HystrixCommand</a>。<br>服务熔断解决如下问题：</p>
-<ul>
-<li>当所依赖的对象不稳定时，能够起到快速失败的目的；</li>
-<li>快速失败后，能够根据一定的算法动态试探所依赖对象是否恢复。</li>
-</ul>
+          <p>参考链接<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44956318/article/details/119110150">https://blog.csdn.net/qq_44956318/article/details/119110150</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148504094">https://zhuanlan.zhihu.com/p/148504094</a></p>
+<p>注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(propagation =Propagation.REQUIRED)</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>分组</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>支持当前事务</td>
+<td><strong>REQUIRED</strong></td>
+<td>如果当前方法没有事务，新建一个事务，如果已经存在一个事务中，则加入到这个事务中。</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>SUPPORTS</strong></td>
+<td>支持当前事务，如果当前没有事务，就以非事务方式执行</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>MANDATORY</strong></td>
+<td>使用当前的事务，如果当前没有事务，就抛出异常。</td>
+</tr>
+<tr>
+<td>不支持当前事务</td>
+<td><strong>REQUIRES_NEW</strong></td>
+<td>新建事务，如果当前存在事务，把当前事务挂起。</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>NOT_SUPPORTED</strong></td>
+<td>以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>NEVER</strong></td>
+<td>以非事务方式执行，如果当前存在事务，则抛出异常。</td>
+</tr>
+<tr>
+<td>NESTED</td>
+<td>NESTED</td>
+<td>如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与 PROPAGATION_REQUIRED 类似的操作。</td>
+</tr>
+</tbody></table>
 
       
     </div>
@@ -498,7 +434,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/AOP%E7%9A%84%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -512,7 +448,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/" class="post-title-link" itemprop="url">Ribbon：负载均衡(基于客户端)</a>
+            <a href="/yq/AOP%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">AOP的理解</a>
         </h2>
 
         <div class="post-meta">
@@ -522,11 +458,20 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-04 21:47:05" itemprop="dateCreated datePublished" datetime="2022-06-04T21:47:05+08:00">2022-06-04</time>
+              <time title="创建时间：2022-06-04 11:31:57" itemprop="dateCreated datePublished" datetime="2022-06-04T11:31:57+08:00">2022-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
             </span>
 
           
-            <span id="/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/" class="post-meta-item leancloud_visitors" data-flag-title="Ribbon：负载均衡(基于客户端)" title="阅读次数">
+            <span id="/yq/AOP%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="AOP的理解" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -541,8 +486,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Ribbon%EF%BC%9A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1(%E5%9F%BA%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF)/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/AOP%E7%9A%84%E7%90%86%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/AOP%E7%9A%84%E7%90%86%E8%A7%A3/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -552,7 +497,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>654</span>
+              <span>541</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -571,30 +516,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Ribbon-是什么？"><a href="#Ribbon-是什么？" class="headerlink" title="Ribbon 是什么？"></a>Ribbon 是什么？</h1><ul>
-<li>Spring Cloud Ribbon 是基于 Netflix Ribbon 实现的一套<strong>客户端负载均衡的工具</strong>。</li>
-<li>简单的说，Ribbon 是 Netflix 发布的开源项目，主要功能是提供客户端的软件负载均衡算法，将 Netflix 的中间层服务连接在一起。Ribbon 的客户端组件提供一系列完整的配置项，如：连接超时、重试等。简单的说，就是在配置文件中列出 LoadBalancer (简称 LB：负载均衡) 后面所有的及其，Ribbon 会自动的帮助你基于某种规则 (如简单轮询，随机连接等等) 去连接这些机器。我们也容易使用 Ribbon 实现自定义的负载均衡算法！</li>
-</ul>
-<h1 id="Ribbon-能干嘛？"><a href="#Ribbon-能干嘛？" class="headerlink" title="Ribbon 能干嘛？"></a>Ribbon 能干嘛？</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654350520228-d3d0a06b-ef6d-4d9f-b0be-3f05b35605d1.png#clientId=u660e2136-e68f-4&from=paste&id=udff79111&name=image.png&originHeight=482&originWidth=779&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=267331&status=done&style=none&taskId=udfee50c0-8c01-4833-b694-cac675044d7&title=" alt="image.png"></p>
-<ul>
-<li>LB，即负载均衡 (LoadBalancer) ，在微服务或分布式集群中经常用的一种应用。</li>
-<li>负载均衡简单的说就是将用户的请求平摊的分配到多个服务上，从而达到系统的 HA (高用)。</li>
-<li>常见的负载均衡软件有 Nginx、Lvs 等等。</li>
-<li>Dubbo、SpringCloud 中均给我们提供了负载均衡，<strong>SpringCloud 的负载均衡算法可以自定义</strong>。</li>
-<li>负载均衡简单分类：<ul>
-<li>集中式 LB<ul>
-<li>即在服务的提供方和消费方之间使用独立的 LB 设施，如**Nginx(反向代理服务器)**，由该设施负责把访问请求通过某种策略转发至服务的提供方！</li>
-</ul>
-</li>
-<li>进程式 LB<ul>
-<li>将 LB 逻辑集成到消费方，消费方从服务注册中心获知有哪些地址可用，然后自己再从这些地址中选出一个合适的服务器。</li>
-<li><strong>Ribbon 就属于进程内 LB</strong>，它只是一个类库，集成于消费方进程，消费方通过它来获取到服务提供方的地址！</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="使用-Ribbon-实现负载均衡"><a href="#使用-Ribbon-实现负载均衡" class="headerlink" title="使用 Ribbon 实现负载均衡"></a>使用 Ribbon 实现负载均衡</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654350618145-892d7982-48f9-43ce-b9e5-0f1f374682ce.png#clientId=u660e2136-e68f-4&from=paste&id=u8e4453ff&name=image.png&originHeight=419&originWidth=951&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=65454&status=done&style=none&taskId=u4ec0d3ab-d8fd-4c92-b408-7d89e80fbd7&title=" alt="image.png"></p>
+          <p>参考链接</p>
+<h1 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h1><p>AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如<strong>事务处理、日志管理、权限控制</strong>等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。<br>Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 <strong>JDK Proxy</strong>，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 <strong>Cglib</strong> 生成一个被代理对象的子类来作为代理，如下图所示：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1658214285165-4c73bce3-f6fb-4f43-a4fd-55e98369086a.png#clientId=u8a281d0b-69b4-4&from=paste&id=ufe7bb64b&name=image.png&originHeight=354&originWidth=720&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=102967&status=done&style=none&taskId=u9b394eeb-566f-4ef9-9f5b-a5535a300db&title=" alt="image.png"><br>当然你也可以使用 <strong>AspectJ</strong> ！Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系统中最完整的 AOP 框架了。</p>
+<h1 id="兄弟模式-接口实现-JDK-动态代理"><a href="#兄弟模式-接口实现-JDK-动态代理" class="headerlink" title="兄弟模式-接口实现-JDK 动态代理"></a>兄弟模式-接口实现-JDK 动态代理</h1><p>spring 会使用 JDK 的<strong>java.lang.reflect.Proxy</strong>类，它允许 Spring 动态生成一个新类来实现必要的接口，织入通知，并且把对这些接口的任何调用都转发到目标类。</p>
+<h1 id="父子模式-继承实现-Cglib-动态代理"><a href="#父子模式-继承实现-Cglib-动态代理" class="headerlink" title="父子模式-继承实现-Cglib 动态代理"></a>父子模式-继承实现-Cglib 动态代理</h1><p>spring 使用<strong>CGLIB</strong>库生成目标类的一个子类，在创建这个子类的时候，spring 织入通知，并且把对这个子类的调用委托到目标类。</p>
 
       
     </div>
@@ -614,7 +539,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -628,7 +553,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/Eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/" class="post-title-link" itemprop="url">Eureka服务注册中心</a>
+            <a href="/yq/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9/" class="post-title-link" itemprop="url">缓存穿透、击穿、雪崩</a>
         </h2>
 
         <div class="post-meta">
@@ -638,11 +563,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-04 21:01:05" itemprop="dateCreated datePublished" datetime="2022-06-04T21:01:05+08:00">2022-06-04</time>
+              <time title="创建时间：2022-06-04 02:05:21" itemprop="dateCreated datePublished" datetime="2022-06-04T02:05:21+08:00">2022-06-04</time>
             </span>
 
           
-            <span id="/yq/Eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/" class="post-meta-item leancloud_visitors" data-flag-title="Eureka服务注册中心" title="阅读次数">
+            <span id="/yq/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9/" class="post-meta-item leancloud_visitors" data-flag-title="缓存穿透、击穿、雪崩" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -657,8 +582,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/Eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -668,14 +593,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>667</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -687,28 +612,119 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="什么是-Eureka"><a href="#什么是-Eureka" class="headerlink" title="什么是 Eureka"></a>什么是 Eureka</h1><ul>
-<li>Netflix 在涉及 Eureka 时，遵循的就是 API 原则.</li>
-<li>Eureka 是 Netflix 的有个子模块，也是核心模块之一。Eureka 是基于 REST 的服务，用于定位服务，以实现云端中间件层服务发现和故障转移，服务注册与发现对于微服务来说是非常重要的，有了服务注册与发现，只需要使用服务的标识符，就可以访问到服务，而不需要修改服务调用的配置文件了，功能类似于 Dubbo 的注册中心，比如 Zookeeper.</li>
-</ul>
-<h1 id="原理理解"><a href="#原理理解" class="headerlink" title="原理理解"></a>原理理解</h1><h2 id="Eureka-基本的架构"><a href="#Eureka-基本的架构" class="headerlink" title="Eureka 基本的架构"></a>Eureka 基本的架构</h2><ul>
-<li>Springcloud 封装了 Netflix 公司开发的 Eureka 模块来实现服务注册与发现 (对比 Zookeeper).</li>
-<li>Eureka 采用了 C-S 的架构设计，EurekaServer 作为服务注册功能的服务器，他是服务注册中心.</li>
-<li>而系统中的其他微服务，使用 Eureka 的客户端连接到 EurekaServer 并维持心跳连接。这样系统的维护人员就可以通过 EurekaServer 来监控系统中各个微服务是否正常运行，Springcloud 的一些其他模块 (比如 Zuul) 就可以通过 EurekaServer 来发现系统中的其他微服务，并执行相关的逻辑.</li>
-</ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654349306168-180d0dd0-d158-4a37-8c37-ea4c72006b4f.png#clientId=ud9ebc272-e133-4&from=paste&id=ub0930d8f&name=image.png&originHeight=348&originWidth=710&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=34173&status=done&style=none&taskId=u4e4b146a-db7c-4526-a8f8-ff59e33f9d0&title=" alt="image.png"></p>
-<ul>
-<li>Eureka 包含两个组件：<strong>Eureka Server</strong> 和 <strong>Eureka Client</strong>.</li>
-<li>Eureka Server 提供服务注册，各个节点启动后，会在 EurekaServer 中进行注册，这样 Eureka Server 中的服务注册表中将会储存所有可用服务节点的信息，服务节点的信息可以在界面中直观的看到.</li>
-<li>Eureka Client 是一个 Java 客户端，用于简化 EurekaServer 的交互，客户端同时也具备一个内置的，使用轮询负载算法的负载均衡器。在应用启动后，将会向 EurekaServer 发送心跳 (默认周期为 30 秒) 。如果 Eureka Server 在多个心跳周期内没有接收到某个节点的心跳，EurekaServer 将会从服务注册表中把这个服务节点移除掉 (默认周期为 90s).</li>
-</ul>
-<h2 id="三大角色"><a href="#三大角色" class="headerlink" title="三大角色"></a>三大角色</h2><ul>
-<li>Eureka Server：提供服务的注册与发现</li>
-<li>Service Provider：服务生产方，将自身服务注册到 Eureka 中，从而使服务消费方能够找到</li>
-<li>Service Consumer：服务消费方，从 Eureka 中获取注册服务列表，从而找到消费服务</li>
-</ul>
-<h1 id="EureKa-自我保护机制"><a href="#EureKa-自我保护机制" class="headerlink" title="EureKa 自我保护机制"></a>EureKa 自我保护机制</h1><p><strong>好死不如赖活着</strong><br>一句话总结就是：<strong>某时刻某一个微服务不可用，eureka 不会立即清理，依旧会对该微服务的信息进行保存！</strong><br>默认情况下，当 eureka server 在一定时间内没有收到实例的心跳，便会把该实例从注册表中删除（<strong>默认是 90 秒</strong>），但是，如果短时间内丢失大量的实例心跳，便会触发 eureka server 的自我保护机制，比如在开发测试时，需要频繁地重启微服务实例，但是我们很少会把 eureka server 一起重启（因为在开发过程中不会修改 eureka 注册中心），<strong>当一分钟内收到的心跳数大量减少时，会触发该保护机制</strong>。可以在 eureka 管理界面看到 Renews threshold 和 Renews(last min)，当后者（最后一分钟收到的心跳数）小于前者（心跳阈值）的时候，触发保护机制，会出现红色的警告：EMERGENCY!EUREKA MAY BE INCORRECTLY CLAIMING INSTANCES ARE UP WHEN THEY’RE NOT.RENEWALS ARE LESSER THAN THRESHOLD AND HENCE THE INSTANCES ARE NOT BEGING EXPIRED JUST TO BE SAFE.<br>从警告中可以看到，eureka 认为虽然收不到实例的心跳，但它认为实例还是健康的，eureka 会保护这些实例，不会把它们从注册表中删掉。<br>该保护机制的目的是避免网络连接故障，在发生网络故障时，微服务和注册中心之间无法正常通信，但服务本身是健康的，不应该注销该服务，如果 eureka 因网络故障而把微服务误删了，那即使网络恢复了，该微服务也不会重新注册到 eureka server 了，<strong>因为只有在微服务启动的时候才会发起注册请求，后面只会发送心跳和服务列表请求</strong>，这样的话，该实例虽然是运行着，但永远不会被其它服务所感知。所以，eureka server 在短时间内丢失过多的客户端心跳时，会进入自我保护模式，该模式下，eureka 会保护注册表中的信息，不再注销任何微服务，当网络故障恢复后，eureka 会自动退出保护模式。自我保护模式可以让集群更加健壮。<br>但是我们在开发测试阶段，需要频繁地重启发布，如果触发了保护机制，则旧的服务实例没有被删除，这时请求有可能跑到旧的实例中，而该实例已经关闭了，这就导致请求错误，影响开发测试。所以，在开发测试阶段，我们可以把自我保护模式关闭，只需在 eureka server 配置文件中加上如下配置即可：eureka.server.enable-self-preservation=false【不推荐关闭自我保护机制】<br>详细内容可以参考下这篇博客内容：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wudiyong22/article/details/80827594">https://blog.csdn.net/wudiyong22/article/details/80827594</a></p>
-<p>#####</p>
+          <p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lzy194/article/details/122231010">https://blog.csdn.net/lzy194/article/details/122231010</a></p>
+<h1 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h1><p>用户请求的值在缓存中不存在，在数据库中也不存在！<br>带来的问题：每次请求都会去请求数据库，缓存形同虚设，请求量大的时候会给数据库带来巨大压力甚至直接整挂掉。</p>
+<h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><p>1、参数校验：如果对于请求的参数有制定的一套规范，请求到来时校验参数是否符合规范，不符合直接打回，不走数据库；<br>2、数据量少时，可以把数据库的所有数据直接放在缓存中，比如以 map 集合形式存放；<br>3、数据量大时，使用布隆过滤器<br>4、缓存空值，数据库查询不到值时，将该请求参数和其返回的空值放入缓存，下次请求直接从缓存读取空值。</p>
+<h1 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h1><p>一个热点数据过期时间失效，大量的请求直接访问数据库造成数据库压力!</p>
+<h2 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h2><p>1、加锁，对热点数据请求数据库时加锁，查询成功后写入缓存；<br>2、定时任务自动续期；<br>3、设置缓存无过期时间</p>
+<h1 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h1><p>缓存击穿的升级版，多个热点数据到了过期时间。</p>
+<h2 id="缓存雪崩目前有两种："><a href="#缓存雪崩目前有两种：" class="headerlink" title="缓存雪崩目前有两种："></a>缓存雪崩目前有两种：</h2><p>1、有大量的热门缓存，同时失效。会导致大量的请求，访问数据库。而数据库很有可能因为扛不住压力，而直接挂掉。<br>2、缓存服务器 down 机了，可能是机器硬件问题，或者机房网络问题。总之，造成了整个缓存的不可用。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>1、热点 key 过期时间加随机时间，避免所有热点 key 同时失效<br>2、高可用架构；升级机器<br>3、降级<br>配置一些默认的兜底数据。<br>程序中有个全局开关，比如有 10 个请求在最近一分钟内，从 redis 中获取数据失败，则全局开关打开。后面的新请求，就直接从配置中心中获取默认的数据。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lzy194/article/details/122231010">
+</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/JVM%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/JVM%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">JVM相关</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-03 13:22:28" itemprop="dateCreated datePublished" datetime="2022-06-03T13:22:28+08:00">2022-06-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/yq/JVM%E7%9B%B8%E5%85%B3/" class="post-meta-item leancloud_visitors" data-flag-title="JVM相关" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/JVM%E7%9B%B8%E5%85%B3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/JVM%E7%9B%B8%E5%85%B3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考链接：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1657191673286-feadca1f-3e20-4a6c-b2b1-7f36e2cf160f.jpeg"></p>
 
       
     </div>
@@ -727,7 +743,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/14/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/aaa/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/36/">36</a><a class="extend next" rel="next" href="/aaa/page/16/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/14/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/aaa/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/33/">33</a><a class="extend next" rel="next" href="/aaa/page/16/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">日期的使用</a>
+            <a href="/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/" class="post-title-link" itemprop="url">字符集</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-25 14:20:05" itemprop="dateCreated datePublished" datetime="2022-03-25T14:20:05+08:00">2022-03-25</time>
+              <time title="创建时间：2022-01-28 16:30:42" itemprop="dateCreated datePublished" datetime="2022-01-28T16:30:42+08:00">2022-01-28</time>
             </span>
 
           
-            <span id="/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="日期的使用" title="阅读次数">
+            <span id="/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/" class="post-meta-item leancloud_visitors" data-flag-title="字符集" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%AD%97%E7%AC%A6%E9%9B%86/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,14 +245,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.8k</span>
+              <span>197</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -264,15 +264,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Calendar-类"><a href="#Calendar-类" class="headerlink" title="Calendar 类"></a>Calendar 类</h1><p>参考文档：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44259720/article/details/86669177">https://blog.csdn.net/weixin_44259720/article/details/86669177</a></p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Calendar</span></span></span><br><span class="line"><span class="class">	<span class="keyword">extends</span> <span class="title">Objectimplements</span> <span class="title">Serializable</span>, <span class="title">Cloneable</span>, <span class="title">Comparable</span>&lt;<span class="title">Calendar</span>&gt;</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>该类由 abstract 修饰，是一个抽象类，因此无法通过 new 来实现。它提供了 getInstance()方法来获取由当前日期及时间初始化的子类。</p>
-<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h3 id="获取时间"><a href="#获取时间" class="headerlink" title="获取时间"></a>获取时间</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalenderTest</span> </span>&#123;</span><br><span class="line">	<span class="comment">//获取时间：以目前系统时间 ：2019:01:27 16:27:27 为例</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetCalender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Calendar cal = Calendar.getInstance();    							<span class="comment">//Calendar类的实例化</span></span><br><span class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);	<span class="comment">//时间的格式化</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前系统时间</span></span><br><span class="line">		Date date = cal.getTime();								<span class="comment">//date=Sun Jan 27 16:27:27 CST 2019</span></span><br><span class="line">		String nowTime = sdf.format(cal.getTime());				<span class="comment">//nowTime=2019-01-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前年</span></span><br><span class="line">		<span class="keyword">int</span> year = cal.get(Calendar.YEAR);						<span class="comment">//year=2019</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前月 Calendar.MONTH从0开始 ,使用时通常会+1</span></span><br><span class="line">		<span class="keyword">int</span> month = cal.get(Calendar.MONTH) + <span class="number">1</span>;				<span class="comment">//month=1</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前日：两种方法等价</span></span><br><span class="line">		<span class="keyword">int</span> day_of_month = cal.get(Calendar.DAY_OF_MONTH);		<span class="comment">//day_of_month=27</span></span><br><span class="line">		<span class="keyword">int</span> day = cal.get(Calendar.DATE);  						<span class="comment">//day=27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//获取当月day的最大值！！</span></span><br><span class="line">		<span class="keyword">int</span> max_day_of_month = cal.getActualMaximum(Calendar.DAY_OF_MONTH);	<span class="comment">//max_day_of_month=31</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前时钟：24小时制</span></span><br><span class="line">		<span class="keyword">int</span> hour24 = cal.get(Calendar.HOUR_OF_DAY);				<span class="comment">//hour24=16</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前时钟：12小时制</span></span><br><span class="line">		<span class="keyword">int</span> hour12 = cal.get(Calendar.HOUR); 					<span class="comment">//hour12=4</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前:分钟</span></span><br><span class="line">		<span class="keyword">int</span> minute = cal.get(Calendar.MINUTE);   				<span class="comment">//minute=27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前秒</span></span><br><span class="line">		<span class="keyword">int</span> second = cal.get(Calendar.SECOND);  				<span class="comment">//second=27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//星期几：用数字（1~7）表示（星期日~星期六），使用时通常会-1</span></span><br><span class="line">		<span class="keyword">int</span> day_of_week = cal.get(Calendar.DAY_OF_WEEK) - <span class="number">1</span>;	<span class="comment">//day_of_week=0</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//上午-0；下午-1</span></span><br><span class="line">		<span class="keyword">int</span> amOrPm = cal.get(Calendar.AM_PM);  					<span class="comment">//amOrPm=1</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前年的第几周</span></span><br><span class="line">		<span class="keyword">int</span> week_of_year = cal.get(Calendar.WEEK_OF_YEAR);		<span class="comment">//week_of_year=5</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前月的星期数</span></span><br><span class="line">		<span class="keyword">int</span> week_of_month = cal.get(Calendar.WEEK_OF_MONTH);	<span class="comment">//week_of_month=5</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前月中的第几个星期</span></span><br><span class="line">		<span class="keyword">int</span> day_of_week_in_month = cal.get(Calendar.DAY_OF_WEEK_IN_MONTH); <span class="comment">//day_of_week_in_month=4</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当前年的第几天</span></span><br><span class="line">		<span class="keyword">int</span> day_of_year = cal.get(Calendar.DAY_OF_YEAR);		<span class="comment">//day_of_year=27</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="设置时间"><a href="#设置时间" class="headerlink" title="设置时间"></a>设置时间</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalenderTest</span> </span>&#123;</span><br><span class="line">	<span class="comment">//设置时间：以目前系统时间 ：2019:01:27 16:27:27 为例</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSetCalender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Calendar cal = Calendar.getInstance();    							<span class="comment">//Calendar类的实例化</span></span><br><span class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);	<span class="comment">//时间的格式化</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//1.当前系统时间</span></span><br><span class="line">		Date date = cal.getTime();							<span class="comment">//data=Sun Jan 27 16:27:27 CST 2019</span></span><br><span class="line">		String nowTime = sdf.format(cal.getTime());			<span class="comment">//nowTime=2019-01-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//2.设置时间：不设置项，默认Calendar已经存在日期</span></span><br><span class="line">		cal.set(Calendar.HOUR_OF_DAY, <span class="number">11</span>);</span><br><span class="line">		cal.set(Calendar.MINUTE, <span class="number">30</span>);</span><br><span class="line">		cal.set(Calendar.SECOND, <span class="number">30</span>);</span><br><span class="line">		String date1 = sdf.format(cal.getTime());			<span class="comment">//time=2019-01-27 11:30:30</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//3.设置时间：全部设置，则输出自定义时间</span></span><br><span class="line">		cal.set(Calendar.YEAR, <span class="number">2018</span>);</span><br><span class="line">		cal.set(Calendar.MARCH, <span class="number">7</span>);</span><br><span class="line">		cal.set(Calendar.DATE, <span class="number">21</span>);</span><br><span class="line">		String date2 = sdf.format(cal.getTime());			<span class="comment">//time=2018-08-21 11:30:30</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//4.时间重置：Date date = new date();</span></span><br><span class="line">		String newDate1 = sdf.format(cal.getTime());		<span class="comment">//newDate1=2018-08-21 11:30:30</span></span><br><span class="line">		String newDate2 = sdf.format(<span class="keyword">new</span> Date());			<span class="comment">//newDate2=2019:01:27 16:27:27</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="时间运算"><a href="#时间运算" class="headerlink" title="时间运算"></a>时间运算</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalenderTest</span> </span>&#123;</span><br><span class="line">	<span class="comment">//时间运算：以目前系统时间 ：2019:01:27 16:27:27 为例</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddCalender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Calendar cal = Calendar.getInstance();    							<span class="comment">//Calendar类的实例化</span></span><br><span class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);	<span class="comment">//时间的格式化</span></span><br><span class="line"></span><br><span class="line">		String nowTime = sdf.format(cal.getTime());		<span class="comment">//nowTime=2019-01-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.YEAR, <span class="number">1</span>);</span><br><span class="line">		String time1 = sdf.format(cal.getTime());		<span class="comment">//年:2020-01-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.MONTH, <span class="number">2</span>);</span><br><span class="line">		String time2 = sdf.format(cal.getTime());		<span class="comment">//月:2020-03-27 16:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.DATE, <span class="number">5</span>);</span><br><span class="line">		String time3 = sdf.format(cal.getTime());		<span class="comment">//日:2020-04-01 16:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.HOUR_OF_DAY, -<span class="number">1</span>);</span><br><span class="line">		String time4 = sdf.format(cal.getTime());		<span class="comment">//时:2020-04-01 15:27:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.MINUTE, <span class="number">1</span>);</span><br><span class="line">		String time5 = sdf.format(cal.getTime());		<span class="comment">//分:2020-04-01 15:28:27</span></span><br><span class="line"></span><br><span class="line">		cal.add(Calendar.SECOND, <span class="number">1</span>);</span><br><span class="line">		String time6 = sdf.format(cal.getTime());		<span class="comment">//秒:2020-04-01 15:27:28</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <p>转码工具：<a target="_blank" rel="noopener" href="https://www.haomeili.net/HanZi/ZiFuBianMaZhuanHuan">https://www.haomeili.net/HanZi/ZiFuBianMaZhuanHuan</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1643359095640-7df45cab-3854-43fb-ad97-922550bdb795.jpeg"></p>
+<p>MySQL 中 utf8 编码只支持 1-3 个字节 。 在 utf8 编码中，中文是占 3 个字节，其他数字、英文、符号占一个字节。但 emoji 符号占 4 个字节，一些较复杂的文字、繁体字也是 4 个字；<br><strong>UTF8mb4</strong> 是 UTF-8 的完整实现，正版！最多支持使用 4 个字节表示字符，因此，可以用来存储 emoji 符号。</p>
 
       
     </div>
@@ -292,7 +286,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%B5%85%E6%9E%90ThreadLocal/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -306,7 +300,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="post-title-link" itemprop="url">Mac常用快捷键</a>
+            <a href="/yq/%E6%B5%85%E6%9E%90ThreadLocal/" class="post-title-link" itemprop="url">浅析ThreadLocal</a>
         </h2>
 
         <div class="post-meta">
@@ -316,11 +310,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-25 14:18:16" itemprop="dateCreated datePublished" datetime="2022-03-25T14:18:16+08:00">2022-03-25</time>
+              <time title="创建时间：2022-01-04 23:43:13" itemprop="dateCreated datePublished" datetime="2022-01-04T23:43:13+08:00">2022-01-04</time>
             </span>
 
           
-            <span id="/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="post-meta-item leancloud_visitors" data-flag-title="Mac常用快捷键" title="阅读次数">
+            <span id="/yq/%E6%B5%85%E6%9E%90ThreadLocal/" class="post-meta-item leancloud_visitors" data-flag-title="浅析ThreadLocal" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -335,8 +329,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Mac%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E6%B5%85%E6%9E%90ThreadLocal/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%B5%85%E6%9E%90ThreadLocal/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -346,14 +340,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -365,7 +359,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">一、mac系统键盘和符号对应关系</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> Control（或 Ctrl）⌃</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> Caps Lock ⇪</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> Command（或 Cmd）⌘</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> Option（或 Alt）⌥</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> Shift ⇧</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">二、mac系统自有快捷键</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> command系列</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>). command+space 切换输入法</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>). command +M 最小化当前窗口</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>). command+Q 关闭当前程序（文件夹不适用）</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>). command+S 保存</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>). command+A 全选</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>). Control+Command+Q 立即锁定屏幕</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>). command+tab 切换app界面</span><br><span class="line"></span><br><span class="line"><span class="number">8</span>). command+control+F 最大化当前窗口</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 选中文件+enter 文件重命名</span><br><span class="line"></span><br><span class="line">三、IDEA开发工具快捷键</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> command+N </span><br><span class="line"></span><br><span class="line"> <span class="number">1</span>）光标在代码编辑界面时</span><br><span class="line"></span><br><span class="line">     生成setter getter等方法 </span><br><span class="line"></span><br><span class="line"> <span class="number">2</span>）光标在左侧工程结构时</span><br><span class="line"></span><br><span class="line">     创建新类/包等</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> command+delete 删除当前行</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> command+D 复制当前行</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> command+alt+M 将当前选中到代码块抽取为方法</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> command+E 最近浏览的文体</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span> alt+command+L 格式化代码</span><br><span class="line"></span><br><span class="line"><span class="number">7.</span> alt+enter 生成局部变量（introduce local variable）</span><br><span class="line"></span><br><span class="line"><span class="number">8.</span> <span class="keyword">double</span> shift （快速按两次shift键）快速查找</span><br><span class="line"></span><br><span class="line"><span class="number">9.</span> shift+alt+⬇️ 将当前代码整体下移一行（上移同理）</span><br><span class="line"></span><br><span class="line"><span class="number">10.</span> shift+ctrl+R 编译并执行</span><br><span class="line"></span><br><span class="line"><span class="number">11.</span> fn+左键 将光标定位到当前代码行最左侧(最右侧同理 )</span><br><span class="line"></span><br><span class="line"><span class="number">12.</span> command+R 查找和替换</span><br><span class="line"></span><br><span class="line"><span class="number">13.</span> command+alt+U 在当前类中，查看继承关系视图</span><br><span class="line"></span><br><span class="line"><span class="number">14.</span> command+alt+左键/右键 将光标返回到上次查看代码的地方</span><br><span class="line"></span><br><span class="line"><span class="number">15.</span> command+F12 查找当前类的方法</span><br><span class="line"></span><br><span class="line"><span class="number">16.</span> shift*<span class="number">2</span> 快速查找</span><br><span class="line"></span><br><span class="line"><span class="number">17.</span> shift+F6 选中当前对象，重命名</span><br><span class="line"></span><br><span class="line"><span class="number">18.</span> shift+alt+⬇️ 将当前代码整体下移一行</span><br><span class="line"></span><br><span class="line"><span class="number">19.</span>shift+command+v 剪切板</span><br><span class="line"></span><br><span class="line"><span class="number">20.</span> command+shift+U 大小写切换</span><br><span class="line"></span><br><span class="line"><span class="number">21.</span> control + 左右键  idea窗口切换</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <p>参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1N741127FH?p=8">https://www.bilibili.com/video/BV1N741127FH?p=8</a></p>
+<h1 id="案例一：不使用-ThreadLocal，造成线程不隔离的场景："><a href="#案例一：不使用-ThreadLocal，造成线程不隔离的场景：" class="headerlink" title="案例一：不使用 ThreadLocal，造成线程不隔离的场景："></a>案例一：不使用 ThreadLocal，造成线程不隔离的场景：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> thread;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String content)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.content = content;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> content;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ThreadLocalTest test = <span class="keyword">new</span> ThreadLocalTest();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">6</span>;i++)&#123;</span><br><span class="line">            Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    test.set(Thread.currentThread().getName()+<span class="string">&quot;的数据&quot;</span>);</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">&quot;--&gt;&quot;</span>+test.get());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            thread.setName(<span class="string">&quot;线程&quot;</span>+i);</span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">线程<span class="number">1</span>--&gt;线程<span class="number">1</span>的数据</span><br><span class="line">线程<span class="number">4</span>--&gt;线程<span class="number">4</span>的数据</span><br><span class="line">线程<span class="number">2</span>--&gt;线程<span class="number">1</span>的数据</span><br><span class="line">线程<span class="number">0</span>--&gt;线程<span class="number">4</span>的数据</span><br><span class="line">线程<span class="number">3</span>--&gt;线程<span class="number">1</span>的数据</span><br><span class="line">线程<span class="number">5</span>--&gt;线程<span class="number">5</span>的数据</span><br></pre></td></tr></table></figure>
+
+<p>由上面输出结果可以看到，A 线程获取的值并不一定是它自身设置的值，这就是多线程之间未做隔离导致的问题。</p>
+<h1 id="案例二：使用-threadLocal-将变量绑定在当前线程实现线程隔离"><a href="#案例二：使用-threadLocal-将变量绑定在当前线程实现线程隔离" class="headerlink" title="案例二：使用 threadLocal 将变量绑定在当前线程实现线程隔离"></a>案例二：使用 threadLocal 将变量绑定在当前线程实现线程隔离</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> thread;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalTest</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 将变量绑定在当前线程</span></span><br><span class="line">    ThreadLocal&lt;String&gt; threadLocal = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String content)</span></span>&#123;</span><br><span class="line">        threadLocal.set(content);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> threadLocal.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ThreadLocalTest test = <span class="keyword">new</span> ThreadLocalTest();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">6</span>;i++)&#123;</span><br><span class="line">            Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    test.set(Thread.currentThread().getName()+<span class="string">&quot;的数据&quot;</span>);</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">&quot;--&gt;&quot;</span>+test.get());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            thread.setName(<span class="string">&quot;线程&quot;</span>+i);</span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">线程<span class="number">3</span>--&gt;线程<span class="number">3</span>的数据</span><br><span class="line">线程<span class="number">0</span>--&gt;线程<span class="number">0</span>的数据</span><br><span class="line">线程<span class="number">5</span>--&gt;线程<span class="number">5</span>的数据</span><br><span class="line">线程<span class="number">1</span>--&gt;线程<span class="number">1</span>的数据</span><br><span class="line">线程<span class="number">4</span>--&gt;线程<span class="number">4</span>的数据</span><br><span class="line">线程<span class="number">2</span>--&gt;线程<span class="number">2</span>的数据</span><br></pre></td></tr></table></figure>
+
+<p>可以看到每个线程取的都是其设置的值。</p>
+<h1 id="ThreadLocal-和-synchronized-的区别"><a href="#ThreadLocal-和-synchronized-的区别" class="headerlink" title="ThreadLocal 和 synchronized 的区别"></a>ThreadLocal 和 synchronized 的区别</h1><p>共同点：都用于多线程并发访问变量的问题。</p>
+<p>|<br>| synchronize | ThreadLocal |<br>| — | — | — |<br>| 原理 | 同步机制采用以时间换空间的方式，只提供了一份变量，让不同的线程排队去访问。 | 采用以空间换时间的方式，为每一个线程都提供了一份变量的副本从而实现同时访问而互相不干扰。 |<br>| 侧重点 | 多个线程之间访问资源的同步。 | 多线程中让每个线程之间的数据相互隔离。 |</p>
+<h1 id="ThreadLocal-设计"><a href="#ThreadLocal-设计" class="headerlink" title="ThreadLocal 设计"></a>ThreadLocal 设计</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1648288209765-46566887-13f6-4917-ba33-8a3a158e01d9.png#clientId=u21f587e5-663f-4&from=paste&height=678&id=ue6985c88&name=image.png&originHeight=847&originWidth=1832&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=462584&status=done&style=none&taskId=u6fa871a1-2c26-49cd-9c07-77fe10b1929&title=&width=1465.6" alt="image.png"></p>
 
       
     </div>
@@ -385,7 +388,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -399,7 +402,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">代理模式</a>
+            <a href="/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="post-title-link" itemprop="url">线程池</a>
         </h2>
 
         <div class="post-meta">
@@ -409,11 +412,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-25 13:46:38" itemprop="dateCreated datePublished" datetime="2022-03-25T13:46:38+08:00">2022-03-25</time>
+              <time title="创建时间：2022-01-04 20:05:59" itemprop="dateCreated datePublished" datetime="2022-01-04T20:05:59+08:00">2022-01-04</time>
             </span>
 
           
-            <span id="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="代理模式" title="阅读次数">
+            <span id="/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="post-meta-item leancloud_visitors" data-flag-title="线程池" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -428,8 +431,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -439,14 +442,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>244</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -458,8 +461,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>参考文档：<a target="_blank" rel="noopener" href="https://blog.csdn.net/flyfeifei66/article/details/81481222">https://blog.csdn.net/flyfeifei66/article/details/81481222</a><br>代理模式是 23 种设计模式的一种，他是指一个对象 A 通过持有另一个对象 B，可以具有 B 同样的行为的模式。为了对外开放协议，B 往往实现了一个接口，A 也会去实现接口。但是 B 是“真正”实现类，A 则比较“虚”，他借用了 B 的方法去实现接口的方法。A 虽然是“伪军”，但它可以增强 B，在调用 B 的方法前后都做些其他的事情。Spring AOP 就是使用了动态代理完成了代码的动态“织入”。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/flyfeifei66/article/details/81481222">
-</a></p>
+          <p>推荐阅读：<a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html">https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22422342/1641298896168-b013ddab-2f7c-4d30-bda8-52f1b5c9c144.jpeg"></p>
+<ul>
+<li>corePoolSize：核心池的大小，这个参数跟后面讲述的线程池的实现原理有非常大的关系。在创建了线程池后，默认情况下，线程池中并没有任何线程，而是等待有任务到来才创建线程去执行任务，除非调用了 prestartAllCoreThreads()或者 prestartCoreThread()方法，从这 2 个方法的名字就可以看出，是预创建线程的意思，即在没有任务到来之前就创建 corePoolSize 个线程或者一个线程。默认情况下，在创建了线程池后，线程池中的线程数为 0，当有任务来之后，就会创建一个线程去执行任务，当线程池中的线程数目达到 corePoolSize 后，就会把到达的任务放到缓存队列当中；</li>
+<li>maximumPoolSize：线程池最大线程数，这个参数也是一个非常重要的参数，它表示在线程池中最多能创建多少个线程；</li>
+<li>keepAliveTime：表示线程没有任务执行时最多保持多久时间会终止。默认情况下，只有当线程池中的线程数大于 corePoolSize 时，keepAliveTime 才会起作用，直到线程池中的线程数不大于 corePoolSize，即当线程池中的线程数大于 corePoolSize 时，如果一个线程空闲的时间达到 keepAliveTime，则会终止，直到线程池中的线程数不超过 corePoolSize。但是如果调用了 allowCoreThreadTimeOut(boolean)方法，在线程池中的线程数不大于 corePoolSize 时，keepAliveTime 参数也会起作用，直到线程池中的线程数为 0；</li>
+<li>unit：参数 keepAliveTime 的时间单位，有 7 种取值，在 TimeUnit 类中有 7 种静态属性：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.DAYS;               <span class="comment">//天</span></span><br><span class="line">TimeUnit.HOURS;             <span class="comment">//小时</span></span><br><span class="line">TimeUnit.MINUTES;           <span class="comment">//分钟</span></span><br><span class="line">TimeUnit.SECONDS;           <span class="comment">//秒</span></span><br><span class="line">TimeUnit.MILLISECONDS;      <span class="comment">//毫秒</span></span><br><span class="line">TimeUnit.MICROSECONDS;      <span class="comment">//微妙</span></span><br><span class="line">TimeUnit.NANOSECONDS;       <span class="comment">//纳秒</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>workQueue：一个阻塞队列，用来存储等待执行的任务，这个参数的选择也很重要，会对线程池的运行过程产生重大影响，一般来说，这里的阻塞队列有以下几种选择：ArrayBlockingQueue; LinkedBlockingQueue; SynchronousQueue;ArrayBlockingQueue 和 PriorityBlockingQueue 使用较少，一般使用 LinkedBlockingQueue 和 Synchronous。线程池的排队策略与 BlockingQueue 有关。</li>
+<li>threadFactory：线程工厂，主要用来创建线程；</li>
+<li>handler：表示当拒绝处理任务时的策略，有以下四种取值:</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">ThreadPoolExecutor.AbortPolicy</span>:<span class="string">丢弃任务并抛出RejectedExecutionException异常。</span></span><br><span class="line"><span class="attr">ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。</span></span><br><span class="line"><span class="attr">ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）</span></span><br><span class="line"><span class="attr">ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>通俗理解参数</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">每个变量的作用都已经标明出来了，这里要重点解释一下corePoolSize、maximumPoolSize、largestPoolSize三个变量。</span></span><br><span class="line"></span><br><span class="line"><span class="string">corePoolSize在很多地方被翻译成核心池大小，其实我的理解这个就是线程池的大小。举个简单的例子：</span></span><br><span class="line"></span><br><span class="line"><span class="string">假如有一个工厂，工厂里面有10个工人，每个工人同时只能做一件任务。</span></span><br><span class="line"></span><br><span class="line"><span class="string">因此只要当10个工人中有工人是空闲的，来了任务就分配给空闲的工人做；</span></span><br><span class="line"></span><br><span class="line"><span class="string">当10个工人都有任务在做时，如果还来了任务，就把任务进行排队等待；</span></span><br><span class="line"></span><br><span class="line"><span class="string">如果说新任务数目增长的速度远远大于工人做任务的速度，那么此时工厂主管可能会想补救措施，比如重新招4个临时工人进来；</span></span><br><span class="line"></span><br><span class="line"><span class="string">然后就将任务也分配给这4个临时工人做；</span></span><br><span class="line"></span><br><span class="line"><span class="string">如果说着14个工人做任务的速度还是不够，此时工厂主管可能就要考虑不再接收新的任务或者抛弃前面的一些任务了。</span></span><br><span class="line"></span><br><span class="line"><span class="string">当这14个工人当中有人空闲时，而新任务增长的速度又比较缓慢，工厂主管可能就考虑辞掉4个临时工了，只保持原来的10个工人，毕竟请额外的工人是要花钱的。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">这个例子中的corePoolSize就是10，而maximumPoolSize就是14（10+4）。</span></span><br><span class="line"></span><br><span class="line"><span class="string">也就是说corePoolSize就是线程池大小，maximumPoolSize在我看来是线程池的一种补救措施，即任务量突然过大时的一种补救措施。</span></span><br><span class="line"></span><br><span class="line"><span class="string">不过为了方便理解，在本文后面还是将corePoolSize翻译成核心池大小。</span></span><br><span class="line"></span><br><span class="line"><span class="string">largestPoolSize只是一个用来起记录作用的变量，用来记录线程池中曾经有过的最大线程数目，跟线程池的容量没有任何关系。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1641299493625-f2b11349-c968-494d-b614-dc85761d9d9a.png#clientId=ube887dfc-7659-4&from=paste&height=288&id=ub9990a73&name=image.png&originHeight=373&originWidth=389&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=14930&status=done&style=none&taskId=u579c33e2-983d-4c8b-8666-11aef37c66f&title=&width=300" alt="image.png"></p>
+<h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p>下面我们进入正题，看一下任务从提交到最终执行完毕经历了哪些过程。<br>在 ThreadPoolExecutor 类中，最核心的任务提交方法是 execute()方法，虽然通过 submit 也可以提交任务，但是实际上 submit 方法里面最终调用的还是 execute()方法，所以我们只需要研究 execute()方法的实现原理即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (command == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="keyword">if</span> (poolSize &gt;= corePoolSize || !addIfUnderCorePoolSize(command)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (runState == RUNNING &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (runState != RUNNING || poolSize == <span class="number">0</span>)</span><br><span class="line">                ensureQueuedTaskHandled(command);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!addIfUnderMaximumPoolSize(command))</span><br><span class="line">            reject(command); <span class="comment">// is shutdown or saturated</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -479,7 +503,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -493,7 +517,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/" class="post-title-link" itemprop="url">Spring 和 Spring Boot的AOP用的是什么代理？</a>
+            <a href="/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">主题和队列的区别</a>
         </h2>
 
         <div class="post-meta">
@@ -503,11 +527,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-25 13:15:04" itemprop="dateCreated datePublished" datetime="2022-03-25T13:15:04+08:00">2022-03-25</time>
+              <time title="创建时间：2022-01-04 20:04:06" itemprop="dateCreated datePublished" datetime="2022-01-04T20:04:06+08:00">2022-01-04</time>
             </span>
 
           
-            <span id="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/" class="post-meta-item leancloud_visitors" data-flag-title="Spring 和 Spring Boot的AOP用的是什么代理？" title="阅读次数">
+            <span id="/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-meta-item leancloud_visitors" data-flag-title="主题和队列的区别" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -522,8 +546,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Spring%20%E5%92%8C%20Spring%20Boot%E7%9A%84AOP%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A3%E7%90%86%EF%BC%9F/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%B8%BB%E9%A2%98%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -533,7 +557,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>195</span>
+              <span>49</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -552,117 +576,126 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li>Spring 中的 AOP，有接口就用 JDK 动态代理，没有接口就用 Cglib 动态代理。</li>
-<li>Spring Boot 中的 AOP，2.0 之前和 Spring 一样；2.0 之后首选 Cglib 动态代理，如果用户想要使用 JDK 动态代理，需要自己手动配置。</li>
+          <p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/chjxbt/p/11407890.html">https://www.cnblogs.com/chjxbt/p/11407890.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/" class="post-title-link" itemprop="url">阿里云消息服务MNS-JAVA SDK</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-04 18:59:04" itemprop="dateCreated datePublished" datetime="2022-01-04T18:59:04+08:00">2022-01-04</time>
+            </span>
+
+          
+            <span id="/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/" class="post-meta-item leancloud_visitors" data-flag-title="阿里云消息服务MNS-JAVA SDK" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E9%98%BF%E9%87%8C%E4%BA%91%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1MNS-JAVA%20SDK/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ol>
+<li><p>下载最新版 Java SDK，解压到 aliyun-sdk-mns-samples 文件夹。</p>
+</li>
+<li><p>用 Eclipse 导入 Maven 工程，选中 aliyun-sdk-mns-samples 文件夹。</p>
+<p>3.在用户目录中创建.aliyun-mns.properties 文件，并填写服务地址、AccessKeyId 和 AccessKeySecret</p>
+</li>
 </ol>
-<p>如果 springboot2.0 版本之后，想默认使用 jdk 代理，则需要在配置文件中手动设置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.aop.proxy-target-class</span>=<span class="string">false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mns.accountendpoint</span>=<span class="string">http://&lt;yourAccountId&gt;.mns.cn-hangzhou.aliyuncs.com</span></span><br><span class="line"><span class="meta">mns.accesskeyid</span>=<span class="string">&lt;yourAccessKeyId&gt;</span></span><br><span class="line"><span class="meta">mns.accesskeysecret</span>=<span class="string">&lt;yourAccessKeySecret&gt;</span></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
+<p>4.Maven 依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.mns<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-mns<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.9.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<h1 id="主题使用手册"><a href="#主题使用手册" class="headerlink" title="主题使用手册"></a>主题使用手册</h1><h2 id="创建主题"><a href="#创建主题" class="headerlink" title="创建主题"></a>创建主题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateTopicDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        String topicName = <span class="string">&quot;TestTopic&quot;</span>;</span><br><span class="line">        TopicMeta meta = <span class="keyword">new</span> TopicMeta();</span><br><span class="line">        meta.setTopicName(topicName);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            CloudTopic topic = client.createTopic(meta);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;create topic error, &quot;</span> + e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/AtomicInteger/">
+<h2 id="创建队列"><a href="#创建队列" class="headerlink" title="创建队列"></a>创建队列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateQueueDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(</span><br><span class="line">                ServiceSettings.getMNSAccessKeyId(),</span><br><span class="line">                ServiceSettings.getMNSAccessKeySecret(),</span><br><span class="line">                ServiceSettings.getMNSAccountEndpoint());</span><br><span class="line">        MNSClient client = account.getMNSClient();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            QueueMeta qMeta = <span class="keyword">new</span> QueueMeta();</span><br><span class="line">            qMeta.setQueueName(<span class="string">&quot;queue-demo&quot;</span>);</span><br><span class="line">            qMeta.setPollingWaitSeconds(<span class="number">30</span>);</span><br><span class="line">            CloudQueue cQueue = client.createQueue(qMeta);</span><br><span class="line">            System.out.println(<span class="string">&quot;Create queue successfully. URL: &quot;</span> + cQueue.getQueueURL());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientException ce)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Something wrong with the network connection between client and MNS service.&quot;</span></span><br><span class="line">                    + <span class="string">&quot;Please check your network and DNS availablity.&quot;</span>);</span><br><span class="line">            ce.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ServiceException se)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (se.getErrorCode().equals(<span class="string">&quot;QueueNotExist&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;Queue is not exist.Please create before use&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (se.getErrorCode().equals(<span class="string">&quot;TimeExpired&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;The request is time expired. Please check your local machine timeclock&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            se.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Unknown exception happened!&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
+<h2 id="创建订阅"><a href="#创建订阅" class="headerlink" title="创建订阅"></a>创建订阅</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubscribeDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String region = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        String accountId = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        String queueName = <span class="string">&quot;TestQueue&quot;</span>;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        CloudTopic topic = client.getTopicRef(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            SubscriptionMeta subMeta = <span class="keyword">new</span> SubscriptionMeta();</span><br><span class="line">            subMeta.setSubscriptionName(<span class="string">&quot;QueueEndpoint2&quot;</span>);</span><br><span class="line">            subMeta.setEndpoint(String.format(<span class="string">&quot;acs:mns:%s:%s:queues/%s&quot;</span>, region, accountId, queueName));</span><br><span class="line">            subMeta.setNotifyContentFormat(SubscriptionMeta.NotifyContentFormat.XML);</span><br><span class="line">            String subUrl = topic.subscribe(subMeta);</span><br><span class="line">            System.out.println(<span class="string">&quot;subscription url: &quot;</span> + subUrl);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;subscribe/unsubribe error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/AtomicInteger/" class="post-title-link" itemprop="url">AtomicInteger</a>
-        </h2>
+<h2 id="发布消息"><a href="#发布消息" class="headerlink" title="发布消息"></a>发布消息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PublishMessageDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        CloudTopic topic = client.getTopicRef(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TopicMessage msg = <span class="keyword">new</span> Base64TopicMessage(); <span class="comment">//可以使用TopicMessage结构，选择不进行Base64加密。</span></span><br><span class="line">            msg.setMessageBody(<span class="string">&quot;hello world!&quot;</span>);</span><br><span class="line">            <span class="comment">//msg.setMessageTag(&quot;filterTag&quot;); //设置该条发布消息的filterTag。</span></span><br><span class="line">            msg = topic.publishMessage(msg);</span><br><span class="line">            System.out.println(msg.getMessageId());</span><br><span class="line">            System.out.println(msg.getMessageBodyMD5());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;subscribe error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+<h2 id="从队列接收和删除消息"><a href="#从队列接收和删除消息" class="headerlink" title="从队列接收和删除消息"></a>从队列接收和删除消息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComsumerDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(</span><br><span class="line">                ServiceSettings.getMNSAccessKeyId(),</span><br><span class="line">                ServiceSettings.getMNSAccessKeySecret(),</span><br><span class="line">                ServiceSettings.getMNSAccountEndpoint());</span><br><span class="line">        MNSClient client = account.getMNSClient();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            CloudQueue queue = client.getQueueRef(<span class="string">&quot;queue-demo&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Message popMsg = queue.popMessage();</span><br><span class="line">                <span class="keyword">if</span> (popMsg != <span class="keyword">null</span>)&#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;message handle: &quot;</span> + popMsg.getReceiptHandle());</span><br><span class="line">                    System.out.println(<span class="string">&quot;message body: &quot;</span> + popMsg.getMessageBodyAsString());</span><br><span class="line">                    System.out.println(<span class="string">&quot;message id: &quot;</span> + popMsg.getMessageId());</span><br><span class="line">                    System.out.println(<span class="string">&quot;message dequeue count:&quot;</span> + popMsg.getDequeueCount());</span><br><span class="line"></span><br><span class="line">                    queue.deleteMessage(popMsg.getReceiptHandle());</span><br><span class="line">                    System.out.println(<span class="string">&quot;delete message successfully.\n&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientException ce)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Something wrong with the network connection between client and MNS service.&quot;</span></span><br><span class="line">                    + <span class="string">&quot;Please check your network and DNS availablity.&quot;</span>);</span><br><span class="line">            ce.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ServiceException se)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (se.getErrorCode().equals(<span class="string">&quot;QueueNotExist&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;Queue is not exist.Please create queue before use&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (se.getErrorCode().equals(<span class="string">&quot;TimeExpired&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;The request is time expired. Please check your local machine timeclock&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            se.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Unknown exception happened!&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-              <time title="创建时间：2022-03-24 21:35:53" itemprop="dateCreated datePublished" datetime="2022-03-24T21:35:53+08:00">2022-03-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
-            </span>
+<h2 id="删除主题"><a href="#删除主题" class="headerlink" title="删除主题"></a>删除主题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeleteTopicDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        CloudTopic topic = client.getTopicRef(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            topic.delete();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;delete topic error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          
-            <span id="/yq/AtomicInteger/" class="post-meta-item leancloud_visitors" data-flag-title="AtomicInteger" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/AtomicInteger/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/AtomicInteger/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>538</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
+<h2 id="删除队列"><a href="#删除队列" class="headerlink" title="删除队列"></a>删除队列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeleteTopicDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(<span class="string">&quot;YourAccessId&quot;</span>, <span class="string">&quot;YourAccessKey&quot;</span>, <span class="string">&quot;MNSEndpoint&quot;</span>);</span><br><span class="line">        MNSClient client = account.getMNSClient(); <span class="comment">// 在程序中，CloudAccount以及MNSClient单例实现即可，多线程安全。</span></span><br><span class="line"></span><br><span class="line">        CloudTopic topic = client.getTopicRef(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            topic.delete();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;delete topic error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>并发包下，多线程下依旧保证原子。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicInteger</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">6214790243416807050L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * This class intended to be implemented using VarHandles, but there</span></span><br><span class="line"><span class="comment">     * are unresolved cyclic startup dependencies.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> jdk.internal.misc.Unsafe U = jdk.internal.misc.Unsafe.getUnsafe();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> VALUE = U.objectFieldOffset(AtomicInteger.class, <span class="string">&quot;value&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> value;</span><br></pre></td></tr></table></figure>
-
-<p>volatile 修饰，保证 value 是可见的，当某个线程修改 value 值时，对其他线程可见，其他线程访问时就不会通过缓存去取，而是到内存中取，保证 value 的一致性。</p>
+<h2 id="FitletTag-使用示例"><a href="#FitletTag-使用示例" class="headerlink" title="FitletTag 使用示例"></a>FitletTag 使用示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.aliyun.mns.samples;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.client.CloudAccount;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.client.CloudQueue;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.client.CloudTopic;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.client.MNSClient;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.common.utils.ServiceSettings;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.mns.model.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TopicSample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CloudAccount account = <span class="keyword">new</span> CloudAccount(</span><br><span class="line">                ServiceSettings.getMNSAccessKeyId(),</span><br><span class="line">                ServiceSettings.getMNSAccessKeySecret(),</span><br><span class="line">                ServiceSettings.getMNSAccountEndpoint());</span><br><span class="line">        MNSClient client = account.getMNSClient();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1．创建队列。</span></span><br><span class="line">        QueueMeta queueMeta = <span class="keyword">new</span> QueueMeta();</span><br><span class="line">        queueMeta.setQueueName(<span class="string">&quot;TestSubForQueue&quot;</span>);</span><br><span class="line">        CloudQueue queue = client.createQueue(queueMeta);</span><br><span class="line">        <span class="comment">// 2．创建主题。</span></span><br><span class="line">        TopicMeta topicMeta = <span class="keyword">new</span> TopicMeta();</span><br><span class="line">        topicMeta.setTopicName(<span class="string">&quot;TestTopic&quot;</span>);</span><br><span class="line">        CloudTopic topic = client.createTopic(topicMeta);</span><br><span class="line">        <span class="comment">// 3．创建订阅。</span></span><br><span class="line">        SubscriptionMeta subMeta = <span class="keyword">new</span> SubscriptionMeta();</span><br><span class="line">        subMeta.setSubscriptionName(<span class="string">&quot;TestForQueueSub&quot;</span>);</span><br><span class="line">        subMeta.setNotifyContentFormat(SubscriptionMeta.NotifyContentFormat.SIMPLIFIED);</span><br><span class="line">        subMeta.setEndpoint(topic.generateQueueEndpoint(<span class="string">&quot;TestSubForQueue&quot;</span>));</span><br><span class="line">        subMeta.setFilterTag(<span class="string">&quot;filterTag&quot;</span>);</span><br><span class="line">        topic.subscribe(subMeta);</span><br><span class="line">        <span class="comment">// 4．发布消息。</span></span><br><span class="line">        TopicMessage msg = <span class="keyword">new</span> Base64TopicMessage();</span><br><span class="line">        msg.setMessageBody(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">        msg.setMessageTag(<span class="string">&quot;filterTag&quot;</span>);</span><br><span class="line">        msg = topic.publishMessage(msg);</span><br><span class="line">        <span class="comment">// 5．从订阅的队列中获取消息。</span></span><br><span class="line">        Message msgReceive = queue.popMessage(<span class="number">30</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;ReceiveMessage From TestSubForQueue:&quot;</span>);</span><br><span class="line">        System.out.println(msgReceive.getMessageBody());</span><br><span class="line">        System.exit(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -681,7 +714,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/23/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/aaa/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/36/">36</a><a class="extend next" rel="next" href="/aaa/page/25/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/23/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/aaa/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/33/">33</a><a class="extend next" rel="next" href="/aaa/page/25/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

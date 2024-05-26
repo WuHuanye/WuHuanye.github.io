@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/StringUtils/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/CyclicBarrier/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/StringUtils/" class="post-title-link" itemprop="url">StringUtils</a>
+            <a href="/yq/CyclicBarrier/" class="post-title-link" itemprop="url">CyclicBarrier</a>
         </h2>
 
         <div class="post-meta">
@@ -215,11 +215,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-14 17:24:56" itemprop="dateCreated datePublished" datetime="2022-06-14T17:24:56+08:00">2022-06-14</time>
+              <time title="创建时间：2022-06-13 00:28:40" itemprop="dateCreated datePublished" datetime="2022-06-13T00:28:40+08:00">2022-06-13</time>
             </span>
 
           
-            <span id="/yq/StringUtils/" class="post-meta-item leancloud_visitors" data-flag-title="StringUtils" title="阅读次数">
+            <span id="/yq/CyclicBarrier/" class="post-meta-item leancloud_visitors" data-flag-title="CyclicBarrier" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/StringUtils/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/StringUtils/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/CyclicBarrier/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/CyclicBarrier/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,14 +245,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>13k</span>
+              <span>46</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>12 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -264,7 +264,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.StringEscapeUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"><span class="keyword">import</span> java.security.SecureRandom;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> :  字符串工具类, 继承org.apache.commons.lang3.StringUtils类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2021/4/27</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringUtils</span> <span class="keyword">extends</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">commons</span>.<span class="title">lang3</span>.<span class="title">StringUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">char</span> SEPARATOR = <span class="string">&#x27;_&#x27;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Charset UTF_8 = StandardCharsets.UTF_8;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换为字节数组</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> str</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getBytes(String str) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> str.getBytes(UTF_8);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">(<span class="keyword">final</span> String cs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;null&quot;</span>.equalsIgnoreCase(cs)||<span class="string">&quot;undefined&quot;</span>.equalsIgnoreCase(cs)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> org.apache.commons.lang3.StringUtils.isEmpty(cs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换为字节数组</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bytes</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toString</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(bytes, UTF_8);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 是否包含字符串</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> str 验证字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> strs 字符串组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 包含返回true</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">inString</span><span class="params">(String str, String... strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str != <span class="keyword">null</span> &amp;&amp; strs != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (String s : strs) &#123;</span><br><span class="line">                <span class="keyword">if</span> (str.equals(trim(s))) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 是否包含字符串</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> str 验证字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> strs 字符串组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 包含返回true</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">inStringIgnoreCase</span><span class="params">(String str, String... strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str != <span class="keyword">null</span> &amp;&amp; strs != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (String s : strs) &#123;</span><br><span class="line">                <span class="keyword">if</span> (str.equalsIgnoreCase(trim(s))) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 替换掉HTML标签方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">stripHtml</span><span class="params">(String html)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isBlank(html)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// html.replaceAll(&quot;\\&amp;[a-zA-Z]&#123;0,9&#125;;&quot;, &quot;&quot;).replaceAll(&quot;&lt;[^&gt;]*&gt;&quot;, &quot;&quot;);</span></span><br><span class="line">        String regEx = <span class="string">&quot;&lt;.+?&gt;&quot;</span>;</span><br><span class="line">        Pattern p = Pattern.compile(regEx);</span><br><span class="line">        Matcher m = p.matcher(html);</span><br><span class="line">        String s = m.replaceAll(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 替换为手机识别的HTML，去掉样式及属性，保留回车。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> html</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toMobileHtml</span><span class="params">(String html)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (html == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> html.replaceAll(<span class="string">&quot;&lt;([a-z]+?)\\s+?.*?&gt;&quot;</span>, <span class="string">&quot;&lt;$1&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对txt进行HTML编码，并将\n转换为&gt;br/&lt;、\t转换为   </span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> txt</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toHtml</span><span class="params">(String txt)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (txt == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> replace(replace(EncodeUtils.encodeHtml(trim(txt)), <span class="string">&quot;\n&quot;</span>, <span class="string">&quot;&lt;br/&gt;&quot;</span>), <span class="string">&quot;\t&quot;</span>,</span><br><span class="line">                <span class="string">&quot;    &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 缩略字符串（不区分中英文字符）</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> str 目标字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> length 截取长度</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">abbr</span><span class="params">(String str, <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">            <span class="keyword">int</span> currentLength = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : stripHtml(StringEscapeUtils.unescapeHtml4(str)).toCharArray()) &#123;</span><br><span class="line">                currentLength += String.valueOf(c).getBytes(<span class="string">&quot;GBK&quot;</span>).length;</span><br><span class="line">                <span class="keyword">if</span> (currentLength &lt;= length - <span class="number">3</span>) &#123;</span><br><span class="line">                    sb.append(c);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    sb.append(<span class="string">&quot;...&quot;</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> sb.toString();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;UnsupportedEncodingException&quot;</span>,e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 缩略字符串替换Html正则表达式预编译</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Pattern p1 = Pattern.compile(<span class="string">&quot;&lt;([a-zA-Z]+)[^&lt;&gt;]*&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 缩略字符串（适应于与HTML标签的）</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> param 目标字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> length 截取长度</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">htmlAbbr</span><span class="params">(String param, <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (param == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuffer result = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> temp;</span><br><span class="line">        <span class="keyword">boolean</span> isCode = <span class="keyword">false</span>; <span class="comment">// 是不是HTML代码</span></span><br><span class="line">        <span class="keyword">boolean</span> isHTML = <span class="keyword">false</span>; <span class="comment">// 是不是HTML特殊字符,如 </span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; param.length(); i++) &#123;</span><br><span class="line">            temp = param.charAt(i);</span><br><span class="line">            <span class="keyword">if</span> (temp == <span class="string">&#x27;&lt;&#x27;</span>) &#123;</span><br><span class="line">                isCode = <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (temp == <span class="string">&#x27;&amp;&#x27;</span>) &#123;</span><br><span class="line">                isHTML = <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (temp == <span class="string">&#x27;&gt;&#x27;</span> &amp;&amp; isCode) &#123;</span><br><span class="line">                n = n - <span class="number">1</span>;</span><br><span class="line">                isCode = <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (temp == <span class="string">&#x27;;&#x27;</span> &amp;&amp; isHTML) &#123;</span><br><span class="line">                isHTML = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (!isCode &amp;&amp; !isHTML) &#123;</span><br><span class="line">                    n += String.valueOf(temp).getBytes(<span class="string">&quot;GBK&quot;</span>).length;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">                log.error(<span class="string">&quot;UnsupportedEncodingException&quot;</span>,e);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (n &lt;= length - <span class="number">3</span>) &#123;</span><br><span class="line">                result.append(temp);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                result.append(<span class="string">&quot;...&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 取出截取字符串中的HTML标记</span></span><br><span class="line">        String tempResult = result.toString().replaceAll(<span class="string">&quot;(&gt;)[^&lt;&gt;]*(&lt;?)&quot;</span>, <span class="string">&quot;$1$2&quot;</span>);</span><br><span class="line">        <span class="comment">// 去掉不需要结素标记的HTML标记</span></span><br><span class="line">        tempResult = tempResult</span><br><span class="line">                .replaceAll(<span class="string">&quot;&lt;/?(AREA|BASE|BASEFONT|BODY|BR|COL|COLGROUP|DD|DT|FRAME|HEAD|HR|&quot;</span></span><br><span class="line">                        + <span class="string">&quot;HTML|IMG|INPUT|ISINDEX|LI|LINK|META|OPTION|P|PARAM|TBODY|TD|TFOOT|TH|THEAD|TR|area|base|&quot;</span></span><br><span class="line">                        + <span class="string">&quot;basefont|body|br|col|colgroup|dd|dt|frame|head|hr|html|img|input|isindex|li|link|meta|&quot;</span></span><br><span class="line">                        + <span class="string">&quot;option|p|param|tbody|td|tfoot|th|thead|tr)[^&lt;&gt;]*/?&gt;&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="comment">// 去掉成对的HTML标记</span></span><br><span class="line">        tempResult = tempResult.replaceAll(<span class="string">&quot;&lt;([a-zA-Z]+)[^&lt;&gt;]*&gt;(.*?)&lt;/\\1&gt;&quot;</span>, <span class="string">&quot;$2&quot;</span>);</span><br><span class="line">        <span class="comment">// 用正则表达式取出标记</span></span><br><span class="line">        Matcher m = p1.matcher(tempResult);</span><br><span class="line">        List&lt;String&gt; endHTML = ListUtils.newArrayList();</span><br><span class="line">        <span class="keyword">while</span> (m.find()) &#123;</span><br><span class="line">            endHTML.add(m.group(<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 补全不成对的HTML标记</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = endHTML.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            result.append(<span class="string">&quot;&lt;/&quot;</span>);</span><br><span class="line">            result.append(endHTML.get(i));</span><br><span class="line">            result.append(<span class="string">&quot;&gt;&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 首字母大写</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">cap</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> capitalize(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 首字母小写</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">uncap</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> uncapitalize(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 驼峰命名法工具</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> camelCase(&quot;hello_world&quot;) == &quot;helloWorld&quot; capCamelCase(&quot;hello_world&quot;) == &quot;HelloWorld&quot;</span></span><br><span class="line"><span class="comment">     *         uncamelCase(&quot;helloWorld&quot;) = &quot;hello_world&quot;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">camelCase</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        s = s.toLowerCase();</span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(s.length());</span><br><span class="line">        <span class="keyword">boolean</span> upperCase = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (c == SEPARATOR) &#123;</span><br><span class="line">                upperCase = <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (upperCase) &#123;</span><br><span class="line">                sb.append(Character.toUpperCase(c));</span><br><span class="line">                upperCase = <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sb.append(c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 驼峰命名法工具</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> camelCase(&quot;hello_world&quot;) == &quot;helloWorld&quot; capCamelCase(&quot;hello_world&quot;) == &quot;HelloWorld&quot;</span></span><br><span class="line"><span class="comment">     *         uncamelCase(&quot;helloWorld&quot;) = &quot;hello_world&quot;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">capCamelCase</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        s = camelCase(s);</span><br><span class="line">        <span class="keyword">return</span> s.substring(<span class="number">0</span>, <span class="number">1</span>).toUpperCase() + s.substring(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 驼峰命名法工具</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> camelCase(&quot;hello_world&quot;) == &quot;helloWorld&quot; capCamelCase(&quot;hello_world&quot;) == &quot;HelloWorld&quot;</span></span><br><span class="line"><span class="comment">     *         uncamelCase(&quot;helloWorld&quot;) = &quot;hello_world&quot;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">uncamelCase</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">boolean</span> upperCase = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">boolean</span> nextUpperCase = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i &lt; (s.length() - <span class="number">1</span>)) &#123;</span><br><span class="line">                nextUpperCase = Character.isUpperCase(s.charAt(i + <span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ((i &gt; <span class="number">0</span>) &amp;&amp; Character.isUpperCase(c)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!upperCase || !nextUpperCase) &#123;</span><br><span class="line">                    sb.append(SEPARATOR);</span><br><span class="line">                &#125;</span><br><span class="line">                upperCase = <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                upperCase = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            sb.append(Character.toLowerCase(c));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换为JS获取对象值，生成三目运算返回结果</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> objectString 对象串 例如：row.user.id 返回：!row?&#x27;&#x27;:!row.user?&#x27;&#x27;:!row.user.id?&#x27;&#x27;:row.user.id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">jsGetVal</span><span class="params">(String objectString)</span> </span>&#123;</span><br><span class="line">        StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        StringBuilder val = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        String[] vals = split(objectString, <span class="string">&quot;.&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vals.length; i++) &#123;</span><br><span class="line">            val.append(<span class="string">&quot;.&quot;</span> + vals[i]);</span><br><span class="line">            result.append(<span class="string">&quot;!&quot;</span> + (val.substring(<span class="number">1</span>)) + <span class="string">&quot;?&#x27;&#x27;:&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        result.append(val.substring(<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">return</span> result.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取随机字符串</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> count</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getRandomStr</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] codeSeq = &#123;<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;F&#x27;</span>, <span class="string">&#x27;G&#x27;</span>, <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;J&#x27;</span>, <span class="string">&#x27;K&#x27;</span>, <span class="string">&#x27;L&#x27;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="string">&#x27;N&#x27;</span>, <span class="string">&#x27;O&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;Q&#x27;</span>, <span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;S&#x27;</span>, <span class="string">&#x27;T&#x27;</span>, <span class="string">&#x27;U&#x27;</span>, <span class="string">&#x27;V&#x27;</span>, <span class="string">&#x27;W&#x27;</span>, <span class="string">&#x27;X&#x27;</span>, <span class="string">&#x27;Y&#x27;</span>, <span class="string">&#x27;Z&#x27;</span>, <span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;5&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;9&#x27;</span>&#125;;</span><br><span class="line">        Random random= <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            random = SecureRandom.getInstanceStrong();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">            log.info(<span class="string">&quot;Exception:&#123;&#125;&quot;</span>, e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == random)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            String r = String.valueOf(codeSeq[random.nextInt(codeSeq.length)]);</span><br><span class="line">            s.append(r);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取随机数字</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> count</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getRandomNum</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] codeSeq = &#123;<span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;9&#x27;</span>&#125;;</span><br><span class="line">        Random random= <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            random = SecureRandom.getInstanceStrong();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">            log.info(<span class="string">&quot;Exception:&#123;&#125;&quot;</span>, e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == random)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            String r = String.valueOf(codeSeq[random.nextInt(codeSeq.length)]);</span><br><span class="line">            s.append(r);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取树节点名字</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> isShowCode 是否显示编码&lt;br&gt;</span></span><br><span class="line"><span class="comment">     *        true or 1：显示在左侧：(code)name&lt;br&gt;</span></span><br><span class="line"><span class="comment">     *        2：显示在右侧：name(code)&lt;br&gt;</span></span><br><span class="line"><span class="comment">     *        false or null：不显示编码：name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> code 编码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> name 名称</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getTreeNodeName</span><span class="params">(String isShowCode, String code, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;true&quot;</span>.equals(isShowCode) || <span class="string">&quot;1&quot;</span>.equals(isShowCode)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;(&quot;</span> + code + <span class="string">&quot;) &quot;</span> + StringUtils.replace(name, <span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;2&quot;</span>.equals(isShowCode)) &#123;</span><br><span class="line">            <span class="keyword">return</span> StringUtils.replace(name, <span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>) + <span class="string">&quot; (&quot;</span> + code + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> StringUtils.replace(name, <span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;判断字符串是否是whitespace, empty (&quot;&quot;), &quot;null&quot; or null.&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * &lt;pre&gt;</span></span><br><span class="line"><span class="comment">     * StringUtils.isBlank(null)      = true</span></span><br><span class="line"><span class="comment">     * StringUtils.isBlank(&quot;&quot;)        = true</span></span><br><span class="line"><span class="comment">     * StringUtils.isBlank(&quot;null&quot;)    = true</span></span><br><span class="line"><span class="comment">     * StringUtils.isBlank(&quot; &quot;)       = true</span></span><br><span class="line"><span class="comment">     * StringUtils.isBlank(&quot;bob&quot;)     = false</span></span><br><span class="line"><span class="comment">     * StringUtils.isBlank(&quot;  bob  &quot;) = false</span></span><br><span class="line"><span class="comment">     * &lt;/pre&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> cs 被检测字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> &#123;<span class="doctag">@code</span> true&#125; 如果被检测的字符串是null, empty, &quot;null&quot; or whitespace</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isBlank</span><span class="params">(<span class="keyword">final</span> String cs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;null&quot;</span>.equalsIgnoreCase(cs)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> org.apache.commons.lang3.StringUtils.isBlank(cs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1Mb的二进制长度为20位：1024*1024</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ONE_MB_LENGTH = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMb</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (obj == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">byte</span>[] byteArray = getBytes(JsonUtils.toJson(obj));</span><br><span class="line">        <span class="keyword">int</span> byteCount = byteArray == <span class="keyword">null</span> ? <span class="number">0</span> : byteArray.length;</span><br><span class="line">        <span class="keyword">if</span> (byteCount == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// size = byteCount / (1*1024*1024)</span></span><br><span class="line">        <span class="comment">// 对除的结果进行下取整，1024刚好为2的10次方。采用位运算进行加速处理。</span></span><br><span class="line">        <span class="keyword">int</span> size = byteCount &gt;&gt; ONE_MB_LENGTH;</span><br><span class="line">        <span class="keyword">return</span> size == <span class="number">0</span> ? <span class="number">1</span> : size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1kb的二进制长度为10位：2的10次方 = 1024</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ONE_KB_LENGTH = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取入参大小</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getKb</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == obj) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">byte</span>[] byteArray = getBytes(JsonUtils.toJson(obj));</span><br><span class="line">        <span class="keyword">int</span> byteCount = byteArray.length;</span><br><span class="line">        <span class="keyword">if</span> (byteCount == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 对除的结果进行下取整，1024刚好为2的10次方。采用位运算进行加速处理。</span></span><br><span class="line">        <span class="keyword">int</span> size = byteCount &gt;&gt; ONE_KB_LENGTH;</span><br><span class="line">        <span class="keyword">return</span> size == <span class="number">0</span> ? <span class="number">1</span> : size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 截取字符串长度</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> msg 原始字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> subLength 要截取的长度</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 截取后返回</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">subString</span><span class="params">(String msg,<span class="keyword">int</span> subLength)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (msg == <span class="keyword">null</span> || msg.length() &lt;= subLength) ? msg : msg.substring(subLength);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <p>参考链接 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903988349894669">https://juejin.cn/post/6844903988349894669</a></p>
 
       
     </div>
@@ -284,7 +284,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E9%9D%A2%E8%AF%95%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -298,7 +298,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="post-title-link" itemprop="url">工具类</a>
+            <a href="/yq/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-title-link" itemprop="url">面试题</a>
         </h2>
 
         <div class="post-meta">
@@ -308,11 +308,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-14 17:23:19" itemprop="dateCreated datePublished" datetime="2022-06-14T17:23:19+08:00">2022-06-14</time>
+              <time title="创建时间：2022-06-13 00:03:55" itemprop="dateCreated datePublished" datetime="2022-06-13T00:03:55+08:00">2022-06-13</time>
             </span>
 
           
-            <span id="/yq/%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="工具类" title="阅读次数">
+            <span id="/yq/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="面试题" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -327,8 +327,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E5%B7%A5%E5%85%B7%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%B7%A5%E5%85%B7%E7%B1%BB/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E9%9D%A2%E8%AF%95%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -338,7 +338,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>802</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -357,111 +357,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Bug%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/Bug%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">Bug汇报模板</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-14 13:49:53" itemprop="dateCreated datePublished" datetime="2022-06-14T13:49:53+08:00">2022-06-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/yq/Bug%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/" class="post-meta-item leancloud_visitors" data-flag-title="Bug汇报模板" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/Bug%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/Bug%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>20</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>现象描述：</p>
-<p>问题原因：</p>
-<p>影响范围：</p>
-<p>修改措施：</p>
+          <h1 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h1><p>Dubbo 是一款高性能、轻量级的开源 RPC 框架，提供服务自动注册、自动发现等高效服务治理方<br>案， 可以和 Spring 框架无缝集成。</p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><ul>
+<li>透明化的远程方法调用：就像调用本地方法一样调用远程方法，只需简单配置，没有任何 API 侵入。</li>
+<li>软负载均衡及容错机制：可在内网替代 F5 等硬件负载均衡器，降低成本，减少单点。</li>
+<li>服务自动注册与发现：不再需要写死服务提供方地址，注册中心基于接口名查询服务提供者的 IP 地</li>
+</ul>
+<p>址，并且能够平滑添加或删除服务提供者。</p>
+<h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><p>Remoting：网络通信框架，提供对多种 NIO 框架抽象封装，包括“同步转异步”和“请求-响应”模式的信息交换方式。<br>Cluster：服务框架，提供基于接口方法的透明远程过程调用，包括多协议支持，以及软负载均衡，失败容错，地址路由，动态配置等集群支持。<br>Registry：服务注册，基于注册中心目录服务，使服务消费方能动态的查找服务提供方，使地址透明，使服务提供方可以平滑增加或减少机器。</p>
+<h1 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1655050040115-fc4015a0-3f32-4d86-86f9-ca7b618cb781.png#clientId=u27b6a1d9-12ef-4&from=paste&height=659&id=ub3cdc457&name=image.png&originHeight=824&originWidth=1060&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=141552&status=done&style=none&taskId=u645820c0-e3a4-4c8a-80ee-87755726035&title=&width=848" alt="image.png"><br>Provider：暴露服务的服务提供方<br>Consumer：调用远程服务消费方<br>Registry：服务注册与发现注册中心<br>Monitor：监控中心和访问调用统计<br>Container：服务运行容器</p>
+<h1 id="Dubbo-服务器注册与发现的流程？"><a href="#Dubbo-服务器注册与发现的流程？" class="headerlink" title="Dubbo 服务器注册与发现的流程？"></a>Dubbo 服务器注册与发现的流程？</h1><p>服务容器 Container 负责启动，加载，运行服务提供者。<br>服务提供者 Provider 在启动时，向注册中心注册自己提供的服务。<br>服务消费者 Consumer 在启动时，向注册中心订阅自己所需的服务。<br>注册中心 Registry 返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变<br>更数据给消费者。<br>服务消费者 Consumer，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如<br>果调用失败，再选另一台调用。<br>服务消费者 Consumer 和提供者 Provider，在内存中累计调用次数和调用时间，定时每分钟发送一<br>次统计数据到监控中心 Monitor。</p>
 
       
     </div>
@@ -481,7 +386,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -495,7 +400,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">事故复盘报告模板</a>
+            <a href="/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/" class="post-title-link" itemprop="url">树形结构数据构建</a>
         </h2>
 
         <div class="post-meta">
@@ -505,11 +410,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-14 12:43:02" itemprop="dateCreated datePublished" datetime="2022-06-14T12:43:02+08:00">2022-06-14</time>
+              <time title="创建时间：2022-06-05 09:48:54" itemprop="dateCreated datePublished" datetime="2022-06-05T09:48:54+08:00">2022-06-05</time>
             </span>
 
           
-            <span id="/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/" class="post-meta-item leancloud_visitors" data-flag-title="事故复盘报告模板" title="阅读次数">
+            <span id="/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/" class="post-meta-item leancloud_visitors" data-flag-title="树形结构数据构建" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -524,8 +429,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E4%BA%8B%E6%95%85%E5%A4%8D%E7%9B%98%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E6%9E%84%E5%BB%BA/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -535,14 +440,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>32</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -554,28 +459,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="事故背景"><a href="#事故背景" class="headerlink" title="事故背景"></a>事故背景</h1><h1 id="事故过程"><a href="#事故过程" class="headerlink" title="事故过程"></a>事故过程</h1><h1 id="事故原因"><a href="#事故原因" class="headerlink" title="事故原因"></a>事故原因</h1><h1 id="处理过程"><a href="#处理过程" class="headerlink" title="处理过程"></a>处理过程</h1><h1 id="改进方案"><a href="#改进方案" class="headerlink" title="改进方案"></a>改进方案</h1><table>
-<thead>
-<tr>
-<th><strong>负责方</strong></th>
-<th><strong>动作</strong></th>
-<th><strong>责任人</strong></th>
-<th><strong>完成时间</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在项目中，我们经常涉及单张表数据进行树形目录结构展示（即具有层级关系的数据结构），比如菜单层级展示、商品分类展示等。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>单张表之间要具备层级关系，必然会有能体现父子之间的字段，比如常见的<strong>id</strong>和<strong>parentId</strong><br>比如这样一张表<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654393775795-14a8eaa4-2106-4446-97e9-b6a485f4542f.png#clientId=ua8044348-8b27-4&from=paste&id=u9020b477&name=image.png&originHeight=185&originWidth=753&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=20471&status=done&style=none&taskId=u9934c338-c89a-4826-9811-6d8572c4f9d&title=" alt="image.png"><br>pid 为 0 时即为最高层级，pid 为 1366 的是 id 为 1366 的孩子，在上面的体现是<strong>裤子和上衣都在衣服这一个分类下面</strong><br>要实现这张表树形结构的展示，我们一方面得在该表对应的实体类里添加一个自身的集合 childList 作为其孩子的集合。</p>
+<h1 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h1><p>这里我是将它封装成一个工具类使用。<br>注意：这里默认表里的父级字段为 <strong>parentId</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 构建树的时候需要实体继承此类</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Mr Ye</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/10/15 17:42</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>&lt;<span class="title">C</span> <span class="keyword">extends</span> <span class="title">TreeNode</span>&lt;?&gt;&gt;</span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 父id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String parentId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  子节点j集合</span></span><br><span class="line"><span class="comment">     * 	非数据库字段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;TreeNode&gt; children;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>工具类实现树形结构的展示（递归思想找子节点）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 生成树工具(根节点可有多个)</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> Mr Ye</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> treeNodes 所有节点（所有数据）</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> parentId  指定根节点的唯一标识</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@since</span> 2020/10/15 18:01</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span>  <span class="keyword">static</span> &lt;T extends TreeNode&gt;<span class="function">List&lt;T&gt; <span class="title">build</span><span class="params">(List&lt;T&gt; treeNodes, String parentId)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (parentId == <span class="keyword">null</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       List&lt;T&gt; rootNodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (T t : treeNodes)&#123;</span><br><span class="line">           <span class="keyword">if</span> (parentId.equals(t.getParentId()))&#123;</span><br><span class="line">               <span class="comment">//得到根节点</span></span><br><span class="line">               rootNodes.add(t);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (T t : rootNodes)&#123;</span><br><span class="line">           t.setChildren(getChildNodes(t,treeNodes));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> rootNodes;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@description</span>: 获得子节点</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@author</span> Mr Ye</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> treeNodes</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@since</span> 2020/10/6 18:27</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> &lt;T extends TreeNode&gt;<span class="function">List&lt;TreeNode&gt; <span class="title">getChildNodes</span><span class="params">(TreeNode t,List&lt;T&gt; treeNodes)</span></span>&#123;</span><br><span class="line">       List&lt;TreeNode&gt; childNodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (TreeNode t1 : treeNodes)&#123;</span><br><span class="line">           <span class="keyword">if</span> (t1.getParentId().equals(t.getId()))&#123;</span><br><span class="line">               childNodes.add(t1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (childNodes.size() == <span class="number">0</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (TreeNode t1 : childNodes)&#123;</span><br><span class="line">           t1.setChildren(getChildNodes(t1,treeNodes));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> childNodes;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>要实现树形结构的步骤：</p>
+<ul>
+<li>表设计要有父子级关系（一般用 id 和 parentId）</li>
+<li>实体要新增 子节点 的集合变量，一般用 List 接收</li>
+<li>查找获得所有符合要求的数据，通过遍历得到 <strong>父节点集合</strong>，遍历<strong>父节点集合</strong>，遍历<strong>子节点结合</strong>，父节点的 id 和子节点的父 id 相等时，说明该节点数属于当前父节点的孩子，将其放入父节点的孩子集合中，遍历结束后，将子节点集合赋值给 <strong>集合变量</strong>。（这里用递归思想实现）</li>
+</ul>
 
       
     </div>
@@ -595,7 +492,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Dubbo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -609,7 +506,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">汇报模板</a>
+            <a href="/yq/Dubbo/" class="post-title-link" itemprop="url">Dubbo</a>
         </h2>
 
         <div class="post-meta">
@@ -619,11 +516,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-14 12:42:00" itemprop="dateCreated datePublished" datetime="2022-06-14T12:42:00+08:00">2022-06-14</time>
+              <time title="创建时间：2022-06-05 01:26:40" itemprop="dateCreated datePublished" datetime="2022-06-05T01:26:40+08:00">2022-06-05</time>
             </span>
 
           
-            <span id="/yq/%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/" class="post-meta-item leancloud_visitors" data-flag-title="汇报模板" title="阅读次数">
+            <span id="/yq/Dubbo/" class="post-meta-item leancloud_visitors" data-flag-title="Dubbo" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -638,8 +535,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%B1%87%E6%8A%A5%E6%A8%A1%E6%9D%BF/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/Dubbo/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Dubbo/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -649,7 +546,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>62</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -668,7 +565,116 @@
     <div class="post-body" itemprop="articleBody">
 
       
+          <p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xishilife/article/details/119984710">https://blog.csdn.net/xishilife/article/details/119984710</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
           
+            <a href="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/" class="post-title-link" itemprop="url">Hystrix：服务熔断</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-04 22:04:35" itemprop="dateCreated datePublished" datetime="2022-06-04T22:04:35+08:00">2022-06-04</time>
+            </span>
+
+          
+            <span id="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/" class="post-meta-item leancloud_visitors" data-flag-title="Hystrix：服务熔断" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Hystrix%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="分布式系统面临的问题"><a href="#分布式系统面临的问题" class="headerlink" title="分布式系统面临的问题"></a>分布式系统面临的问题</h1><p>复杂分布式体系结构中的应用程序有数十个依赖关系，每个依赖关系在某些时候将不可避免失败！</p>
+<h1 id="服务雪崩"><a href="#服务雪崩" class="headerlink" title="服务雪崩"></a>服务雪崩</h1><p>多个微服务之间调用的时候，假设微服务 A 调用微服务 B 和微服务 C，微服务 B 和微服务 C 又调用其他的微服务，这就是所谓的“扇出”，如果扇出的链路上<strong>某个微服务的调用响应时间过长，或者不可用</strong>，对微服务 A 的调用就会占用越来越多的系统资源，进而引起系统崩溃，所谓的“雪崩效应”。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530266-2f732998-8a30-4393-a06e-28e295ccb6c3.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u718e3d0d&name=image.png&originHeight=431&originWidth=587&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=96472&status=done&style=none&taskId=ueaa305d1-1e09-4767-bf70-8426b02d968&title=" alt="image.png"><br>对于高流量的应用来说，单一的后端依赖可能会导致所有服务器上的所有资源都在几十秒内饱和。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，备份队列，线程和其他系统资源紧张，导致整个系统发生更多的级联故障，<strong>这些都表示需要对故障和延迟进行隔离和管理，以达到单个依赖关系的失败而不影响整个应用程序或系统运行</strong>。<br>我们需要，<strong>弃车保帅</strong>！</p>
+<h1 id="什么是-Hystrix？"><a href="#什么是-Hystrix？" class="headerlink" title="什么是 Hystrix？"></a>什么是 Hystrix？</h1><p><strong>Hystrix</strong>是一个应用于处理分布式系统的延迟和容错的开源库，在分布式系统里，许多依赖不可避免的会调用失败，比如超时，异常等，<strong>Hystrix</strong> 能够保证在一个依赖出问题的情况下，不会导致整个体系服务失败，避免级联故障，以提高分布式系统的弹性。<br>“<strong>断路器</strong>”本身是一种开关装置，当某个服务单元发生故障之后，通过断路器的故障监控 (类似熔断保险丝) ，<strong>向调用方返回一个服务预期的，可处理的备选响应 (FallBack) ，而不是长时间的等待或者抛出调用方法无法处理的异常，这样就可以保证了服务调用方的线程不会被长时间，不必要的占用</strong>，从而避免了故障在分布式系统中的蔓延，乃至雪崩。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530358-d4cf2df6-70d2-46ac-b248-ddd439045c3f.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u06797f4a&name=image.png&originHeight=397&originWidth=614&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=92805&status=done&style=none&taskId=u99e917a9-4749-4d9d-a4a7-3d3658acfb3&title=" alt="image.png"></p>
+<h1 id="Hystrix-能干嘛？"><a href="#Hystrix-能干嘛？" class="headerlink" title="Hystrix 能干嘛？"></a>Hystrix 能干嘛？</h1><ul>
+<li>服务降级</li>
+<li>服务熔断</li>
+<li>服务限流</li>
+<li>接近实时的监控</li>
+<li>…</li>
+</ul>
+<p>当一切正常时，请求流可以如下所示：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530226-5de32f2f-22ec-44ed-9d4e-1f9500cbf11e.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u5774f836&originHeight=582&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u5090d28d-9c25-4755-9d0d-0489860913f&title="><br>当许多后端系统中有一个潜在阻塞服务时，它可以阻止整个用户请求：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530209-b4d35bc7-55ee-4de6-a018-a3ab2439c0ed.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u5f56885e&originHeight=582&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u3013f63e-f1e5-4706-ae1c-4633ba60b16&title="><br>随着大容量通信量的增加，单个后端依赖项的潜在性会导致所有服务器上的所有资源在几秒钟内饱和。<br>应用程序中通过网络或客户端库可能导致网络请求的每个点都是潜在故障的来源。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，从而备份队列、线程和其他系统资源，从而导致更多跨系统的级联故障。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530278-a71e9d39-893f-4d6f-9d79-f88a4761d84b.png#clientId=u8f87fd90-b0c1-4&from=paste&id=u81b5c46f&originHeight=583&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=u563e53fe-8a08-402d-95fc-543a01c6aae&title="><br>当使用<strong>Hystrix</strong>包装每个基础依赖项时，上面的图表中所示的体系结构会发生类似于以下关系图的变化。<strong>每个依赖项是相互隔离的</strong>，限制在延迟发生时它可以填充的资源中，并包含在回退逻辑中，该逻辑决定在依赖项中发生任何类型的故障时要做出什么样的响应：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654351530888-e9a4a6a6-6a65-410b-8abc-5acf9ae2d2f5.png#clientId=u8f87fd90-b0c1-4&from=paste&id=uca407b3a&name=image.png&originHeight=869&originWidth=640&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=203183&status=done&style=none&taskId=uc4092f78-fd66-4d50-8549-2b78e61b785&title=" alt="image.png"><br><strong>官网资料</strong>：<a target="_blank" rel="noopener" href="https://github.com/Netflix/Hystrix/wiki">https://github.com/Netflix/Hystrix/wiki</a></p>
+<h1 id="服务熔断"><a href="#服务熔断" class="headerlink" title="服务熔断"></a>服务熔断</h1><h5 id="什么是服务熔断"><a href="#什么是服务熔断" class="headerlink" title="什么是服务熔断?"></a>什么是服务熔断?</h5><p><strong>熔断机制是赌赢雪崩效应的一种微服务链路保护机制</strong>。<br>当扇出链路的某个微服务不可用或者响应时间太长时，会进行服务的降级，<strong>进而熔断该节点微服务的调用，快速返回错误的响应信息</strong>。检测到该节点微服务调用响应正常后恢复调用链路。在 SpringCloud 框架里熔断机制通过 Hystrix 实现。Hystrix 会监控微服务间调用的状况，当失败的调用到一定阀值缺省是<strong>5 秒内 20 次调用失败，就会启动熔断机制</strong>。熔断机制的注解是：<a target="_blank" rel="noopener" href="https://github.com/HystrixCommand">@HystrixCommand</a>。<br>服务熔断解决如下问题：</p>
+<ul>
+<li>当所依赖的对象不稳定时，能够起到快速失败的目的；</li>
+<li>快速失败后，能够根据一定的算法动态试探所依赖对象是否恢复。</li>
+</ul>
+
       
     </div>
 
@@ -686,7 +692,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/12/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/aaa/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/36/">36</a><a class="extend next" rel="next" href="/aaa/page/14/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/12/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/aaa/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/33/">33</a><a class="extend next" rel="next" href="/aaa/page/14/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

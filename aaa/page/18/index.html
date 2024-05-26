@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/CAS/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/CAS/" class="post-title-link" itemprop="url">CAS</a>
+            <a href="/yq/Docker/" class="post-title-link" itemprop="url">Docker</a>
         </h2>
 
         <div class="post-meta">
@@ -215,20 +215,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-02 08:54:45" itemprop="dateCreated datePublished" datetime="2022-06-02T08:54:45+08:00">2022-06-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
+              <time title="创建时间：2022-05-24 12:15:26" itemprop="dateCreated datePublished" datetime="2022-05-24T12:15:26+08:00">2022-05-24</time>
             </span>
 
           
-            <span id="/yq/CAS/" class="post-meta-item leancloud_visitors" data-flag-title="CAS" title="阅读次数">
+            <span id="/yq/Docker/" class="post-meta-item leancloud_visitors" data-flag-title="Docker" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -243,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/CAS/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/CAS/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/Docker/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Docker/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -254,110 +245,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="compare-and-set-swap-——-无锁-自旋锁"><a href="#compare-and-set-swap-——-无锁-自旋锁" class="headerlink" title="compare and set(swap) —— 无锁/自旋锁"></a>compare and set(swap) —— 无锁/自旋锁</h1><p>通俗来讲就是 比较和替换或者改变。<strong>CAS 是不用上锁的，所以也称之为无锁或自旋锁。</strong><br><strong>例子</strong>：t1 线程读取了一个变量 a 的值为 1，现在将 a 的值改为 2，做写入操作之前，拿之前取到的 1 这个值和现在 a 的值进行比较，如果相等，也就是说没有其他线程对这个 a 有过修改，这时候就可以放心地把 2 写入了；如果比较不相等，则说明了有其他线程对 a 这个值有修改，这时候不能写入并且再继续之前的操作。之前的操作即为如果我拿 1 去和 a 的当前值比较的时候，因为 a 被其他线程修改为了 5，这个时候 t1 会重新读取 a 的变量，但是这个时候 a 的值并不为 1 了，而是为 5 了，然后我们又对它进行了修改成为 2，再写入之前，又用读取到的 5 去和当前 a 的值比较，一样，则证明这期间没有被修改，可做写入操作，反之不可做写入操作且继续上一步。</p>
-<h1 id="CAS-会带来的问题"><a href="#CAS-会带来的问题" class="headerlink" title="CAS 会带来的问题"></a>CAS 会带来的问题</h1><ul>
-<li>循环时间长，开销大</li>
-<li>只能保证一个共享变量的操作</li>
-<li>ABA 问题</li>
-</ul>
-<h1 id="ABA-问题"><a href="#ABA-问题" class="headerlink" title="ABA 问题"></a>ABA 问题</h1><p>概述：就是说 之前 a 变量的值为 0，t1 第一个去拿出来改为了 1，未做写入操作之前发生了这样的场景：t2 线程也拿出来（此时拿出来的是 0）并且改为 3 写入了，然后 t3 线程又拿出来（此时拿出来的是 t2 写入的，也就是 3）修改为 0 并且写入了。这个时候 t1 做 CAS 的时候，并没有发现 a 变量已经被改变为其他又被改回来了，所以能正常做写入操作。<br><strong>解决方案：加一个版本号</strong>（貌似有点<strong>乐观锁</strong>的感觉。）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ABA问题</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> AtomicInteger atomicInteger = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;---ABA问题---&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;原始值：&quot;</span> + atomicInteger.get());</span><br><span class="line">        <span class="comment">//0--&gt;1--&gt;0</span></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            atomicInteger.compareAndSet(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;步骤一:&quot;</span> + atomicInteger.get());</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">//线程A休眠1秒，保证线程A按照0--&gt;1--&gt;0执行</span></span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">                atomicInteger.compareAndSet(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;步骤二:&quot;</span> + atomicInteger.get());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;thread A&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="comment">//线程B休眠3秒，保证线程A完成ABA问题</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">                atomicInteger.compareAndSet(<span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;步骤三:&quot;</span> + atomicInteger.get());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;thread B&quot;</span>).start();</span><br><span class="line">        <span class="keyword">while</span> (Thread.activeCount() &gt; <span class="number">2</span>) &#123;&#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;最终结果:&quot;</span> + atomicInteger.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#</p>
-<p>案例<br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1730331465639596673%ED%94%B4=spider&for=pc">https://baijiahao.baidu.com/s?id=1730331465639596673픴=spider&amp;for=pc</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E3%80%81%E6%9C%89%E5%BA%8F%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E3%80%81%E6%9C%89%E5%BA%8F%E6%80%A7/" class="post-title-link" itemprop="url">原子性、可见性、有序性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-02 08:53:14" itemprop="dateCreated datePublished" datetime="2022-06-02T08:53:14+08:00">2022-06-02</time>
-            </span>
-
-          
-            <span id="/yq/%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E3%80%81%E6%9C%89%E5%BA%8F%E6%80%A7/" class="post-meta-item leancloud_visitors" data-flag-title="原子性、可见性、有序性" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E3%80%81%E6%9C%89%E5%BA%8F%E6%80%A7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E3%80%81%E6%9C%89%E5%BA%8F%E6%80%A7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>739</span>
+              <span>55</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -376,10 +264,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>原子性、可见性、有序性是多线程编程中最重要的几个知识点，由于多线程情况复杂， 如何让每个线程能看到正确的结果，这是非常重要的。</p>
-<h1 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h1><p>原子性是指<strong>一个线程的操作是不能被其他线程打断</strong>，同一时间只有一个线程对一个变量进行操作。在多线程情况下，每个线程的执行结果不受其他线程的干扰，比如说多个线程同时对同一个共享成员变量 n++100 次，如果 n 初始值为 0，n 最后的值应该是 100，所以说它们是互不干扰的，这就是传说的中的原子性。但 n++并不是原子性的操作，要使用 AtomicInteger 保证原子性。</p>
-<h1 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h1><p><strong>可见性是指某个线程修改了某一个共享变量的值，而其他线程是否可以看见该共享变量修改后的值</strong>。在单线程中肯定不会有这种问题，单线程读到的肯定都是最新的值，而在多线程编程中就不一定了。每个线程都有自己的工作内存，线程先把共享变量的值从主内存读到工作内存，形成一个副本，当计算完后再把副本的值刷回主内存，从读取到最后刷回主内存这是一个过程，当还没刷回主内存的时候这时候对其他线程是不可见的，所以其他线程从主内存读到的值是修改之前的旧值。像 CPU 的缓存优化、硬件优化、指令重排及对 JVM 编译器的优化，都会出现可见性的问题。</p>
-<h1 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h1><p>我们都知道程序是按代码顺序执行的，对于单线程来说确实是如此，但在多线程情况下就不是如此了。<strong>为了优化程序执行和提高 CPU 的处理性能，JVM 和操作系统都会对指令进行重排，也就说前面的代码并不一定都会在后面的代码前面执行，即后面的代码可能会插到前面的代码之前执行，只要不影响当前线程的执行结果</strong>。所以，<strong>指令重排只会保证当前线程执行结果一致，但指令重排后势必会影响多线程的</strong><br><strong>执行结果</strong>。虽然重排序优化了性能，但也是会遵守一些规则的，并不能随便乱排序，只是<strong>重排序会影响多线程执行的结果</strong>。</p>
+          <p>参考链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-tutorial.html">https://www.runoob.com/docker/docker-tutorial.html</a></p>
 
       
     </div>
@@ -399,7 +284,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/synchronized%20%E5%92%8Cvolatile/">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/joba.gif">
@@ -413,7 +298,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yq/synchronized%20%E5%92%8Cvolatile/" class="post-title-link" itemprop="url">synchronized 和volatile</a>
+            <a href="/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/" class="post-title-link" itemprop="url">Flowable工作流引擎</a>
         </h2>
 
         <div class="post-meta">
@@ -423,11 +308,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-02 08:46:27" itemprop="dateCreated datePublished" datetime="2022-06-02T08:46:27+08:00">2022-06-02</time>
+              <time title="创建时间：2022-05-15 23:13:36" itemprop="dateCreated datePublished" datetime="2022-05-15T23:13:36+08:00">2022-05-15</time>
             </span>
 
           
-            <span id="/yq/synchronized%20%E5%92%8Cvolatile/" class="post-meta-item leancloud_visitors" data-flag-title="synchronized 和volatile" title="阅读次数">
+            <span id="/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/" class="post-meta-item leancloud_visitors" data-flag-title="Flowable工作流引擎" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -442,8 +327,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/yq/synchronized%20%E5%92%8Cvolatile/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/synchronized%20%E5%92%8Cvolatile/" itemprop="commentCount"></span>
+    <a title="valine" href="/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Flowable%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -453,230 +338,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h1><h2 id="底层实现原理"><a href="#底层实现原理" class="headerlink" title="底层实现原理"></a>底层实现原理</h2><p>synchronized 是由一对 monitorenter/monitorexit 指令实现的，monitor 对象是同步的基本实现单元。在 <strong>Java 6</strong> 之前，monitor 的实现完全是<strong>依靠操作系统内部的互斥锁</strong>，因为需要进行<strong>用户态到内核态的切换</strong>，所以<strong>同步操作是一个无差别的重量级操作，性能也很低</strong>。但在 Java 6 的时候，Java 虚拟机 对此进行了大刀阔斧地改进，提供了三种不同的 monitor 实现，也就是常说的三种不同的锁：<strong>偏向锁（Biased Locking）、轻量级锁和重量级锁</strong>，大大改进了其性能。<br><strong>ps</strong>: <strong>用户态</strong>可以理解为用户能直接操作的 APP,以前用户可以直接通过用户态访问硬件，操作 内存、网卡、显示器等，这样是很消耗性能的，很容易让机器造成死机，现在相当于是加入了<strong>内核态</strong>（kernel），用户现在要去访问硬盘呀或者是做一些危险的操作的时候，就会通过内核态去访问。</p>
-<h2 id="synchronized-锁升级原理"><a href="#synchronized-锁升级原理" class="headerlink" title="synchronized 锁升级原理"></a>synchronized 锁升级原理</h2><p>在锁对象的对象头里面有一个 threadid 字段，在<strong>第一次访问的时候 threadid 为空</strong>，jvm 让其持有<strong>偏向锁</strong>，并将 threadid 设置为其线程 id，再次进入的时候会先判断 threadid 是否与其线程 id 一致，<strong>如果一致则可以直接使用此对象</strong>；<strong>如果不一致，则升级偏向锁为轻量级锁</strong>，通过<strong>自旋循环</strong>一定次数来获取锁，执行一定次数之后，如果<strong>还没有正常获取到要使用的对象</strong>（<strong>CAS</strong>），此时就会把锁<strong>从轻量级升级为重量级锁，此过程就构成了 synchronized 锁的升级</strong>。（早期属于重量级锁，是需要经过操作系统允许，后来改进后大多数情况是不需要了） 概括： <strong>偏向锁-&gt;自旋锁（CAS）-&gt;重量级锁</strong><br>锁的升级的目的：<strong>锁升级是为了减低了锁带来的性能消耗</strong>。在 Java 6 之后优化 synchronized 的实现方式，使用了偏向锁升级为轻量级锁再升级到重量级锁的方式，从而减低了锁带来的性能消耗。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1654130894239-77969ee9-0a2f-4617-8b50-7a527218b20b.png#clientId=ubca178e7-e838-4&from=paste&height=391&id=u8552a8a9&name=image.png&originHeight=782&originWidth=1430&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=193310&status=done&style=none&taskId=ufaa94453-192a-4ded-8514-66814790dbc&title=&width=715" alt="image.png"></h2><h1 id="volatile-重点"><a href="#volatile-重点" class="headerlink" title="volatile(重点)"></a>volatile(重点)</h1><p>当一个变量被 volatile 修饰时，任何线程对它的写操作都会立即刷新到主内存中，并且会强制让缓存了该变量的线程中的数据清空，必须从主内存重新读取最新数据。<br>_volatile 修饰之后并不是让线程直接从主内存中获取数据，依然需要将变量拷贝到工作内存中_。</p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
-<li>多线程主要围绕<strong>可见性</strong>和<strong>原子性</strong>两个特性而展开，使用 volatile 关键字修饰的变量，保证了其在多线程之间的可见性，即每次读取到 volatile 变量，一定是最新的数据，但是它不能保证原子性。</li>
-</ul>
-<p>为什么不能保证原子性呢？<br>首先需要了解的是，Java 中只有对基本类型变量的赋值和读取是原子操作，如 i = 1 的赋值操作，但是像 j = i 或者 i++这样的操作都不是原子操作，因为他们都进行了多次原子操作，比如先读取 i 的值，再将 i 的值赋值给 j，两个原子操作加起来就不是原子操作了。<br>所以，如果一个变量被 volatile 修饰了，那么肯定可以保证每次读取这个变量值的时候得到的值是最新的，但是一旦需要对变量进行自增这样的非原子操作，就不会保证这个变量的原子性了。<br>举个栗子<br>一个变量 i 被 volatile 修饰，两个线程想对这个变量修改，都对其进行自增操作也就是 i++，i++的过程可以分为三步，首先获取 i 的值，其次对 i 的值进行加 1，最后将得到的新值写会到缓存中。<br>线程 A 首先得到了 i 的初始值 100，但是还没来得及修改，就阻塞了，这时线程 B 开始了，它也得到了 i 的值，由于 i 的值未被修改，即使是被 volatile 修饰，主存的变量还没变化，那么线程 B 得到的值也是 100，之后对其进行加 1 操作，得到 101 后，将新值写入到缓存中，再刷入主存中。根据可见性的原则，这个主存的值可以被其他线程可见。<br>问题来了，线程 A 已经读取到了 i 的值为 100，也就是说读取的这个原子操作已经结束了，所以这个可见性来的有点晚，线程 A 阻塞结束后，继续将 100 这个值加 1，得到 101，再将值写到缓存，最后刷入主存，所以即便是 volatile 具有可见性，也不能保证对它修饰的变量具有原子性。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xdzhouxin/article/details/81236356">https://blog.csdn.net/xdzhouxin/article/details/81236356</a></p>
-<h1 id="如何防止死锁"><a href="#如何防止死锁" class="headerlink" title="如何防止死锁"></a>如何防止死锁</h1><p>1、尽量使用 tryLock(long timeout, TimeUnit unit)的方法(ReentrantLockReentrantReadWriteLock)，<br>2、设置超时时间，超时可以退出防止死锁。<br>3、尽量使用 Java. util. concurrent 并发类代替自己手写锁。<br>4、尽量降低锁的使用粒度，尽量不要几个功能用同一把锁。<br>5、尽量减少同步的代码块。</p>
-<h1 id="synchronized-和-volatile-的区别"><a href="#synchronized-和-volatile-的区别" class="headerlink" title="synchronized 和 volatile 的区别"></a>synchronized 和 volatile 的区别</h1><ul>
-<li>volatile 修饰变量；synchronized 修饰方法、代码段、类</li>
-<li>volatile 仅能实现变量的修改可见性，不能保证原子性；synchronized 都可以；</li>
-<li>volatile 不会造成线程的阻塞；synchronized 有可能造成阻塞；</li>
-<li>volatile 标记的变量不会被编译器优化；synchronized 标记的变量可以被编译器优化；</li>
-<li>volatile 可以防止指令重排。（volatile 关键字通过“内存屏障”来防止指令被重排序。）</li>
-</ul>
-<h1 id="synchronized-和-Lock-有什么区别？"><a href="#synchronized-和-Lock-有什么区别？" class="headerlink" title="synchronized 和 Lock 有什么区别？"></a>synchronized 和 Lock 有什么区别？</h1><ul>
-<li>synchronized 可以给类、方法、代码块加锁；而 lock 只能给代码块加锁。</li>
-<li>synchronized 不需要手动获取锁和释放锁，使用简单，发生异常会自动释放锁，不会造成死锁；而 lock 需要自己加锁和释放锁，如果使用不当没有 unLock()去释放锁就会造成死锁。</li>
-<li>通过 Lock 可以知道有没有成功获取锁，而 synchronized 却无法办到。</li>
-</ul>
-<h1 id="synchronized-和-ReentrantLock-区别是什么？"><a href="#synchronized-和-ReentrantLock-区别是什么？" class="headerlink" title="synchronized 和 ReentrantLock 区别是什么？"></a>synchronized 和 ReentrantLock 区别是什么？</h1><p>synchronized 早期的实现比较低效，对比 ReentrantLock，大多数场景性能都相差较大，但是在 Java 6 中对 synchronized 进行了非常多的改进。<br>主要区别如下：</p>
-<ul>
-<li>ReentrantLock 使用起来比较灵活，但是必须有释放锁的配合动作；</li>
-<li>ReentrantLock 必须手动获取与释放锁，而 synchronized 不需要手动释放和开启锁；</li>
-<li>ReentrantLock 只适用于代码块锁，而 synchronized 可用于修饰方法、代码块等。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/CountDownLatch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/CountDownLatch/" class="post-title-link" itemprop="url">CountDownLatch</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-02 08:33:10" itemprop="dateCreated datePublished" datetime="2022-06-02T08:33:10+08:00">2022-06-02</time>
-            </span>
-
-          
-            <span id="/yq/CountDownLatch/" class="post-meta-item leancloud_visitors" data-flag-title="CountDownLatch" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/CountDownLatch/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/CountDownLatch/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>CountDownLatch 是 Java 并发包下的一个工具类，可以看做一个计数器，它的操作是原子性的，也就是同一时刻只能有一个线程去操作这个计数器。初始化的时候我们会设置一个计数值，计数器的计数值被线程 countdown()减为 0 时，任何调用 CountDownLatch 对象上的 await()方法都会被阻塞，直至 countdown 减到 status = 0 或者超时时，才会执行 await()后面的程序。</p>
-<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountDownLatchTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(<span class="number">3</span>);</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.MILLISECONDS.sleep(<span class="number">20L</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">&quot;证据1收集完成...&quot;</span>);</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">        Thread thread1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.MILLISECONDS.sleep(<span class="number">20L</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">&quot;证据2收集完成....&quot;</span>);</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread1.start();</span><br><span class="line">        Thread thread2 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.MILLISECONDS.sleep(<span class="number">20L</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">&quot;证据3收集完成...&quot;</span>);</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread2.start();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;收据收集未完成,无法提起申诉...&quot;</span>);</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        System.out.println(<span class="string">&quot;证据1、2、3收集完毕,可以提起了申诉了,这次要让让坏人被绳之以法....&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果</span></span><br><span class="line"></span><br><span class="line">收据收集未完成,无法提起申诉...</span><br><span class="line">收集证据<span class="number">1</span></span><br><span class="line">收集证据<span class="number">2</span></span><br><span class="line">收集证据<span class="number">3</span></span><br><span class="line">证据收集完毕,可以提起了申诉了,这次要让让坏人被绳之以法....</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="源码浅析"><a href="#源码浅析" class="headerlink" title="源码浅析"></a>源码浅析</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造器，初始化计数值</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">CountDownLatch</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (count &lt; <span class="number">0</span>) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;count &lt; 0&quot;</span>);</span><br><span class="line">        <span class="keyword">this</span>.sync = <span class="keyword">new</span> Sync(count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 1、Sync继承AQS，重写tryAcquireShared和tryReleaseShared方法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Sync</span> <span class="keyword">extends</span> <span class="title">AbstractQueuedSynchronizer</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">4982264981922014374L</span>;</span><br><span class="line"></span><br><span class="line">        Sync(<span class="keyword">int</span> count) &#123;</span><br><span class="line">            setState(count);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> getState();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取共享变量status status为0返回1，反之返回-1</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">tryAcquireShared</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (getState() == <span class="number">0</span>) ? <span class="number">1</span> : -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">tryReleaseShared</span><span class="params">(<span class="keyword">int</span> releases)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// Decrement count; signal when transition to zero</span></span><br><span class="line">            <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">                <span class="keyword">int</span> c = getState();</span><br><span class="line">                <span class="keyword">if</span> (c == <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">int</span> nextc = c - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (compareAndSetState(c, nextc))</span><br><span class="line">                    <span class="keyword">return</span> nextc == <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等待</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">await</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        sync.acquireSharedInterruptibly(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 带超时的等待方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">await</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sync.tryAcquireSharedNanos(<span class="number">1</span>, unit.toNanos(timeout));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// status = status - 1</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countDown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        sync.releaseShared(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/ThreadLocal%E6%BA%90%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/joba.gif">
-      <meta itemprop="name" content="Ronetver">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ronetver-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yq/ThreadLocal%E6%BA%90%E7%A0%81/" class="post-title-link" itemprop="url">ThreadLocal源码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-02 08:21:54" itemprop="dateCreated datePublished" datetime="2022-06-02T08:21:54+08:00">2022-06-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/yq/ThreadLocal%E6%BA%90%E7%A0%81/" class="post-meta-item leancloud_visitors" data-flag-title="ThreadLocal源码" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/yq/ThreadLocal%E6%BA%90%E7%A0%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/yq/ThreadLocal%E6%BA%90%E7%A0%81/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>117</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -695,8 +357,297 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取当前线程</span></span><br><span class="line">        Thread t = Thread.currentThread();</span><br><span class="line">        <span class="comment">// 获取当前线程获取ThreadLocalMap对象</span></span><br><span class="line">        ThreadLocalMap map = getMap(t);</span><br><span class="line">        <span class="keyword">if</span> (map != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 根据threadLocal对象从map中获取Entry对象</span></span><br><span class="line">            ThreadLocalMap.Entry e = map.getEntry(<span class="keyword">this</span>);</span><br><span class="line">            <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">                T result = (T)e.value;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> setInitialValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function">ThreadLocalMap <span class="title">getMap</span><span class="params">(Thread t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> T <span class="title">setInitialValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        T value = initialValue();</span><br><span class="line">        Thread t = Thread.currentThread();</span><br><span class="line">        ThreadLocalMap map = getMap(t);</span><br><span class="line">        <span class="keyword">if</span> (map != <span class="keyword">null</span>) &#123;</span><br><span class="line">            map.set(<span class="keyword">this</span>, value);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            createMap(t, value);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> <span class="keyword">instanceof</span> TerminatingThreadLocal) &#123;</span><br><span class="line">            TerminatingThreadLocal.register((TerminatingThreadLocal&lt;?&gt;) <span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">createMap</span><span class="params">(Thread t, T firstValue)</span> </span>&#123;</span><br><span class="line">        t.threadLocals = <span class="keyword">new</span> ThreadLocalMap(<span class="keyword">this</span>, firstValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalMap</span> </span>&#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">            Object value;</span><br><span class="line"></span><br><span class="line">            Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">                <span class="keyword">super</span>(k);</span><br><span class="line">                value = v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+          <p>参考链接：<a target="_blank" rel="noopener" href="http://blog.itpub.net/69961615/viewspace-2715439/">http://blog.itpub.net/69961615/viewspace-2715439/</a></p>
+<p>官方 api:<a target="_blank" rel="noopener" href="https://www.flowable.com/open-source/docs/bpmn/ch15-REST/">https://www.flowable.com/open-source/docs/bpmn/ch15-REST/</a></p>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/" class="post-title-link" itemprop="url">Google EventBus（事件总线）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-15 15:15:28" itemprop="dateCreated datePublished" datetime="2022-05-15T15:15:28+08:00">2022-05-15</time>
+            </span>
+
+          
+            <span id="/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="Google EventBus（事件总线）" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/Google%20EventBus%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%89/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>58</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a target="_blank" rel="noopener" href="https://github.com/greenrobot/EventBus">https://github.com/greenrobot/EventBus</a><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652600058972-245ee3b0-33d7-4706-84ac-8b2b3a9e9080.png#clientId=uf6fc35c4-008e-4&from=paste&id=uc72a07ef&name=image.png&originHeight=479&originWidth=1280&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=48762&status=done&style=none&taskId=uf216fe86-dd64-4281-82cc-95093a7a832&title=" alt="image.png"></p>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>业务数据变更与日志记录的解耦</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" class="post-title-link" itemprop="url">日志框架</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-15 14:00:46" itemprop="dateCreated datePublished" datetime="2022-05-15T14:00:46+08:00">2022-05-15</time>
+            </span>
+
+          
+            <span id="/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" class="post-meta-item leancloud_visitors" data-flag-title="日志框架" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1653313587057-ea2021c0-df7b-461f-96a0-4384a0670865.png#clientId=u0ca72cef-316e-4&from=paste&height=165&id=u2739038b&name=image.png&originHeight=330&originWidth=640&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=127558&status=done&style=none&taskId=uada8473b-171d-4b55-aacc-72e3b17b6ed&title=&width=320" alt="image.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wuhuanye.github.io/yq/COLA%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/joba.gif">
+      <meta itemprop="name" content="Ronetver">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ronetver-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yq/COLA%E6%9E%B6%E6%9E%84/" class="post-title-link" itemprop="url">COLA架构</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 10:42:56" itemprop="dateCreated datePublished" datetime="2022-05-10T10:42:56+08:00">2022-05-10</time>
+            </span>
+
+          
+            <span id="/yq/COLA%E6%9E%B6%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="COLA架构" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/yq/COLA%E6%9E%B6%E6%9E%84/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/yq/COLA%E6%9E%B6%E6%9E%84/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>资料<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/significantfrank/article/details/110934799">https://blog.csdn.net/significantfrank/article/details/110934799</a><br>源码<br><a target="_blank" rel="noopener" href="https://github.com/alibaba/COLA">https://github.com/alibaba/COLA</a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>随着业务复杂性的逐步提高，为兼容各种场景，原有的代码也变得越来越复杂不易维护且容易出问题。故公司高层提出了重构我们现有的项目，经过几次会议的讨论，最终确定采用 COLA 架构作为本次重构的指导思想。</p>
+<h1 id="COLA-了解"><a href="#COLA-了解" class="headerlink" title="COLA 了解"></a>COLA 了解</h1><h2 id="分层结构"><a href="#分层结构" class="headerlink" title="分层结构"></a>分层结构</h2><p><strong>应用系统处理复杂业务逻辑也应该是分层的，下层对上层屏蔽处理细节，每一层各司其职，分离关注点，而不是一个 ServiceImpl 解决所有问题</strong>。对于一个典型的业务应用系统来说，COLA 会做如下层次定义，每一层都有明确的职责定义：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652595249195-bbe2a985-dddc-41fc-94c1-44087ec657ac.png#clientId=u3f77690d-dba3-4&from=paste&id=u00672630&name=image.png&originHeight=493&originWidth=372&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=49940&status=done&style=none&taskId=udd742a71-ff23-42f0-8e7c-00ab4d618b5&title=" alt="image.png"><br>1）适配层（Adapter Layer）：负责对前端展示（web，wireless，wap）的路由和适配，对于传统 B/S 系统而言，adapter 就相当于 MVC 中的 controller；</p>
+<p>2）应用层（Application Layer）：主要负责获取输入，组装上下文，参数校验，调用领域层做业务处理，如果需要的话，发送消息通知等。层次是开放的，应用层也可以绕过领域层，直接访问基础实施层；</p>
+<p>3）领域层（Domain Layer）：主要是封装了核心业务逻辑，并通过领域服务（Domain Service）和领域对象（Domain Entity）的方法对 App 层提供业务实体和业务逻辑计算。领域是应用的核心，不依赖任何其他层次；</p>
+<p>4）基础实施层（Infrastructure Layer）：主要负责技术细节问题的处理，比如数据库的 CRUD、搜索引擎、文件系统、分布式服务的 RPC 等。此外，领域防腐的重任也落在这里，外部依赖需要通过 gateway 的转义处理，才能被上面的 App 层和 Domain 层使用。</p>
+<h2 id="分包结构"><a href="#分包结构" class="headerlink" title="分包结构"></a>分包结构</h2><p>分层是整体项目的职责划分，细分到包结构的粒度，才能更好指导我们的工作。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652595401770-a263b2c4-d0f8-4e59-afb8-a2b41e787148.png#clientId=u3f77690d-dba3-4&from=paste&id=u09d89b0b&name=image.png&originHeight=722&originWidth=1476&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=287874&status=done&style=none&taskId=u15be2a4e-2117-4aee-8ed2-66c82c1469d&title=" alt="image.png"></p>
+<p>各个包结构的简要功能描述，如下表所示：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652595806389-9276d4d4-eb10-4c1c-99e6-a32afab8ecce.png#clientId=u3f77690d-dba3-4&from=paste&height=535&id=ud88c7899&name=image.png&originHeight=669&originWidth=733&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=43760&status=done&style=none&taskId=uaceb907c-bb2d-4846-964d-6b0eac63403&title=&width=586.4" alt="image.png"><br><strong>无有必要勿增实体</strong>。领域模型对设计能力要求很高，没把握用好，一个错误的抽象还不如不抽象，宁可不要用，也不要滥用，不要为了 DDD 而 DDD。<br>问题的关键是要看，新增的模型没有给你带来收益。比如有没有帮助系统解耦，有没有提升业务语义表达能力的提升，有没有提升系统的可维护性和可测性等等。<br>模型虽然可选，但 DDD 的思想是一定要去学习和贯彻的，特别是统一语言、边界上下文、防腐层的思想，值得深入学习，仔细体会。实际上，COLA 里面的很多设计思想都来自于 DDD。其中就包括领域包的设计。<br>前面的包定义，都是功能维度的定义。为了兼顾领域维度的内聚性，我们有必要对包结构进行一下微调，即顶层包结构应该是按照领域划分，让领域内聚。<br>也就是说，我们要综合考虑功能和领域两个维度包结构定义。按照领域和功能两个维度分包策略，最后呈现出来的，是如下图所示的顶层包节点是领域名称，领域之下，再按功能划分包结构。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652595947916-fa897609-9e8d-4693-a9cb-4c08465e8837.png#clientId=u3f77690d-dba3-4&from=paste&id=u1ec5259c&name=image.png&originHeight=462&originWidth=796&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=204437&status=done&style=none&taskId=ub51e3cbe-05c1-4fe5-9ae2-3368322f39e&title=" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652596012571-51722ab0-e7a5-4465-b07a-87dcffeeb060.png#clientId=u3f77690d-dba3-4&from=paste&id=u18031ef0&name=image.png&originHeight=480&originWidth=948&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=237531&status=done&style=none&taskId=u61c8266e-d247-4e86-9733-432eff5b977&title=" alt="image.png"></p>
+<h2 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h2><p>实现 <strong>高内聚低耦合。</strong><br>采用<strong>防腐层</strong>的解耦设计思想，不直接依赖外域的信息，要把外域的信息转换成自己领域上下文的实体再去使用，从而实现本域和外部依赖的解耦。<br>在 cola 中，将数据库、搜索引擎等数据存储也列为外部依赖的范畴。<br>其实现方式如下图所示，主要是<strong>在 Domain 层定义 Gateway 接口，然后在 Infrastructure 提供 Gateway 接口的实现。</strong><br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652596395594-79a7d642-20a4-431c-bd48-d6c80a6eae67.png#clientId=u3f77690d-dba3-4&from=paste&id=u9cd1c418&name=image.png&originHeight=410&originWidth=1012&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=138786&status=done&style=none&taskId=u59f36eb9-2398-40ba-a42b-372d1af68bd&title=" alt="image.png"><br>举个例子，假如有一个电商系统，对于下单这个操作，它需要联动订单服务、商品服务、库存服务、营销服务等多个系统才能完成。<br>那么在订单域，该如何获取商品和库存信息呢？最直接的方式，无外乎就是 RPC 调用商品和库存服务，拿到 DTO 直接使用就完了。<br>然而，商品域吐出的是一个大而全的 DTO（可能包含几十个字段），而在下单这个阶段，订单所需要的可能只是其中几个字段而已。更合适的做法，应该是在订单域中，使用 gateway 对商品域和库存域的依赖进行解耦<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22422342/1652596936299-1836b7e3-b78d-4594-83db-67ce97121b42.png#clientId=u3f77690d-dba3-4&from=paste&id=ua602439f&name=image.png&originHeight=666&originWidth=1024&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=290654&status=done&style=none&taskId=u4093de99-cde1-440f-a25d-c01f651f955&title=" alt="image.png"></p>
+<h2 id="落地"><a href="#落地" class="headerlink" title="落地"></a>落地</h2>
       
     </div>
 
@@ -714,7 +665,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/aaa/page/17/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/aaa/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/36/">36</a><a class="extend next" rel="next" href="/aaa/page/19/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/aaa/page/17/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/aaa/">1</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/aaa/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/aaa/page/33/">33</a><a class="extend next" rel="next" href="/aaa/page/19/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
